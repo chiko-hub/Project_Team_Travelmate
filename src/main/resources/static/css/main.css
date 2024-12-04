@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+/* 전체 레이아웃 */
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* 좌측 사이드바 */
+.sidebar {
+    width: 15%;
+    background: #f4f4f4;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background: #fff;
+    color: #2e8b57;
+    border: 1px solid #2e8b57;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.dropdown-btn:hover {
+    background: #2e8b57;
+    color: #fff;
+}
+
+.dropdown-content {
+    display: none;
+    position: relative;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 10px;
+    animation: slide-down 0.3s ease-out;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+/* 드롭다운 애니메이션 */
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 중앙 결과 표시 */
+.main {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 지도 스타일 */
+.map {
+    width: 50%;
+    padding: 0;
+}
+
+#map {
+    width: 100%;
+    height: 100vh;
+}

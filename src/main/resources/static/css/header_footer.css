@@ -1,0 +1,246 @@
+@charset "UTF-8";
+
+#wrap{
+   width:1024px; margin:0 auto; }
+a{ text-decoration:none; }
+
+header{
+   width:100%;
+   display: flex;
+   flex-direction: column;
+
+}
+
+#top_menu{
+   width:100%;
+   display: flex;
+   justify-content: space-between;
+
+}
+
+#logo{
+   flex:1;
+}
+.gnb{
+   flex:5;
+   display: flex;
+   justify-content: flex-end;
+   align-items:center;
+   background-color: white;
+}
+.gnb a{
+   text-decoration: none;
+   margin-left: 20px;
+   font-family: Verdana;
+   color:dodgerblue;
+   font-weight: bold;
+}
+
+.search-box {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   padding: 10px;
+   max-width: 800px;
+   margin: auto;
+}
+
+
+
+
+
+
+/*#category_menu{*/
+/*   display: flex;*/
+/*   justify-content: space-between;*/
+/*   padding: 30px;*/
+/*   background-color: cornflowerblue;*/
+/*   border-radius: 10px;*/
+/*   margin-bottom: 10px;*/
+/*}*/
+/*#category_menu a{*/
+/*   color:white;*/
+/*   text-decoration: none;*/
+/*   font-family: Verdana;*/
+/*   font-weight: bold;*/
+/*   font-size:1.2em;*/
+/*}*/
+
+@media (min-width:1024px){
+   .gnb{
+      display: flex !important;
+   }
+}
+
+@media (min-width:600px) and (max-width:1024px){
+   #wrap{
+      width:100%;
+   }
+   
+   .gnb{
+      display: flex !important;
+   }
+}
+
+@media (max-width:599px){
+   #wrap{
+      width:100%;
+   }
+   #top_menu{
+      flex-direction: column;    position: relative;   height:100px;
+   }
+   #logo{
+      position: absolute;   left:0;
+   }
+   .gnb{
+      display:none; position: absolute; left:0; top:100px; z-index: 10;   width: 100%; text-align: center;
+   }
+   .gnb a{
+      display: block;   width:100%;   text-align: center;   margin:5px; padding:10px 0;
+   }
+   
+   .hmenu{
+      display: block;   position: absolute; right:0; top:25px;
+   }
+   
+   #category_menu a{
+   		font-size:0.9em;
+   }
+   
+}
+
+
+.dropdown {
+   position: relative;
+   display: inline-block;
+}
+
+.dropdown-content {
+   display: none;
+   position: absolute;
+   top: 100%;
+   left: 0;
+   z-index: 1;
+   background-color: #f9f9f9;
+   padding: 15px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   width: 300px;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown:hover .dropdown-content {
+   display: block;
+}
+
+.counter {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 10px;
+}
+
+.counter span {
+   font-size: 16px;
+}
+
+.counter button {
+   width: 30px;
+   height: 30px;
+   font-size: 18px;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   cursor: pointer;
+   background-color: white;
+}
+
+.counter button:disabled {
+   cursor: not-allowed;
+   color: #ccc;
+}
+
+.add-room {
+   margin-top: 10px;
+   font-size: 14px;
+   color: #007bff;
+   cursor: pointer;
+}
+
+.add-room:hover {
+   text-decoration: underline;
+}
+
+.complete-button {
+   margin-top: 10px;
+   padding: 10px;
+   width: 100%;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+
+.calendar {
+   display: grid;
+   grid-template-columns: repeat(7, 1fr);
+   gap: 5px;
+   text-align: center;
+   margin: 10px 0;
+}
+
+.calendar button {
+   padding: 10px;
+   border: none;
+   border-radius: 50%;
+   background-color: #f9f9f9;
+   cursor: pointer;
+   font-size: 14px;
+}
+
+.calendar button:hover {
+   background-color: #007bff;
+   color: white;
+}
+
+.calendar .selected {
+   background-color: #007bff;
+   color: white;
+}
+
+.header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.header button {
+   background: none;
+   border: none;
+   font-size: 18px;
+   cursor: pointer;
+}
+
+.footer {
+   margin-top: 10px;
+   text-align: right;
+}
+
+.footer button {
+   background-color: #007bff;
+   color: white;
+   border: none;
+   padding: 10px;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.year-select {
+   margin-right: 10px;
+   font-size: 16px;
+   padding: 5px;
+}
