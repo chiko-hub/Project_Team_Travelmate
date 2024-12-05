@@ -14,14 +14,15 @@ public class PlaceController {
     @Autowired
     PlaceService ps;
 
-    @GetMapping("/placesearch")
-    public String loginForm() {
-        ModelAndView mav = new ModelAndView();
+    @GetMapping("/placeSelect")
+    public ModelAndView placeList() {
         HashMap<String, Object> result = ps.selectBestList();
+        ModelAndView mav = new ModelAndView();
         mav.addObject("bestList", result.get("bestList"));
-        mav.setViewName("placesearch");
-        return "place/placeSearch";
+        mav.setViewName("place/placeSelect");
+        return mav;
     }
+
 
 
 
