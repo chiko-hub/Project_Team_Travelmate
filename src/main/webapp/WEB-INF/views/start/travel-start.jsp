@@ -13,7 +13,10 @@
   <!-- 좌측 STEP 메뉴 -->
   <div class="sidebar">
     <%--    <button class="step-button" onclick="">STEP 1<br>날짜 확인</button>--%>
-    <button class="step-button" onclick="location.href='place'">STEP 1<br>장소 선택</button>
+<%--    <form action="placeSelect" method="get">--%>
+<%--      <button class="step-button" type="submit">STEP 1<br>장소 선택</button>--%>
+<%--    </form>--%>
+    <button class="step-button" onclick="location.href='placeSelect'">STEP 1<br>장소 선택</button>
     <button class="step-button" onclick="location.href='hotel'">STEP 2<br>숙소 선택</button>
     <button class="step-button" onclick="location.href='like'">STEP 3<br>찜꽁</button>
     <button class="step-button" onclick="location.href='plan'">STEP 4<br>일정</button>
@@ -42,5 +45,6 @@
   };
   var map = new kakao.maps.Map(container, options);
 </script>
+
 </body>
 </html>

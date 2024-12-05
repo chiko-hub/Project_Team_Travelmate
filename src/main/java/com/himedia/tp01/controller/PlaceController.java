@@ -15,10 +15,11 @@ public class PlaceController {
     PlaceService ps;
 
     @GetMapping("/placeSelect")
-    public ModelAndView placeList() {
-        HashMap<String, Object> result = ps.selectBestList();
+    public ModelAndView placeSelect() {
         ModelAndView mav = new ModelAndView();
+        HashMap<String, Object> result = ps.selectBestHotList();
         mav.addObject("bestList", result.get("bestList"));
+        mav.addObject("hotList", result.get("hotList"));
         mav.setViewName("place/placeSelect");
         return mav;
     }
