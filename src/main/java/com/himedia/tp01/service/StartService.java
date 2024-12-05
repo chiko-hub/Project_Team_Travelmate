@@ -11,10 +11,6 @@ import java.util.List;
 public class StartService {
 
     @Autowired
-    IStartDao hdao;
+    IStartDao sdao;
 
-
-    public List<StartVO> getHotel() {
-        return hdao.getHotel();
-    }
 }

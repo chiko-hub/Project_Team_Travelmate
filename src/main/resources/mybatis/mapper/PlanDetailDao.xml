@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.himedia.tp01.dao.IPlanDetailDao">
+    <insert id="setPlanDetailDate">
+        INSERT INTO plan_detail(plan_code, plan_date) VALUES(#{param1}, #{param2})
+    </insert>
+
+    <select id="getPlanDetail" resultType="com.himedia.tp01.dto.PlanDetailVO">
+        SELECT * FROM plan_detail WHERE plan_code=#{param1}
+    </select>
+</mapper>
