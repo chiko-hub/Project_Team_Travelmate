@@ -1,29 +1,97 @@
-.places{
-    flex:1;
-    display:flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+/* Layout */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-.item{
-    /*flex:1;*/
-    /*display:flex;*/
-    /*flex-direction: column;*/
-    /*margin:5px;*/
-    /*align-items: center;*/
-    /*justify-content: space-between;*/
-    position: relative;
-    display: inline-block;
-    margin: 10px;
-    padding: 10px;
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #f2f2f2;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Sidebar Buttons */
+.step-button {
+    width: 90%;
+    margin: 10px 0;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #4caf50;
+    background-color: white;
+    border-radius: 5px;
     cursor: pointer;
-    box-sizing: border-box;
+    font-size: 16px;
+    color: #4caf50;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.item div img{
-    border:10px solid #2e8b57;
-    width: 220px; height:220px;
-    box-sizing: border-box; box-shadow: 3px 3px 3px gray;
-    border-radius:5px;
+.step-button:hover {
+    background-color: #4caf50;
+    color: white;
+}
 
+/* Content Styling */
+h2, h3 {
+    margin: 0 0 10px;
+}
+
+p {
+    margin: 0 0 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Places Section */
+.places {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.place-info {
+    padding: 10px;
+}
+
+.place-info h4 {
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.place-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
 }
