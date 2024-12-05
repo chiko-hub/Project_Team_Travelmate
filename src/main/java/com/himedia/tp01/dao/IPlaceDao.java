@@ -9,4 +9,5 @@ import java.util.List;
 public interface IPlaceDao {
 
     List<PlaceVO> selectBestList();
+    List<PlaceVO> selectHotList();
 }

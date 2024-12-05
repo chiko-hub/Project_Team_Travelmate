@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.himedia.tp01.dao.IPlaceDao">
+    <select id = "selectBestList" resultType="com.himedia.tp01.dto.PlaceVO">
+        select * from bestplace_view
+    </select>
+
+    <select id = "selectHotList" resultType="com.himedia.tp01.dto.PlaceVO">
+        select * from hotplace_view
+    </select>
+
+
+
+</mapper>

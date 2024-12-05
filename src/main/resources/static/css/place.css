@@ -1,0 +1,29 @@
+.places{
+    flex:1;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.item{
+    /*flex:1;*/
+    /*display:flex;*/
+    /*flex-direction: column;*/
+    /*margin:5px;*/
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.item div img{
+    border:10px solid #2e8b57;
+    width: 220px; height:220px;
+    box-sizing: border-box; box-shadow: 3px 3px 3px gray;
+    border-radius:5px;
+
+}
