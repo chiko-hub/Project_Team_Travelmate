@@ -18,10 +18,4 @@ public class PlanDetailService {
     @Autowired
     IPlanDetailDao pddao;
 
-    /* code 에 해당하는 plan_detail 불러오기 */
-    public List<PlanDetailVO> getPlanDetail(String code) {
-        List<PlanDetailVO> planDetailList = pddao.getPlanDetail(code);
-        return planDetailList;
-    }
-
 }

@@ -34,9 +34,9 @@
         <div class="time">오후 10시</div>
         <div class="time">오후 11시</div>
     </div>
-    <c:forEach var="i" begin="0" end="${fn:length(planDetailList)-1}" varStatus="status">
+    <c:forEach var="i" begin="0" end="${fn:length(planList)-1}" varStatus="status">
         <div class="planList">
-            <div class="cell">${planDetailList[i].plan_date}</div>
+            <div class="cell">${planList[i].travel_date}</div>
             <div class="cell" id="am06"></div>
             <div class="cell" id="am07"></div>
             <div class="cell" id="am08"></div>
