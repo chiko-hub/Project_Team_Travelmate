@@ -44,7 +44,7 @@ public class PlanController {
                 System.out.println("endDate : " + endDate);
 
                 // code와 입력한 날짜에 따른 paln 생성
-                ps.setPlan(planCode, startDate, endDate);
+                //ps.setPlan(planCode, startDate, endDate);
             /*}
 
             // 현재 사용자 정보로부터 plan_code 불러오기
