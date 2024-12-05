@@ -48,6 +48,12 @@ public class MemberController {
         return url;
     }
 
+    @PostMapping("/mypage")
+    public String mypage(Model model) {
+        return "member/joinForm";
+    }
+
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginUser");
