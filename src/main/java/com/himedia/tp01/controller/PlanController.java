@@ -27,10 +27,27 @@ public class PlanController {
     /* 로그인 여부 확인 후 planner 로 이동 */
     @GetMapping("/planForm")
     public String planForm(HttpSession session) {
+
+        // 코드 생성 - 테스트 코드
+        String code = "qwer";
+
+        // 날짜 입력 - 테스트 코드
+        Date startDate = new Date(2024, 12, 01);
+        Date endDate = new Date(2024, 12, 10);
+
+        // code와 입력한 날짜에 따른 paln 생성
+        ps.setPlan(code, startDate, endDate);
+
+        // 입력한 여행 날짜 계산하여 plan_detail 생성
+        //pds.getDaysBetweenDates(code, startDate, endDate);
+
+
+
+        /*
         String url = "member/loginForm";
         if(session.getAttribute("loginUser") == null) {
             // 로그인 알람
-
+            //url = "member/loginForm";
         }else{
             MemberVO currentMember = (MemberVO)session.getAttribute("loginUser");
             if(currentMember.getPlan_code().isEmpty()) { // plan_code 가 비어있다면
@@ -44,13 +61,15 @@ public class PlanController {
                 // code와 입력한 날짜에 따른 paln 생성
                 ps.setPlan(code, startDate, endDate);
 
-                // plan의 여행 날짜 계산 - 생성 최초 1회
+                // 입력한 여행 날짜 계산하여 plan_detail 생성
                 pds.getDaysBetweenDates(code, startDate, endDate);
 
             }
             url = "planner";
         }
-        return url;
+        */
+
+        return "planner";
     }
 
     /* 코드에 맞는 plan 불러오기 */
