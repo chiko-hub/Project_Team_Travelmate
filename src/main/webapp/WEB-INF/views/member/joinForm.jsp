@@ -3,8 +3,39 @@
 <head>
 	<title>TRAVEL Planner Join</title>
 	<link rel="stylesheet" href="/css/login.css">
-</head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#idcheckButton').click(function(){
+				var formselect = $('#joinFrm')[0];
+				var formdata = new FormData( formselect );
+				$.ajax({
+					url:"<%=request.getContextPath()%>/idcheck",
+					type:"POST",
+					// enctype:"multipart/form-data",
+					async: false,
+					data: formdata,
+					timeout: 10000,
+					contentType : false,
+					processData : false,
 
+					success:function(data){
+						if( data.idmessage == '1'){
+							$('#idmessage').html("&nbsp;&nbsp;<span style='color:blue' >사용 가능합니다</span>");
+							$('#reid').val(data.userid);
+						}else{
+							$('#idmessage').html("&nbsp;&nbsp;<span style='color:red' >사용중인 아이디입니다</span>");
+							$('#reid').val("");
+						}
+					},
+					error:function(){
+						alert("중복 조회 실패");
+					},
+				});
+			});
+		});
+	</script>
+</head>
 <article>
 	<div class="container">
 		<div class="loginbox">
@@ -12,7 +43,7 @@
 				<img src="images/logo2.png"/>
 				<h2>여행 스케줄링 플래너</h2>
 			</div>
-			<form aciton="join" method="post" name="joinForm" id="joinFrm">
+			<form action="join" method="post" name="joinForm" id="joinFrm">
 				<h3>기본 정보</h3>
 				<div class="field">
 					<label>아이디</label>
@@ -77,7 +108,7 @@
 						}).open();
 					}
 				</script>
-				<div class="field"><div>${validmsg}</div></div>
+				<div class="field">${validmsg}</div>
 				<button type="submit" class="btn" onClick="location.href='joinForm'">회원가입</button>
 				<button type="button" class="btn" onClick="location.href='/'">메인으로</button>
 			</form>
