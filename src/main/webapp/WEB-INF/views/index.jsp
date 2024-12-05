@@ -20,13 +20,12 @@
                 <a href="loginForm">로그인</a>
             </c:when>
             <c:otherwise>
-                <a href="#">${loginUser.name}(${loginUser.userid})</a>
+                <a href="">${loginUser.name}(${loginUser.userid})</a>
                 <a href="logout">로그아웃</a>
             </c:otherwise>
         </c:choose>
         <a href="#"></a>
         <a href="#"></a>
-
     </nav>
 </div>
 
