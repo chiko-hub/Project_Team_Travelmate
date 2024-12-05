@@ -59,7 +59,7 @@ public class MemberController {
         return "member/contract";
     }
 
-    @PostMapping("/joinForm")
+    @GetMapping("/joinForm")
     public String joinForm(Model model) {
         return "member/joinForm";
     }
