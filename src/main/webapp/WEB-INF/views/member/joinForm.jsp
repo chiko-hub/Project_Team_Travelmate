@@ -78,7 +78,7 @@
 					}
 				</script>
 				<div class="field"><div>${validmsg}</div></div>
-				<button type="submit" class="btn">회원가입</button>
+				<button type="submit" class="btn" onClick="location.href='joinForm'">회원가입</button>
 				<button type="button" class="btn" onClick="location.href='/'">메인으로</button>
 			</form>
 		</div>
