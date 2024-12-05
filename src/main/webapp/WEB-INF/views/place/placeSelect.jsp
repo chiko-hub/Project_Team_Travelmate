@@ -21,27 +21,35 @@
         <button class="step-button" onclick="showContent('step5')">STEP 4<br>일정</button>
     </div>
 
+    <!-- Best Places -->
     <div id="BestPlace">
-        <h2>Best Place</h2>
+        <h3>Best Places</h3>
         <div class="places">
             <c:forEach items="${bestList}" var="place">
-                <div class="item" onClick="location.href='placeDetail?place_seq=${place.place_seq != null ? place.place_seq : 0}'">
-                    <div>${place.place_name}</div>
-                    <p>${place.place_description}</p>
-                    <div><img src="/place_images/${place.savefilename}" /></div>
+                <div class="item">
+                    <img src="/place_images/${place.savefilename}" alt="${place.place_name}"
+                         onclick="location.href='placeDetail?place_seq=${place.place_seq != null ? place.place_seq : 0}'">
+                    <div class="place-info">
+                        <h4>${place.place_name}</h4>
+                        <p>${place.place_description}</p>
+                    </div>
                 </div>
             </c:forEach>
         </div>
     </div>
 
+    <!-- Hot Places -->
     <div id="HotPlace">
-        <h2>Hot Place</h2>
+        <h3>Hot Places</h3>
         <div class="places">
             <c:forEach items="${hotList}" var="place">
-                <div class="item" onClick="location.href='placeDetail?place_seq=${place.place_seq}'">
-                    <div>${place.place_name}</div>
-                    <p>${place.place_description}</p>
-                    <div><img src="/place_images/${place.savefilename}" /></div>
+                <div class="item">
+                    <img src="/place_images/${place.savefilename}" alt="${place.place_name}"
+                         onclick="location.href='placeDetail?place_seq=${place.place_seq}'">
+                    <div class="place-info">
+                        <h4>${place.place_name}</h4>
+                        <p>${place.place_description}</p>
+                    </div>
                 </div>
             </c:forEach>
         </div>

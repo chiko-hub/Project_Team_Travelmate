@@ -19,4 +19,5 @@ public class PlaceVO {
     private String category;
     @NotNull
     private String bestyn;
+    private String hotyn;
 }
