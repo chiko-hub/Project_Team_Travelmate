@@ -1,7 +1,10 @@
 package com.himedia.tp01.service;
 
 import com.himedia.tp01.dao.IPlaceDao;
+import com.himedia.tp01.dto.Paging;
 import com.himedia.tp01.dto.PlaceVO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,16 +30,39 @@ public class PlaceService {
         return pdao.getPlace(place_seq);
     }
 
+    public HashMap<String, Object> getPlaceList(HttpServletRequest request) {
+        HashMap<String, Object> result = new HashMap<>();
+        HttpSession session = request.getSession();
 
-//    public HashMap<String, Object> selectBestList() {
-//        HashMap<String, Object> result = new HashMap<>();
-//        try {
-//            List<PlaceVO> bestList = pdao.selectBestList();
-//            result.put("bestList", bestList);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            result.put("bestList", null);
-//        }
-//        return result;
-//    }
+        int page = 1;
+        try {
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page"));
+                session.setAttribute("page", page);
+            } else if (session.getAttribute("page") != null) {
+                page = (Integer) session.getAttribute("page");
+            }
+        } catch (NumberFormatException | ClassCastException e) {
+            page = 1; // 파싱 실패 시 기본값으로 1 설정
+        }
+
+        Paging paging = new Paging();
+        paging.setPage(page);
+        paging.setDisplayRow(5); // 한 페이지당 10개 출력
+        paging.setDisplayPage(10); // 페이지 네비게이션에 5개씩 표시
+
+        int count = pdao.getAllCount();
+        paging.setTotalCount(count);
+        paging.calPaging();
+
+        List<PlaceVO> list = pdao.getPlaceList(paging);
+        result.put("placeList", list);
+        result.put("paging", paging);
+
+        return result;
+
+    }
+
+
+
 }

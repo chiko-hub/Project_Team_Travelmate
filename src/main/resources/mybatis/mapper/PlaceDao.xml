@@ -16,5 +16,13 @@
         select * from place where place_seq=#{param1}
     </select>
 
+    <select id="getAllCount" resultType="_int">
+        select count(*) from place;
+    </select>
+
+    <select id="getPlaceList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="com.himedia.tp01.dto.Paging">
+        select * from place order by place_seq desc limit #{displayRow} offset #{startNum}
+    </select>
+
 
 </mapper>
