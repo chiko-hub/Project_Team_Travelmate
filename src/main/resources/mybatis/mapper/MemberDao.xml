@@ -13,6 +13,11 @@
         values( #{userid}, #{pwd}, #{name}, #{phone}, #{email}, #{zip_num}, #{address_main}, #{address_detail}, #{address_extra}, #{provider}, #{plan_code})
     </insert>
 
+    <update id="updateMember" parameterType="com.himedia.tp01.dto.MemberVO">
+        update member set pwd=#{pwd}, name=#{name}, phone=#{phone}, email=#{email}, zip_num=#{zip_num},
+                          address_main=#{address_main}, address_detail=#{address_detail}, address_extra=#{address_extra} where userid=#{userid}
+    </update>
+
 
 
 </mapper>

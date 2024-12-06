@@ -8,4 +8,5 @@ import org.springframework.beans.factory.annotation.Autowired;
 public interface IMemberDao {
     MemberVO getMember(String userid);
     void insertMember(MemberVO mvo);
+    void updateMember(MemberVO mdto);
 }
