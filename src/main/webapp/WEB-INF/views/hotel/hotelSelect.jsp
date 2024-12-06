@@ -19,37 +19,39 @@
 </div>
 
 <div id="morePlace">
-    <button class="placeList" onclick="location.href='placeList'">더보기</button>
+    <button class="placeList" onclick="location.href='hotelList'">더보기</button>
 </div>
-<!-- Best Places -->
+<!-- Best Hotels -->
 <div id="main-content">
     <div id="BestPlace">
-        <h3>Best Places</h3>
+        <h3>Best Hotels</h3>
         <div class="places">
-            <c:forEach items="${bestList}" var="place">
+            <c:forEach items="${bestList}" var="hotel">
                 <div class="item">
-                    <img src="/place_images/${place.savefilename}" alt="${place.place_name}"
-                         onclick="location.href='placeDetail?place_seq=${place.place_seq}'">
+                    <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}"
+                         onclick="location.href='hotelDetail?hotel_seq=${hotel.hotel_seq}'">
                     <div class="place-info">
-                        <h4>${place.place_name}</h4>
-                        <p>${place.place_description}</p>
+                        <h4>${hotel.hotel_name}</h4>
+                        <h4>${hotel.hotel_price}</h4>
+                        <p>${hotel.hotel_description}</p>
                     </div>
                 </div>
             </c:forEach>
         </div>
     </div>
 
-    <!-- Hot Places -->
+    <!-- Hot Hotels -->
     <div id="HotPlace">
-        <h3>Hot Places</h3>
+        <h3>Hot Hotels</h3>
         <div class="places">
-            <c:forEach items="${hotList}" var="place">
+            <c:forEach items="${hotList}" var="hotel">
                 <div class="item">
-                    <img src="/place_images/${place.savefilename}" alt="${place.place_name}"
-                         onclick="location.href='placeDetail?place_seq=${place.place_seq}'">
+                    <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}"
+                         onclick="location.href='hotelDetail?hotel_seq=${hotel.hotel_seq}'">
                     <div class="place-info">
-                        <h4>${place.place_name}</h4>
-                        <p>${place.place_description}</p>
+                        <h4>${hotel.hotel_name}</h4>
+                        <h4>${hotel.hotel_price}</h4>
+                        <p>${hotel.hotel_description}</p>
                     </div>
                 </div>
             </c:forEach>

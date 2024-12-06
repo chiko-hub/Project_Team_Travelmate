@@ -23,6 +23,8 @@ public class PlaceController {
         HashMap<String, Object> result = ps.selectBestHotList();
         mav.addObject("bestList", result.get("bestList"));
         mav.addObject("hotList", result.get("hotList"));
+        System.out.println("bestList: " + result.get("bestList"));
+        System.out.println("hotList: " + result.get("hotList"));
         mav.setViewName("place/placeSelect");
         return mav;
     }

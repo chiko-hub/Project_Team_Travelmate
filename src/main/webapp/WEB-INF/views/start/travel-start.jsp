@@ -17,7 +17,7 @@
 <%--      <button class="step-button" type="submit">STEP 1<br>장소 선택</button>--%>
 <%--    </form>--%>
     <button class="step-button" onclick="location.href='placeSelect'">STEP 1<br>장소 선택</button>
-    <button class="step-button" onclick="location.href='hotel'">STEP 2<br>숙소 선택</button>
+    <button class="step-button" onclick="location.href='hotelSelect'">STEP 2<br>숙소 선택</button>
     <button class="step-button" onclick="location.href='like'">STEP 3<br>찜꽁</button>
     <button class="step-button" onclick="location.href='plan'">STEP 4<br>일정</button>
   </div>
