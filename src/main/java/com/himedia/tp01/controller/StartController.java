@@ -34,10 +34,4 @@ public class StartController {
         return "like/likeForm.jsp";
     }
 
-    @GetMapping("/plan")
-    public String plan() {
-        return "plan/planForm.jsp";
-    }
-
-
 }

@@ -22,14 +22,6 @@
     <button class="step-button" onclick="location.href='plan'">STEP 4<br>일정</button>
   </div>
 
-  <!-- 중앙 콘텐츠 -->
-  <main class="main">
-    <h1>Planner 만들기</h1>
-    <div id="results">
-      STEP1 부터 차근차근 계획을 세워보아요.
-    </div>
-  </main>
-
   <!-- 우측 지도 -->
   <aside class="map">
     <div id="map"></div>

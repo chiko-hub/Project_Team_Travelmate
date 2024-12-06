@@ -4,5 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.himedia.tp01.dao.IPlanDetailDao">
+    <select id="getPlanDetail" resultType="com.himedia.tp01.dto.PlanDetailVO">
+        SELECT * FROM plan_detail WHERE plan_seq=#{param1}
+    </select>
 
+    <insert id="insertPlanDetail" parameterType="com.himedia.tp01.dto.PlanDetailVO">
+        INSERT INTO plan_detail(plan_seq, plan_name, plan_date, plan_category, starttime, endtime)
+        VALUES(#{plan_seq}, #{plan_name}, #{plan_date}, #{plan_category}, #{starttime}, #{endtime})
+    </insert>
 </mapper>
