@@ -1,7 +1,21 @@
-/* 공통 스타일: planAddButton과 planTable의 동일한 width 설정 */
+/* plan을 나타내는 컨테이너 */
+.plan_container {
+    height: 100%; /* 전체 높이를 고정 */
+    overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
+    border: solid 1px red;
+    width: 60%; /* 부모 컨테이너 기준으로 60% */
+    display: flex; /* 플렉스 박스를 사용하여 가운데 정렬 */
+    flex-direction: column; /* 세로 방향으로 배치 */
+    justify-content: flex-start; /* 세로 방향 상단 정렬 유지 */
+    align-items: center; /* 가로 가운데 정렬 */
+}
+
+/* plan_container 내 요소들이 동일한 가로 크기 가져야 함 */
 .planAddButton, .planTable {
-    width: 100%; /* 부모 컨테이너 기준으로 100% */
+    width: 95%; /* 부모 컨테이너 기준으로 95% */
     display: block; /* 블록 요소로 세로 배치 */
+    box-sizing: border-box; /* padding과 border가 width에 포함되도록 */
+    margin: 0 auto; /* 가로로 가운데 정렬 */
 }
 
 .planAddButton {
@@ -23,8 +37,8 @@
 .planTable {
     display: flex; /* 플렉스 박스 사용 */
     flex-direction: row; /* 가로 정렬 */
-    justify-content: flex-start; /* 가로 왼쪽 정렬 */
-    align-items: stretch; /* 세로 크기 맞춤 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: flex-start; /* 기본 높이로 유지 */
     border: 1px solid #ddd; /* 전체 테두리 */
     padding: 10px; /* 내부 여백 */
     background-color: #fff; /* 배경색 */
@@ -32,6 +46,8 @@
 
 /* timeList와 planList는 같은 크기로 늘어나고 줄어듦 */
 .timeList, .planList {
+    /*display: grid;
+    grid-template-rows: repeat(18, 1fr);*/
     display: flex;
     flex-direction: column; /* 요소를 세로로 정렬 */
     flex: 1; /* 동일한 비율로 늘어나고 줄어듦 */
@@ -49,12 +65,14 @@
     text-align: center;
     font-size: 14px; /* 텍스트 크기 */
     color: #333; /* 텍스트 색상 */
-    min-height: 60px; /* 최소 높이 */
-    max-height: 60px; /* 최대 높이 */
+    min-height: 50px; /* 최소 높이 유지 */
+    height: auto; /* 자동으로 높이 조정 */
+    max-height: none; /* 최대 높이 제한 제거 */
 }
 
 .time:first-child, .cell:first-child {
-    height: 50px; /* 첫 항목의 높이 */
+    height: 30px; /* 첫 항목의 높이 */
+
 }
 
 .time:last-child, .cell:last-child {

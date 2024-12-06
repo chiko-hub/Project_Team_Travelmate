@@ -14,20 +14,19 @@
   <script defer src="/script/plan.js"></script>
 </head>
 <body>
-<div class="container" style="align-items: stretch;">
+<div class="container">
   <!-- 좌측 STEP 메뉴 -->
-  <div class="sidebar" style="height: 100%;">
+  <div class="sidebar">
     <button class="step-button" onclick="location.href='placeSelect'">STEP 1<br>장소 선택</button>
     <button class="step-button" onclick="location.href='hotel'">STEP 2<br>숙소 선택</button>
     <button class="step-button" onclick="location.href='like'">STEP 3<br>찜꽁</button>
     <button class="step-button" onclick="location.href='plan'">STEP 4<br>일정</button>
   </div>
 
-  <div style="flex: 3; height: 100%;">
+  <div class="plan_container">
     <div class="planAddButton">
       <input type="button" value="직접 추가" onclick="togglePanel()"/>
     </div>
-
     <!-- 입력 패널 -->
     <div id="planAddPanel" class="panel">
       <h3>새 계획 추가</h3>
@@ -121,22 +120,30 @@
       </div>
       <!-- 날짜별 계획 테이블 -->
       <c:forEach var="plan" items="${planList}">
-        <div class="planList" id="${plan.plan_seq}" style="display: grid; grid-template-rows: repeat(18, 1fr);">
+        <div class="planList" id="${plan.plan_seq}">
           <!-- 날짜 출력 -->
           <div class="cell">${plan.travel_date}</div>
-
           <!-- 시간 셀 출력 -->
           <c:forEach var="time" begin="6" end="23">
-            <div class="cell" id="${plan.travel_date}-${time < 12 ? 'am' : 'pm'}${time % 12 == 0 ? 12 : time % 12}">
-              <c:forEach var="detail" items="${planDetailList[plan.plan_seq]}">
-                <!-- 시작 시간에만 데이터 삽입 -->
-                <c:if test="${detail.starttime == time}">
-                  <div class="plan-name" style="grid-row: span ${detail.endtime - detail.starttime};">
-                      ${detail.plan_name}
-                  </div>
-                </c:if>
-              </c:forEach>
-            </div>
+            <c:choose> <%-- 출력할 planDetailList 가 없다면 --%>
+              <c:when test="${empty planDetailList[plan.plan_seq]}">
+                <div class="cell" id="time"></div>
+              </c:when>
+              <c:otherwise> <%-- 출력할 planDetailList 가 있다면 --%>
+                <c:forEach var="detail" items="${planDetailList[plan.plan_seq]}"> <%-- planDetail 값들 가져오기 --%>
+                  <c:choose>
+                    <c:when test="${detail.starttime == time}"> <%--현재 time이 일정의 starttime과 동일하다면--%>
+                      <div class="cell" id="time" style="grid-row: span ${detail.endtime - detail.starttime}; background: yellow;">
+                          ${detail.plan_name}
+                      </div>
+                    </c:when>
+                    <c:otherwise> <%-- 일정이 없는 빈칸이라면 --%>
+                      <div class="cell" id="time"></div>
+                    </c:otherwise>
+                  </c:choose>
+                </c:forEach>
+              </c:otherwise>
+            </c:choose>
           </c:forEach>
         </div>
       </c:forEach>
@@ -144,7 +151,7 @@
   </div>
 
   <!-- 우측 지도 -->
-  <aside class="map" style="height: 100%; flex: 2;">
+  <aside class="map">
     <div id="map"></div>
   </aside>
 </div>
