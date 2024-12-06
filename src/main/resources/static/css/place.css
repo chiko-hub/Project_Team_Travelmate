@@ -9,6 +9,7 @@
 
 #BestPlace, #HotPlace {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap; /* 화면 크기에 따라 줄바꿈 허용 */
     gap: 20px; /* 항목 간 간격 */
     justify-content: center; /* 항목을 중앙 정렬 */
@@ -22,7 +23,7 @@
 
 }
 #BestPlace h3, #HotPlace h3{
-    display: inline-block;
+    /*display: inline-block;*/
     background-color: #2e8b57; /* 제목 배경색 */
     color: #fff; /* 텍스트 색상 */
     padding: 10px 20px; /* 내부 여백 */
@@ -58,7 +59,7 @@
 /* 리스트 컨테이너: 가로 정렬 유지 */
 .places {
     display: flex;
-    flex-wrap: wrap; /* 줄바꿈 허용 */
+    /*flex-wrap: wrap; !* 줄바꿈 허용 *!*/
     gap: 20px; /* 아이템 간격 20px */
     justify-content: space-evenly; /* 리스트를 중앙 정렬 */
     padding: 0 10px; /* 좌우 여백 */
@@ -106,6 +107,8 @@
     line-height: 1.5; /* 줄 간격 조정 */
     hyphens: auto; /* 자연스러운 단어 하이픈 자동 추가 */
 }
+
+
 
 .place_sub img{
     width: 100%; /* 부모 컨테이너 너비 */

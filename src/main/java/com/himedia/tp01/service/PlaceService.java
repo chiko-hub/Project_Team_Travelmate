@@ -48,8 +48,8 @@ public class PlaceService {
 
         Paging paging = new Paging();
         paging.setPage(page);
-        paging.setDisplayRow(5); // 한 페이지당 10개 출력
-        paging.setDisplayPage(10); // 페이지 네비게이션에 5개씩 표시
+        paging.setDisplayRow(5); // 한 페이지당 5개 출력
+        paging.setDisplayPage(10); // 페이지 네비게이션에 10개씩 표시
 
         int count = pdao.getAllCount();
         paging.setTotalCount(count);
