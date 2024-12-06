@@ -12,6 +12,6 @@ public interface IAdminDao {
 
 
     AdminVO getAdmin(String adminid);
-    int getAllCount(String place, String name, String key);
+    int getAllCount(String place, String place_name, String key);
     List<PlaceVO> getPlaceList(Paging paging, String key);
 }

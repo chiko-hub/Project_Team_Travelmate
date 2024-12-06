@@ -1,28 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<title>Admin Login</title>
-<link rel="stylesheet" type="text/css" href="/css/admin.css">
-</head>
-<html lang="ko">
-<body>
-<div class="container">
-    <div class="loginbox">
-        <div class="logo">
-            <img src="images/logo2.png">
-            <h2>Admin Login</h2>
-            <form method="post" action="adminlogin" name="adminlogin" >
-                <div class="field">
-                    <label>아이디</label>
-                    <input type="text" id="userid" name="adminid" size="22" >
-                </div>
-                <div class="field">
-                    <label>비밀번호</label>
-                    <input type="password" id="pwd" name="pwd" size="22" >
-                </div>
-                <button type="submit" class="btn">로그인</button>
-            </form>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 
+    <link rel="stylesheet" href="/admin/css/admin.css">
+    <script src="/admin/script/admin.js"></script>
+
+</head>
+<body>
+
+<article style="width:600px;margin:100px auto;">
+    <form	method="post" action="adminLogin" name="loginForm">
+
+        <h2>Admin LogIn</h2>
+        <div class="field">
+            <label>Admin ID</label><input name="adminid" type="text" value="${dto.adminid}" />
         </div>
-    </div>
-</div>
+        <div class="field">
+            <label>Password</label><input name="pwd" type="password" >
+        </div>
+        <div class="btn">
+            <input type="submit" value="LOGIN" >
+        </div>
+        <div style="font-size:80%; font-weight:bold">${message} </div>
+    </form>
+</article>
+
 </body>
 </html>
