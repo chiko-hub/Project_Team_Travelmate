@@ -10,4 +10,5 @@ public interface IPlaceDao {
 
     List<PlaceVO> selectBestList();
     List<PlaceVO> selectHotList();
+    PlaceVO getPlace(int placeSeq);
 }

@@ -57,12 +57,17 @@ body {
 
 .containe2{
     flex-direction: row;
+    border:1px solid black;
 }
 
 #map{
     flex-direction: row;
-    margin-top: 110px;
-    margin-right: 150px;
+    margin-top: 78px;
+    margin-right: 250px;
+    border:1px solid black;
+    width:700px;
+    height:390px;
+
 }
 
 

@@ -12,6 +12,9 @@
         select * from hotplace_view
     </select>
 
+    <select id="getPlace" resultType="com.himedia.tp01.dto.PlaceVO">
+        select * from place where place_seq=#{param1}
+    </select>
 
 
 </mapper>
