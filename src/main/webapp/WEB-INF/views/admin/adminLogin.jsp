@@ -9,7 +9,7 @@
         <div class="logo">
             <img src="images/logo2.png">
             <h2>Admin Login</h2>
-            <form method="post" action="adminlogin" name="adminlogin" >
+            <form method="get" action="adminLogin" name="adminlogin" >
                 <div class="field">
                     <label>아이디</label>
                     <input type="text" id="userid" name="adminid" size="22" >
