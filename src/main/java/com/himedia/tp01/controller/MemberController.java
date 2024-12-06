@@ -48,6 +48,12 @@ public class MemberController {
         return url;
     }
 
+    @GetMapping("/mypage")
+    public String mypage(Model model) {
+        return "member/mypage";
+    }
+
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginUser");
@@ -100,7 +106,7 @@ public class MemberController {
             model.addAttribute("validmsg", "비밀번호 확인이 일치하지 않습니다");
         else{
             url = "member/loginForm";
-            model.addAttribute("message", "회원가입이 완료되었습니다. 로그인하세요");
+            model.addAttribute("message", "회원가입이 완료되었습니다.&nbsp;&nbsp;&nbsp; 로그인하세요");
             membervo.setProvider("default");
             ms.insertMember( membervo );
         }
