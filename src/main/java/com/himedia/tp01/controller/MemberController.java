@@ -48,11 +48,6 @@ public class MemberController {
         return url;
     }
 
-    @GetMapping("/mypage")
-    public String mypage(Model model) {
-        return "member/mypage";
-    }
-
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
@@ -70,6 +65,7 @@ public class MemberController {
         return "member/joinForm";
     }
 
+
     @PostMapping("/idcheck")
     @ResponseBody
     public HashMap<String, Object> idcheck(@RequestParam("userid") String userid) {
@@ -83,6 +79,7 @@ public class MemberController {
         }
         return result;
     }
+
 
     @PostMapping("/join")
     public String join(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result, Model model,
@@ -115,10 +112,39 @@ public class MemberController {
 
 
 
+//    @GetMapping("/index")
+//    public String index(Model model) {return "index";}
 
+    @GetMapping("/updateMemberForm")
+    public String updateMemberForm( HttpServletRequest request, Model model ) {
+        HttpSession session = request.getSession();
+        MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+        model.addAttribute("dto", mvo);
+        return "member/mypage";
+    }
 
-
-
-
-
+    @PostMapping("/mypage")
+    public String updateMember(
+            @ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
+            @RequestParam(value="pwdCheck", required = false) String pwdCheck,
+            HttpServletRequest request, Model model){
+        String url = "member/mypage";
+        if(result.getFieldError("pwd")!=null)
+            model.addAttribute("msg", result.getFieldError("pwd").getDefaultMessage());
+        else if(result.getFieldError("name")!=null)
+            model.addAttribute("msg", result.getFieldError("name").getDefaultMessage());
+        else if(result.getFieldError("email")!=null)
+            model.addAttribute("msg", result.getFieldError("email").getDefaultMessage());
+        else if(result.getFieldError("phone")!=null)
+            model.addAttribute("msg", result.getFieldError("phone").getDefaultMessage());
+        else if( pwdCheck == null || !membervo.getPwd().equals(pwdCheck))
+            model.addAttribute("msg", "비밀번호 확인이 일치하지 않습니다");
+        else{
+            ms.updateMember(membervo);
+            HttpSession session = request.getSession();
+            session.setAttribute("loginUser", membervo);
+            url = "redirect:/index";
+        }
+        return url;
+    }
 }
