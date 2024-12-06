@@ -5,11 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Steps</title>
+    <title>Place Search</title>
     <link rel="stylesheet" href="/css/sider.css">
     <link rel="stylesheet" href="/css/place.css">
-    <script defer src="/script/start.js"></script>
-    <script src="/script/place.js"></script>
 </head>
 <body>
     <!-- 좌측 STEP 메뉴 -->
@@ -20,7 +18,9 @@
         <button class="step-button" onclick="showContent('step5')">STEP 4<br>일정</button>
     </div>
 
-    <div id="morePlace">더보기</div>
+    <div id="morePlace">
+        <button class="placeList" onclick="location.href='placeList'">더보기</button>
+    </div>
     <!-- Best Places -->
     <div id="main-content">
         <div id="BestPlace">
@@ -57,15 +57,5 @@
         </div>
     </div>
 
-
-<%--<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3ba5873499d60049e89465e5a52a688"></script>--%>
-<%--<script>--%>
-<%--    var container = document.getElementById('map');--%>
-<%--    var options = {--%>
-<%--        center: new kakao.maps.LatLng(33.450701, 126.570667),--%>
-<%--        level: 3--%>
-<%--    };--%>
-<%--    var map = new kakao.maps.Map(container, options);--%>
-<%--</script>--%>
 </body>
 </html>
