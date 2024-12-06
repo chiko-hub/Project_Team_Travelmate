@@ -2,7 +2,6 @@ package com.himedia.tp01.service;
 
 import com.himedia.tp01.dao.IAdminDao;
 import com.himedia.tp01.dto.AdminVO;
-import com.himedia.tp01.dto.HotelVO;
 import com.himedia.tp01.dto.Paging;
 import com.himedia.tp01.dto.PlaceVO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +18,9 @@ public class AdminService {
     @Autowired
     IAdminDao adao;
 
-    public AdminVO getAdmin(String adminid) {return adao.getAdmin(adminid);}
+    public AdminVO getAdmin(String adminid) {
+        return adao.getAdmin(adminid);
+    }
 
     public HashMap<String, Object> adminPlaceList(HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
@@ -59,6 +60,5 @@ public class AdminService {
         result.put("key", key);
 
         return result;
-
     }
-}
+    }
