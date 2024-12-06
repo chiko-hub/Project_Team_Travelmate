@@ -23,6 +23,10 @@ public class PlaceService {
         return result;
     }
 
+    public Object getPlace(int place_seq) {
+        return pdao.getPlace(place_seq);
+    }
+
 
 //    public HashMap<String, Object> selectBestList() {
 //        HashMap<String, Object> result = new HashMap<>();
