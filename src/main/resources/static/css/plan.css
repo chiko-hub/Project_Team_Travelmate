@@ -45,11 +45,12 @@
     justify-content: center; /* 가로 가운데 정렬 */
     align-items: center; /* 세로 가운데 정렬 */
     width: 100%; /* 부모 컨테이너에 맞게 자동 조정 */
-    height: 60px; /* 고정 높이 */
     border-bottom: 1px solid #ddd; /* 아래쪽 구분선 */
     text-align: center;
     font-size: 14px; /* 텍스트 크기 */
     color: #333; /* 텍스트 색상 */
+    min-height: 60px; /* 최소 높이 */
+    max-height: 60px; /* 최대 높이 */
 }
 
 .time:first-child, .cell:first-child {
