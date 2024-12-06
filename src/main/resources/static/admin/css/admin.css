@@ -1,22 +1,19 @@
 @charset "UTF-8";
 
-#wrap{ width:100%; margin: 0 auto; border:1px solid red;
+#wrap{ width:100%; margin: 0 auto; border:1px solid #34495e;
     max-width: 1024px; display: flex; flex-direction: column;}
 
 a{ text-decoration: none; }
 
 article{
-    /*border:2px solid dimgray;
-    margin:2px;*/
     width:100%;
     display: flex;
+    font-family: "Comic Sans MS";
 
 }
 
 article form{
     flex:1;
-    /*border:2px solid red;
-    margin:2px;*/
     display: flex;
     flex-direction: column;
 }
@@ -66,11 +63,12 @@ article form .btn{
 article form .btn input{
     flex:1;
     margin:10px 3px;
-    background-color: dimgray;
+    background-color: #34495e;
     border:none;
     color:white;
     border-radius: 5px;
     padding:10px 0;
+    font-family: "Comic Sans MS";
 }
 
 
@@ -82,13 +80,13 @@ header{ width:100%; margin-bottom:30px;}
     font-size:120%;}
 
 #sub_menu{ display: flex; justify-content: space-between; 	align-items: center; margin-bottom:30px; }
-#sub_menu div{ flex:1; text-align: center; padding:10px; 	border:1px dotted blue; margin:3px;}
+#sub_menu div{ flex:1; text-align: center; padding:10px; border:1px #34495e; margin:3px;}
 #sub_menu div a{ font-size:120%; font-weight:bold; text-decoration: none;}
 
 .tb{ width:100%; display: flex; flex-direction: column; margin-bottom:30px;}
 .row{  display:flex; }
-.coltitle{  background: blueviolet; margin:1px; padding:10px; color:white; text-align: center;}
-.col{ border:1px dotted blueviolet; margin:1px; padding:10px;  text-align: center;}
+.coltitle{  background: #34495e; margin:1px; padding:10px; color:white; text-align: center;}
+.col{ border:1px dotted #34495e; margin:1px; padding:10px;  text-align: center;}
 
 .coltitle:nth-child(1), .col:nth-child(1){ flex:1}
 .coltitle:nth-child(2), .col:nth-child(2){flex:3}
@@ -97,16 +95,4 @@ header{ width:100%; margin-bottom:30px;}
 .col:nth-child(3), .col:nth-child(4){text-align: right;}
 .coltitle:nth-child(5), .col:nth-child(5){flex:2}
 .coltitle:nth-child(6), .col:nth-child(6){flex:1}
-
-footer{ width:100%;}
-footer div{ font-size:110%; }
-
-
-
-
-
-
-
-
-
 

@@ -11,5 +11,4 @@ public class AdminVO {
     private String pwd;
     private String name;
     private String phone;
-
 }

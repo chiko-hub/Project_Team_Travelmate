@@ -19,38 +19,37 @@ import java.util.HashMap;
 @Controller
 public class AdminController {
 
-    @Autowired
-    AdminService as;
+@Autowired
+AdminService as;
 
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        return "admin/adminLogin";
-    }
+@GetMapping("/admin")
+    public String admin(Model model) { return "admin/adminLogin"; }
 
-    @PostMapping("/adminLogin")
-    public String adminLogin(@ModelAttribute("dto") @Valid AdminVO adminvo,
-                             BindingResult result, HttpSession session, Model model) {
-        String url = "admin/adminLogin";
-        if (result.getFieldError("adminid") != null)
-            model.addAttribute("message", "아이디를 입력하세요");
-        else if (result.getFieldError("pwd") != null)
-            model.addAttribute("message", "패스워드를 입력하세요");
-        else {
-            AdminVO avo = as.getAdmin(adminvo.getAdminid());
-            if (avo == null || !adminvo.getPwd().equals(avo.getPwd())) {
-                model.addAttribute("message", "아이디와 패스워드를 확인하세요");
-            } else {
-                session.setAttribute("adminUser", avo);  // 세션에 사용자 정보 저장
-                url = "redirect:/adminPlaceList";       // 리다이렉트
-            }
+@PostMapping("/adminLogin")
+    public String adminLogin(
+        @ModelAttribute("dto") @Valid AdminVO adminvo, BindingResult result,
+        HttpSession session, Model model){
+    String url = "admin/adminLogin";
 
+    if(result.getFieldError("adminid") != null)
+        model.addAttribute("message", "아이디를 입력하세요");
+    else if(result.getFieldError("pwd") != null)
+        model.addAttribute("message", "비밀번호를 입력하세요");
+    else{
+        AdminVO avo = as.getAdmin(adminvo.getAdminid());
+        if ( (avo == null) || (!adminvo.getPwd().equals(avo.getPwd())) )
+            model.addAttribute("message", "아이디와 비밀번호를 확인하세요");
+        else{
+            session.setAttribute("adminUser", avo);
+            url = "redirect:/adminPlaceList";
         }
-        return url;
     }
+    return url;
+
+}
 
     @GetMapping("/adminPlaceList")
     public ModelAndView adminPlaceList(HttpServletRequest request) {
-
         ModelAndView mav = new ModelAndView();
         HashMap<String, Object> result = as.adminPlaceList(request);
 
@@ -61,5 +60,5 @@ public class AdminController {
         mav.setViewName("admin/place/placeList");
         return mav;
     }
-}
 
+}
