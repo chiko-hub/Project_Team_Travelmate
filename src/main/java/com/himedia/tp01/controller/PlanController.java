@@ -1,16 +1,22 @@
 package com.himedia.tp01.controller;
 
 
+import com.himedia.tp01.dto.PlanDetailVO;
 import com.himedia.tp01.dto.PlanVO;
 import com.himedia.tp01.service.PlanDetailService;
 import com.himedia.tp01.service.PlanService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -22,7 +28,7 @@ public class PlanController {
     PlanDetailService pds;
 
     /* 로그인 여부 확인 후 planner 로 이동 */
-    @GetMapping("/planForm")
+    @GetMapping("/plan")
     public ModelAndView planForm(HttpSession session) {
         ModelAndView mav = new ModelAndView();
 
@@ -53,14 +59,19 @@ public class PlanController {
             // 테스트 코드
             //String code = "qwer";
 
-            // code 에 해당하는 plan 불러오기
-            List<PlanVO> planList = ps.getPlan(planCode);
-            // code 에 해당하는 plan_detail 불러오기
+            // code 에 해당하는 plan 정보 불러오기
+            HashMap<String, Object> planHashMap = ps.getPlan(planCode);
 
-            mav.addObject("planList", planList);
+            // plan_seq 를 key값으로 하는 plan_detail 정보들 불러오기
+            HashMap<Integer, List<PlanDetailVO>> planDetailHashMap =
+                    pds.getPlanDetail((int[])planHashMap.get("planSeqArray"));
 
-            mav.setViewName("plan/plan-form");
+            mav.addObject("planList", planHashMap.get("planList"));
+            mav.addObject("planDetailList", planDetailHashMap);
+
+            mav.setViewName("plan/planForm");
         /*}*/
         return mav;
     }
+
 }

@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -35,10 +36,21 @@ public class PlanService {
         }
     }
 
-    /* code 에 해당하는 plan 불러오기 */
-    public List<PlanVO> getPlan(String planCode) {
+    /* code 에 해당하는 plan 과 plan의 plan_seq 불러오기 */
+    public HashMap<String, Object> getPlan(String planCode) {
+        HashMap<String, Object> planHashMap = new HashMap<>();
+        // plan 정보 모두 받아오기
         List<PlanVO> planList = pdao.getPlan(planCode);
-        return planList;
+
+        int[] planSeqArray = new int[planList.size()]; // plan_seq만 따로 받을 배열
+        // plan 의 plan_seq만 따로 저장
+        for(int i = 0; i < planSeqArray.length; i++) {
+            planSeqArray[i] = planList.get(i).getPlan_seq();
+        }
+
+        planHashMap.put("planList", planList);
+        planHashMap.put("planSeqArray", planSeqArray);
+        return planHashMap;
     }
 
 }
