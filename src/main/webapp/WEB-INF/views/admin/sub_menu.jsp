@@ -4,6 +4,5 @@
 
 <nav id="sub_menu">
   <div><a href="adminPlaceList?first=y">장소 리스트</a></div>
-  <div><a href="adminHotelList?first=y">숙소 리스트</a></div>
 
 </nav>

@@ -9,6 +9,14 @@
         select * from admins where adminid=#{param1}
     </select>
 
+    <select id="getAllCount"  resultType="_int">
+        select count(*) from ${param1} where ${param2} like concat('%', #{param3}, '%');
+    </select>
+
+    <select id="getPlaceList" resultType="com.himedia.tp01.dto.PlaceVO" >
+        select * from place where place_name like concat('%', #{param2}, '%') order by place_seq desc
+            limit #{param1.displayRow} offset #{param1.startNum}
+    </select>
 
 
 

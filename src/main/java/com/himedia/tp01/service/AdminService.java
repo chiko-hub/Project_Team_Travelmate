@@ -48,7 +48,7 @@ public class AdminService {
         paging.setPage(page);
         paging.setDisplayPage(10);
         paging.setDisplayRow(10);
-        int count = adao.getAllCount( "place", "name", key );
+        int count = adao.getAllCount( "place", "place_name", key );
         System.out.println( count );
         paging.setTotalCount(count);
         paging.calPaging();
