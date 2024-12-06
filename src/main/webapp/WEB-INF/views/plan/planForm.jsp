@@ -48,45 +48,45 @@
         <input type="hidden" id="planSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
         <label for="planStartTime">시작시간</label>
         <select id="planStartTime" name="starttime" required>
-          <option value="am06">오전 06시</option>
-          <option value="am07">오전 07시</option>
-          <option value="am08">오전 08시</option>
-          <option value="am09">오전 09시</option>
-          <option value="am10">오전 10시</option>
-          <option value="am11">오전 11시</option>
-          <option value="pm12">오후 12시</option>
-          <option value="pm01">오후 01시</option>
-          <option value="pm02">오후 02시</option>
-          <option value="pm03">오후 03시</option>
-          <option value="pm04">오후 04시</option>
-          <option value="pm05">오후 05시</option>
-          <option value="pm06">오후 06시</option>
-          <option value="pm07">오후 07시</option>
-          <option value="pm08">오후 08시</option>
-          <option value="pm09">오후 09시</option>
-          <option value="pm10">오후 10시</option>
-          <option value="pm11">오후 11시</option>
+          <option value="6">오전 06시</option>
+          <option value="7">오전 07시</option>
+          <option value="8">오전 08시</option>
+          <option value="9">오전 09시</option>
+          <option value="10">오전 10시</option>
+          <option value="11">오전 11시</option>
+          <option value="12">오후 12시</option>
+          <option value="13">오후 01시</option>
+          <option value="14">오후 02시</option>
+          <option value="15">오후 03시</option>
+          <option value="16">오후 04시</option>
+          <option value="17">오후 05시</option>
+          <option value="18">오후 06시</option>
+          <option value="19">오후 07시</option>
+          <option value="20">오후 08시</option>
+          <option value="21">오후 09시</option>
+          <option value="22">오후 10시</option>
+          <option value="23">오후 11시</option>
         </select>
         <label for="planEndTime">종료시간</label>
         <select id="planEndTime" name="endtime" required>
-          <option value="am06">오전 06시</option>
-          <option value="am07">오전 07시</option>
-          <option value="am08">오전 08시</option>
-          <option value="am09">오전 09시</option>
-          <option value="am10">오전 10시</option>
-          <option value="am11">오전 11시</option>
-          <option value="pm12">오후 12시</option>
-          <option value="pm01">오후 01시</option>
-          <option value="pm02">오후 02시</option>
-          <option value="pm03">오후 03시</option>
-          <option value="pm04">오후 04시</option>
-          <option value="pm05">오후 05시</option>
-          <option value="pm06">오후 06시</option>
-          <option value="pm07">오후 07시</option>
-          <option value="pm08">오후 08시</option>
-          <option value="pm09">오후 09시</option>
-          <option value="pm10">오후 10시</option>
-          <option value="pm11">오후 11시</option>
+          <option value="6">오전 06시</option>
+          <option value="7">오전 07시</option>
+          <option value="8">오전 08시</option>
+          <option value="9">오전 09시</option>
+          <option value="10">오전 10시</option>
+          <option value="11">오전 11시</option>
+          <option value="12">오후 12시</option>
+          <option value="13">오후 01시</option>
+          <option value="14">오후 02시</option>
+          <option value="15">오후 03시</option>
+          <option value="16">오후 04시</option>
+          <option value="17">오후 05시</option>
+          <option value="18">오후 06시</option>
+          <option value="19">오후 07시</option>
+          <option value="20">오후 08시</option>
+          <option value="21">오후 09시</option>
+          <option value="22">오후 10시</option>
+          <option value="23">오후 11시</option>
         </select>
         <div class="planAddButton">
           <button type="button" onclick="addPlan()">추가</button>
@@ -95,9 +95,9 @@
       </form>
     </div>
 
-    <%-- 계획 테이블--%>
+    <!-- 계획 테이블 -->
     <div class="planTable">
-      <%-- 시간 정보 테이블 --%>
+      <!-- 시간 정보 테이블 -->
       <div class="timeList">
         <div class="time"></div>
         <div class="time">오전 06시</div>
@@ -119,16 +119,27 @@
         <div class="time">오후 10시</div>
         <div class="time">오후 11시</div>
       </div>
-        <%-- 날짜별 계획 테이블 --%>
-        <!-- 계획 테이블 -->
-        <c:forEach var="i" begin="0" end="${fn:length(planList)-1}" varStatus="status">
-          <div class="planList">
-            <div class="cell">${planList[i].travel_date}</div>
-            <c:forEach var="time" items="['am06', 'am07', 'am08', 'am09', 'am10', 'am11', 'pm12', 'pm01', 'pm02', 'pm03', 'pm04', 'pm05', 'pm06', 'pm07', 'pm08', 'pm09', 'pm10', 'pm11']">
-              <div class="cell" id="${planList[i].travel_date}-${time}"></div>
-            </c:forEach>
-          </div>
-        </c:forEach>
+      <!-- 날짜별 계획 테이블 -->
+      <c:forEach var="plan" items="${planList}">
+        <div class="planList" id="${plan.plan_seq}" style="display: grid; grid-template-rows: repeat(18, 1fr);">
+          <!-- 날짜 출력 -->
+          <div class="cell">${plan.travel_date}</div>
+
+          <!-- 시간 셀 출력 -->
+          <c:forEach var="time" begin="6" end="23">
+            <div class="cell" id="${plan.travel_date}-${time < 12 ? 'am' : 'pm'}${time % 12 == 0 ? 12 : time % 12}">
+              <c:forEach var="detail" items="${planDetailList[plan.plan_seq]}">
+                <!-- 시작 시간에만 데이터 삽입 -->
+                <c:if test="${detail.starttime == time}">
+                  <div class="plan-name" style="grid-row: span ${detail.endtime - detail.starttime};">
+                      ${detail.plan_name}
+                  </div>
+                </c:if>
+              </c:forEach>
+            </div>
+          </c:forEach>
+        </div>
+      </c:forEach>
     </div>
   </div>
 

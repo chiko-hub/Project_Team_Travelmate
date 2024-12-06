@@ -19,10 +19,16 @@ function addPlan() {
     // 폼 데이터 검증 (필요 시 추가)
     const planForm = document.getElementById('planForm');
     if (planForm.checkValidity()) {
+        alert('일정이 추가되었습니다.');
         planForm.submit(); // 폼 제출
     } else {
         alert('모든 필수 입력란을 채워주세요.');
     }
+}
+
+/* 일정(plan, planDetail) 불러오기 */
+function example(){
+
 }
 
 /*
