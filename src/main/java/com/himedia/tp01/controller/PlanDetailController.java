@@ -28,7 +28,7 @@ public class PlanDetailController {
         System.out.println("starttime : " + plandetailvo.getStarttime());
         System.out.println("endtime : " + plandetailvo.getEndtime());
 
-        /* plan에 상세 계획 추가하기 */
+        // plan에 상세 계획 추가하기
         pds.insertPlanDetail(plandetailvo);
 
         return "redirect:/plan";

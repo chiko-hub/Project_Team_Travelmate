@@ -47,10 +47,10 @@
         <input type="hidden" id="planSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
         <label for="planStartTime">시작시간</label>
         <select id="planStartTime" name="starttime" required>
-          <option value="6">오전 06시</option>
-          <option value="7">오전 07시</option>
-          <option value="8">오전 08시</option>
-          <option value="9">오전 09시</option>
+          <option value="06">오전 06시</option>
+          <option value="07">오전 07시</option>
+          <option value="08">오전 08시</option>
+          <option value="09">오전 09시</option>
           <option value="10">오전 10시</option>
           <option value="11">오전 11시</option>
           <option value="12">오후 12시</option>
@@ -68,10 +68,10 @@
         </select>
         <label for="planEndTime">종료시간</label>
         <select id="planEndTime" name="endtime" required>
-          <option value="6">오전 06시</option>
-          <option value="7">오전 07시</option>
-          <option value="8">오전 08시</option>
-          <option value="9">오전 09시</option>
+          <option value="06">오전 06시</option>
+          <option value="07">오전 07시</option>
+          <option value="08">오전 08시</option>
+          <option value="09">오전 09시</option>
           <option value="10">오전 10시</option>
           <option value="11">오전 11시</option>
           <option value="12">오후 12시</option>
@@ -124,27 +124,47 @@
           <!-- 날짜 출력 -->
           <div class="cell">${plan.travel_date}</div>
           <!-- 시간 셀 출력 -->
-          <c:forEach var="time" begin="6" end="23">
-            <c:choose> <%-- 출력할 planDetailList 가 없다면 --%>
-              <c:when test="${empty planDetailList[plan.plan_seq]}">
-                <div class="cell" id="time"></div>
-              </c:when>
-              <c:otherwise> <%-- 출력할 planDetailList 가 있다면 --%>
-                <c:forEach var="detail" items="${planDetailList[plan.plan_seq]}"> <%-- planDetail 값들 가져오기 --%>
-                  <c:choose>
-                    <c:when test="${detail.starttime == time}"> <%--현재 time이 일정의 starttime과 동일하다면--%>
-                      <div class="cell" id="time" style="grid-row: span ${detail.endtime - detail.starttime}; background: yellow;">
-                          ${detail.plan_name}
-                      </div>
-                    </c:when>
-                    <c:otherwise> <%-- 일정이 없는 빈칸이라면 --%>
-                      <div class="cell" id="time"></div>
-                    </c:otherwise>
-                  </c:choose>
-                </c:forEach>
-              </c:otherwise>
-            </c:choose>
-          </c:forEach>
+          <c:choose>
+            <%-- planDetailList[plan.plan_seq]가 비어있는 경우 --%>
+            <c:when test="${empty planDetailList[plan.plan_seq]}">
+              <c:forEach var="time" begin="6" end="23">
+                <div class="cell"></div>
+              </c:forEach>
+            </c:when>
+
+            <%-- planDetailList[plan.plan_seq]에 데이터가 있는 경우 --%>
+            <c:otherwise>
+              <c:set var="detailCount" value="0"/>
+              <c:set var="timeCount" value="1"/>
+              <c:forEach var="time" begin="6" end="23">
+                <c:choose>
+                  <%-- 현재 time이 detail의 starttime과 일치하는 경우 --%>
+                  <c:when test="${detailCount < fn:length(planDetailList[plan.plan_seq]) && planDetailList[plan.plan_seq][detailCount].starttime == time}">
+                    <%-- 시간 간격 계산 --%>
+                    <c:set var="starttime" value="${planDetailList[plan.plan_seq][detailCount].starttime}"/>
+                    <c:set var="endtime" value="${planDetailList[plan.plan_seq][detailCount].endtime}"/>
+                    <c:set var="timeGap" value="${endtime - starttime}"/>
+                    <%-- 일정 칸 생성 --%>
+                    <div class="cell" style="grid-row: span ${timeGap}; background: yellow;">
+                        ${planDetailList[plan.plan_seq][detailCount].plan_name}
+                    </div>
+                    <%-- detailCount과 timeCount 값 업데이트 --%>
+                    <c:set var="detailCount" value="${detailCount + 1}"/>
+                    <c:set var="timeCount" value="${timeCount + (timeGap)}"/>
+                  </c:when>
+                  <%-- starttime과 일치하지 않는 경우 빈칸 출력 --%>
+                  <c:otherwise>
+                    <c:choose>
+                      <c:when test="${timeCount <= (23 - 6 + 1)}">
+                        <div class="cell">${timeCount}</div>
+                        <c:set var="timeCount" value="${timeCount + 1}"/>
+                      </c:when>
+                    </c:choose>
+                  </c:otherwise>
+                </c:choose>
+              </c:forEach>
+            </c:otherwise>
+          </c:choose>
         </div>
       </c:forEach>
     </div>
