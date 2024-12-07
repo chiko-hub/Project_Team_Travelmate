@@ -24,10 +24,11 @@ public class PlanDetailService {
     public HashMap<Integer, List<PlanDetailVO>> getPlanDetail(int[] planSeqArray) {
         HashMap<Integer, List<PlanDetailVO>> planDetailHashMap = new HashMap<>();
         List<PlanDetailVO> planDetailList = new ArrayList<>();
-        /* plan_seq 를 기준으로 planDetail 받아오기 */
+        // plan_seq 를 기준으로 planDetail 받아오기
         for(int i = 0; i < planSeqArray.length; i++) {
-            planDetailList = pddao.getPlanDetail(planSeqArray[i]);
+            planDetailList = pddao.getPlanDetail(planSeqArray[i]); // starttime 기준 오름차순
             planDetailHashMap.put(planSeqArray[i], planDetailList);
+            System.out.println("planSeqArray[i] 에 따른 planDetailList 목록 : " + planDetailHashMap.get(planSeqArray[i]));
         }
         return planDetailHashMap;
     }

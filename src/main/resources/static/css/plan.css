@@ -46,18 +46,19 @@
 
 /* timeList와 planList는 같은 크기로 늘어나고 줄어듦 */
 .timeList, .planList {
-    /*display: grid;
-    grid-template-rows: repeat(18, 1fr);*/
-    display: flex;
-    flex-direction: column; /* 요소를 세로로 정렬 */
-    flex: 1; /* 동일한 비율로 늘어나고 줄어듦 */
+    display: grid;
+    grid-template-rows: repeat(18, 1fr);
+    /*display: flex;
+    flex-direction: column; !* 요소를 세로로 정렬 *!
+    flex: 1; !* 동일한 비율로 늘어나고 줄어듦 *!*/
     border: 1px solid #ddd; /* 개별 테두리 */
     background-color: #f9f9f9; /* 배경색 */
 }
 
 /* time 스타일 */
 .time, .cell {
-    display: flex;
+    display: grid;
+    /*display: flex;*/
     justify-content: center; /* 가로 가운데 정렬 */
     align-items: center; /* 세로 가운데 정렬 */
     width: 100%; /* 부모 컨테이너에 맞게 자동 조정 */
