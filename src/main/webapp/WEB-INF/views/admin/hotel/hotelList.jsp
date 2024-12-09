@@ -12,7 +12,7 @@
 				<input class="btn" type="button" name="btn_search" value="검색"
 					onClick="go_search('adminHotelList')"/>
 				&nbsp;&nbsp;&nbsp;
-				<input type="button"  style="margin-left:auto" value="숙소등록"  onClick="go_write();"/>
+				<input type="button"  style="margin-left:auto" value="숙소등록"  onClick="go_write_H();"/>
 			</div>
 		</div>
 		<div class="row">
@@ -23,7 +23,7 @@
 		<c:forEach items="${hotelList}" var="hotelVO" >
 			<div class="row">
 				<div class="col">${hotelVO.hotel_seq}</div>
-				<div class="col" onClick="go_detail( '${hotelVO.hotel_seq}' )">${hotelVO.hotel_name}</div>
+				<div class="col" onClick="go_detail_H( '${hotelVO.hotel_seq}' )">${hotelVO.hotel_name}</div>
 			</div>
 		</c:forEach>
 

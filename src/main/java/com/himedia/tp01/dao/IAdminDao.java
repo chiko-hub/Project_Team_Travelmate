@@ -14,12 +14,12 @@ public interface IAdminDao {
     int getAllCount(QueryParameter parameter);
 
     List<PlaceVO> getPlaceList(Paging paging, String key);
-    void insertPlace(PlaceVO placeVO);
-    void updatePlace(PlaceVO placeVO);
+    void insertPlace(PlaceVO placevo);
+    void updatePlace(PlaceVO placevo);
 
     List<HotelVO> getHotelList(Paging paging, String key);
-    void insertHotel(HotelVO hotelVO);
-    void updateHotel(HotelVO hotelVO);
+    void insertHotel(HotelVO hotelvo);
+    void updateHotel(HotelVO hotelvo);
 
 
 }

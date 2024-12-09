@@ -8,6 +8,7 @@ import com.himedia.tp01.dto.PlaceVO;
 import com.himedia.tp01.dto.QueryParameter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -114,7 +115,7 @@ public class AdminService {
         return result;
     }
 
-    public void insertPlace(PlaceVO placevo) {
+    public void insertPlace(@Valid PlaceVO placevo) {
         adao.insertPlace( placevo );
     }
     public void updatePlace(PlaceVO placevo) {

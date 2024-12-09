@@ -4,46 +4,34 @@ function go_search( url ){
 }
 
 
-function go_detail( pseq ){
-    location.href="adminProductDetail?pseq=" + pseq;
+function go_detail_P( place_seq ){
+    location.href="adminPlaceDetail?place_seq=" + place_seq;
 }
 
-
-function go_write(){
-    location.href="adminProductWriteForm";
+function go_detail_H( hotel_seq ){
+    location.href="adminHotelDetail?hotel_seq=" + hotel_seq;
 }
 
-
-function cals(){
-    var value1 = document.productWriteFrm.price1.value;
-    var value2 = document.productWriteFrm.price2.value
-
-    if( value1=="" || value2==""){
-        return;
-    }else{
-        document.productWriteFrm.price3.value = value2 - value1;
-    }
+function go_write_P(){
+    location.href="adminPlaceWriteForm";
 }
 
-
+function go_write_H(){
+    location.href="adminHotelWriteForm";
+}
 
 function go_save(){
-    var theForm = document.productWriteFrm;
-    if( theForm.category.value==""){
-        alert('상품분류를 선택하세요');
-        theForm.kind.focus();
-    }else if (theForm.name.value == "") {
-        alert('상품명을 입력하세요.'); 				theForm.name.focus();
-    } else if (theForm.price1.value == "") {
-        alert('원가를 입력하세요.'); 				theForm.price1.focus();
-    } else if (theForm.price2.value == "") {
-        alert('판매가를 입력하세요.'); 			theForm.price2.focus();
-    } else if (theForm.content.value == "") {
-        alert('상품상세를 입력하세요.'); 		theForm.content.focus();
-    } else if (theForm.image.value == "") {
-        alert('상품이미지들 입력하세요.');		theForm.image.focus();
+    var theForm = document.placeWriteFrm;
+    if (theForm.place_name.value == "") {
+        alert('장소명을 입력하세요.'); 				theForm.place_name.focus();
+    } else if (theForm.place_location.value == "") {
+        alert('장소 주소를 입력하세요.'); 				theForm.place_location.focus();
+    } else if (theForm.place_description.value == "") {
+        alert('장소 설명을 입력하세요.'); 			theForm.place_description.focus();
+    } else if (theForm.place_image.value == "") {
+        alert('장소 이미지를 입력하세요.');		theForm.place_image.focus();
     } else{
-        theForm.action = "adminProductWrite";
+        theForm.action = "adminPlaceWrite";
         theForm.submit();
     }
 }
@@ -83,27 +71,13 @@ function deleteProduct(pseq){
     if( ans ){
         location.href="deleteProduct?pseq=" + pseq;
     }
-}
 
 
 
 
 
-function go_order_next(){
-    var count=0;
-    if( document.frm.result.length == undefined ){
-        if( document.frm.result.checked == true ) count++;
-    }else{
-        for( var i=0; i<document.frm.result.length ; i++)
-            if( document.frm.result[i].checked==true)
-                count++;
-    }
-    if (count == 0) {
-        alert("주문처리할 항목을 선택해 주세요.");
-    }else{
-        document.frm.action = "adminOrderNext";
-        document.frm.submit();
-    }
+
+
 
 }
 
