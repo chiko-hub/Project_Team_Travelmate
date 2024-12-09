@@ -40,9 +40,18 @@ public class PlaceController {
     @GetMapping("/placeList")
     public ModelAndView getPlaceList(HttpServletRequest request, Model model) {
         ModelAndView mav = new ModelAndView();
+        // "first" 파라미터가 있으면 세션 초기화
+        if (request.getParameter("first") != null) {
+            request.getSession().removeAttribute("page");
+            request.getSession().removeAttribute("key");
+            request.getSession().removeAttribute("searchType");
+        }
         HashMap<String, Object> result = ps.getPlaceList(request);
         mav.addObject("placeList", result.get("placeList"));
         mav.addObject("paging", result.get("paging"));
+        mav.addObject("totalPage", result.get("totalPage")); //  totalPage 전달
+        mav.addObject("key", result.get("key")); // 검색어
+        mav.addObject("searchType", result.get("searchType")); // 검색 타입 전달
         mav.setViewName("place/placeList");
         return mav;
     }

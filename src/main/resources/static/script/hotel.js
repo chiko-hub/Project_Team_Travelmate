@@ -5,5 +5,5 @@ function go_search( url ){
 }
 
 function resetSearch() {
-    window.location.href = '/placeList?first=true'; // 초기화 URL로 이동
+    window.location.href = '/hotelList?first=true'; // 초기화 URL로 이동
 }

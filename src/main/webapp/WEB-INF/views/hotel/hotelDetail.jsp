@@ -25,15 +25,15 @@
   <form method="post" name="placeform">
     <div id="placedetail" style="display: flex; justify-content: center; align-items: center; gap: 20px; margin: 20px auto;">
       <div class="placedetail-img-title" style="flex: 1; max-width: 400px;">
-        <div><img src="place_images/${place.savefilename}"
+        <div><img src="hotel_images/${hotel.hotel_savefilename}"
                   style="width: 100%; border-radius: 10px;" />
         </div>
       </div>
 
       <div class="itemdetail-content" style="flex: 1; max-width: 400px; padding: 20px; border-radius: 10px; font-size: 1.5em; font-weight: bold;">
-          <label><h2>${place.place_name}</h2></label>
-          <label><p>${place.place_location}</p></label>
-           <label><h3 style="font-size:120%;">${place.place_description}</h3></label>
+          <label><h2>${hotel.hotel_name}</h2></label>
+          <label><p>${hotel.hotel_location}</p></label>
+           <label><h3 style="font-size:120%;">${hotel.hotel_description}</h3></label>
       </div>
     </div>
 
