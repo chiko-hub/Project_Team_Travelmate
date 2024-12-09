@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 
@@ -112,39 +113,44 @@ public class MemberController {
 
 
 
-//    @GetMapping("/index")
-//    public String index(Model model) {return "index";}
+    @GetMapping("/index")
+    public String index(Model model) {return "index";}
 
     @GetMapping("/updateMemberForm")
-    public String updateMemberForm( HttpServletRequest request, Model model ) {
+    public ModelAndView updateMemberForm(HttpServletRequest request, Model model ) {
+        ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-        model.addAttribute("dto", mvo);
-        return "member/mypage";
+        MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+        mav.setViewName("member/mypage");
+        mav.addObject("dto", loginUser);
+        return mav;
     }
 
-    @PostMapping("/mypage")
-    public String updateMember(
+    @PostMapping("/updateMember")
+    public String updateMember(  //modelandview로 바꾸기
             @ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
             @RequestParam(value="pwdCheck", required = false) String pwdCheck,
             HttpServletRequest request, Model model){
         String url = "member/mypage";
-        if(result.getFieldError("pwd")!=null)
-            model.addAttribute("msg", result.getFieldError("pwd").getDefaultMessage());
-        else if(result.getFieldError("name")!=null)
-            model.addAttribute("msg", result.getFieldError("name").getDefaultMessage());
-        else if(result.getFieldError("email")!=null)
-            model.addAttribute("msg", result.getFieldError("email").getDefaultMessage());
-        else if(result.getFieldError("phone")!=null)
-            model.addAttribute("msg", result.getFieldError("phone").getDefaultMessage());
-        else if( pwdCheck == null || !membervo.getPwd().equals(pwdCheck))
+        if( result.getFieldError("userid")!=null )
+            model.addAttribute("msg", "아이디를 입력하세요");
+        else if( result.getFieldError("pwd")!=null )
+            model.addAttribute("msg", "비밀번호를 입력하세요");
+        else if( result.getFieldError("name")!=null )
+            model.addAttribute("msg", "이름을 입력하세요");
+        else if( result.getFieldError("email")!=null )
+            model.addAttribute("msg", "이메일을 입력하세요");
+        else if( result.getFieldError("phone")!=null )
+            model.addAttribute("msg", "전화번호를 입력하세요");
+        else if( pwdCheck == null || !membervo.getPwd().equals(pwdCheck) )
             model.addAttribute("msg", "비밀번호 확인이 일치하지 않습니다");
         else{
             ms.updateMember(membervo);
             HttpSession session = request.getSession();
             session.setAttribute("loginUser", membervo);
-            url = "redirect:/index";
+            model.addAttribute("msg", "회원수정 완료되었습니다.");
         }
         return url;
     }
+
 }
