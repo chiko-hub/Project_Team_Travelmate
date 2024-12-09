@@ -1,6 +1,6 @@
 /* 패널 열고 닫기 */
-function togglePanel() {
-    const panel = document.getElementById("planAddPanel");
+function togglePanel(panelId) {
+    const panel = document.getElementById(panelId);
     panel.style.display = panel.style.display === "block" ? "none" : "block";
 }
 
