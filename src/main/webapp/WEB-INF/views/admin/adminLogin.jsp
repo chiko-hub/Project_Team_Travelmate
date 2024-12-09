@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<article style="width:600px;margin:100px auto;">
+<article style="width:400px;margin:200px auto;">
     <form	method="post" action="adminLogin" name="loginForm">
 
         <h2>Admin LogIn</h2>

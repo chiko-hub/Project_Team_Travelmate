@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#wrap{ width:100%; margin: 0 auto; border:1px solid #34495e;
+#wrap{ width:100%; margin: 0 auto; border:1px solid #0097a7;
     max-width: 1024px; display: flex; flex-direction: column;}
 
 a{ text-decoration: none; }
@@ -63,7 +63,7 @@ article form .btn{
 article form .btn input{
     flex:1;
     margin:10px 3px;
-    background-color: #34495e;
+    background-color: #0097a7;
     border:none;
     color:white;
     border-radius: 5px;
@@ -80,13 +80,13 @@ header{ width:100%; margin-bottom:30px;}
     font-size:120%;}
 
 #sub_menu{ display: flex; justify-content: space-between; 	align-items: center; margin-bottom:30px; }
-#sub_menu div{ flex:1; text-align: center; padding:10px; border:1px #34495e; margin:3px;}
+#sub_menu div{ flex:1; text-align: center; padding:10px; border:1px #0097a7; margin:3px;}
 #sub_menu div a{ font-size:120%; font-weight:bold; text-decoration: none;}
 
 .tb{ width:100%; display: flex; flex-direction: column; margin-bottom:30px;}
 .row{  display:flex; }
-.coltitle{  background: #34495e; margin:1px; padding:10px; color:white; text-align: center;}
-.col{ border:1px dotted #34495e; margin:1px; padding:10px;  text-align: center;}
+.coltitle{  background: #0097a7; margin:1px; padding:10px; color:white; text-align: center;}
+.col{ border:1px dotted #0097a7; margin:1px; padding:10px;  text-align: center;}
 
 .coltitle:nth-child(1), .col:nth-child(1){ flex:1}
 .coltitle:nth-child(2), .col:nth-child(2){flex:3}
