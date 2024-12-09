@@ -12,5 +12,31 @@
         select * from hothotel_view
     </select>
 
+    <select id = "getHotel" resultType="com.himedia.tp01.dto.HotelVO">
+        select * from hotel where hotel_seq=#{param1}
+    </select>
+
+    <select id="getAllCount" resultType="_int">
+        select count(*) from ${param1} where ${param2} like concat('%', #{param3}, '%');
+    </select>
+
+    <select id="getHotelList" resultType="com.himedia.tp01.dto.HotelVO" parameterType="com.himedia.tp01.dto.Paging">
+        select * from hotel
+        <where>
+            <if test="searchType != null and searchType != ''">
+                <choose>
+                    <when test="searchType == 'hotel_name'">
+                        hotel_name like concat('%', #{key}, '%')
+                    </when>
+                    <when test="searchType == 'hotel_location'">
+                        hotel_location like concat('%', #{key}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        order by hotel_seq asc
+        limit #{paging.displayRow} offset #{paging.startNum}
+    </select>
+
 
 </mapper>

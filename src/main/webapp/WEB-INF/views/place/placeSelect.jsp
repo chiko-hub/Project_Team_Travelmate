@@ -19,7 +19,7 @@
 </div>
 
 <div id="morePlace">
-    <button class="placeList" onclick="location.href='placeList'">더보기</button>
+    <button class="placeList" onclick="location.href='placeList?first=true'">더보기</button>
 </div>
 <!-- Best Places -->
 <div id="main-content">

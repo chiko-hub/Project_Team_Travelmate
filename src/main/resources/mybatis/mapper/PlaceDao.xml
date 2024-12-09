@@ -17,11 +17,21 @@
     </select>
 
     <select id="getAllCount" resultType="_int">
-        select count(*) from place;
+        select count(*) from ${param1} where ${param2} like concat('%', #{param3}, '%');
     </select>
 
-    <select id="getPlaceList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="com.himedia.tp01.dto.Paging">
-        select * from place order by place_seq desc limit #{displayRow} offset #{startNum}
+    <select id="getPlaceList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">
+        select * from place
+        <where>
+            <if test="key != null and searchType == 'place_location'">
+                LEFT(${searchType}, 2) = #{key}
+            </if>
+            <if test="key != null and searchType != 'place_location'">
+                ${searchType} LIKE CONCAT('%', #{key}, '%')
+            </if>
+        </where>
+        order by place_seq asc
+        limit #{paging.displayRow} offset #{paging.startNum}
     </select>
 
 
