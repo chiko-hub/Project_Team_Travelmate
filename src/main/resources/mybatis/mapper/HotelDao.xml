@@ -20,17 +20,19 @@
         select count(*) from ${param1} where ${param2} like concat('%', #{param3}, '%');
     </select>
 
-    <select id="getHotelList" resultType="com.himedia.tp01.dto.HotelVO" parameterType="com.himedia.tp01.dto.Paging">
+    <select id="getHotelList" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
         select * from hotel
         <where>
-            <if test="searchType != null and searchType != ''">
+            <if test="key != null and key != ''">
                 <choose>
-                    <when test="searchType == 'hotel_name'">
-                        hotel_name like concat('%', #{key}, '%')
-                    </when>
+                    <!-- "hotel_location" 검색 -->
                     <when test="searchType == 'hotel_location'">
-                        hotel_location like concat('%', #{key}, '%')
+                        hotel_location LIKE CONCAT('%', #{key}, '%')
                     </when>
+                    <!-- "hotel_name" 또는 기타 검색 -->
+                    <otherwise>
+                        ${searchType} LIKE CONCAT('%', #{key}, '%')
+                    </otherwise>
                 </choose>
             </if>
         </where>
