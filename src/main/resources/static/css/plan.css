@@ -48,7 +48,7 @@
 /* timeList와 planList는 같은 크기로 늘어나고 줄어듦 */
 .timeList, .planList {
     display: grid;
-    grid-template-rows: repeat(24, 1fr);
+    grid-template-rows: repeat(25, 1fr);
     width: 100%;
     /*display: flex;
     flex-direction: column; !* 요소를 세로로 정렬 *!
@@ -68,7 +68,7 @@
     text-align: center;
     font-size: 14px; /* 텍스트 크기 */
     color: #333; /* 텍스트 색상 */
-    min-height: 30px; /* 최소 높이 유지 */
+    min-height: 50px; /* 최소 높이 유지 */
     height: auto; /* 자동으로 높이 조정 */
     max-height: none; /* 최대 높이 제한 제거 */
 }
