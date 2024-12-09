@@ -113,4 +113,19 @@ public class AdminService {
 
         return result;
     }
+
+    public void insertPlace(PlaceVO placevo) {
+        adao.insertPlace( placevo );
+    }
+    public void updatePlace(PlaceVO placevo) {
+        adao.updatePlace( placevo );
+    }
+
+    public void insertHotel(HotelVO hotelvo) {
+        adao.insertHotel( hotelvo );
+    }
+    public void updateHotel(HotelVO hotelvo) {
+        adao.updateHotel( hotelvo );
+    }
+
 }

@@ -2,6 +2,7 @@ package com.himedia.tp01.controller;
 
 import com.himedia.tp01.dto.AdminVO;
 import com.himedia.tp01.service.AdminService;
+import com.himedia.tp01.service.PlaceService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -58,6 +60,19 @@ AdminService as;
         mav.addObject( "key", result.get("key") );
 
         mav.setViewName("admin/place/placeList");
+        return mav;
+    }
+
+    @Autowired
+    PlaceService ps;
+
+    @GetMapping("/adminPlaceDetail")
+    public ModelAndView adminProductDetail( @RequestParam("place_seq") int place_seq ) {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("placeVO", ps.getPlace(place_seq));
+
+        mav.setViewName("admin/product/productDetail");
         return mav;
     }
 

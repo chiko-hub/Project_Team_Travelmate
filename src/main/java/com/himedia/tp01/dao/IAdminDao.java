@@ -12,6 +12,14 @@ public interface IAdminDao {
     AdminVO getAdmin(String adminid);
 
     int getAllCount(QueryParameter parameter);
+
     List<PlaceVO> getPlaceList(Paging paging, String key);
+    void insertPlace(PlaceVO placeVO);
+    void updatePlace(PlaceVO placeVO);
+
     List<HotelVO> getHotelList(Paging paging, String key);
+    void insertHotel(HotelVO hotelVO);
+    void updateHotel(HotelVO hotelVO);
+
+
 }
