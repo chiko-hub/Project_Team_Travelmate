@@ -39,6 +39,7 @@
     flex-direction: row; /* 가로 정렬 */
     justify-content: center; /* 중앙 정렬 */
     align-items: flex-start; /* 기본 높이로 유지 */
+    width: 100%;
     border: 1px solid #ddd; /* 전체 테두리 */
     padding: 10px; /* 내부 여백 */
     background-color: #fff; /* 배경색 */
@@ -47,7 +48,8 @@
 /* timeList와 planList는 같은 크기로 늘어나고 줄어듦 */
 .timeList, .planList {
     display: grid;
-    grid-template-rows: repeat(18, 1fr);
+    grid-template-rows: repeat(24, 1fr);
+    width: 100%;
     /*display: flex;
     flex-direction: column; !* 요소를 세로로 정렬 *!
     flex: 1; !* 동일한 비율로 늘어나고 줄어듦 *!*/
@@ -66,9 +68,17 @@
     text-align: center;
     font-size: 14px; /* 텍스트 크기 */
     color: #333; /* 텍스트 색상 */
-    min-height: 50px; /* 최소 높이 유지 */
+    min-height: 30px; /* 최소 높이 유지 */
     height: auto; /* 자동으로 높이 조정 */
     max-height: none; /* 최대 높이 제한 제거 */
+}
+
+.planName{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center; /* 가로 가운데 정렬 */
+    align-items: center; /* 세로 가운데 정렬 */
 }
 
 .time:first-child, .cell:first-child {
