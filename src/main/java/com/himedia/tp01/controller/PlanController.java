@@ -91,10 +91,10 @@ public class PlanController {
     public ModelAndView roadPlan(HttpSession session) {
         ModelAndView mav = new ModelAndView();
 
-        if (session.getAttribute("loginUser") == null) {
+        /*if (session.getAttribute("loginUser") == null) {
             // 로그인 창으로 이동
             mav.setViewName("member/loginForm");
-        } else {
+        } else {*/
             MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
 
             // 현재 사용자 정보로부터 plan_code 불러오기
@@ -113,7 +113,7 @@ public class PlanController {
             mav.addObject("planDetailList", planDetailHashMap);
 
             mav.setViewName("plan/planForm");
-        }
+        /*}*/
         return mav;
     }
 

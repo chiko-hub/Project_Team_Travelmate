@@ -1,11 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
+<%-- 날짜 선택용 캘린더 api (임시) --%>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript">
+  $(function() {
+    $('input[name="datefilter"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+        cancelLabel: 'Clear'
+      }
+    });
+
+    $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+      // 날짜 차이 계산
+      const startDate = picker.startDate;
+      const endDate = picker.endDate;
+      const dateDifference = endDate.diff(startDate, 'days'); // 날짜 차이 계산 (일 단위)
+
+      if (dateDifference > 4) {
+        alert('일정 생성은 최대 5일까지만 가능합니다.');
+        $(this).val(''); // 입력 필드 초기화
+      } else {
+        $(this).val(startDate.format('YYYY/MM/DD') + ' - ' + endDate.format('YYYY/MM/DD'));
+      }
+    });
+
+    $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+    });
+  });
+</script>
     <div class="plan_container">
-      <div class="planAddButton">
-        <input type="button" value="직접 추가" onclick="togglePanel()"/>
+      <div class="buttonList">
+        <div class="planRoadButton">
+          <input type="button" value="새 일정 생성" onclick="togglePanel('planCreatePanel')"/>
+          <input type="button" value="일정 불러오기" onclick="togglePanel('planRoadPanel')"/>
+        </div>
+        <div class="planAddButton">
+          <input type="button" value="직접 추가" onclick="togglePanel('planAddPanel')"/>
+        </div>
       </div>
-      <!-- 입력 패널 -->
+      <!-- 새 일정 생성 패널 -->
+      <div id="planCreatePanel" class="panel">
+        <h3>일정 불러오기</h3>
+        <form id="planCreateForm" method="post" action="roadPlan">
+          <label>날짜</label>
+          <input type="text" name="datefilter" value=""/><br/>
+          <div class="planCreateButton">
+            <button type="button" onclick="">생성</button>
+            <button type="button" onclick="togglePanel('planCreatePanel')">취소</button>
+          </div>
+        </form>
+      </div>
+      <!-- 일정 불러오기 패널 -->
+      <div id="planRoadPanel" class="panel">
+        <h3>일정 불러오기</h3>
+        <form id="planLoadForm" method="post" action="roadPlan">
+          <label>코드입력</label>
+          <input type="text" name="planCode" required/><br>
+          <!-- 날짜 입력과 날짜에 맞는 plan_seq 전달 -->
+          <div class="planRoadButton">
+            <button type="button" onclick="">불러오기</button>
+            <button type="button" onclick="togglePanel('planRoadPanel')">취소</button>
+          </div>
+        </form>
+      </div>
+      <!-- 직접 추가 패널 -->
       <div id="planAddPanel" class="panel">
         <h3>새 계획 추가</h3>
         <form id="planAddForm" method="post" action="addPlan">
@@ -13,8 +77,7 @@
           <label for="planName">장소</label>
           <input type="text" id="planName" name="plan_name" required/><br/>
           <label for="planDate">날짜</label>
-          <!-- 날짜 입력과 날짜에 맞는 plan_seq 전달 -->
-          <select id="planDate" name="plan_date" required onchange="updatePlanSeq()">
+          <select id="planDate" name="plan_date" required>
               <option value=""></option>
             <c:forEach var="i" begin="0" end="${fn:length(planList)-1}" varStatus="status">
               <option value="${planList[i].travel_date}" data-plan-seq="${planList[i].plan_seq}">
@@ -79,11 +142,10 @@
           </select>
           <div class="planAddButton">
             <button type="button" onclick="addPlan()">추가</button>
-            <button type="button" onclick="togglePanel()">취소</button>
+            <button type="button" onclick="togglePanel('planAddPanel')">취소</button>
           </div>
         </form>
       </div>
-
       <!-- 계획 테이블 -->
       <div class="planTable">
         <!-- 시간 정보 테이블 -->
