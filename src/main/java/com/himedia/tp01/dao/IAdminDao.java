@@ -1,8 +1,6 @@
 package com.himedia.tp01.dao;
 
-import com.himedia.tp01.dto.AdminVO;
-import com.himedia.tp01.dto.Paging;
-import com.himedia.tp01.dto.PlaceVO;
+import com.himedia.tp01.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,6 +10,8 @@ public interface IAdminDao {
 
 
     AdminVO getAdmin(String adminid);
-    int getAllCount(String place, String place_name, String key);
+
+    int getAllCount(QueryParameter parameter);
     List<PlaceVO> getPlaceList(Paging paging, String key);
+    List<HotelVO> getHotelList(Paging paging, String key);
 }

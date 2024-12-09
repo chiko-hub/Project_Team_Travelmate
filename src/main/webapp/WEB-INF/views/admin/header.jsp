@@ -44,8 +44,7 @@
 <div id="wrap">
 	<header>
 		<div id="logo">
-			<img style="width:800px" src="admin/images/">
-			<img src="admin/images/">
+			<img style="width:100%" src="admin/images/adminimage.webp">
 			<input class="btn" type="button" value="logout"	onClick="location.href='adminLogout'">
 		</div>
 	</header>

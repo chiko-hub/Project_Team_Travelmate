@@ -61,4 +61,16 @@ AdminService as;
         return mav;
     }
 
+    @GetMapping("/adminHotelList")
+    public ModelAndView adminHotelList(HttpServletRequest request) {
+    ModelAndView mav = new ModelAndView();
+    HashMap<String, Object> result = as.adminHotelList(request);
+
+    mav.addObject("hotelList", result.get("hotelList") );
+    mav.addObject( "paging", result.get("paging") );
+    mav.addObject( "key", result.get("key") );
+
+    mav.setViewName("admin/hotel/hotelList");
+    return mav;
+    }
 }
