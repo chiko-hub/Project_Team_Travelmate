@@ -12,7 +12,7 @@
 				<input class="btn" type="button" name="btn_search" value="검색"
 					onClick="go_search('adminPlaceList')"/>
 				&nbsp;&nbsp;&nbsp;
-				<input type="button"  style="margin-left:auto" value="장소등록"  onClick="go_write();"/>
+				<input type="button"  style="margin-left:auto" value="장소등록"  onClick="go_write_P();"/>
 			</div>
 		</div>
 		<div class="row">
@@ -23,7 +23,7 @@
 		<c:forEach items="${placeList}" var="placeVO" >
 			<div class="row">
 				<div class="col">${placeVO.place_seq}</div>
-				<div class="col" onClick="go_detail( '${placeVO.place_seq}' )">${placeVO.place_name}</div>
+				<div class="col" onClick="go_detail_P( '${placeVO.place_seq}' )">${placeVO.place_name}</div>
 			</div>
 		</c:forEach>
 

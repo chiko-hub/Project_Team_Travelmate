@@ -1,8 +1,11 @@
 package com.himedia.tp01.controller;
 
 import com.himedia.tp01.dto.AdminVO;
+import com.himedia.tp01.dto.PlaceVO;
 import com.himedia.tp01.service.AdminService;
+import com.himedia.tp01.service.HotelService;
 import com.himedia.tp01.service.PlaceService;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -10,12 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 
 @Controller
@@ -67,13 +71,63 @@ AdminService as;
     PlaceService ps;
 
     @GetMapping("/adminPlaceDetail")
-    public ModelAndView adminProductDetail( @RequestParam("place_seq") int place_seq ) {
+    public ModelAndView adminPlaceDetail( @RequestParam("place_seq") int place_seq ) {
         ModelAndView mav = new ModelAndView();
-
         mav.addObject("placeVO", ps.getPlace(place_seq));
-
-        mav.setViewName("admin/product/productDetail");
+        mav.setViewName("admin/place/placeDetail");
         return mav;
+    }
+
+    @GetMapping("/adminPlaceWriteForm")
+    public String adminPlaceWriteForm(Model model) {
+        return "admin/place/placeWrite";
+    }
+
+    @Autowired
+    ServletContext context_P;
+
+    @PostMapping("/fileup_P")
+    @ResponseBody
+    public HashMap<String, Object> fileup_P(    @RequestParam("fileimage") MultipartFile file        ){
+        String path = context_P.getRealPath("/admin/images");
+
+        Calendar today = Calendar.getInstance();
+        long t = today.getTimeInMillis();
+        String filename = file.getOriginalFilename();
+        String fn1 = filename.substring(0, filename.indexOf(".") );  // 파일이름과 확장자 분리
+        String fn2 = filename.substring(filename.indexOf(".") );
+        String savefilename = fn1 + t + fn2;
+        String uploadPath = path + "/" + savefilename;
+
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        try {
+            file.transferTo( new File(uploadPath) );  // 파일의 업로드 + 저장
+            result.put("place_image", filename );
+            result.put("savefilename", savefilename );
+        } catch (IllegalStateException e) {         e.printStackTrace();
+        } catch (IOException e) {       e.printStackTrace();
+        }
+        return result;
+    }
+
+    @PostMapping("/adminPlaceWrite")
+    public String adminPlaceWrite(@ModelAttribute("dto") @Valid PlaceVO placevo, BindingResult result, Model model, HttpSession session) {
+        String url = "admin/place/placeWrite";
+
+        if( result.getFieldError("place_name") != null )
+            model.addAttribute("message", "장소 이름을 입력하세요");
+        else if( result.getFieldError("place_location") != null )
+            model.addAttribute("message", "장소 주소를 입력하세요");
+        else if( (result.getFieldError("place_description") != null) )
+            model.addAttribute("message", "장소 설명을 입력하세요");
+        else if( (result.getFieldError("place_image") != null) || (result.getFieldError("savefilename") != null)  )
+            model.addAttribute("message", "파일을 선택하세요");
+
+        else{
+            as.insertPlace(placevo);
+            url = "redirect:/adminPlaceList";
+        }
+        return url;
     }
 
     @GetMapping("/adminHotelList")
@@ -88,4 +142,49 @@ AdminService as;
     mav.setViewName("admin/hotel/hotelList");
     return mav;
     }
+
+    @Autowired
+    HotelService hs;
+
+    @GetMapping("/adminHotelDetail")
+    public ModelAndView adminHotelDetail( @RequestParam("hotel_seq") int hotel_seq ) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("hotelVO", hs.getHotel(hotel_seq));
+        mav.setViewName("admin/hotel/hotelDetail");
+        return mav;
+    }
+
+    @GetMapping("/adminHotelWriteForm")
+    public String adminHotelWriteForm(Model model) {
+        return "admin/hotel/hotelWrite";
+    }
+
+    @Autowired
+    ServletContext context_H;
+
+    @PostMapping("/fileup_H")
+    @ResponseBody
+    public HashMap<String, Object> fileup_H(    @RequestParam("fileimage_H")MultipartFile file        ){
+        String path = context_H.getRealPath("/hotel_image");
+
+        Calendar today = Calendar.getInstance();
+        long t = today.getTimeInMillis();
+        String filename = file.getOriginalFilename();
+        String fn1 = filename.substring(0, filename.indexOf(".") );  // 파일이름과 확장자 분리
+        String fn2 = filename.substring(filename.indexOf(".") );
+        String savefilename = fn1 + t + fn2;
+        String uploadPath = path + "/" + savefilename;
+
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        try {
+            file.transferTo( new File(uploadPath) );  // 파일의 업로드 + 저장
+            result.put("hotel_image", filename );
+            result.put("hotel_savefilename", savefilename );
+        } catch (IllegalStateException e) {         e.printStackTrace();
+        } catch (IOException e) {       e.printStackTrace();
+        }
+        return result;
+    }
+
+
 }

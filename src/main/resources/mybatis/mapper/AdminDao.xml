@@ -32,4 +32,20 @@
             limit #{param1.displayRow} offset #{param1.startNum}
     </select>
 
+    <insert id="insertPlace" parameterType="com.himedia.tp01.dto.PlaceVO">
+        insert into place(place_name, place_location, place_description, place_image, savefilename)values(#{place_name},#{place_location},#{place_description},#{place_image},#{savefilename})
+    </insert>
+
+    <select id="updatePlace" parameterType="com.himedia.tp01.dto.PlaceVO">
+        update place set place_name=#{place_name}, place_location=#{place_location}, place_description=#{place_description}, place_image=#{place_image}, savefilename=#{savefilename} where place_seq=#{place_seq}
+    </select>
+
+    <insert id="insertHotel" parameterType="com.himedia.tp01.dto.HotelVO">
+        insert into hotel(hotel_name, hotel_location, hotel_description, hotel_image, hotel_savefilename)values(#{hotel_name},#{hotel_location},#{hotel_description},#{hotel_image},#{hotel_savefilename})
+    </insert>
+
+    <select id="updateHotel" parameterType="com.himedia.tp01.dto.HotelVO">
+        update hotel set hotel_name=#{hotel_name}, hotel_location=#{hotel_location}, hotel_description=#{hotel_description}, hotel_image=#{hotel_image}, hotel_savefilename=#{hotel_savefilename} where hotel_seq=#{hotel_seq}
+    </select>
+
 </mapper>
