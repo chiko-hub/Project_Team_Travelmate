@@ -30,7 +30,7 @@
     <!-- 입력 패널 -->
     <div id="planAddPanel" class="panel">
       <h3>새 계획 추가</h3>
-      <form id="planForm" method="post" action="addPlan">
+      <form id="planAddForm" method="post" action="addPlan">
         <input type="hidden" name="plan_category" value="place"/> <!-- category 전달 임시 값 -->
         <label for="planName">장소</label>
         <input type="text" id="planName" name="plan_name" required/><br/>
@@ -47,7 +47,7 @@
         <input type="hidden" id="planSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
         <label for="planStartTime">시작시간</label>
         <select id="planStartTime" name="starttime" required>
-          <option value="00">오전 00시</option>
+          <option value="00" selected>오전 00시</option>
           <option value="01">오전 01시</option>
           <option value="02">오전 02시</option>
           <option value="03">오전 03시</option>
@@ -74,7 +74,7 @@
         </select>
         <label for="planEndTime">종료시간</label>
         <select id="planEndTime" name="endtime" required>
-          <option value="01">오전 01시</option>
+          <option value="01" selected>오전 01시</option>
           <option value="02">오전 02시</option>
           <option value="03">오전 03시</option>
           <option value="04">오전 04시</option>
@@ -111,6 +111,7 @@
       <!-- 시간 정보 테이블 -->
       <div class="timeList">
         <div class="time"></div>
+        <div class="time">오전 00시</div>
         <div class="time">오전 01시</div>
         <div class="time">오전 02시</div>
         <div class="time">오전 03시</div>
@@ -144,8 +145,8 @@
           <c:choose>
             <%-- planDetailList[plan.plan_seq]가 비어있는 경우 --%>
             <c:when test="${empty planDetailList[plan.plan_seq]}">
-              <c:forEach var="cellNum" begin="0" end="22">
-                <div class="cell">${cellNum}</div>
+              <c:forEach var="cellNum" begin="0" end="23">
+                <div class="cell"></div>
               </c:forEach>
             </c:when>
 
@@ -153,13 +154,13 @@
             <c:otherwise>
               <c:set var="detailCount" value="0"/>
               <c:set var="cellCount" value="0"/>
-              <c:forEach var="cellNum" begin="0" end="22">
+              <c:forEach var="cellNum" begin="0" end="23">
                 <c:choose>
                   <%-- 현재 time이 detail의 starttime과 일치하는 경우 --%>
                   <c:when test="${detailCount < fn:length(planDetailList[plan.plan_seq]) && planDetailList[plan.plan_seq][detailCount].starttime == cellCount}">
                     <%-- 시간 간격 계산 --%>
                     <c:set var="startCellCount" value="${planDetailList[plan.plan_seq][detailCount].starttime}"/>
-                    <c:set var="endcellCount" value="${planDetailList[plan.plan_seq][detailCount].endtime -1}"/>
+                    <c:set var="endcellCount" value="${planDetailList[plan.plan_seq][detailCount].endtime}"/>
                     <c:set var="timeGap" value="${endcellCount - startCellCount}"/>
                     <%-- 일정 칸 생성 --%>
                     <div class="cell" style="grid-row: span ${timeGap}; background: #2e8b57; color: white;">
@@ -172,8 +173,8 @@
                   <%-- starttime과 일치하지 않는 경우 빈칸 출력 --%>
                   <c:otherwise>
                     <c:choose>
-                      <c:when test="${cellCount <= 22}">
-                        <div class="cell">${cellCount}</div>
+                      <c:when test="${cellCount <= 23}">
+                        <div class="cell"></div>
                         <c:set var="cellCount" value="${cellCount + 1}"/>
                       </c:when>
                     </c:choose>
