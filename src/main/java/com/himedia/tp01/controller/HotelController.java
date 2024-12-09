@@ -2,6 +2,7 @@ package com.himedia.tp01.controller;
 
 import com.himedia.tp01.service.HotelService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class HotelController {
@@ -40,14 +42,31 @@ public class HotelController {
     @GetMapping("/hotelList")
     public ModelAndView getHotelList(HttpServletRequest request, Model model) {
         ModelAndView mav = new ModelAndView();
+        HttpSession session = request.getSession();
 
-        // "first" 파라미터가 있으면 세션 초기화
-        if (request.getParameter("first") != null) {
-            request.getSession().removeAttribute("page");
-            request.getSession().removeAttribute("key");
-            request.getSession().removeAttribute("searchType");
+        // 요청 값 우선 처리: searchType과 key를 요청에서 가져오거나, 세션에서 가져옴
+        String searchType = request.getParameter("searchType") != null
+                ? request.getParameter("searchType")
+                : (String) session.getAttribute("searchType");
+
+        String key = request.getParameter("key") != null
+                ? request.getParameter("key")
+                : (String) session.getAttribute("key");
+
+        // "first" 파라미터가 있으면 검색 조건 및 페이지 초기화
+        if ("true".equals(request.getParameter("first"))) {
+            searchType = "place_name"; // 기본 검색 조건
+            key = ""; // 검색 키워드 초기화
+            session.removeAttribute("page"); // 페이지 초기화
+            session.removeAttribute("key");
+            session.removeAttribute("searchType");
         }
 
+        // 세션에 검색 조건 저장 (다음 요청에서도 유지되도록)
+        session.setAttribute("searchType", searchType);
+        session.setAttribute("key", key);
+
+        // 서비스 호출: 검색 조건과 페이징 처리
         HashMap<String, Object> result = hs.getHotelList(request);
         mav.addObject("hotelList", result.get("hotelList"));
         mav.addObject("paging", result.get("paging"));
@@ -56,6 +75,8 @@ public class HotelController {
         mav.addObject("searchType", result.get("searchType")); // 검색 타입 전달
         mav.setViewName("hotel/hotelList");
         return mav;
+
+
     }
 
 

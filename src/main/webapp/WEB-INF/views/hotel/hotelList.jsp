@@ -52,20 +52,19 @@
     <div class="paging">
         <!--  prev 버튼의 표시 여부 -->
         <c:if test="${paging.prev}">
-            <a href="hotelList?page=${paging.beginPage-1}">◀</a>&nbsp;
+            <a href="hotelList?page=${paging.beginPage-1}&searchType=${searchType}&key=${key}">◀</a>&nbsp;
         </c:if>
         <!--  beginPage 부터 endPage 까지 일렬로 페이지를 표시 -->
-        <c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
-            <a href="hotelList?page=${index}">
+        <c:forEach begin="${paging.beginPage}" end="${paging.endPage < totalPage ? paging.endPage : totalPage}" var="index">
+            <a href="hotelList?page=${index}&searchType=${searchType}&key=${key}"
+               class="${index == paging.page ? 'active' : ''}">
                 &nbsp;${index}&nbsp;
             </a>
         </c:forEach>
-
         <!--  next 버튼의 표시 여부 -->
-        <c:if test="${paging.next}">
-            <a href="hotelList?page=${paging.endPage+1}">▶</a>&nbsp;
+        <c:if test="${paging.next && paging.endPage < totalPage}">
+            <a href="hotelList?page=${paging.endPage+1}&searchType=${searchType}&key=${key}">▶</a>&nbsp;
         </c:if>
-
     </div>
 
 </div>
