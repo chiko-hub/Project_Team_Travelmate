@@ -11,4 +11,10 @@
     <select id="getPlan" resultType="com.himedia.tp01.dto.PlanVO">
         SELECT * FROM plan WHERE plan_code=#{param1}
     </select>
+
+    <select id="checkPlanCode" resultType="boolean" parameterType="string">
+        SELECT EXISTS (
+            SELECT 1 FROM plan WHERE plan_code = #{param1}
+        )
+    </select>
 </mapper>

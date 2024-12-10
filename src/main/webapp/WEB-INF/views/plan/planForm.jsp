@@ -4,9 +4,9 @@
 </script>
     <div class="plan_container">
       <div class="buttonList">
-        <div class="planRoadButton">
+        <div class="planLoadButton">
           <input type="button" value="새 일정 생성" onclick="togglePanel('planCreatePanel')"/>
-          <input type="button" value="일정 불러오기" onclick="togglePanel('planRoadPanel')"/>
+          <input type="button" value="일정 불러오기" onclick="togglePanel('planLoadPanel')"/>
         </div>
         <div class="planAddButton">
           <input type="button" value="직접 추가" onclick="togglePanel('planAddPanel')"/>
@@ -14,8 +14,8 @@
       </div>
       <!-- 새 일정 생성 패널 -->
       <div id="planCreatePanel" class="panel">
-        <h3>일정 불러오기</h3>
-        <form id="planCreateForm" method="post" action="roadPlan">
+        <h3>새 일정 생성</h3>
+        <form id="planCreateForm" method="post">
           <label>날짜</label>
           <input type="text" name="datefilter" value=""/><br/>
           <div class="planCreateButton">
@@ -25,15 +25,17 @@
         </form>
       </div>
       <!-- 일정 불러오기 패널 -->
-      <div id="planRoadPanel" class="panel">
+      <div id="planLoadPanel" class="panel">
         <h3>일정 불러오기</h3>
-        <form id="planLoadForm" method="post" action="roadPlan">
-          <label>코드입력</label>
-          <input type="text" name="planCode" required/><br>
+        <form id="planLoadForm" method="post">
+          <label>현재 일정 코드</label>
+          <input type="text" value="${loginUser.plan_code}" readonly/><br>
+          <label>불러올 코드 입력</label>
+          <input type="text" name="loadPlanCode" required/><br>
           <!-- 날짜 입력과 날짜에 맞는 plan_seq 전달 -->
-          <div class="planRoadButton">
-            <button type="button" onclick="">불러오기</button>
-            <button type="button" onclick="togglePanel('planRoadPanel')">취소</button>
+          <div class="planLoadButton">
+            <button type="button" onclick="loadPlanByCode(this.form)">불러오기</button>
+            <button type="button" onclick="togglePanel('planLoadPanel')">취소</button>
           </div>
         </form>
       </div>

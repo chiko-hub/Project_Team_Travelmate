@@ -11,15 +11,13 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -47,7 +45,7 @@ public class PlanController {
                 //url = "redirect:/roadPlan";
             }else{
                 // plan 불러오기
-                url = "redirect:/roadPlan";
+                url = "redirect:/loadPlan";
             }
         }
         return url;
@@ -91,14 +89,14 @@ public class PlanController {
 
             // 코드가 부여된 현재 로그인한 유저의 정보를 session 에 저장
             session.setAttribute("loginUser", currentMember);
-            url = "redirect:/roadPlan";
+            url = "redirect:/loadPlan";
         }
         return url;
     }
 
     /* 로그인 상태이며, plan 이 생성되어 있는 계정이라면 planner 로 이동 */
-    @GetMapping("/roadPlan")
-    public ModelAndView roadPlan(HttpSession session) {
+    @GetMapping("/loadPlan")
+    public ModelAndView loadPlan(HttpSession session) {
         ModelAndView mav = new ModelAndView();
 
         if (session.getAttribute("loginUser") == null) {
@@ -126,4 +124,33 @@ public class PlanController {
         return mav;
     }
 
+    /* planCode 를 입력하여 plan 을 불러오기 */
+    @PostMapping("/loadPlanByCode")
+    @ResponseBody // JSON 응답을 반환하도록 설정
+    public Map<String, Object> loadPlanByCode(@RequestBody String planCode, HttpSession session) {
+        Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
+
+        // planCode 에 해당하는 plan이 존재하는지 여부
+        Boolean isCheckPlanCodeResult = ps.checkPlanCode(planCode);
+        System.out.println("isCheckPlanCodeResult : " + isCheckPlanCodeResult);
+
+        if (isCheckPlanCodeResult) { // plan 이 존재한다면
+            // planCode를 현재 사용자에게 부여
+            MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
+            ms.updateMemberPlanCode(currentMember.getUserid(), planCode);
+            currentMember = ms.getMember(currentMember.getUserid());
+
+            // 새로운 코드가 부여된 현재 로그인한 유저의 정보를 session 에 저장
+            session.setAttribute("loginUser", currentMember);
+
+            // 성공 메시지를 담기
+            response.put("success", true);
+            response.put("message", "일정을 성공적으로 불러왔습니다.");
+        } else { // plan 이 존재하지 않는다면
+            // 실패 메시지 담기
+            response.put("success", false);
+            response.put("message", "해당되는 일정이 없습니다.");
+        }
+        return response; // JSON 형태로 반환
+    }
 }

@@ -28,7 +28,7 @@ $(function () {
 });
 
 /* 날짜를 지정하고 새 일정을 만들기 */
-function roadPlan(form, event) {
+function roadNewPlan(form, event) {
     event.preventDefault(); // 기본 폼 제출 동작 방지
 
     // datefilter 필드의 값 가져오기
@@ -37,15 +37,13 @@ function roadPlan(form, event) {
     // 날짜 데이터 입력 여부
     if (!planDate) {
         alert("날짜를 선택해주세요.");
-        return false;
     }else{
         // 문자열을 '-' 기준으로 나누기
         const [startDate, endDate] = planDate.split('~');
         alert(`${startDate}부터 ${endDate} 까지의 일정을 생성합니다`);
+
+        // 날짜가 선택되었으면, 해당 값을 가진 폼을 서버로 제출
+        form.submit(); // 폼을 서버로 전송
+        return false; // 추가로 폼 제출 방지
     }
-
-    // 날짜가 선택되었으면, 해당 값을 가진 폼을 서버로 제출
-    form.submit(); // 폼을 서버로 전송
-
-    return false; // 추가로 폼 제출 방지
 }
