@@ -131,8 +131,12 @@ body {
 }
 
 
-
-
+/* 좋아요 하트 버튼 */
+#likeImageButton {
+    width: 40px;
+    height: 40px;
+    object-fit: contain; /* 필요에 따라 이미지 비율 유지 */
+}
 
 
 
