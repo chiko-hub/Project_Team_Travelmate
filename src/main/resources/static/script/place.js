@@ -44,10 +44,10 @@ $(document).ready(function () {
 });
 
 
-// 좋아요 버튼 클릭 시 이미지 전환 및 AJAX 요청 통합
+// [[2. 좋아요 버튼 클릭 시 이미지 전환 및 AJAX 요청 통합 ]]
 $(document).on('click', '#likeImageButton', function () {
     const img = $(this); // 현재 클릭된 이미지
-    const placeId = $(this).data('place-id'); // data-place-id 값 가져오기
+    const place_seq = $(this).data('place_seq'); // data-place_seq 값 가져오기
 
     // 이미지 전환 로직
     if (img.attr('src').includes("heartbefore.png")) {
@@ -60,7 +60,7 @@ $(document).on('click', '#likeImageButton', function () {
         url: '/like',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({ place_name: place_name }),
+        data: JSON.stringify({ place_seq: place_seq }), // 데이터베이스와 일치하는 'place_seq'로 전달
         success: function (response) {
             if (response.success) {
                 alert('좋아요가 추가되었습니다!');

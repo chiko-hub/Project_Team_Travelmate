@@ -93,23 +93,11 @@ public class HotelController {
         return mav;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @GetMapping("/hotelDetail")
-    public ModelAndView hotelDetail(@RequestParam("hotel_seq") int hotel_seq) {
+    public ModelAndView hotelDetail(@RequestParam("hotel_seq") int hotel_seq, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("hotel", hs.getHotel(hotel_seq) );
-        mav.setViewName("hotel/hotelDetail");
+        mav.setViewName("hotel/hotelDetailModal"); // 팝업에 렌더링할 뷰
         return mav;
     }
 

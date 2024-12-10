@@ -16,7 +16,7 @@ html, body {
 }
 
 /* 장소들을 감싸는 컨테이너 */
-.place {
+.hotel {
     display: flex;
     flex-direction: column;
     width: 90%; /* 가로 폭을 80%로 제한 */

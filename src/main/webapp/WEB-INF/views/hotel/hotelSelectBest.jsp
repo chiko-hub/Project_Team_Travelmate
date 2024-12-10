@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place Search</title>
     <link rel="stylesheet" href="/css/start.css">
-    <link rel="stylesheet" href="/css/place.css">
+    <link rel="stylesheet" href="/css/hotel.css">
+    <script defer src="/script/hotel.js"></script>
 
 </head>
 <body>
@@ -20,19 +21,20 @@
             <input type="button" value="Hot호텔" onclick="location.href='selectHotHotel?first=true'"/>
         </div>
 
-        <div class="place">
+        <div class="hotel">
             <!-- 호텔 bestList 출력 -->
                     <c:forEach var="hotel" items="${bestList}">
-                        <div class="item">
-                            <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}"
-                                 onclick="location.href='hotelDetail?hotel_seq=${hotel.hotel_seq}'">
-                            <div class="place-info">
+                        <div class="item" data-hotel-seq="${hotel.hotel_seq}">
+                            <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}"/>
+                            <div class="hotel-info">
                                 <h4>${hotel.hotel_name}</h4>
                                 <p>${hotel.hotel_description}</p>
                             </div>
                         </div>
                     </c:forEach>
         </div>
+        <!-- 상세 내용 표시 -->
+        <div id="hotelDetailContainer"></div>
 
         <div class="row">
                 <div class="col" style="font-size:120%; font-weight:bold;">
@@ -54,6 +56,17 @@
                 </div>
         </div>
     </div>
+
+    <!-- 모달 구조 -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <div id="modalContent">
+                <!-- AJAX로 받은 내용이 여기에 삽입됩니다 -->
+            </div>
+        </div>
+    </div>
+
 <%@ include file="../footer.jsp" %>
 </body>
 </html>

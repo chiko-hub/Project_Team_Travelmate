@@ -9,38 +9,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place Search</title>
     <link rel="stylesheet" href="/css/start.css">
-    <link rel="stylesheet" href="/css/place.css">
+    <link rel="stylesheet" href="/css/hotel.css">
+    <script defer src="/script/hotel.js"></script>
 
 </head>
 <body>
-    <!-- 오른쪽 메인 콘텐츠 -->
+
     <div class="main">
+        <!-- 장소 선택 버튼 -->
         <div id="selects">
             <input type="button" value="Best호텔" onclick="location.href='selectBestHotel?first=true'"/>
             <input type="button" value="Hot호텔" onclick="location.href='selectHotHotel?first=true'"/>
         </div>
-
+        <!-- 검색 폼 -->
         <form method="get" name="frm" action="hotelSearch">
             <input type="text" name="key" placeholder="호텔명을 입력하세요"  value="${key != null ? key : ''}"/>
             <button type="button">검색</button>
             <button type="button" onclick="location.href='hotelSelect?first=true'">초기화</button>
         </form>
 
-
-
-        <div class="place">
-            <!-- hotelList 출력 -->
+        <!-- hotelList 출력 -->
+        <div class="hotel">
                     <c:forEach var="hotel" items="${hotelList}">
-                        <div class="item" onclick="location.href='hotelDetail?hotel_seq=${hotel.hotel_seq}'">
+                        <div class="item" data-hotel-seq="${hotel.hotel_seq}">
                             <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}"/>
-                            <div class="place-info">
+                            <div class="hotel-info">
                                 <h4>${hotel.hotel_name}</h4>
                                 <p>${hotel.hotel_description}</p>
                             </div>
                         </div>
                     </c:forEach>
         </div>
+        <!-- 상세 내용 표시 -->
+        <div id="hotelDetailContainer"></div>
 
+        <!-- 페이징 처리 -->
         <div class="row"> <!-- 페이지의 시작 -->
 					<div class="col" style="font-size:120%; font-weight:bold;">
 						<c:if test="${paging.prev}">
@@ -63,9 +66,16 @@
 						</c:if>
 					</div>
 				</div> <!-- 페이지의 끝 -->
+    </div>
 
-
-
+    <!-- 모달 구조 -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <div id="modalContent">
+                <!-- AJAX로 받은 내용이 여기에 삽입됩니다 -->
+            </div>
+        </div>
     </div>
 <%@ include file="../footer.jsp" %>
 </body>

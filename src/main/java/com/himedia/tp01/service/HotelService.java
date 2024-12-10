@@ -97,13 +97,6 @@ public class HotelService {
         return result;
     }
 
-
-
-
-    public Object getHotel(int hotel_seq) {
-        return hdao.getHotel(hotel_seq);
-    }
-
     public HashMap<String, Object> selectHotList(HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
         HttpSession session = request.getSession();
@@ -178,6 +171,10 @@ public class HotelService {
         result.put("key", key);
 
         return result;
+    }
+
+    public Object getHotel(int hotel_seq) {
+        return hdao.getHotel(hotel_seq);
     }
 
 

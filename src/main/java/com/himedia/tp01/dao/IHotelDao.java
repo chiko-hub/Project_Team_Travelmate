@@ -10,23 +10,14 @@ import java.util.List;
 
 @Mapper
 public interface IHotelDao {
-
-
-    List<HotelVO> selectBestList();
-    List<HotelVO> selectHotList();
-    HotelVO getHotel(int hotel_seq);
-
-
-
     int getAllCount(String hotel, String hotel_name, String key);
     List<HotelVO> getAllHotel(Paging paging, String key);
-
     int getBestCount(String hotel, String hotel_name, String key);
     List<HotelVO> getBestHotel(Paging paging, String key);
-
     int getHotCount(String hotel, String hotel_name, String key);
     List<HotelVO> getHotHotel(Paging paging, String key);
-
     int getSearchCount(String hotel, String key);
     List<HotelVO> getSearchHotel(Paging paging, String key);
+
+    HotelVO getHotel(int hotel_seq);
 }
