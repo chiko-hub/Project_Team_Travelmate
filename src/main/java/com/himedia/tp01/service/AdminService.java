@@ -115,7 +115,7 @@ public class AdminService {
         return result;
     }
 
-    public void insertPlace(@Valid PlaceVO placevo) {
+    public void insertPlace(PlaceVO placevo) {
         adao.insertPlace( placevo );
     }
     public void updatePlace(PlaceVO placevo) {
