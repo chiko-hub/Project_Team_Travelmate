@@ -133,6 +133,12 @@ public class PlaceService {
         HashMap<String, Object> result = new HashMap<>();
         HttpSession session = request.getSession();
 
+        // 검색 조건 처리
+        String key = request.getParameter("key") != null
+                ? request.getParameter("key")
+                : (String) session.getAttribute("key");
+        session.setAttribute("key", key);
+
         // 페이지 처리
         int page = 1;
         try {
@@ -145,14 +151,6 @@ public class PlaceService {
             page = 1;
         }
         session.setAttribute("page", page);
-
-        // 검색 조건 처리
-
-        String key = request.getParameter("key") != null
-                ? request.getParameter("key")
-                : (String) session.getAttribute("key");
-        session.setAttribute("key", key);
-
         // 페이징 객체 설정
         Paging paging = new Paging();
         paging.setPage(page);

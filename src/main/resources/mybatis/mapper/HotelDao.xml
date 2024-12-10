@@ -4,41 +4,54 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.himedia.tp01.dao.IHotelDao">
-    <select id = "selectBestList" resultType="com.himedia.tp01.dto.HotelVO">
-        select * from besthotel_view
-    </select>
-
-    <select id = "selectHotList" resultType="com.himedia.tp01.dto.HotelVO">
-        select * from hothotel_view
-    </select>
-
-    <select id = "getHotel" resultType="com.himedia.tp01.dto.HotelVO">
-        select * from hotel where hotel_seq=#{param1}
-    </select>
-
-    <select id="getAllCount" resultType="_int">
+    <select id="getAllCount" resultType="int">
         select count(*) from ${param1} where ${param2} like concat('%', #{param3}, '%');
     </select>
-
-    <select id="getHotelList" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
-        select * from hotel
-        <where>
-            <if test="key != null and key != ''">
-                <choose>
-                    <!-- "hotel_location" 검색 -->
-                    <when test="searchType == 'hotel_location'">
-                        hotel_location LIKE CONCAT('%', #{key}, '%')
-                    </when>
-                    <!-- "hotel_name" 또는 기타 검색 -->
-                    <otherwise>
-                        ${searchType} LIKE CONCAT('%', #{key}, '%')
-                    </otherwise>
-                </choose>
-            </if>
-        </where>
-        order by hotel_seq asc
-        limit #{paging.displayRow} offset #{paging.startNum}
+    <select id="getAllHotel" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
+        select * from hotel where hotel_name like concat('%', #{param2}, '%') order by hotel_seq asc
+            limit #{param1.displayRow} offset #{param1.startNum}
     </select>
+
+    <select id="getBestCount" resultType="int">
+        select count(*) from hotel where hotel_bestyn = 'Y' and hotel_name like concat('%', #{key}, '%');
+    </select>
+    <select id="getBestHotel" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
+        select * from hotel
+        where hotel_bestyn = 'Y'
+          and hotel_name like concat('%', #{key}, '%')
+        order by hotel_seq asc
+            limit #{paging.displayRow} offset #{paging.startNum};
+    </select>
+
+
+    <select id="getHotCount" resultType="int">
+        select count(*) from hotel where hotel_hotyn = 'Y' and hotel_name like concat('%', #{key}, '%');
+    </select>
+    <select id="getHotHotel" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
+        select * from hotel
+        where hotel_hotyn = 'Y'
+          and hotel_name like concat('%', #{key}, '%')
+        order by hotel_seq asc
+            limit #{paging.displayRow} offset #{paging.startNum};
+    </select>
+
+    <!-- 검색 데이터 총 개수 조회 -->
+    <select id="getSearchCount" resultType="int">
+        select count(*)
+        from hotel
+        where hotel_name like concat('%', #{key}, '%');
+    </select>
+    <!-- 검색 데이터 조회 -->
+    <select id="getSearchHotel" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
+        select * from hotel
+        where hotel_name like concat('%', #{key}, '%')
+        order by hotel_seq asc
+            limit #{paging.displayRow} offset #{paging.startNum};
+    </select>
+
+
+
+
 
 
 </mapper>
