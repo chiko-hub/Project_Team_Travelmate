@@ -19,60 +19,93 @@ public class PlaceController {
     PlaceService ps;
 
     @GetMapping("/placeSelect")
-    public ModelAndView placeSelect() {
+    public ModelAndView placeSelect(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-        HashMap<String, Object> result = ps.selectBestHotList();
-        mav.addObject("bestList", result.get("bestList"));
-        mav.addObject("hotList", result.get("hotList"));
-        System.out.println("bestList: " + result.get("bestList"));
-        System.out.println("hotList: " + result.get("hotList"));
+        HashMap<String, Object> result = ps.selectAllList( request );
+        HttpSession session = request.getSession();
+        // 항상 세션의 페이지를 1로 초기화
+        session.setAttribute("page", 1);
+
+        mav.addObject("placeList", result.get("placeList"));
+        mav.addObject("paging", result.get("paging"));
+        mav.addObject("key", result.get("key"));
+        mav.addObject("viewType", "placeList"); // 뷰 타입 추가
         mav.setViewName("place/placeSelect");
         return mav;
     }
 
-    @GetMapping("/placeDetail")
-    public ModelAndView place(@RequestParam("place_seq") int place_seq) {
+    @GetMapping("/selectBest")
+    public ModelAndView selectBest(HttpServletRequest request, Model model) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("place", ps.getPlace(place_seq) );
-        mav.setViewName("place/placeDetail");
+        HashMap<String, Object> result = ps.selectBestList(request);
+
+        HttpSession session = request.getSession();
+        // 항상 세션의 페이지를 1로 초기화
+        session.setAttribute("page", 1);
+
+        mav.addObject("bestList", result.get("bestList"));
+        System.out.println("bestList: " + result.get("bestList"));
+        mav.addObject("paging", result.get("paging"));
+        mav.addObject("key", result.get("key"));
+        mav.addObject("viewType", "bestList"); // 뷰 타입 추가
+        mav.setViewName("place/placeSelectBest");
         return mav;
     }
 
-    @GetMapping("/placeList")
-    public ModelAndView getPlaceList(HttpServletRequest request, Model model) {
+    @GetMapping("/selectHot")
+    public ModelAndView selectHot(HttpServletRequest request, Model model) {
+        ModelAndView mav = new ModelAndView();
+        HashMap<String, Object> result = ps.selectHotList(request);
+        HttpSession session = request.getSession();
+        // 항상 세션의 페이지를 1로 초기화
+        session.setAttribute("page", 1);
+        mav.addObject("hotList", result.get("hotList"));
+        System.out.println("hotList: " + result.get("hotList"));
+        mav.addObject("paging", result.get("paging"));
+        mav.addObject("key", result.get("key"));
+        mav.addObject("viewType", "hotList"); // 뷰 타입 추가
+        mav.setViewName("place/placeSelectHot");
+        return mav;
+    }
+
+
+    @GetMapping("/placeSearch")
+    public ModelAndView getPlaceSearch(HttpServletRequest request, Model model) {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
 
-        // 요청 값 우선 처리: searchType과 key를 요청에서 가져오거나, 세션에서 가져옴
-        String searchType = request.getParameter("searchType") != null
-                ? request.getParameter("searchType")
-                : (String) session.getAttribute("searchType");
-
+        // 검색조건 설정: 요청 값 우선 처리:  key를 요청에서 가져오거나, 세션에서 가져옴
         String key = request.getParameter("key") != null
                 ? request.getParameter("key")
                 : (String) session.getAttribute("key");
 
         // "first" 파라미터가 있으면 검색 조건 및 페이지 초기화
         if ("true".equals(request.getParameter("first"))) {
-            searchType = "place_name"; // 기본 검색 조건
             key = ""; // 검색 키워드 초기화
             session.removeAttribute("page"); // 페이지 초기화
             session.removeAttribute("key");
-            session.removeAttribute("searchType");
         }
 
         // 세션에 검색 조건 저장 (다음 요청에서도 유지되도록)
-        session.setAttribute("searchType", searchType);
         session.setAttribute("key", key);
 
         // 서비스 호출: 검색 조건과 페이징 처리
-        HashMap<String, Object> result = ps.getPlaceList(request);
+        HashMap<String, Object> result = ps.getPlaceSearch(request);
         mav.addObject("placeList", result.get("placeList"));
         mav.addObject("paging", result.get("paging"));
-        mav.addObject("totalPage", result.get("totalPage")); //  totalPage 전달
+//        mav.addObject("totalPage", result.get("totalPage")); //  totalPage 전달
         mav.addObject("key", result.get("key")); // 검색어
-        mav.addObject("searchType", result.get("searchType")); // 검색 타입 전달
-        mav.setViewName("place/placeList");
+        mav.setViewName("place/placeSelect");
+        return mav;
+    }
+
+
+
+    @GetMapping("/placeDetail")
+    public ModelAndView place(@RequestParam("place_seq") int place_seq) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("place", ps.getPlace(place_seq) );
+        mav.setViewName("place/placeDetail");
         return mav;
     }
 

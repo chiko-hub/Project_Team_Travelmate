@@ -20,19 +20,12 @@
             <input type="button" value="Hot장소" onclick="location.href='selectHot?first=true'"/>
         </div>
 
-        <form method="get" name="frm" action="placeSearch">
-            <input type="text" name="key" placeholder="장소명을 입력하세요"  value="${key != null ? key : ''}"/>
-            <button type="button">검색</button>
-            <button type="button" onclick="location.href='placeSelect?first=true'">초기화</button>
-        </form>
-
-
-
         <div class="place">
             <!-- placeList 출력 -->
-                    <c:forEach var="place" items="${placeList}">
-                        <div class="item" onclick="location.href='placeDetail?place_seq=${place.place_seq}'">
-                            <img src="/place_images/${place.savefilename}" alt="${place.place_name}"/>
+                    <c:forEach var="place" items="${hotList}">
+                        <div class="item">
+                            <img src="/place_images/${place.savefilename}" alt="${place.place_name}"
+                                 onclick="location.href='placeDetail?place_seq=${place.place_seq}'">
                             <div class="place-info">
                                 <h4>${place.place_name}</h4>
                                 <p>${place.place_description}</p>
@@ -43,20 +36,23 @@
 
         <div class="row">
                 <div class="col" style="font-size:120%; font-weight:bold;">
+                    <!-- 이전 버튼 -->
                     <c:if test="${paging.prev}">
-                        <a href="placeSelect?page=${paging.beginPage-1}">◀</a>&nbsp;
+                        <a href="selectHot?page=${paging.beginPage-1}">◀</a>&nbsp;
                     </c:if>
+                    <!-- 페이지 번호 -->
                     <c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
                         <c:if test="${index != paging.page}">
-                            <a href="placeSelect?page=${index}">${index}&nbsp;</a>
+                            <a href="selectHot?page=${index}">${index}&nbsp;</a>
                         </c:if>
                         <c:if test="${index == paging.page}">
                             <span style="color:red">${index}&nbsp;</span>
                         </c:if>
                     </c:forEach>
                     &nbsp;
+                    <!-- 다음 버튼 -->
                     <c:if test="${paging.next}">
-                        <a href="placeSelect?page=${paging.endPage+1}">▶</a>
+                        <a href="selectHot?page=${paging.endPage+1}">▶</a>
                     </c:if>
                 </div>
         </div>
