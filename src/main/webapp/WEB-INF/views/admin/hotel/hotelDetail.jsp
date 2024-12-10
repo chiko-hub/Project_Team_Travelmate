@@ -19,10 +19,10 @@
       <div><img src="hotel_images/${hotelVO.hotel_savefilename}" width="300"></div>
     </div>
     <div class="btn">
-      <input  type="button" value="수정" onClick="go_mod('${hotelVO.hotel_seq}')">
+      <input  type="button" value="수정" onClick="go_mod_H('${hotelVO.hotel_seq}')">
       <input  type="button" value="삭제" onClick="deleteHotel('${hotelVO.hotel_seq}')">
-      <input  type="button" value="목록"
-              onClick="location.href='adminHotelList'">
+      <input type="button" value="목록"
+             onClick="location.href='adminHotelList'">
     </div>
 
   </form>

@@ -1,102 +1,214 @@
 @charset "UTF-8";
 
-#wrap{ width:100%; margin: 0 auto; border:1px solid #0097a7;
-    max-width: 1024px; display: flex; flex-direction: column;}
-
-a{ text-decoration: none; }
-
-article{
-    width:100%;
-    display: flex;
-    font-family: "Comic Sans MS";
-
+/* 박스 모델 문제 해결 */
+* {
+    box-sizing: border-box;
 }
 
-article form{
-    flex:1;
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f8faff; /* 은은한 배경 */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 수평 스크롤 방지 */
+}
+
+#wrap {
+    width: 100%;
+    max-width: 1200px; /* 넉넉한 너비 */
+    margin: 20px auto;
+    border: 1px solid #007bb5;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* 내부 콘텐츠가 튀어나오지 않도록 설정 */
 }
 
-article form h2{
-    margin:0;
-    margin-bottom:20px;
-    font-weight: normal;
-    font-size: 28px;
+a {
+    text-decoration: none;
+    color: #007bb5;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-article form{padding:10px;}
+a:hover {
+    color: #005582;
+}
 
-article form .field{
+article {
+    width: 100%;
     display: flex;
-    align-items:center;
-    margin:10px 0;
-    padding:5px;
-}
-article form .field label{
-    flex:1;
-}
-article form .field input{
-    flex:4;
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid #AAA;
+    padding: 20px;
+    flex-wrap: wrap; /* 콘텐츠가 너비를 초과할 경우 줄바꿈 */
+    overflow: hidden;
 }
 
-article form .field div{
-    flex:4;
+article form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    background-color: #f9faff;
+}
+
+article form h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: bold;
+    color: #007bb5;
+}
+
+article form .field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+article form .field label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+article form .field input {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+article form .field input:focus {
+    border-color: #007bb5;
+    box-shadow: 0 0 4px rgba(0, 123, 181, 0.5);
+}
+
+article form .btn {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+article form .btn input {
+    flex: 1;
+    margin: 0 10px;
+    padding: 12px;
+    background-color: #007bb5;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+article form .btn input:hover {
+    background-color: #005582;
+    transform: scale(1.05);
+}
+
+header {
+    width: 100%;
+    padding: 20px;
+    background-color: #007bb5;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#logo img {
+    max-height: 50px;
+}
+
+#logo input {
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: white;
+    color: #007bb5;
+    border: 2px solid #007bb5;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#logo input:hover {
+    background-color: #005582;
+    color: white;
+}
+
+#sub_menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f4faff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#sub_menu div {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #007bb5;
+    border-radius: 6px;
+    margin: 5px;
+    background-color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#sub_menu div:hover {
+    background-color: #007bb5;
+    color: white;
+}
+
+.tb {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.row {
     display: flex;
 }
-article form .field div input[type=text]{
-    flex:4;
-}
-article form .field div input[type=button]{
-    flex:1;
-}
 
-
-article form .btn{
-    flex:1;
-    display: flex;
-    margin:10px 0;
-}
-article form .btn input{
-    flex:1;
-    margin:10px 3px;
-    background-color: #0097a7;
-    border:none;
-    color:white;
-    border-radius: 5px;
-    padding:10px 0;
-    font-family: "Comic Sans MS";
+.coltitle {
+    background: #007bb5;
+    color: white;
+    margin: 2px;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 6px;
 }
 
-
-
-
-header{ width:100%; margin-bottom:30px;}
-#logo{ width:100%; display: flex; justify-content: space-between;
-    align-items: center;}
-#logo img{ vertical-align: middle; }
-#logo input{  padding:5px; font-weight:bold;
-    font-size:120%;}
-
-#sub_menu{ display: flex; justify-content: space-between; 	align-items: center; margin-bottom:30px; }
-#sub_menu div{ flex:1; text-align: center; padding:10px; border:1px #0097a7; margin:3px;}
-#sub_menu div a{ font-size:120%; font-weight:bold; text-decoration: none;}
-
-.tb{ width:100%; display: flex; flex-direction: column; margin-bottom:30px;}
-.row{  display:flex; }
-.coltitle{  background: #0097a7; margin:1px; padding:10px; color:white; text-align: center;}
-.col{ border:1px dotted #0097a7; margin:1px; padding:10px;  text-align: center;}
-
-.coltitle:nth-child(1), .col:nth-child(1){ flex:1}
-.coltitle:nth-child(2), .col:nth-child(2){flex:3}
-.coltitle:nth-child(3), .col:nth-child(3){flex:1;}
-.coltitle:nth-child(4), .col:nth-child(4){flex:1;}
-.col:nth-child(3), .col:nth-child(4){text-align: right;}
-.coltitle:nth-child(5), .col:nth-child(5){flex:2}
-.coltitle:nth-child(6), .col:nth-child(6){flex:1}
-
-
-
+.col {
+    border: 1px dotted #007bb5;
+    margin: 2px;
+    padding: 12px;
+    text-align: center;
+    background-color: #f4faff;
+    border-radius: 6px;
+}

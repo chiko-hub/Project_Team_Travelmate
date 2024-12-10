@@ -138,10 +138,30 @@ AdminService as;
     public ModelAndView adminPlaceUpdateForm( @RequestParam("place_seq") int place_seq ) {
         ModelAndView mav = new ModelAndView();
 
-        mav.addObject("dto", ps.getPlace(place_seq));
+        mav.addObject("placeVO", ps.getPlace(place_seq));
 
         mav.setViewName("admin/place/placeUpdate");
         return mav;
+    }
+
+    @PostMapping("/adminPlaceUpdate")
+    public String adminPlaceUpdate( @ModelAttribute("dto") @Valid PlaceVO placevo, BindingResult result, Model model, HttpSession session) {
+        String url = "admin/place/placeUpdate";
+
+        if( result.getFieldError("place_name") != null )
+            model.addAttribute("message", "장소 이름을 입력하세요");
+        else if( result.getFieldError("place_location") != null )
+            model.addAttribute("message", "장소 주소를 입력하세요");
+        else if( (result.getFieldError("place_description") != null) )
+            model.addAttribute("message", "장소 설명을 입력하세요");
+        else if( (result.getFieldError("place_image") != null) || (result.getFieldError("savefilename") != null)  )
+            model.addAttribute("message", "파일을 선택하세요");
+
+        else{
+            as.updatePlace(placevo);
+            url = "redirect:/adminPlaceDetail?place_seq=" + placevo.getPlace_seq();
+        }
+        return url;
     }
 
     @GetMapping("/adminHotelList")
@@ -171,6 +191,18 @@ AdminService as;
     @GetMapping("/adminHotelWriteForm")
     public String adminHotelWriteForm(Model model) {
         return "admin/hotel/hotelWrite";
+    }
+
+
+    @GetMapping("/adminMemberList")
+    public ModelAndView adminMemberList( HttpServletRequest request ) {
+        ModelAndView mav = new ModelAndView();
+        HashMap<String, Object> result = as.adminMemberList( request );
+        mav.addObject("memberList", result.get("memberList"));
+        mav.addObject("paging", result.get("paging"));
+        mav.addObject("key", result.get("key"));
+        mav.setViewName( "admin/member/memberList" );
+        return mav;
     }
 
 
