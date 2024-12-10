@@ -4,14 +4,76 @@ function togglePanel(panelId) {
     panel.style.display = panel.style.display === "block" ? "none" : "block";
 }
 
+/* 세부 일정의 정보를 가져와 수정을 패널 열고 닫기 */
+function toggleUpdatePanel(planDetailSeq){
+    // 수정 패널이 열려있는 상태라면
+    if(document.getElementById('planUpdatePanel').style.display === "block")
+        togglePanel('planUpdatePanel');
+    else{ // 수정 패널이 닫혀있는 상태라면
+        // 선택한 planDetail 의 정보 요청 - AJAX 요청 보내기
+        fetch('/getPlanDetailForUpdate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // JSON 형식으로 보냄
+            },
+            body: JSON.stringify({ planDetailSeq: planDetailSeq }), // planDetailSeq를 JSON 객체로 변환
+        })
+            .then(response => response.json()) // 서버에서 JSON 응답 받기
+            .then(data => {
+                if (data.success) {
+                    // 서버에서 받은 정보를 수정 폼에 자동으로 채우기
+                    document.getElementById('planUpdateName').value = data.planDetail.plan_name;
+
+                    // 날짜 셀렉트 박스 선택 처리 (data-plan-seq 값 기준)
+                    Array.from(document.getElementById("planUpdateDate").options).forEach(option => {
+                        if (option.getAttribute('data-plan-seq') === data.planDetail.plan_seq.toString()) {
+                            option.selected = true;
+                            document.getElementById('planSeq').value = data.planDetail.plan_seq;
+                            alert(`${document.getElementById('planSeq').value}`);
+                        } else {
+                            option.selected = false;
+                        }
+                    });
+
+                    // starttime과 endtime이 두 자리를 넘지 않으면 0을 붙여 두 자릿수로 포맷
+                    const formattedStartTime = data.planDetail.starttime.toString().padStart(2, '0');
+                    const formattedEndTime = data.planDetail.endtime.toString().padStart(2, '0');
+
+                    // 시작 시간 및 종료 시간 셀렉트 박스 선택 처리
+                    Array.from(document.getElementById("planUpdateStartTime").options).forEach(option => {
+                        option.selected = option.value === formattedStartTime;
+                    });
+                    Array.from(document.getElementById("planUpdateEndTime").options).forEach(option => {
+                        option.selected = option.value === formattedEndTime;
+                    });
+
+                    // planUpdatePanel 열기
+                    togglePanel('planUpdatePanel');
+                } else {
+                    // 실패 메시지 표시
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('서버와의 연결에 문제가 발생했습니다.');
+            });
+    }
+}
+
 /* planDate select 요소에 change 이벤트 리스너 추가 */
-document.getElementById('planDate').addEventListener('change', updatePlanSeq);
+document.getElementById('planDate').addEventListener('change', function() {
+    updatePlanSeq('planDate', 'planSeq');
+});
+document.getElementById('planUpdateDate').addEventListener('change', function() {
+    updatePlanSeq('planUpdateDate', 'planUpdateSeq');
+});
 
 /* 선택한 날짜에 맞는 plan_seq 값 가져오기 */
-function updatePlanSeq() {
-    const planDateSelect = document.getElementById('planDate');
+function updatePlanSeq(planDate, planSeq) {
+    const planDateSelect = document.getElementById(planDate);
     const selectedOption = planDateSelect.options[planDateSelect.selectedIndex];
-    const planSeqInput = document.getElementById('planSeq');
+    const planSeqInput = document.getElementById(planSeq);
 
     if (selectedOption) {
         planSeqInput.value = selectedOption.getAttribute('data-plan-seq');
@@ -23,9 +85,15 @@ function updatePlanSeq() {
     alert(planSeqInput.value); // 선택된 plan_seq 값을 출력
 }
 
+/* planStartTime, planEndTime select 요소에 change 이벤트 리스너 추가 */
+document.getElementById('planStartTime').addEventListener('change', updatePlanStartTime);
+document.getElementById('planEndTime').addEventListener('change', updatePlanEndTime);
+document.getElementById('planUpdateStartTime').addEventListener('change', updatePlanStartTime);
+document.getElementById('planUpdateEndTime').addEventListener('change', updatePlanEndTime);
+
 /* starttime이 endttime보다 크거나, endtime 이 starttime 보다 작을 수 없도록 하는 이벤트 함수 */
 /* starttime 선택에 따라 endtime 의 범위가 starttime + 1로 정해진다. */
-document.getElementById("planStartTime").addEventListener("change", function () {
+function updatePlanStartTime(){
     const startTime = parseInt(this.value, 10); // planStartTime의 선택된 값
     const endTimeSelect = document.getElementById("planEndTime");
     const currentEndTime = parseInt(endTimeSelect.value, 10); // 현재 선택된 종료 시간
@@ -43,10 +111,10 @@ document.getElementById("planStartTime").addEventListener("change", function () 
             });
         }
     }
-});
+}
 
 /* endtime 선택에 따라 starttime 의 범위가 endtime - 1로 정해진다. */
-document.getElementById("planEndTime").addEventListener("change", function () {
+function updatePlanEndTime(){
     const endTime = parseInt(this.value, 10); // planEndTime의 선택된 값
     const startTimeSelect = document.getElementById("planStartTime");
     const currentStartTime = parseInt(startTimeSelect.value, 10); // 현재 선택된 시작 시간
@@ -64,7 +132,7 @@ document.getElementById("planEndTime").addEventListener("change", function () {
             });
         }
     }
-});
+}
 
 /* 세부 일정 데이터 추가 */
 function addPlan() {
@@ -93,10 +161,14 @@ function addPlan() {
         });
 }
 
+/* 세부 일정 데이터 수정 */
+function updatePlan(planDetailSeq){
+
+}
+
 /* 코드로 새 일정 불러오기 */
 function loadPlanByCode(form){
     const planCode = form.elements['loadPlanCode'].value;
-    console.log(planCode);
     if(!planCode){
         alert("불러올 일정 코드를 입력해주세요");
     }else{

@@ -42,4 +42,25 @@ public class PlanDetailController {
         return response; // JSON 형태로 반환
     }
 
+    /* 선택한 세부 계획의 값 가져오기 - AJAX */
+    @PostMapping("/getPlanDetailForUpdate")
+    @ResponseBody
+    public Map<String, Object> getPlanDetailForUpdate(@RequestBody Map<String, Integer> requestBody) {
+        int planDetailSeq = requestBody.get("planDetailSeq");
+        System.out.println("planDetailSeq : " + planDetailSeq);
+        Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
+
+        // 세부 계획 정보 가져오기
+        PlanDetailVO planDetail = pds.getPlanDetailByPlanDetailSeq(planDetailSeq);
+
+        if (planDetail != null) { // 세부 계획 정보가 있다면
+            response.put("success", true);
+            response.put("planDetail", planDetail);
+        } else { // 세부 계획 정보가 없다면
+            response.put("success", false);
+            response.put("message", "해당 정보를 불러오지 못했습니다.");
+        }
+        return response; // JSON 형태로 반환
+    }
+
 }
