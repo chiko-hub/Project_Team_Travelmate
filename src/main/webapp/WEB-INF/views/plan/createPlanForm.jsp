@@ -9,7 +9,7 @@
         <label>날짜</label>
         <input type="text" name="datefilter" value=""/><br/>
         <div class="planCreateButton">
-          <button type="button" onclick="roadPlan(this.form, event)">생성</button>
+          <button type="button" onclick="roadNewPlan(this.form, event)">생성</button>
         </div>
       </form>
     </div>

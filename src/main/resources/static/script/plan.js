@@ -71,7 +71,7 @@ function addPlan() {
     const planAddForm = document.getElementById('planAddForm'); // 폼 아이디
     const formData = new FormData(planAddForm); // 폼 데이터 수집
 
-    // AJAX 요청 보내기
+    // 겹치는 일정이 있는지 확인 - AJAX 요청 보내기
     fetch('/addPlan', {
         method: 'POST',
         body: formData,
@@ -92,3 +92,41 @@ function addPlan() {
             alert('일정을 추가하는 중 문제가 발생했습니다.');
         });
 }
+
+/* 코드로 새 일정 불러오기 */
+function loadPlanByCode(form){
+    const planCode = form.elements['loadPlanCode'].value;
+    console.log(planCode);
+    if(!planCode){
+        alert("불러올 일정 코드를 입력해주세요");
+    }else{
+        // 사용자에게 확인 메시지 표시
+        const userResponse = window.confirm("기존 일정 코드가 덮어집니다. 계속하시겠습니까?");
+        if(userResponse){ // '확인'을 클릭할 경우
+            // planCode 에 해당하는 plan 이 있는지 확인 - AJAX 요청
+            fetch('/loadPlanByCode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain', // 문자열임을 명시
+                },
+                body: planCode,
+            })
+                .then(response => response.json()) // 서버에서 JSON 응답 받기
+                .then(data => {
+                    if (data.success) {
+                        // 성공 메시지 표시
+                        alert(data.message);
+                        location.href='loadPlan' // loadPlan 으로 이동
+                    } else {
+                        // 실패 메시지 표시
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('일정을 불러오는 중 문제가 발생했습니다.');
+                });
+        }
+    }
+}
+

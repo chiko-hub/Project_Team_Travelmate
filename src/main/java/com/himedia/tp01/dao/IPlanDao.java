@@ -10,5 +10,6 @@ import java.util.List;
 public interface IPlanDao {
 
     void setPlan(String planCode, Date date); // plan 생성
-    List<PlanVO> getPlan(String planCode); // code 에 해당하는 plan 불러오기
+    List<PlanVO> getPlan(String planCode); // planCode 에 해당하는 plan 불러오기
+    Boolean checkPlanCode(String planCode); // planCode 에 해당하는 plan 이 존재하는지 여부
 }
