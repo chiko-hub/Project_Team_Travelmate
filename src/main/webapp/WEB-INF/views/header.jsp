@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="/css/plan.css">
   <script defer src="/script/start.js"></script>
   <script defer src="/script/plan.js"></script>
+  <script defer src="/script/createPlan.js"></script>
+    <%-- 날짜 선택용 캘린더 api --%>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 </head>
 <body>
 <div class="container">
