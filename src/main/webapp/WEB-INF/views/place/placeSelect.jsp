@@ -10,10 +10,11 @@
     <title>Place Search</title>
     <link rel="stylesheet" href="/css/start.css">
     <link rel="stylesheet" href="/css/place.css">
+    <script defer src="/script/place.js"></script>
 
 </head>
 <body>
-    <!-- 오른쪽 메인 콘텐츠 -->
+
     <div class="main">
         <div id="selects">
             <input type="button" value="Best장소" onclick="location.href='selectBest?first=true'"/>
@@ -26,12 +27,10 @@
             <button type="button" onclick="location.href='placeSelect?first=true'">초기화</button>
         </form>
 
-
-
         <div class="place">
             <!-- placeList 출력 -->
                     <c:forEach var="place" items="${placeList}">
-                        <div class="item" onclick="location.href='placeDetail?place_seq=${place.place_seq}'">
+                        <div class="item" data-place-seq="${place.place_seq}">
                             <img src="/place_images/${place.savefilename}" alt="${place.place_name}"/>
                             <div class="place-info">
                                 <h4>${place.place_name}</h4>
@@ -40,6 +39,7 @@
                         </div>
                     </c:forEach>
         </div>
+        <div id="placeDetailContainer"></div> <!-- 상세 내용 표시 -->
 
         <div class="row"> <!-- 페이지의 시작 -->
 					<div class="col" style="font-size:120%; font-weight:bold;">
@@ -63,10 +63,19 @@
 						</c:if>
 					</div>
 				</div> <!-- 페이지의 끝 -->
-
-
-
     </div>
-<%@ include file="../footer.jsp" %>
+
+    <!-- 모달 구조 -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <div id="modalContent">
+                <!-- AJAX로 받은 내용이 여기에 삽입됩니다 -->
+            </div>
+        </div>
+    </div>
+
+
+    <%@ include file="../footer.jsp" %>
 </body>
 </html>
