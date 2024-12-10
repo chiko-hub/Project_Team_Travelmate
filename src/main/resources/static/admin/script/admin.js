@@ -20,6 +20,38 @@ function go_write_H(){
     location.href="adminHotelWriteForm";
 }
 
+// 이미지 업로드
+function uploadImage() {
+    var formData = new FormData();
+    var fileInput = document.getElementById('place_image'); // 이미지 input ID
+    formData.append("fileimage", fileInput.files[0]);
+
+    return $.ajax({
+        url: "/fileup",  // 서버의 업로드 엔드포인트
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if (response.error) {
+                alert("이미지 업로드 실패: " + response.error);
+                console.error(response);  // 디버깅을 위한 로그 출력
+                return null;
+            }
+            console.log("파일 업로드 성공:", response);  // 성공 시 로그 출력
+            return response.savefilename;
+        },
+        error: function(xhr, status, error) {
+            alert("AJAX Error: " + xhr.status + " " + xhr.statusText + "\n" + error);
+            console.error("AJAX 오류: ", xhr.responseText);  // 오류 본문 출력
+            console.error("상태 코드: ", xhr.status);
+            console.error("상태 텍스트: ", xhr.statusText);
+        }
+    });
+}
+
+
+
 function go_save(){
     var theForm = document.placeWriteFrm;
     if (theForm.place_name.value == "") {

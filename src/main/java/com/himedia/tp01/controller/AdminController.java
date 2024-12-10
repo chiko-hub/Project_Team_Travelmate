@@ -80,39 +80,16 @@ AdminService as;
 
     @GetMapping("/adminPlaceWriteForm")
     public String adminPlaceWriteForm(Model model) {
-        return "admin/place/placeWrite";
-    }
 
-    @Autowired
-    ServletContext context_P;
+    return "admin/place/placeWrite";
 
-    @PostMapping("/fileup_P")
-    @ResponseBody
-    public HashMap<String, Object> fileup_P(    @RequestParam("fileimage") MultipartFile file        ){
-        String path = context_P.getRealPath("/admin/images");
-
-        Calendar today = Calendar.getInstance();
-        long t = today.getTimeInMillis();
-        String filename = file.getOriginalFilename();
-        String fn1 = filename.substring(0, filename.indexOf(".") );  // 파일이름과 확장자 분리
-        String fn2 = filename.substring(filename.indexOf(".") );
-        String savefilename = fn1 + t + fn2;
-        String uploadPath = path + "/" + savefilename;
-
-        HashMap<String, Object> result = new HashMap<String, Object>();
-        try {
-            file.transferTo( new File(uploadPath) );  // 파일의 업로드 + 저장
-            result.put("place_image", filename );
-            result.put("savefilename", savefilename );
-        } catch (IllegalStateException e) {         e.printStackTrace();
-        } catch (IOException e) {       e.printStackTrace();
-        }
-        return result;
-    }
+   }
 
     @PostMapping("/adminPlaceWrite")
     public String adminPlaceWrite(@ModelAttribute("dto") @Valid PlaceVO placevo, BindingResult result, Model model, HttpSession session) {
         String url = "admin/place/placeWrite";
+        String categoryList[] = { "Place", "Hotel"};
+        model.addAttribute("categoryList", categoryList);
 
         if( result.getFieldError("place_name") != null )
             model.addAttribute("message", "장소 이름을 입력하세요");
@@ -128,6 +105,43 @@ AdminService as;
             url = "redirect:/adminPlaceList";
         }
         return url;
+    }
+
+    @Autowired
+    ServletContext context;
+
+    @PostMapping("/fileup")
+    @ResponseBody
+    public HashMap<String, Object> fileup(    @RequestParam("fileimage")MultipartFile file        ){
+        String path = context.getRealPath("/place_images");
+
+        Calendar today = Calendar.getInstance();
+        long t = today.getTimeInMillis();
+        String filename = file.getOriginalFilename();
+        String fn1 = filename.substring(0, filename.indexOf(".") );  // 파일이름과 확장자 분리
+        String fn2 = filename.substring(filename.indexOf(".") );
+        String savefilename = fn1 + t + fn2;
+        String uploadPath = path + "/" + savefilename;
+
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        try {
+            file.transferTo( new File(uploadPath) );  // 파일의 업로드 + 저장
+            result.put("image", filename );
+            result.put("savefilename", savefilename );
+        } catch (IllegalStateException e) {         e.printStackTrace();
+        } catch (IOException e) {       e.printStackTrace();
+        }
+        return result;
+    }
+
+    @GetMapping("/adminPlaceUpdateForm")
+    public ModelAndView adminPlaceUpdateForm( @RequestParam("place_seq") int place_seq ) {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("dto", ps.getPlace(place_seq));
+
+        mav.setViewName("admin/place/placeUpdate");
+        return mav;
     }
 
     @GetMapping("/adminHotelList")
@@ -159,32 +173,7 @@ AdminService as;
         return "admin/hotel/hotelWrite";
     }
 
-    @Autowired
-    ServletContext context_H;
 
-    @PostMapping("/fileup_H")
-    @ResponseBody
-    public HashMap<String, Object> fileup_H(    @RequestParam("fileimage_H")MultipartFile file        ){
-        String path = context_H.getRealPath("/hotel_image");
-
-        Calendar today = Calendar.getInstance();
-        long t = today.getTimeInMillis();
-        String filename = file.getOriginalFilename();
-        String fn1 = filename.substring(0, filename.indexOf(".") );  // 파일이름과 확장자 분리
-        String fn2 = filename.substring(filename.indexOf(".") );
-        String savefilename = fn1 + t + fn2;
-        String uploadPath = path + "/" + savefilename;
-
-        HashMap<String, Object> result = new HashMap<String, Object>();
-        try {
-            file.transferTo( new File(uploadPath) );  // 파일의 업로드 + 저장
-            result.put("hotel_image", filename );
-            result.put("hotel_savefilename", savefilename );
-        } catch (IllegalStateException e) {         e.printStackTrace();
-        } catch (IOException e) {       e.printStackTrace();
-        }
-        return result;
-    }
 
 
 }
