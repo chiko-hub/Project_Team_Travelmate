@@ -16,19 +16,20 @@
 <body>
 
     <div class="main">
+        <!-- 장소 선택 버튼 -->
         <div id="selects">
             <input type="button" value="Best장소" onclick="location.href='selectBest?first=true'"/>
             <input type="button" value="Hot장소" onclick="location.href='selectHot?first=true'"/>
         </div>
-
+        <!-- 검색 폼 -->
         <form method="get" name="frm" action="placeSearch">
             <input type="text" name="key" placeholder="장소명을 입력하세요"  value="${key != null ? key : ''}"/>
             <button type="button">검색</button>
             <button type="button" onclick="location.href='placeSelect?first=true'">초기화</button>
         </form>
 
+        <!-- placeList 출력 -->
         <div class="place">
-            <!-- placeList 출력 -->
                     <c:forEach var="place" items="${placeList}">
                         <div class="item" data-place-seq="${place.place_seq}">
                             <img src="/place_images/${place.savefilename}" alt="${place.place_name}"/>
@@ -39,8 +40,10 @@
                         </div>
                     </c:forEach>
         </div>
-        <div id="placeDetailContainer"></div> <!-- 상세 내용 표시 -->
+        <!-- 상세 내용 표시 -->
+        <div id="placeDetailContainer"></div>
 
+        <!-- 페이징 처리 -->
         <div class="row"> <!-- 페이지의 시작 -->
 					<div class="col" style="font-size:120%; font-weight:bold;">
 						<c:if test="${paging.prev}">
@@ -74,7 +77,6 @@
             </div>
         </div>
     </div>
-
 
     <%@ include file="../footer.jsp" %>
 </body>

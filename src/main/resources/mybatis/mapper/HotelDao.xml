@@ -49,6 +49,10 @@
             limit #{paging.displayRow} offset #{paging.startNum};
     </select>
 
+    <select id="getHotel" resultType="com.himedia.tp01.dto.HotelVO">
+        select * from hotel where hotel_seq=#{param1}
+    </select>
+
 
 
 
