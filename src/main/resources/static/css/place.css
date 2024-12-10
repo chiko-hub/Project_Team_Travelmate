@@ -1,99 +1,44 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-}
-
-.container {
-    display: flex;
-}
-
-.sidebar {
-    width: 200px;
-    background-color: #2d89ef;
-    padding: 20px;
+/* 장소들을 감싸는 컨테이너 */
+.place {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    color: white;
-}
-
-.step-button {
-    background: none;
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    margin: 10px 0;
-    text-align: center;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.step-button:hover {
-    background-color: #1a4e8e;
-}
-
-.main-content {
-    flex-grow: 1;
+    width: 90%; /* 가로 폭을 80%로 제한 */
     padding: 20px;
+    box-sizing: border-box; /* 패딩 포함 계산 */
+
+}
+#selects{
+    margin: 0; /* 위아래 여백을 제거 */
+    padding: 0; /* 패딩 제거 */
+    position: relative; /* 버튼을 올리기 위해 필요 */
+    top: -10px; /* 필요시 버튼을 상단으로 당김 */
+
+    left: 0; /* 화면 좌측으로 이동 */
+
+    text-align: left; /* 텍스트 및 버튼 정렬 */
 }
 
-h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.places-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.place-card {
-    background-color: white;
+/* 개별 장소 카드 */
+.item {
+    display: flex; /* 이미지와 텍스트를 가로로 정렬 */
+    align-items: center; /* 이미지와 텍스트 세로 가운데 정렬 */
+    padding: 15px;
+    border: 1px solid #2e8b57;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(33.333% - 20px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.place-card img {
-    width: 100%;
+/* 장소 카드 안의 이미지 */
+.item img {
+    width: 150px;
     height: 150px;
-    border-radius: 8px;
-    object-fit: cover;
+    object-fit: cover; /* 이미지 비율 유지 */
+    border-radius: 8px; /* 둥근 모서리 */
+    margin-right: 15px; /* 이미지와 텍스트 사이 간격 */
 }
 
-.place-info {
-    margin-top: 10px;
-}
-
-.place-info h3 {
-    font-size: 18px;
-    margin: 10px 0;
-    color: #333;
-}
-
-.place-info p {
-    font-size: 14px;
-    color: #666;
-}
-
-.add-button {
-    background-color: #2d89ef;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.add-button:hover {
-    background-color: #1a4e8e;
+/* 텍스트 영역 */
+.item .place-info {
+    display: flex;
+    flex-direction: column; /* 텍스트(제목, 설명)를 세로로 배치 */
 }

@@ -15,7 +15,7 @@ public class Paging {
         endPage = ((int) (Math.ceil(page / (double) displayPage))) * displayPage;
         beginPage = endPage - (displayPage - 1);
         int totalPage = (int) Math.ceil(totalCount / (double) displayRow);
-        if (totalPage < endPage) {
+        if (totalPage <= endPage) {
             endPage = totalPage;    next = false;
         } else {
             next = true;
@@ -24,5 +24,7 @@ public class Paging {
         startNum = (page - 1) * displayRow;
         endNum = page * displayRow;
         System.out.println(beginPage + " " + endPage + " " + startNum + " " + endNum);
+        System.out.println("beginPage: " + beginPage + ", endPage: " + endPage);
+        System.out.println("totalPage: " + totalPage + ", prev: " + prev + ", next: " + next);
     }
 }
