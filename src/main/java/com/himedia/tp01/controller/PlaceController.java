@@ -102,15 +102,18 @@ public class PlaceController {
 
 
     @GetMapping("/placeDetail")
-    public ModelAndView place(@RequestParam("place_seq") int place_seq) {
+    public ModelAndView placeDetail(@RequestParam("place_seq") int place_seq, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("place", ps.getPlace(place_seq) );
-        mav.setViewName("place/placeDetail");
+        mav.addObject("place", ps.getPlace(place_seq));
+        mav.setViewName("place/placeDetailModal"); // 팝업에 렌더링할 뷰
+
+//        if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+//            mav.setViewName("place/placeDetailModal"); // 팝업에 렌더링할 뷰
+//        } else {
+//            mav.setViewName("place/placeDetail"); // 기본 뷰
+//        }
         return mav;
     }
-
-
-
 
 
 }

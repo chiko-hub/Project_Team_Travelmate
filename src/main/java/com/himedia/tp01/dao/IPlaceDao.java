@@ -12,16 +12,12 @@ public interface IPlaceDao {
 
     int getAllCount(String place, String place_name, String key);
     List<PlaceVO> getAllPlaceList(Paging paging, String key);
-
     int getBestCount(String place, String placeName, String key);
     List<PlaceVO> getBestPlace(Paging paging, String key);
-
     int getHotCount(String place, String placeName, String key);
     List<PlaceVO> getHotPlace(Paging paging, String key);
-
-
-    PlaceVO getPlace(int place_seq);
-
     int getSearchCount(String place, String key);
     List<PlaceVO> getSearchPlaceList(Paging paging, String key);
+
+    PlaceVO getPlace(int place_seq);
 }

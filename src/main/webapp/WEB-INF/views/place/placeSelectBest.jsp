@@ -10,6 +10,7 @@
     <title>Place Search</title>
     <link rel="stylesheet" href="/css/start.css">
     <link rel="stylesheet" href="/css/place.css">
+    <script defer src="/script/place.js"></script>
 
 </head>
 <body>
@@ -23,9 +24,8 @@
         <div class="place">
             <!-- placeList 출력 -->
                     <c:forEach var="place" items="${bestList}">
-                        <div class="item">
-                            <img src="/place_images/${place.savefilename}" alt="${place.place_name}"
-                                 onclick="location.href='placeDetail?place_seq=${place.place_seq}'">
+                        <div class="item" data-place-seq="${place.place_seq}">
+                            <img src="/place_images/${place.savefilename}" alt="${place.place_name}" />
                             <div class="place-info">
                                 <h4>${place.place_name}</h4>
                                 <p>${place.place_description}</p>
@@ -54,6 +54,18 @@
                 </div>
         </div>
     </div>
+
+    <!-- 모달 구조 -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <div id="modalContent">
+                <!-- AJAX로 받은 내용이 여기에 삽입됩니다 -->
+            </div>
+        </div>
+    </div>
+
+
 <%@ include file="../footer.jsp" %>
 </body>
 </html>

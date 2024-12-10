@@ -124,9 +124,7 @@ public class PlaceService {
     }
 
 
-    public Object getPlace(int place_seq) {
-        return pdao.getPlace(place_seq);
-    }
+
 
 
     public HashMap<String, Object> getPlaceSearch(HttpServletRequest request) {
@@ -162,15 +160,16 @@ public class PlaceService {
         System.out.println("Total Count: " + count); // 디버깅: 총 데이터 개수 확인
         paging.setTotalCount(count);
         paging.calPaging();
-
         // 검색 결과 조회
         List<PlaceVO> placeList = pdao.getSearchPlaceList(paging, key);
-
         result.put("placeList", placeList);
         result.put("paging", paging);
         result.put("key", key);
-
         return result;
-
     }
+
+    public Object getPlace(int place_seq) {
+        return pdao.getPlace(place_seq);
+    }
+
 }
