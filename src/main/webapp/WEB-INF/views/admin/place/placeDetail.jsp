@@ -19,7 +19,7 @@
 					<div><img src="place_images/${placeVO.savefilename}" width="300"></div>
 			</div>
 			<div class="btn">
-				<input  type="button" value="수정" onClick="go_mod('${placeVO.place_seq}')">
+				<input  type="button" value="수정" onClick="go_mod_P('${placeVO.place_seq}')">
 				<input  type="button" value="삭제" onClick="deletePlace('${placeVO.place_seq}')">
 				<input  type="button" value="목록" 
 					onClick="location.href='adminPlaceList'">
