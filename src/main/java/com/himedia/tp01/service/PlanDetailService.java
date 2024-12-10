@@ -29,7 +29,6 @@ public class PlanDetailService {
         for(int i = 0; i < planSeqArray.length; i++) {
             planDetailList = pddao.getPlanDetail(planSeqArray[i]); // starttime 기준 오름차순
             planDetailHashMap.put(planSeqArray[i], planDetailList);
-            System.out.println("planSeqArray[i] 에 따른 planDetailList 목록 : " + planDetailHashMap.get(planSeqArray[i]));
         }
         return planDetailHashMap;
     }
@@ -74,4 +73,8 @@ public class PlanDetailService {
         pddao.insertPlanDetail(plandetail);
     }
 
+    /* planDetailSeq로 세부 계획 정보 가져오기 */
+    public PlanDetailVO getPlanDetailByPlanDetailSeq(int planDetailSeq) {
+        return pddao.getPlanDetailByPlanDetailSeq(planDetailSeq);
+    }
 }

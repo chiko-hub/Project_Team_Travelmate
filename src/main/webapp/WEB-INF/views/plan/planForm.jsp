@@ -149,6 +149,83 @@
         <!-- 날짜별 계획 테이블 -->
         <c:forEach var="plan" items="${planList}">
           <div class="planList" id="${plan.plan_seq}">
+          <!-- 일정 수정 패널 -->
+          <div id="planUpdatePanel" class="panel">
+            <h3>기존 계획 수정</h3>
+            <form id="planUpdateForm" method="post" action="updatePlan">
+              <input type="hidden" id="planUpdateSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
+              <input type="hidden" name="plan_category" value="place"/> <!-- category 전달 임시 값 -->
+              <label for="planUpdateName">장소</label>
+              <input type="text" id="planUpdateName" value="" required/><br/>
+              <label for="planUpdateDate">날짜</label>
+              <select id="planUpdateDate" name="plan_date" required>
+                <option value=""></option>
+                <c:forEach var="planNum" begin="0" end="${fn:length(planList)-1}" varStatus="status">
+                  <option value="${planList[planNum].travel_date}" data-plan-seq="${planList[planNum].plan_seq}">
+                      ${planList[planNum].travel_date}
+                  </option>
+                </c:forEach>
+              </select>
+              <label for="planUpdateStartTime">시작시간</label>
+              <select id="planUpdateStartTime" name="starttime" required>
+                <option value="00">오전 00시</option>
+                <option value="01">오전 01시</option>
+                <option value="02">오전 02시</option>
+                <option value="03">오전 03시</option>
+                <option value="04">오전 04시</option>
+                <option value="05">오전 05시</option>
+                <option value="06">오전 06시</option>
+                <option value="07">오전 07시</option>
+                <option value="08">오전 08시</option>
+                <option value="09">오전 09시</option>
+                <option value="10">오전 10시</option>
+                <option value="11">오전 11시</option>
+                <option value="12">오후 12시</option>
+                <option value="13">오후 01시</option>
+                <option value="14">오후 02시</option>
+                <option value="15">오후 03시</option>
+                <option value="16">오후 04시</option>
+                <option value="17">오후 05시</option>
+                <option value="18">오후 06시</option>
+                <option value="19">오후 07시</option>
+                <option value="20">오후 08시</option>
+                <option value="21">오후 09시</option>
+                <option value="22">오후 10시</option>
+                <option value="23">오후 11시</option>
+              </select>
+              <label for="planUpdateEndTime">종료시간</label>
+              <select id="planUpdateEndTime" name="endtime" required>
+                <option value="01">오전 01시</option>
+                <option value="02">오전 02시</option>
+                <option value="03">오전 03시</option>
+                <option value="04">오전 04시</option>
+                <option value="05">오전 05시</option>
+                <option value="06">오전 06시</option>
+                <option value="07">오전 07시</option>
+                <option value="08">오전 08시</option>
+                <option value="09">오전 09시</option>
+                <option value="10">오전 10시</option>
+                <option value="11">오전 11시</option>
+                <option value="12">오후 12시</option>
+                <option value="13">오후 01시</option>
+                <option value="14">오후 02시</option>
+                <option value="15">오후 03시</option>
+                <option value="16">오후 04시</option>
+                <option value="17">오후 05시</option>
+                <option value="18">오후 06시</option>
+                <option value="19">오후 07시</option>
+                <option value="20">오후 08시</option>
+                <option value="21">오후 09시</option>
+                <option value="22">오후 10시</option>
+                <option value="23">오후 11시</option>
+                <option value="24">오전 00시</option>
+              </select>
+              <div class="planAddButton">
+                <button type="button" onclick="updatePlan()">수정</button>
+                <button type="button" onclick="togglePanel('planUpdatePanel')">취소</button>
+              </div>
+            </form>
+          </div>
             <!-- 날짜 출력 -->
             <div class="cell">
               ${plan.travel_date}
@@ -162,7 +239,6 @@
                   <div class="cell"></div>
                 </c:forEach>
               </c:when>
-
               <%-- planDetailList[plan.plan_seq]에 데이터가 있는 경우 --%>
               <c:otherwise>
                 <c:set var="detailCount" value="0"/>
@@ -176,8 +252,15 @@
                       <c:set var="endcellCount" value="${planDetailList[plan.plan_seq][detailCount].endtime}"/>
                       <c:set var="timeGap" value="${endcellCount - startCellCount}"/>
                       <%-- 일정 칸 생성 --%>
-                      <div class="cell" style="grid-row: span ${timeGap}; background: #2e8b57; color: white;">
+                      <div class="cell" id="inPlanDetail" style="grid-row: span ${timeGap}; background: #2e8b57; color: white; position: relative;">
                         <label class="planName">${planDetailList[plan.plan_seq][detailCount].plan_name}</label>
+                        <input type="hidden" name="plan_seq" value="${plan.plan_seq}"/>
+                        <input type="hidden" name="plan_detail_seq" value="${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}"/>
+                        <%-- 수정/삭제 버튼 레이어 --%>
+                        <div class="planActionButtons">
+                          <button class="planUpdateButton" onclick="toggleUpdatePanel('${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}')">수정</button>
+                          <button class="planDeleteButton" onclick="deletePlan('${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}')">삭제</button>
+                        </div>
                       </div>
                       <%-- detailCount과 cellCount 값 업데이트 --%>
                       <c:set var="detailCount" value="${detailCount + 1}"/>

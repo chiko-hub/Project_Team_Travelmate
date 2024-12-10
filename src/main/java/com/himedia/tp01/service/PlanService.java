@@ -25,13 +25,11 @@ public class PlanService {
     public void setPlan(String planCode, LocalDate startDate, LocalDate endDate) {
         // 두 날짜 사이의 간격 구하기
         Period period = Period.between(startDate, endDate);
-        System.out.println("betweenDays : " + period.getDays());
 
         // 반복문을 통해 여행 날짜를 전부 가져와 plan_detail 에 code와 함께 저장하기
         for(int i = 0; i <= period.getDays(); i++) {
             // 날짜를 하루씩 구해 Date 로 저장
             Date date = Date.valueOf(startDate.plusDays(i));
-            System.out.println("date : " + date); // 임시 출력
             // code와 함께 날짜 저장
             pdao.setPlan(planCode, date);
         }
@@ -42,13 +40,11 @@ public class PlanService {
         HashMap<String, Object> planHashMap = new HashMap<>();
         // plan 정보 모두 받아오기
         List<PlanVO> planList = pdao.getPlan(planCode);
-        System.out.println("planList : " + planList);
 
         int[] planSeqArray = new int[planList.size()]; // plan_seq만 따로 받을 배열
         // plan 의 plan_seq만 따로 저장
         for(int i = 0; i < planSeqArray.length; i++) {
             planSeqArray[i] = planList.get(i).getPlan_seq();
-            System.out.println("planSeqArray : " + planSeqArray[i]);
         }
 
         planHashMap.put("planList", planList);

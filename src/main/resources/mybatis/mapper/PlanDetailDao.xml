@@ -12,4 +12,8 @@
         INSERT INTO plan_detail(plan_seq, plan_name, plan_date, plan_category, starttime, endtime)
         VALUES(#{plan_seq}, #{plan_name}, #{plan_date}, #{plan_category}, #{starttime}, #{endtime})
     </insert>
+
+    <select id="getPlanDetailByPlanDetailSeq" resultType="com.himedia.tp01.dto.PlanDetailVO">
+        SELECT * FROM plan_detail WHERE plan_detail_seq=#{param1}
+    </select>
 </mapper>

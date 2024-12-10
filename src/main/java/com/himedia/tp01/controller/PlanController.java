@@ -41,8 +41,6 @@ public class PlanController {
             if (currentMember.getPlan_code() == null || currentMember.getPlan_code().isEmpty()) { // plan_code 가 비어있다면
                 // plan 생성으로 이동
                 url = "redirect:/createPlanForm";
-                // plan 불러오기 - 테스트코드
-                //url = "redirect:/roadPlan";
             }else{
                 // plan 불러오기
                 url = "redirect:/loadPlan";
