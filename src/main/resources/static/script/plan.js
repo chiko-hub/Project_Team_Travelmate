@@ -4,14 +4,23 @@ function togglePanel(panelId) {
     panel.style.display = panel.style.display === "block" ? "none" : "block";
 }
 
+/* planDate select 요소에 change 이벤트 리스너 추가 */
+document.getElementById('planDate').addEventListener('change', updatePlanSeq);
+
 /* 선택한 날짜에 맞는 plan_seq 값 가져오기 */
 function updatePlanSeq() {
     const planDateSelect = document.getElementById('planDate');
     const selectedOption = planDateSelect.options[planDateSelect.selectedIndex];
     const planSeqInput = document.getElementById('planSeq');
-    planSeqInput.value = selectedOption.getAttribute('data-plan-seq');
 
-    alert(planSeqInput.value);
+    if (selectedOption) {
+        planSeqInput.value = selectedOption.getAttribute('data-plan-seq');
+    } else {
+        // 선택된 옵션이 없으면 planSeq 값을 초기화
+        planSeqInput.value = '';
+    }
+
+    alert(planSeqInput.value); // 선택된 plan_seq 값을 출력
 }
 
 /* starttime이 endttime보다 크거나, endtime 이 starttime 보다 작을 수 없도록 하는 이벤트 함수 */

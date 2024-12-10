@@ -41,10 +41,10 @@ public class PlanController {
         } else{
             MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
             if (currentMember.getPlan_code() == null || currentMember.getPlan_code().isEmpty()) { // plan_code 가 비어있다면
-                /*// plan 생성으로 이동
-                url = "redirect:/createPlanForm";*/
+                // plan 생성으로 이동
+                url = "redirect:/createPlanForm";
                 // plan 불러오기 - 테스트코드
-                url = "redirect:/roadPlan";
+                //url = "redirect:/roadPlan";
             }else{
                 // plan 불러오기
                 url = "redirect:/roadPlan";
@@ -61,29 +61,39 @@ public class PlanController {
 
     /* plan을 생성 */
     @PostMapping("/createPlan")
-    public ModelAndView createPlan(@ModelAttribute("plan") PlanVO plan, HttpSession session) {
-        ModelAndView mav = new ModelAndView();
+    public String createPlan(@RequestParam String datefilter, HttpSession session) {
+        String url = "";
+        if(session.getAttribute("loginUser") == null) {
+            url = "redirect:/loginForm";
+        }else{
+            // 코드 생성
+            String planCode = ps.getRandomString();
+            // 테스트코드
+            System.out.println(planCode);
 
-        // 코드 생성 - 테스트 코드
-        String planCode = "qwer";
+            // 날짜 변환 - datefilter를 '~' 기준으로 나누기
+            String[] dates = datefilter.split("~");
 
-        // 날짜 입력 - 테스트 코드
-        LocalDate startDate = LocalDate.of(2024, 12, 1);
-        LocalDate endDate = LocalDate.of(2024, 12, 5);
-        System.out.println("startDate : " + startDate);
-        System.out.println("endDate : " + endDate);
+            // 문자열을 LocalDate로 변환
+            LocalDate startDate = LocalDate.parse(dates[0].trim());
+            LocalDate endDate = LocalDate.parse(dates[1].trim());
+            // 테스트코드
+            System.out.println("startDate : " + startDate);
+            System.out.println("endDate : " + endDate);
 
-        // code와 입력한 날짜에 따른 paln 생성
-        //ps.setPlan(planCode, startDate, endDate);
+            // code와 입력한 날짜에 따른 paln 생성
+            ps.setPlan(planCode, startDate, endDate);
 
-        // planCode를 현재 사용자에게 부여
-        MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
-        //ms.updateMemberPlanCode(currentMember, planCode);
+            // planCode를 현재 사용자에게 부여
+            MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
+            ms.updateMemberPlanCode(currentMember.getUserid(), planCode);
+            currentMember = ms.getMember(currentMember.getUserid());
 
-        // 현재 로그인한 유저의 정보를 session 에 저장
-        session.setAttribute("loginUser", currentMember);
-
-        return mav;
+            // 코드가 부여된 현재 로그인한 유저의 정보를 session 에 저장
+            session.setAttribute("loginUser", currentMember);
+            url = "redirect:/roadPlan";
+        }
+        return url;
     }
 
     /* 로그인 상태이며, plan 이 생성되어 있는 계정이라면 planner 로 이동 */
@@ -91,16 +101,15 @@ public class PlanController {
     public ModelAndView roadPlan(HttpSession session) {
         ModelAndView mav = new ModelAndView();
 
-        /*if (session.getAttribute("loginUser") == null) {
+        if (session.getAttribute("loginUser") == null) {
             // 로그인 창으로 이동
             mav.setViewName("member/loginForm");
-        } else {*/
+        } else {
             MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
 
             // 현재 사용자 정보로부터 plan_code 불러오기
-            //String planCode = currentMember.getPlan_code();
-            // 테스트 코드
-            String planCode = "qwer";
+            String planCode = currentMember.getPlan_code();
+            System.out.println("planCode : " + planCode);
 
             // code 에 해당하는 plan 정보 불러오기
             HashMap<String, Object> planHashMap = ps.getPlan(planCode);
@@ -113,7 +122,7 @@ public class PlanController {
             mav.addObject("planDetailList", planDetailHashMap);
 
             mav.setViewName("plan/planForm");
-        /*}*/
+        }
         return mav;
     }
 

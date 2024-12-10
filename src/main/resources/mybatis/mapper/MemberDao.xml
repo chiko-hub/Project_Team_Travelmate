@@ -18,6 +18,9 @@
                           address_main=#{address_main}, address_detail=#{address_detail}, address_extra=#{address_extra} where userid=#{userid}
     </update>
 
+    <update id="updateMemberPlanCode">
+        UPDATE member SET plan_code=#{param2} WHERE userid=#{param1}
+    </update>
 
 
 </mapper>

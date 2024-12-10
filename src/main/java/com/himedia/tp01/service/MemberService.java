@@ -25,5 +25,9 @@ public class MemberService {
         mdao.updateMember(mvo);
     }
 
+    /* 현재 로그인한 유저에게 planCode 부여 */
+    public void updateMemberPlanCode(String userid, String planCode) {
+        mdao.updateMemberPlanCode(userid, planCode);
+    }
 }
 

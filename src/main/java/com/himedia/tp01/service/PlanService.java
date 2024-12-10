@@ -12,6 +12,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 
 @Service
@@ -41,11 +42,13 @@ public class PlanService {
         HashMap<String, Object> planHashMap = new HashMap<>();
         // plan 정보 모두 받아오기
         List<PlanVO> planList = pdao.getPlan(planCode);
+        System.out.println("planList : " + planList);
 
         int[] planSeqArray = new int[planList.size()]; // plan_seq만 따로 받을 배열
         // plan 의 plan_seq만 따로 저장
         for(int i = 0; i < planSeqArray.length; i++) {
             planSeqArray[i] = planList.get(i).getPlan_seq();
+            System.out.println("planSeqArray : " + planSeqArray[i]);
         }
 
         planHashMap.put("planList", planList);
@@ -53,4 +56,20 @@ public class PlanService {
         return planHashMap;
     }
 
+    /* 10자리 랜덤 문자열 생성 */
+    public String getRandomString() {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int strLength = str.length();
+
+        Random random = new Random();
+
+        String result = "";
+
+        // 10자리의 랜덤한 문자열을 생성
+        for (int i = 0; i < 10; i++) {
+            result += str.charAt((int)Math.floor(Math.random() * strLength));
+        }
+
+        return result;
+    }
 }

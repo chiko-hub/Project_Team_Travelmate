@@ -1,38 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<%-- 날짜 선택용 캘린더 api (임시) --%>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script type="text/javascript">
-  $(function() {
-    $('input[name="datefilter"]').daterangepicker({
-      autoUpdateInput: false,
-      locale: {
-        cancelLabel: 'Clear'
-      }
-    });
-
-    $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-      // 날짜 차이 계산
-      const startDate = picker.startDate;
-      const endDate = picker.endDate;
-      const dateDifference = endDate.diff(startDate, 'days'); // 날짜 차이 계산 (일 단위)
-
-      if (dateDifference > 4) {
-        alert('일정 생성은 최대 5일까지만 가능합니다.');
-        $(this).val(''); // 입력 필드 초기화
-      } else {
-        $(this).val(startDate.format('YYYY/MM/DD') + ' - ' + endDate.format('YYYY/MM/DD'));
-      }
-    });
-
-    $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-      $(this).val('');
-    });
-  });
 </script>
     <div class="plan_container">
       <div class="buttonList">
@@ -78,10 +46,10 @@
           <input type="text" id="planName" name="plan_name" required/><br/>
           <label for="planDate">날짜</label>
           <select id="planDate" name="plan_date" required>
-              <option value=""></option>
-            <c:forEach var="i" begin="0" end="${fn:length(planList)-1}" varStatus="status">
-              <option value="${planList[i].travel_date}" data-plan-seq="${planList[i].plan_seq}">
-                  ${planList[i].travel_date}
+            <option value=""></option>
+            <c:forEach var="planNum" begin="0" end="${fn:length(planList)-1}" varStatus="status">
+              <option value="${planList[planNum].travel_date}" data-plan-seq="${planList[planNum].plan_seq}">
+                  ${planList[planNum].travel_date}
               </option>
             </c:forEach>
           </select>
@@ -180,7 +148,10 @@
         <c:forEach var="plan" items="${planList}">
           <div class="planList" id="${plan.plan_seq}">
             <!-- 날짜 출력 -->
-            <div class="cell">${plan.travel_date}</div>
+            <div class="cell">
+              ${plan.travel_date}
+              <%--<fmt:formatDate value="${plan.travel_date}" pattern="MM/dd"/>--%>
+            </div>
             <!-- 시간 셀 출력 -->
             <c:choose>
               <%-- planDetailList[plan.plan_seq]가 비어있는 경우 --%>
