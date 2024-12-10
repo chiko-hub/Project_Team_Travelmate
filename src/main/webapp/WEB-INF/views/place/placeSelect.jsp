@@ -41,25 +41,31 @@
                     </c:forEach>
         </div>
 
-        <div class="row">
-                <div class="col" style="font-size:120%; font-weight:bold;">
-                    <c:if test="${paging.prev}">
-                        <a href="placeSelect?page=${paging.beginPage-1}">◀</a>&nbsp;
-                    </c:if>
-                    <c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
-                        <c:if test="${index != paging.page}">
-                            <a href="placeSelect?page=${index}">${index}&nbsp;</a>
-                        </c:if>
-                        <c:if test="${index == paging.page}">
-                            <span style="color:red">${index}&nbsp;</span>
-                        </c:if>
-                    </c:forEach>
-                    &nbsp;
-                    <c:if test="${paging.next}">
-                        <a href="placeSelect?page=${paging.endPage+1}">▶</a>
-                    </c:if>
-                </div>
-        </div>
+        <div class="row"> <!-- 페이지의 시작 -->
+					<div class="col" style="font-size:120%; font-weight:bold;">
+						<c:if test="${paging.prev}">
+							<a href="placeSelect?page=${paging.beginPage-1}">◀</a>&nbsp;
+						</c:if>
+
+
+						<c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
+							<c:if test="${index!=paging.page}">
+								<a href="placeSelect?page=${index}">${index}&nbsp;</a>
+							</c:if>
+							<c:if test="${index==paging.page}">
+								<span style="color:red">${index}&nbsp;</span>
+							</c:if>
+						</c:forEach>
+
+						&nbsp;
+						<c:if test="${paging.next}">
+							<a href="placeSelect?page=${paging.endPage+1}">▶</a>
+						</c:if>
+					</div>
+				</div> <!-- 페이지의 끝 -->
+
+
+
     </div>
 <%@ include file="../footer.jsp" %>
 </body>

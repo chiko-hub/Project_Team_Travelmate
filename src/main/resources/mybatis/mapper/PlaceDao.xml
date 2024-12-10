@@ -4,36 +4,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.himedia.tp01.dao.IPlaceDao">
-    <select id = "selectBestList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">
-        select * from place where bestyn='Y' order by place_seq asc
-        LIMIT #{paging.displayRow} OFFSET #{paging.startNum};
-    </select>
+<!--    <select id = "selectBestList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">-->
+<!--        select * from place where bestyn='Y' order by place_seq asc-->
+<!--        LIMIT #{paging.displayRow} OFFSET #{paging.startNum};-->
+<!--    </select>-->
 
-    <select id = "selectHotList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">
-        select * from place where hotyn='Y' order by place_seq asc
-        LIMIT #{paging.displayRow} OFFSET #{paging.startNum};
-    </select>
+<!--    <select id = "selectHotList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">-->
+<!--        select * from place where hotyn='Y' order by place_seq asc-->
+<!--        LIMIT #{paging.displayRow} OFFSET #{paging.startNum};-->
+<!--    </select>-->
 
-    <select id="getPlace" resultType="com.himedia.tp01.dto.PlaceVO">
-        select * from place where place_seq=#{param1}
-    </select>
+<!--    <select id="getPlace" resultType="com.himedia.tp01.dto.PlaceVO">-->
+<!--        select * from place where place_seq=#{param1}-->
+<!--    </select>-->
 
     <select id="getAllCount" resultType="int">
         select count(*) from ${param1} where ${param2} like concat('%', #{param3}, '%');
     </select>
-
-    <select id="getBestCount" resultType="int">
-        select count(*) from place where bestyn = 'Y' and place_name like concat('%', #{key}, '%');
-    </select>
-    <select id="getHotCount" resultType="int">
-        select count(*) from place where hotyn = 'Y' and place_name like concat('%', #{key}, '%');
-    </select>
-
     <select id="getAllPlaceList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">
         select * from place where place_name like concat('%', #{param2}, '%') order by place_seq asc
             limit #{param1.displayRow} offset #{param1.startNum}
     </select>
 
+    <select id="getBestCount" resultType="int">
+        select count(*) from place where bestyn = 'Y' and place_name like concat('%', #{key}, '%');
+    </select>
     <select id="getBestPlace" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">
         select * from place
         where bestyn = 'Y'
@@ -42,6 +37,9 @@
             limit #{paging.displayRow} offset #{paging.startNum};
     </select>
 
+    <select id="getHotCount" resultType="int">
+        select count(*) from place where hotyn = 'Y' and place_name like concat('%', #{key}, '%');
+    </select>
     <select id="getHotPlace" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">
         select * from place
         where hotyn = 'Y'
@@ -50,24 +48,20 @@
             limit #{paging.displayRow} offset #{paging.startNum};
     </select>
 
+
     <!-- 검색 데이터 총 개수 조회 -->
     <select id="getSearchCount" resultType="int">
-        SELECT COUNT(*)
-        FROM place
-        WHERE
-            place_name LIKE CONCAT('%', #{key}, '%')
-           OR place_location LIKE CONCAT('%', #{key}, '%');
+        select count(*)
+        from place
+        where place_name like concat('%', #{key}, '%');
     </select>
 
     <!-- 검색 데이터 조회 -->
     <select id="getSearchPlaceList" resultType="com.himedia.tp01.dto.PlaceVO" parameterType="map">
-        SELECT *
-        FROM place
-        WHERE
-            place_name LIKE CONCAT('%', #{key}, '%')
-           OR place_location LIKE CONCAT('%', #{key}, '%')
-        ORDER BY place_seq ASC
-            LIMIT #{paging.displayRow} OFFSET #{paging.startNum};
+        select * from place
+        where place_name like concat('%', #{key}, '%')
+        order by place_seq asc
+        limit #{paging.displayRow} offset #{paging.startNum};
     </select>
 
 
