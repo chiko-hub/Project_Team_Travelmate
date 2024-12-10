@@ -63,4 +63,26 @@ public class PlanDetailController {
         return response; // JSON 형태로 반환
     }
 
+    /* 세부 일정 수정하기 */
+    @PostMapping("/updatePlan")
+    @ResponseBody
+    public Map<String, Object> updatePlan(@ModelAttribute("plandetail") @Valid PlanDetailVO plandetailvo) {
+        Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
+        System.out.println("기존 세부 일정 : " + plandetailvo);
+
+        // 겹치는 일정 시간 확인
+        Boolean isCheckTimeResult = pds.checkTime(plandetailvo);
+
+        if (isCheckTimeResult) { // 겹치는 일정이 없다면
+            pds.updatePlanDetail(plandetailvo); // 세부 일정 수정
+            System.out.println("수정된 세부 일정 : " + pds.getPlanDetailByPlanDetailSeq(plandetailvo.getPlan_detail_seq()));
+            response.put("success", true);
+            response.put("message", "일정이 성공적으로 수정되었습니다.");
+        } else { // 겹치는 일정이 있다면
+            response.put("success", false);
+            response.put("message", "겹치는 일정이 있습니다.");
+        }
+        return response; // JSON 형태로 반환
+    }
+
 }

@@ -22,14 +22,17 @@ function toggleUpdatePanel(planDetailSeq){
             .then(data => {
                 if (data.success) {
                     // 서버에서 받은 정보를 수정 폼에 자동으로 채우기
+                    document.getElementById('planUpdateDetailSeq').value = planDetailSeq;
+
+                    // 장소명 입력
                     document.getElementById('planUpdateName').value = data.planDetail.plan_name;
 
                     // 날짜 셀렉트 박스 선택 처리 (data-plan-seq 값 기준)
                     Array.from(document.getElementById("planUpdateDate").options).forEach(option => {
                         if (option.getAttribute('data-plan-seq') === data.planDetail.plan_seq.toString()) {
                             option.selected = true;
-                            document.getElementById('planSeq').value = data.planDetail.plan_seq;
-                            alert(`${document.getElementById('planSeq').value}`);
+                            document.getElementById('planUpdateSeq').value = data.planDetail.plan_seq;
+                            alert(`${document.getElementById('planUpdateSeq').value}`);
                         } else {
                             option.selected = false;
                         }
@@ -139,6 +142,16 @@ function addPlan() {
     const planAddForm = document.getElementById('planAddForm'); // 폼 아이디
     const formData = new FormData(planAddForm); // 폼 데이터 수집
 
+    // 유효성 검사 - 비어 있는 필드 확인
+    for (const [key, value] of formData.entries()) {
+        if (!value.trim()) { // 값이 비어 있으면
+            alert(`${key} 값을 입력해주세요.`); // 사용자에게 알림
+            const field = planAddForm.elements[key]; // 폼 필드 가져오기
+            if (field) field.focus(); // 해당 필드로 포커스 이동
+            return; // 추가 요청 중단
+        }
+    }
+
     // 겹치는 일정이 있는지 확인 - AJAX 요청 보내기
     fetch('/addPlan', {
         method: 'POST',
@@ -162,8 +175,49 @@ function addPlan() {
 }
 
 /* 세부 일정 데이터 수정 */
-function updatePlan(planDetailSeq){
+function updatePlan(){
+    const planAddForm = document.getElementById('planUpdateForm'); // 폼 아이디
+    const formData = new FormData(planAddForm); // 폼 데이터 수집
 
+    // plan_seq 값을 가져와 숫자로 변환
+    const planSeq = parseInt(formData.get('plan_seq'), 10);
+    // plan_detail_seq 값을 가져와 숫자로 변환
+    const planDetailSeq = parseInt(formData.get('plan_detail_seq'), 10);
+
+    // 변환된 값을 FormData에 다시 추가 (문자열로 전송하지 않도록 덮어쓰기)
+    formData.set('plan_seq', planSeq);
+    formData.set('plan_detail_seq', planDetailSeq);
+
+    // 유효성 검사 - 비어 있는 필드 확인
+    for (const [key, value] of formData.entries()) {
+        if (!value.trim()) { // 값이 비어 있으면
+            alert(`${key} 값을 입력해주세요.`); // 사용자에게 알림
+            const field = planAddForm.elements[key]; // 폼 필드 가져오기
+            if (field) field.focus(); // 해당 필드로 포커스 이동
+            return; // 추가 요청 중단
+        }
+    }
+
+    // 겹치는 일정이 있는지 확인 - AJAX 요청 보내기
+    fetch('/updatePlan', {
+        method: 'POST',
+        body: formData,
+    })
+        .then(response => response.json()) // 서버에서 JSON 응답 받기
+        .then(data => {
+            if (data.success) {
+                // 성공 메시지 표시
+                alert(data.message);
+                location.reload(); // 페이지 새로고침
+            } else {
+                // 실패 메시지 표시
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('일정을 수정하는 중 문제가 발생했습니다.');
+        });
 }
 
 /* 코드로 새 일정 불러오기 */

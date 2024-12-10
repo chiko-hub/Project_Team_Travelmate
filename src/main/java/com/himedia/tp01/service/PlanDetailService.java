@@ -77,4 +77,8 @@ public class PlanDetailService {
     public PlanDetailVO getPlanDetailByPlanDetailSeq(int planDetailSeq) {
         return pddao.getPlanDetailByPlanDetailSeq(planDetailSeq);
     }
+    /* 상세 계획 수정하기 */
+    public void updatePlanDetail(@Valid PlanDetailVO plandetail) {
+        pddao.updatePlanDetail(plandetail);
+    }
 }

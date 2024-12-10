@@ -16,4 +16,9 @@
     <select id="getPlanDetailByPlanDetailSeq" resultType="com.himedia.tp01.dto.PlanDetailVO">
         SELECT * FROM plan_detail WHERE plan_detail_seq=#{param1}
     </select>
+
+    <update id="updatePlanDetail" parameterType="com.himedia.tp01.dto.PlanDetailVO">
+        UPDATE plan_detail SET plan_seq=#{plan_seq}, plan_name=#{plan_name}, plan_date=#{plan_date}, plan_category=#{plan_category}, starttime=#{starttime}, endtime=#{endtime}
+        WHERE plan_detail_seq=#{plan_detail_seq}
+    </update>
 </mapper>
