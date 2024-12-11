@@ -9,7 +9,7 @@
 					<label>장소명</label><div>${placeVO.place_name}</div>
 			</div>
 			<div class="field" style="border-top:1px dotted darkseagreen;">
-					<label>주소</label><div>${placeVO.place_location}</div>
+					<label>위치</label><div>${placeVO.place_location}</div>
 			</div>
 			<div class="field" style="border-top:1px dotted darkseagreen;">
 					<label>상세설명</label><div><pre>${placeVO.place_description}</pre></div>
