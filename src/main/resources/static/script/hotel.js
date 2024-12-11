@@ -11,7 +11,7 @@ function resetSearch() {
 // 1. hotel 정보창(ajax)
 $(document).ready(function () {
     // 호텔 아이템 클릭 이벤트
-    $('.hotel .item').on('click', function () {
+    $('.hotel img').on('click', function () {
         const hotelSeq = $(this).data('hotel-seq'); // 클릭한 항목의 place_seq 가져오기
 
         // AJAX 요청
@@ -71,5 +71,27 @@ $(document).on('click', '#likeImageButton', function () {
         error: function () {
             console.error('오류 발생');
         }
+    });
+});
+
+// 3. hotelList 우측 버튼(+) 클릭 시 이미지 전환 및 AJAX 요청 통합
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButtons = document.querySelectorAll(".toggle-button");
+
+    toggleButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            button.classList.toggle("checked");
+
+            const iconPlus = button.querySelector(".icon-plus");
+            const iconCheck = button.querySelector(".icon-check");
+
+            if (button.classList.contains("checked")) {
+                iconPlus.style.display = "none";
+                iconCheck.style.display = "inline-block";
+            } else {
+                iconPlus.style.display = "inline-block";
+                iconCheck.style.display = "none";
+            }
+        });
     });
 });

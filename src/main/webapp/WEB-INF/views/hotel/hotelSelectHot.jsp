@@ -24,12 +24,16 @@
         <div class="hotel">
             <!-- 호텔 bestList 출력 -->
                     <c:forEach var="hotel" items="${hotList}">
-                        <div class="item" data-hotel-seq="${hotel.hotel_seq}">
-                            <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}" />
+                        <div class="item" >
+                            <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}" data-hotel-seq="${hotel.hotel_seq}" />
                             <div class="hotel-info">
                                 <h4>${hotel.hotel_name}</h4>
                                 <p>${hotel.hotel_description}</p>
                             </div>
+                            <button class="toggle-button" data-place-id="${place.place_seq}">
+                                <span class="icon-plus">+</span>
+                                <span class="icon-check" style="display: none;">✔</span>
+                            </button>
                         </div>
                     </c:forEach>
         </div>

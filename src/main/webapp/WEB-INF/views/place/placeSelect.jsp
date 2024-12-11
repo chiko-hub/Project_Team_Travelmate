@@ -31,12 +31,16 @@
         <!-- placeList 출력 -->
         <div class="place">
                     <c:forEach var="place" items="${placeList}">
-                        <div class="item" data-place-seq="${place.place_seq}">
-                            <img src="/place_images/${place.savefilename}" alt="${place.place_name}"/>
+                        <div class="item">
+                            <img src="/place_images/${place.savefilename}" alt="${place.place_name}"  data-place-seq="${place.place_seq}" />
                             <div class="place-info">
                                 <h4>${place.place_name}</h4>
                                 <p>${place.place_description}</p>
                             </div>
+                            <button class="toggle-button" data-place-id="${place.place_seq}">
+                                <span class="icon-plus">+</span>
+                                <span class="icon-check" style="display: none;">✔</span>
+                            </button>
                         </div>
                     </c:forEach>
         </div>
@@ -49,8 +53,6 @@
 						<c:if test="${paging.prev}">
 							<a href="placeSelect?page=${paging.beginPage-1}">◀</a>&nbsp;
 						</c:if>
-
-
 						<c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
 							<c:if test="${index!=paging.page}">
 								<a href="placeSelect?page=${index}">${index}&nbsp;</a>
@@ -59,8 +61,6 @@
 								<span style="color:red">${index}&nbsp;</span>
 							</c:if>
 						</c:forEach>
-
-						&nbsp;
 						<c:if test="${paging.next}">
 							<a href="placeSelect?page=${paging.endPage+1}">▶</a>
 						</c:if>

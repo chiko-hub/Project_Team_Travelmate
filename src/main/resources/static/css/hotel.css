@@ -1,7 +1,7 @@
 html, body {
     height: 100%; /* 화면 전체 높이를 차지 */
-    margin: 0;
-    padding: 0;
+    /*margin: 0;*/
+    /*padding: 0;*/
 }
 
 .main {
@@ -19,7 +19,7 @@ html, body {
 .hotel {
     display: flex;
     flex-direction: column;
-    width: 90%; /* 가로 폭을 80%로 제한 */
+    width: 70%; /* 가로 폭을 80%로 제한 */
     padding: 20px;
     box-sizing: border-box; /* 패딩 포함 계산 */
     margin-bottom: 0; /* 불필요한 여백 제거 */
@@ -30,9 +30,7 @@ html, body {
     padding: 0; /* 패딩 제거 */
     position: relative; /* 버튼을 올리기 위해 필요 */
     top: -10px; /* 필요시 버튼을 상단으로 당김 */
-
     left: 0; /* 화면 좌측으로 이동 */
-
     text-align: left; /* 텍스트 및 버튼 정렬 */
 }
 
@@ -40,25 +38,34 @@ html, body {
 .item {
     display: flex; /* 이미지와 텍스트를 가로로 정렬 */
     align-items: center; /* 이미지와 텍스트 세로 가운데 정렬 */
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #2e8b57;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative; /* 버튼 위치를 위한 기준 */
+
+
 }
 
 /* 장소 카드 안의 이미지 */
 .item img {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     object-fit: cover; /* 이미지 비율 유지 */
     border-radius: 8px; /* 둥근 모서리 */
     margin-right: 15px; /* 이미지와 텍스트 사이 간격 */
 }
 
 /* 텍스트 영역 */
-.item .place-info {
+.item .hotel-info {
     display: flex;
     flex-direction: column; /* 텍스트(제목, 설명)를 세로로 배치 */
+    margin: 0; /* 외부 여백 제거 */
+    padding: 0; /* 내부 여백 제거 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    margin-right: 50px; /* 버튼과 텍스트 사이 간격 */
 }
 
 
@@ -145,6 +152,13 @@ body {
     max-width: 500px;
 }
 
+.modal-buttons {
+
+   /*display:flex;*/
+
+}
+
+
 /* 닫기 버튼 */
 .close {
     color: #aaa;
@@ -163,12 +177,43 @@ body {
 
 /* 좋아요 하트 버튼 */
 #likeImageButton {
+    display:flex;
     width: 40px;
     height: 40px;
     object-fit: contain; /* 필요에 따라 이미지 비율 유지 */
 }
 
 
+/* toggle 버튼 스타일 */
+.toggle-button {
+    background-color: darkgray;
+    border: none;
+    border-radius: 50%; /* 동그란 버튼 */
+    width: 30px;
+    height: 30px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    position: absolute; /* 부모 요소 기준으로 위치 설정 */
+    right: 10px; /* 우측에 버튼 위치 */
+    top: 50%; /* 수직 가운데 정렬 */
+    transform: translateY(-50%);
+}
+
+/* 버튼 클릭 시 스타일 */
+.toggle-button.checked {
+    background-color: deepskyblue; /* 하늘색 배경 */
+}
+
+/* "+"와 "✔" 아이콘 */
+.icon-plus {
+    display: inline-block;
+}
+
+.icon-check {
+    display: none;
+}
 
 
 

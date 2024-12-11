@@ -31,12 +31,16 @@
         <!-- hotelList 출력 -->
         <div class="hotel">
                     <c:forEach var="hotel" items="${hotelList}">
-                        <div class="item" data-hotel-seq="${hotel.hotel_seq}">
-                            <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}"/>
+                        <div class="item" >
+                            <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}" data-hotel-seq="${hotel.hotel_seq}"/>
                             <div class="hotel-info">
                                 <h4>${hotel.hotel_name}</h4>
                                 <p>${hotel.hotel_description}</p>
                             </div>
+                            <button class="toggle-button" data-place-id="${place.place_seq}">
+                                <span class="icon-plus">+</span>
+                                <span class="icon-check" style="display: none;">✔</span>
+                            </button>
                         </div>
                     </c:forEach>
         </div>
@@ -59,8 +63,6 @@
 								<span style="color:red">${index}&nbsp;</span>
 							</c:if>
 						</c:forEach>
-
-						&nbsp;
 						<c:if test="${paging.next}">
 							<a href="hotelSelect?page=${paging.endPage+1}">▶</a>
 						</c:if>
