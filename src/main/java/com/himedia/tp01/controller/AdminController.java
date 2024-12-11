@@ -54,6 +54,12 @@ AdminService as;
 
 }
 
+    @GetMapping("/adminLogout")
+    public String adminLogout(HttpSession session) {
+        session.removeAttribute("adminUser");
+        return "redirect:/";
+    }
+
     @GetMapping("/adminPlaceList")
     public ModelAndView adminPlaceList(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();

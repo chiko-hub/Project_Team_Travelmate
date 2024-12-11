@@ -12,20 +12,20 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="coltitle" style="flex:2">아이디</div>
+			<div class="coltitle" style="flex:1">아이디</div>
 			<div class="coltitle" style="flex:1">이름</div>
 			<div class="coltitle" style="flex:3">이메일</div>
-			<div class="coltitle" style="flex:1">우편번호</div>
+			<div class="coltitle" style="flex:2">우편번호</div>
 			<div class="coltitle" style="flex:4">주소</div>
 			<div class="coltitle" style="flex:1">전화</div>
 			<div class="coltitle" style="flex:1">가입일</div>
 		</div>
 		<c:forEach items="${memberList}" var="memberVO">
 			<div class="row">
-				<div class="col" style="flex:2; display: flex; justify-content: center; align-items: center">	${memberVO.userid}	</div>
-				<div class="col" style="flex:1; display: flex;justify-content: center; align-items: center">${memberVO.name} </div>
-				<div class="col" style="flex:3; display: flex;justify-content: center; align-items: center">${memberVO.email} </div>
-				<div class="col" style="flex:1; display: flex;justify-content: center; align-items: center">${memberVO.zip_num} </div>
+				<div class="col" style="flex:1; display: flex; justify-content: center; align-items: center">${memberVO.userid}</div>
+				<div class="col" style="flex:1; display: flex;justify-content: center; align-items: center">${memberVO.name}</div>
+				<div class="col" style="flex:3; display: flex;justify-content: center; align-items: center">${memberVO.email}</div>
+				<div class="col" style="flex:2; display: flex;justify-content: center; align-items: center">${memberVO.zip_num}</div>
 				<div class="col" style="flex:4; display: flex; justify-content: flex-start; align-items: center">${memberVO.address_main} ${memberVO.address_detail}</div>
 				<div class="col" style="flex:1">${memberVO.phone} </div>
 				<div class="col" style="flex:1"><fmt:formatDate value="${memberVO.indate}" /></div>

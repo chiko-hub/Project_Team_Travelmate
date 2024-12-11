@@ -9,7 +9,7 @@
       <label>숙소명</label><div>${hotelVO.hotel_name}</div>
     </div>
     <div class="field" style="border-top:1px dotted darkseagreen;">
-      <label>주소</label><div>${hotelVO.hotel_location}</div>
+      <label>위치</label><div>${hotelVO.hotel_location}</div>
     </div>
     <div class="field" style="border-top:1px dotted darkseagreen;">
       <label>상세설명</label><div><pre>${hotelVO.hotel_description}</pre></div>
