@@ -21,7 +21,7 @@
 			<div class="btn">
 				<input  type="button" value="수정" onClick="go_mod_P('${placeVO.place_seq}')">
 				<input  type="button" value="삭제" onClick="deletePlace('${placeVO.place_seq}')">
-				<input  type="button" value="목록" 
+				<input  type="button" value="목록으로"
 					onClick="location.href='adminPlaceList'">
 			</div>
 			
