@@ -2,236 +2,49 @@
 <%@ include file="../header.jsp" %>
 <link rel="stylesheet" href="/css/wishlist.css">
 <script defer src="/script/wishlist.js"></script>
-
-<%--<2번>--%>
-<%--<div class="mainContainer">--%>
-<%--    <!-- 찜 목록 -->--%>
-<%--    <div class="wcontainer">--%>
-<%--        <h2>찜 목록</h2>--%>
-<%--        <div class="wishlist">--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('', '')"></div>--%>
-
-<%--        </div>--%>
-<%--    </div>--%>
-
-<%--    <!-- 상세 보기 -->--%>
-<%--    <div class="detailsContainer">--%>
-<%--        <h2>상세 보기</h2>--%>
-<%--        <div id="detailsContent" class="detailsContentBox">--%>
-<%--            <h3>항목을 선택하세요</h3>--%>
-<%--            <p>상세 정보가 여기에 표시됩니다.</p>--%>
-<%--        </div>--%>
-<%--        --%>
-
-<%--    </div>--%>
-<%--</div>--%>
-<%--<script>--%>
-<%--    function showDetails(title, description) {--%>
-<%--        const detailsContent = document.getElementById("detailsContent");--%>
-<%--        detailsContent.innerHTML = `--%>
-<%--            <h3>${title}</h3>--%>
-<%--            <p>${description}</p>--%>
-<%--        `;--%>
-<%--    }--%>
-<%--</script>--%>
-
-
-
-
-<%--<1번>--%>
-<%--<div class="wcontainer"  style=" width: 350px; display: flex;--%>
-<%--    flex-direction:column">--%>
-<%--        <h2>찜 목록</h2>--%>
-<%--        <div class="wishlist" >--%>
-<%--            <div class="wishlistItem" onclick="showDetails('Item 1', 'Item 1의 상세정보')">--%>
-<%--                <div class="boxleft"><img src=""/></div>--%>
-<%--                <div class="boxRight">--%>
-<%--                    <div class="subBox1"></div>--%>
-<%--                    <div class="subBox2"></div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%--            <div class="wishlistItem" onclick="showDetails('Item 2', 'Item 2의 상세정보')">--%>
-<%--                <div class="boxleft"><img src=""/></div>--%>
-<%--                <div class="boxRight">--%>
-<%--                    <div class="subBox1"></div>--%>
-<%--                    <div class="subBox2"></div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%--            <div class="wishlistItem" onclick="showDetails('Item 3', 'Item 3의 상세정보')">--%>
-<%--                <div class="boxleft"><img src=""/></div>--%>
-<%--                <div class="boxRight">--%>
-<%--                    <div class="subBox1"></div>--%>
-<%--                    <div class="subBox2"></div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%--            <div class="wishlistItem" onclick="showDetails('Item 4', 'Item 4의 상세정보')">--%>
-<%--                <div class="boxleft"><img src=""/></div>--%>
-<%--                <div class="boxRight">--%>
-<%--                    <div class="subBox1"></div>--%>
-<%--                    <div class="subBox2"></div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--</div>--%>
-
-
-<%--<div class="detailsContainer" style="flex: 1; padding: 20px; border-left: 1px solid #ccc;">--%>
-<%--    <h2>상세 보기</h2>--%>
-<%--    <div id="detailsContent">--%>
-<%--        <p>선택된 항목의 상세 정보가 여기에 표시됩니다.</p>--%>
-<%--    </div>--%>
-<%--</div>--%>
-
-<%--<3>--%>
-<%--<div class="mainContainer">--%>
-<%--    <!-- 찜 목록 -->--%>
-<%--    <div class="wcontainer">--%>
-<%--        <h2>찜 목록</h2>--%>
-<%--        <div class="wishlist">--%>
-<%--            <div class="wishlistItem" onclick="showDetails('Item 1', 'Item 1의 상세정보')">--%>
-<%--                Item 1--%>
-<%--            </div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('Item 2', 'Item 2의 상세정보')">--%>
-<%--                Item 2--%>
-<%--            </div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('Item 3', 'Item 3의 상세정보')">--%>
-<%--                Item 3--%>
-<%--            </div>--%>
-<%--            <div class="wishlistItem" onclick="showDetails('Item 4', 'Item 4의 상세정보')">--%>
-<%--                Item 4--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-
-<%--    <!-- 상세 보기 -->--%>
-<%--    <div class="detailsContainer">--%>
-<%--        <!-- 상세 보기 왼쪽 -->--%>
-<%--        <div class="detailsLeft">--%>
-<%--            <h3>요약</h3>--%>
-<%--            <p>여기에 요약 정보를 표시합니다.</p>--%>
-<%--        </div>--%>
-<%--        <!-- 상세 보기 오른쪽 -->--%>
-<%--        <div class="detailsRight">--%>
-<%--            <div class="detailsContentBox">--%>
-<%--                <h3>Item 1</h3>--%>
-<%--                <p>Item 1의 상세정보</p>--%>
-<%--            </--%>
-<%--            html--%>
-<%--            코드 복사--%>
-<%--        </div>--%>
-<%--        <div class="detailsContentBox">--%>
-<%--            <h3>Item 1 추가 정보</h3>--%>
-<%--            <p>추가 정보 1</p>--%>
-<%--        </div>--%>
-<%--        <div class="detailsContentBox">--%>
-<%--            <h3>Item 1 기타 정보</h3>--%>
-<%--            <p>기타 정보 1</p>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<script>--%>
-<%--    function showDetails(title, description) {--%>
-<%--        const detailsLeft = document.querySelector(".detailsLeft");--%>
-<%--        const detailsRight = document.querySelector(".detailsRight");--%>
-
-<%--        // Update Left Section--%>
-<%--        detailsLeft.innerHTML = `--%>
-<%--            <h3>${title} 요약</h3>--%>
-<%--            <p>${title}의 요약 정보입니다.</p>--%>
-<%--        `;--%>
-
-<%--        // Update Right Section--%>
-<%--        detailsRight.innerHTML = `--%>
-<%--            <div class="detailsContentBox">--%>
-<%--                <h3>${title}</h3>--%>
-<%--                <p>${description}</p>--%>
-<%--            </div>--%>
-<%--            <div class="detailsContentBox">--%>
-<%--                <h3>${title} 추가 정보</h3>--%>
-<%--                <p>추가 정보 1</p>--%>
-<%--            </div>--%>
-<%--            <div class="detailsContentBox">--%>
-<%--                <h3>${title} 기타 정보</h3>--%>
-<%--                <p>기타 정보 1</p>--%>
-<%--            </div>--%>
-<%--        `;--%>
-<%--    }--%>
-<%--</script>--%>
-<%------3--%>
-
-
 <div class="mainContainer">
     <!-- 찜 목록 -->
-    <div class="wcontainer">
+    <div class="wishContainer">
         <h2>찜 목록</h2>
-        <div class="wishlist">
-            <div class="wishlistItem" onclick="showDetails('','')"></div>
-            <div class="wishlistItem" onclick="showDetails('','')"></div>
-            <div class="wishlistItem" onclick="showDetails('','')"></div>
-            <div class="wishlistItem" onclick="showDetails('','')"></div>
-            <div class="wishlistItem" onclick="showDetails('','')"></div>
-            <div class="wishlistItem" onclick="showDetails('','')"></div>
-            <div class="wishlistItem" onclick="showDetails('','')"></div>
-            <div class="wishlistItem" onclick="showDetails('','')"></div>
+        <div class="wishlistList" style="border: 1px solid blue">
+            <div class="wishlistItem" onclick="">
+                <div class="wishlistName">찜목록이름</div>
+            </div>
+            <div class="wishAddButton">
+                <button type="button">+</button>
+            </div>
         </div>
     </div>
 
     <!-- 상세 보기 -->
-    <div class="detailsContainer">
-        <h2>상세 보기</h2>
-        <div class="detailsWrapper">
-            <!-- 왼쪽 -->
-            <div class="detailsLeft">
-                <h3>이미지</h3>
-                <p>항목을 선택하세요.</p>
+    <div class="wishDetailContainer" style="border: 1px solid red">
+        <div class="wishDetailList" style="border: 1px solid blue">
+            <div class="noWishDetailItem">
+                <div class="noWishText">찜 목록을 선택해주세요.</div>
             </div>
-            <!-- 오른쪽 -->
-            <div class="detailsRight">
-                <div class="subBox">
-                    <h3>이름</h3>
-                    <p>항목을 선택하세요.</p>
+            <!-- 장소 아이템 1 -->
+            <div class="wishDetailItem">
+                <div class="wishImage" style="border: 1px solid yellow">
+                    <img src="" alt="다빈장 이미지" />
                 </div>
-                <div class="subBox">
-                    <h3>설명</h3>
-                    <p>항목을 선택하세요.</p>
+                <div class="wishText">
+                    <div class="wishTitle">이벤트 다빈장</div>
+                    <div class="wishLocation">제주 애월 늦게까지 하는 현지인 맛집 다빈장제주 애월 늦게까지 하는 현지인 맛집 다빈장</div>
                 </div>
+                <button class="deleteBtn" onclick="deleteLocation()">×</button>
+            </div>
+            <!-- 장소 아이템 2 -->
+            <div class="wishDetailItem">
+                <div class="wishImage" style="border: 1px solid yellow">
+                    <img src="" alt="손흥해장국 이미지" />
+                </div>
+                <div class="wishText">
+                    <div class="wishTitle">이벤트 손흥해장국</div>
+                    <div class="wishLocation">13년 전통, 함덕해변 근처 해장국 맛집</div>
+                </div>
+                <button class="deleteBtn" onclick="deleteLocation()">×</button>
             </div>
         </div>
     </div>
 </div>
-<script>
-    function showDetails(title, mainDetail, additionalDetail, otherDetail) {
-        // 왼쪽 영역 업데이트
-        const detailsLeft = document.querySelector(".detailsLeft");
-        detailsLeft.innerHTML = `
-            <h3>${title} 요약</h3>
-            <p>${mainDetail}</p>
-        `;
-
-        // 오른쪽 영역 업데이트
-        const subBoxes = document.querySelectorAll(".detailsRight .subBox");
-        subBoxes[0].innerHTML = `
-            <h3>상세 정보</h3>
-            <p>${mainDetail}</p>
-        `;
-        subBoxes[1].innerHTML = `
-            <h3>추가 정보</h3>
-            <p>${additionalDetail}</p>
-        `;
-    }
-</script>
-
-
 <%@ include file="../footer.jsp" %>
