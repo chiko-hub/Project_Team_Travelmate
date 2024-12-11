@@ -32,7 +32,6 @@ function toggleUpdatePanel(planDetailSeq){
                         if (option.getAttribute('data-plan-seq') === data.planDetail.plan_seq.toString()) {
                             option.selected = true;
                             document.getElementById('planUpdateSeq').value = data.planDetail.plan_seq;
-                            alert(`${document.getElementById('planUpdateSeq').value}`);
                         } else {
                             option.selected = false;
                         }
@@ -84,8 +83,6 @@ function updatePlanSeq(planDate, planSeq) {
         // 선택된 옵션이 없으면 planSeq 값을 초기화
         planSeqInput.value = '';
     }
-
-    alert(planSeqInput.value); // 선택된 plan_seq 값을 출력
 }
 
 /* planStartTime, planEndTime select 요소에 change 이벤트 리스너 추가 */
@@ -145,7 +142,7 @@ function addPlan() {
     // 유효성 검사 - 비어 있는 필드 확인
     for (const [key, value] of formData.entries()) {
         if (!value.trim()) { // 값이 비어 있으면
-            alert(`${key} 값을 입력해주세요.`); // 사용자에게 알림
+            alert(`모든 항목에 일정 데이터를 입력해주세요.`); // 사용자에게 알림
             const field = planAddForm.elements[key]; // 폼 필드 가져오기
             if (field) field.focus(); // 해당 필드로 포커스 이동
             return; // 추가 요청 중단
@@ -219,6 +216,44 @@ function updatePlan(){
             alert('일정을 수정하는 중 문제가 발생했습니다.');
         });
 }
+
+/* 세부 일정 데이터 삭제 */
+/* document 요소가 모두 불러와진 후 planDeleteButton 의 button 요소를 불러와 click 이벤트 실행됨 */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.planDeleteButton').forEach(button => {
+        button.addEventListener('click', function() {
+            const planDetailSeq = this.dataset.planDetailSeq;
+            deletePlan(planDetailSeq);
+        });
+    });
+
+    function deletePlan(planDetailSeq) {
+        // 사용자에게 확인 메시지 표시
+        const userResponse = window.confirm("해당 일정이 삭제됩니다. 계속하시겠습니까?");
+        if (userResponse) { // '확인'을 클릭할 경우
+            fetch('/deletePlan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({planDetailSeq: planDetailSeq}),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('서버와의 연결에 문제가 발생했습니다.');
+                });
+        }
+    }
+});
 
 /* 코드로 새 일정 불러오기 */
 function loadPlanByCode(form){

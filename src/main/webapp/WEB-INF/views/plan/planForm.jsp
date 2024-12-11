@@ -19,7 +19,7 @@
           <label>날짜</label>
           <input type="text" name="datefilter" value=""/><br/>
           <div class="planCreateButton">
-            <button type="button" onclick="">생성</button>
+            <button type="button" onclick="">미완성</button>
             <button type="button" onclick="togglePanel('planCreatePanel')">취소</button>
           </div>
         </form>
@@ -260,7 +260,7 @@
                         <%-- 수정/삭제 버튼 레이어 --%>
                         <div class="planActionButtons">
                           <button class="planUpdateButton" onclick="toggleUpdatePanel('${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}')">수정</button>
-                          <button class="planDeleteButton" onclick="deletePlan('${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}')">삭제</button>
+                          <button class="planDeleteButton" data-plan-detail-seq="${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}">삭제</button>
                         </div>
                       </div>
                       <%-- detailCount과 cellCount 값 업데이트 --%>

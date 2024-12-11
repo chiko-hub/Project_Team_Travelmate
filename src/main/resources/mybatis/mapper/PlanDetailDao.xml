@@ -21,4 +21,8 @@
         UPDATE plan_detail SET plan_seq=#{plan_seq}, plan_name=#{plan_name}, plan_date=#{plan_date}, plan_category=#{plan_category}, starttime=#{starttime}, endtime=#{endtime}
         WHERE plan_detail_seq=#{plan_detail_seq}
     </update>
+
+    <delete id="deletePlanDetail" parameterType="_int">
+        DELETE FROM plan_detail WHERE plan_detail_seq=#{param1}
+    </delete>
 </mapper>
