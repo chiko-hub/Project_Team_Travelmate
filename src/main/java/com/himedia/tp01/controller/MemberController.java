@@ -1,5 +1,6 @@
 package com.himedia.tp01.controller;
 
+import com.google.gson.Gson;
 import com.himedia.tp01.dto.MemberVO;
 import com.himedia.tp01.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.net.ssl.HttpsURLConnection;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 
 @Controller
@@ -154,5 +159,16 @@ public class MemberController {
     @GetMapping("/customerForm")
     public String customerForm() {return "member/customerForm";}
 
+
+    @GetMapping("/kakaostart")
+    public  @ResponseBody String kakaostart() {
+        String a = "<script type='text/javascript'>" +
+                "location.href='https://kauth.kakao.com/oauth/authorize?"
+                + "client_id=b3c7d7ff063b8695734129d2eb5881e6"
+                + "&redirect_uri=http://localhost:8070/kakaoLogin"
+                + "&response_type=code'"
+                + "</script>";
+        return a;
+    }
 
 }
