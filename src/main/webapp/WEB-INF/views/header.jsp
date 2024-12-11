@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/plan.css">
   <script defer src="/script/start.js"></script>
   <script defer src="/script/place.js"></script>
+  <script defer src="/script/hotel.js"></script>
   <script defer src="/script/plan.js"></script>
   <script defer src="/script/createPlan.js"></script>
     <%-- 날짜 선택용 캘린더 api --%>
