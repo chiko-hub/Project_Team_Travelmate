@@ -3,16 +3,16 @@ function showContent(step) {
     let content = "";
 
     switch (step) {
-      //   case "step1":
-      //       content = `
-      //   <h2>STEP 1: 날짜 확인</h2>
-      //   <label for="start-date">출발 날짜:</label>
-      //   <input type="date" id="start-date" name="startDate">
-      //   <label for="end-date">도착 날짜:</label>
-      //   <input type="date" id="end-date" name="endDate">
-      //   <button>날짜 설정</button>
-      // `;
-      //       break;
+        //   case "step1":
+        //       content = `
+        //   <h2>STEP 1: 날짜 확인</h2>
+        //   <label for="start-date">출발 날짜:</label>
+        //   <input type="date" id="start-date" name="startDate">
+        //   <label for="end-date">도착 날짜:</label>
+        //   <input type="date" id="end-date" name="endDate">
+        //   <button>날짜 설정</button>
+        // `;
+        //       break;
         case "step1":
             content = `
         <h2>STEP 1: 장소 선택</h2>
@@ -47,3 +47,21 @@ function showContent(step) {
 
     results.innerHTML = content;
 }
+
+
+//
+// <script>
+//     function showContent(stepId) {
+//     // 모든 콘텐츠를 숨기기
+//     const allContents = document.querySelectorAll('.content');
+//     allContents.forEach(content => {
+//     content.style.display = 'none';
+// });
+//
+//     // 클릭한 버튼에 해당하는 콘텐츠를 표시
+//     const activeContent = document.getElementById(stepId);
+//     if (activeContent) {
+//     activeContent.style.display = 'block';
+// }
+// }
+// </script>
