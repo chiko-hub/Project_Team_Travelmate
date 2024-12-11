@@ -223,6 +223,22 @@ header {
     border-bottom: 1px solid #e6e6e6;
 }
 
+/* 행 전체 강조 효과 */
+.tb .row:hover {
+    background-color: #E6F4E9; /* 연한 녹색으로 행 강조 */
+    transition: background-color 0.3s ease;
+}
+
+/* 페이지 번호와 리스트 연동 */
+.tb .row:hover .col, /* 행 내부의 모든 컬럼 */
+.tb .row:hover .col a { /* 링크도 강조 */
+    background-color: #2E4F33; /* 녹색 강조 */
+    color: white; /* 텍스트 흰색 */
+    transform: scale(1.05); /* 약간 확대 효과 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
 .tb .row:last-child {
     border-bottom: none; /* 마지막 행의 구분선 제거 */
 }
@@ -264,11 +280,6 @@ header {
     border-right: none; /* 마지막 열의 구분선 제거 */
 }
 
-/* 행 강조 효과 */
-.tb .row:hover {
-    background-color: #E6F4E9; /* 연한 녹색으로 행 강조 */
-    transition: background-color 0.3s ease;
-}
 
 /* 페이징 기본 스타일 */
 .col a {
@@ -291,17 +302,18 @@ header {
     color: white; /* 텍스트 색상 흰색으로 변경 */
 }
 
+/* 페이지 번호 활성화 스타일 */
 .col span {
     display: inline-block;
     padding: 8px 12px;
-    margin: 0 2px; /* 페이지 번호 간격 */
+    margin: 0 2px;
     border: 1px solid #1C3823;
     border-radius: 4px;
     background-color: #2E4F33; /* 활성화된 페이지 배경 */
     color: white; /* 활성화된 페이지 텍스트 색상 */
     font-size: 14px;
     font-weight: bold;
-    cursor: default; /* 클릭 불가능 표시 */
+    cursor: default; /* 클릭 불가능 */
 }
 
 
