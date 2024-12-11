@@ -25,27 +25,43 @@ public class AdminService {
         HashMap<String, Object> result = new HashMap<>();
         HttpSession session = request.getSession();
 
+        // 초기화 요청 처리
         if (request.getParameter("first") != null) {
             session.removeAttribute("page");
             session.removeAttribute("key");
         }
 
+        // 페이지 처리
         int page = 1;
-        if (request.getParameter("page") != null) {
-            page = Integer.parseInt(request.getParameter("page"));
-            session.setAttribute("page", page);
-        } else if (session.getAttribute("page") != null) {
-            page = Integer.parseInt((String) session.getAttribute("page"));
+        try {
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page")); // 요청 파라미터로부터 페이지 값 설정
+                session.setAttribute("page", page); // 세션에 저장
+            } else if (session.getAttribute("page") != null) {
+                Object sessionPage = session.getAttribute("page"); // 세션에서 값 가져오기
+                if (sessionPage instanceof Integer) {
+                    page = (Integer) sessionPage; // Integer 타입일 경우 그대로 사용
+                } else if (sessionPage instanceof String) {
+                    page = Integer.parseInt((String) sessionPage); // String 타입일 경우 변환
+                }
+            }
+        } catch (NumberFormatException e) {
+            page = 1; // 잘못된 값이 들어온 경우 기본값 설정
         }
 
+        // 검색 키워드 처리
         String key = "";
         if (request.getParameter("key") != null) {
             key = request.getParameter("key");
             session.setAttribute("key", key);
         } else if (session.getAttribute("key") != null) {
-            key = (String) session.getAttribute("key");
+            Object sessionKey = session.getAttribute("key");
+            if (sessionKey instanceof String) {
+                key = (String) sessionKey;
+            }
         }
 
+        // 페이징 처리
         Paging paging = new Paging();
         paging.setPage(page);
         paging.setDisplayPage(10);
@@ -60,6 +76,7 @@ public class AdminService {
         paging.setTotalCount(count);
         paging.calPaging();
 
+        // 데이터 리스트 조회
         List<PlaceVO> list = adao.getPlaceList(paging, key);
         result.put("placeList", list);
         result.put("paging", paging);
@@ -68,27 +85,48 @@ public class AdminService {
         return result;
     }
 
+
     public HashMap<String, Object> adminHotelList(HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
         HttpSession session = request.getSession();
 
+        // 초기화 요청 처리
         if (request.getParameter("first") != null) {
             session.removeAttribute("page");
             session.removeAttribute("key");
         }
 
+        // 페이지 처리
         int page = 1;
-        if (request.getParameter("page") != null) {
-            page = Integer.parseInt(request.getParameter("page"));
-            session.setAttribute("page", page);
+        try {
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page")); // 요청 파라미터로부터 페이지 값 설정
+                session.setAttribute("page", page); // 세션에 저장
+            } else if (session.getAttribute("page") != null) {
+                Object sessionPage = session.getAttribute("page"); // 세션에서 값 가져오기
+                if (sessionPage instanceof Integer) {
+                    page = (Integer) sessionPage; // Integer 타입일 경우 그대로 사용
+                } else if (sessionPage instanceof String) {
+                    page = Integer.parseInt((String) sessionPage); // String 타입일 경우 변환
+                }
+            }
+        } catch (NumberFormatException e) {
+            page = 1; // 잘못된 값이 들어온 경우 기본값 설정
         }
 
+        // 검색 키워드 처리
         String key = "";
         if (request.getParameter("key") != null) {
             key = request.getParameter("key");
             session.setAttribute("key", key);
+        } else if (session.getAttribute("key") != null) {
+            Object sessionKey = session.getAttribute("key");
+            if (sessionKey instanceof String) {
+                key = (String) sessionKey;
+            }
         }
 
+        // 페이징 처리
         Paging paging = new Paging();
         paging.setPage(page);
         paging.setDisplayPage(10);
@@ -103,6 +141,7 @@ public class AdminService {
         paging.setTotalCount(count);
         paging.calPaging();
 
+        // 데이터 리스트 조회
         List<HotelVO> list = adao.getHotelList(paging, key);
         result.put("hotelList", list);
         result.put("paging", paging);
