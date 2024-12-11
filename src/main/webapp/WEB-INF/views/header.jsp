@@ -11,11 +11,13 @@
   <link rel="stylesheet" href="/css/start.css">
   <link rel="stylesheet" href="/css/place.css">
   <link rel="stylesheet" href="/css/plan.css">
+  <link rel="stylesheet" href="/css/wishlist.css">
   <script defer src="/script/start.js"></script>
   <script defer src="/script/place.js"></script>
   <script defer src="/script/hotel.js"></script>
   <script defer src="/script/plan.js"></script>
   <script defer src="/script/createPlan.js"></script>
+  <script defer src="/script/wishlist.js"></script>
     <%-- 날짜 선택용 캘린더 api --%>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>

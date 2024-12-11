@@ -18,7 +18,7 @@
         <form id="planCreateForm" method="post">
           <label>날짜</label>
           <input type="text" name="datefilter" value=""/><br/>
-          <div class="planCreateButton">
+          <div class="planButton">
             <button type="button" onclick="">미완성</button>
             <button type="button" onclick="togglePanel('planCreatePanel')">취소</button>
           </div>
@@ -33,7 +33,7 @@
           <label>불러올 코드 입력</label>
           <input type="text" name="loadPlanCode" required/><br>
           <!-- 날짜 입력과 날짜에 맞는 plan_seq 전달 -->
-          <div class="planLoadButton">
+          <div class="planButton">
             <button type="button" onclick="loadPlanByCode(this.form)">불러오기</button>
             <button type="button" onclick="togglePanel('planLoadPanel')">취소</button>
           </div>
@@ -110,7 +110,7 @@
             <option value="23">오후 11시</option>
             <option value="24">오전 00시</option>
           </select>
-          <div class="planAddButton">
+          <div class="planButton">
             <button type="button" onclick="addPlan()">추가</button>
             <button type="button" onclick="togglePanel('planAddPanel')">취소</button>
           </div>
@@ -221,7 +221,7 @@
                 <option value="23">오후 11시</option>
                 <option value="24">오전 00시</option>
               </select>
-              <div class="planAddButton">
+              <div class="planButton">
                 <button type="button" onclick="updatePlan()">수정</button>
                 <button type="button" onclick="togglePanel('planUpdatePanel')">취소</button>
               </div>
