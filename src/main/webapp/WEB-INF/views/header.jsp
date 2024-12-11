@@ -9,8 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Steps</title>
   <link rel="stylesheet" href="/css/start.css">
+  <link rel="stylesheet" href="/css/place.css">
   <link rel="stylesheet" href="/css/plan.css">
   <script defer src="/script/start.js"></script>
+  <script defer src="/script/place.js"></script>
   <script defer src="/script/plan.js"></script>
   <script defer src="/script/createPlan.js"></script>
     <%-- 날짜 선택용 캘린더 api --%>
@@ -25,6 +27,6 @@
     <div class="sidebar">
       <button class="step-button" onclick="location.href='placeSelect?first=true'">STEP 1<br>장소 선택</button>
       <button class="step-button" onclick="location.href='hotelSelect'">STEP 2<br>숙소 선택</button>
-      <button class="step-button" onclick="location.href='like'">STEP 3<br>찜꽁</button>
+      <button class="step-button" onclick="location.href='wishlist'">STEP 3<br>찜꽁</button>
       <button class="step-button" onclick="location.href='planForm'">STEP 4<br>일정</button>
     </div>
