@@ -25,11 +25,19 @@
             <!-- placeList 출력 -->
                     <c:forEach var="place" items="${hotList}">
                         <div class="item" data-place-seq="${place.place_seq}">
-                            <img src="/place_images/${place.savefilename}" alt="${place.place_name}" />
+                            <img src="/place_images/${place.savefilename}" alt="${place.place_name}" data-place-seq="${place.place_seq}" />
                             <div class="place-info">
                                 <h4>${place.place_name}</h4>
                                 <p>${place.place_description}</p>
                             </div>
+                            <button class="toggle-button" data-place-id="${place.place_seq}">
+                                <span class="icon-plus">+</span>
+                                <span class="icon-check" style="display: none;">✔</span>
+                            </button>
+                            <button class="toggle-button" data-place-id="${place.place_seq}">
+                                <span class="icon-plus">+</span>
+                                <span class="icon-check" style="display: none;">✔</span>
+                            </button>
                         </div>
                     </c:forEach>
         </div>

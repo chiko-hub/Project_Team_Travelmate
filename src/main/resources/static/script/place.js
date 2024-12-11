@@ -1,5 +1,5 @@
 /* 패널 열고 닫기 */
-function go_search( url ){
+function go_search(url) {
     document.frm.action = url;
     document.frm.submit();
 }
@@ -11,18 +11,20 @@ function resetSearch() {
 // 1. place 정보창(ajax)
 $(document).ready(function () {
     // 장소 아이템 클릭 이벤트
-    $('.place .item').on('click', function () {
+    $('.place img').on('click', function () {
         const placeSeq = $(this).data('place-seq'); // 클릭한 항목의 place_seq 가져오기
 
         // AJAX 요청
         $.ajax({
-            url: '/placeDetail',
+            url: '/placeDetail',   // 서버에서 상세 정보를 처리하는 URL
             type: 'GET',
             data: { place_seq: placeSeq },
-            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }, // AJAX 요청임을 서버에 알림
             success: function (data) {
-                $('#modalContent').html(data); // 받은 데이터를 모달에 삽입
-                $('#customModal').fadeIn(); // 모달 열기
+                // 받은 데이터를 모달에 삽입
+                $('#modalContent').html(data);
+                // 모달 열기
+                $('#customModal').fadeIn();
             },
             error: function () {
                 alert('상세 정보를 불러오는 데 실패했습니다.');
@@ -41,35 +43,57 @@ $(document).ready(function () {
             $('#customModal').fadeOut();
         }
     });
+
+    // 2. 좋아요(하트) 버튼 클릭 시 이미지 전환 및 AJAX 요청 통합
+    $(document).on('click', '#likeImageButton', function () {
+        const img = $(this); // 현재 클릭된 이미지
+        const placeSeq = img.data('place_seq'); // data-place_seq 값 가져오기
+
+        // 이미지 전환 로직
+        if (img.attr('src').includes("heartbefore.png")) {
+            img.attr('src', "/images/heartafter.png"); // heartafter 이미지로 변경
+        } else {
+            img.attr('src', "/images/heartbefore.png"); // heartbefore 이미지로 변경
+        }
+
+        // AJAX 요청
+        $.ajax({
+            url: '/like',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ place_seq: placeSeq }), // 'place_seq'를 데이터로 전송
+            success: function (response) {
+                if (response.success) {
+                    alert('좋아요가 추가되었습니다!');
+                } else {
+                    alert('좋아요 추가에 실패했습니다.');
+                }
+            },
+            error: function () {
+                console.error('좋아요 요청 중 오류 발생');
+            }
+        });
+    });
 });
 
+// 3. placeList 우측 버튼(+) 클릭 시 이미지 전환 및 AJAX 요청 통합
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButtons = document.querySelectorAll(".toggle-button");
 
-// [[2. 좋아요 버튼 클릭 시 이미지 전환 및 AJAX 요청 통합 ]]
-$(document).on('click', '#likeImageButton', function () {
-    const img = $(this); // 현재 클릭된 이미지
-    const place_seq = $(this).data('place_seq'); // data-place_seq 값 가져오기
+    toggleButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            button.classList.toggle("checked");
 
-    // 이미지 전환 로직
-    if (img.attr('src').includes("heartbefore.png")) {
-        img.attr('src', "/images/heartafter.png"); // heartafter 이미지로 변경
-    } else {
-        img.attr('src', "/images/heartbefore.png"); // heartbefore 이미지로 변경
-    }
-    // AJAX 요청
-    $.ajax({
-        url: '/like',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({ place_seq: place_seq }), // 데이터베이스와 일치하는 'place_seq'로 전달
-        success: function (response) {
-            if (response.success) {
-                alert('좋아요가 추가되었습니다!');
+            const iconPlus = button.querySelector(".icon-plus");
+            const iconCheck = button.querySelector(".icon-check");
+
+            if (button.classList.contains("checked")) {
+                iconPlus.style.display = "none";
+                iconCheck.style.display = "inline-block";
             } else {
-                alert('좋아요 추가에 실패했습니다.');
+                iconPlus.style.display = "inline-block";
+                iconCheck.style.display = "none";
             }
-        },
-        error: function () {
-            console.error('오류 발생');
-        }
+        });
     });
 });
