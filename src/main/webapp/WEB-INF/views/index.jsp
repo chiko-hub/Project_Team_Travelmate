@@ -13,7 +13,7 @@
     <div class="logo">MYRO</div>
     <nav>
         <a href="#">여행지</a>
-        <a href="#">고객지원</a>
+        <a href="customerForm">고객지원</a>
         <a href="#">이용방법</a>
         <c:choose>
             <c:when test="${empty loginUser}">

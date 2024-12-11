@@ -70,14 +70,18 @@ function go_save(){
 
 
 
-function go_mod(pseq){
-    location.href="adminProductUpdateForm?pseq=" + pseq;
+function go_mod_P(place_seq){
+    location.href="adminPlaceUpdateForm?place_seq=" + place_seq;
+}
+
+function go_mod_H(hotel_seq){
+    location.href="adminHotelUpdateForm?hotel_seq=" + hotel_seq;
 }
 
 
 
 function go_update(){
-    var theForm = document.productWriteFrm;
+    var theForm = document.placeWriteFrm;
     if( theForm.category.value==""){
         alert('상품분류를 선택하세요');
         theForm.category.focus();
@@ -90,7 +94,7 @@ function go_update(){
     } else if (theForm.content.value == "") {
         alert('상품상세를 입력하세요.'); 		theForm.content.focus();
     } else{
-        theForm.action = "adminProductUpdate";
+        theForm.action = "adminPlaceUpdate";
         theForm.submit();
     }
 
@@ -98,32 +102,30 @@ function go_update(){
 
 
 
-function deleteProduct(pseq){
+function deletePlace(place_seq) {
     var ans = confirm("정말로 삭제할까요?");
-    if( ans ){
-        location.href="deleteProduct?pseq=" + pseq;
+    if (ans) {
+        location.href = "deletePlace?place_seq=" + place_seq;
+    }
+
+function deleteHotel(hotel_seq) {
+    var ans = confirm("정말로 삭제할까요?");
+    if (ans) {
+        location.href = "deleteHotel?hotel_seq=" + hotel_seq;
     }
 
 
+    }
 
 
-
-
-
-
-}
-
-
-
-
-
-function go_rep(){
-    if( document.frm.reply.value==""){
-        alert("답변내용을 입력하세요");
-        document.frm.reply.focus();
-    }else{
-        document.frm.action = "adminQnaReplyUpdate";
-        document.frm.submit();
+    function go_rep() {
+        if (document.frm.reply.value == "") {
+            alert("답변내용을 입력하세요");
+            document.frm.reply.focus();
+        } else {
+            document.frm.action = "adminQnaReplyUpdate";
+            document.frm.submit();
+        }
     }
 }
 

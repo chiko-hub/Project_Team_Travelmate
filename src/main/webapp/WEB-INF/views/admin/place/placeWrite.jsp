@@ -5,24 +5,7 @@
 <article style="flex-direction: column">
 	<form name="placeWriteFrm" method="post"  action="adminPlaceWrite">
 			<h2> Place Write Form </h2>
-			<div class="field" >
-					<label>분류</label>
-					<div>
-						<select name="category" style="width:200px;height:25px;font-size:105%;">
-								<option value="">선택하세요</option>
-								<c:forEach items="${categoryList}" var="kind" varStatus="status">
-						    			<c:choose >
-						    				<c:when test="${dto.category == status.count}" >
-						    					<option value="${status.count}" selected>${kind}</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${status.count}" >${kind}</option>
-											</c:otherwise>
-										</c:choose>
-						   		</c:forEach>
-						</select>
-					</div>
-			</div>
+
 			<div class="field" >
 					<label>장소명</label>	<input type="text" name="name"  value="${placeVO.place_name}"  />
 			</div>

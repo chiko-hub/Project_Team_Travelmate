@@ -19,7 +19,7 @@
           <label>날짜</label>
           <input type="text" name="datefilter" value=""/><br/>
           <div class="planCreateButton">
-            <button type="button" onclick="">생성</button>
+            <button type="button" onclick="">미완성</button>
             <button type="button" onclick="togglePanel('planCreatePanel')">취소</button>
           </div>
         </form>
@@ -43,6 +43,7 @@
       <div id="planAddPanel" class="panel">
         <h3>새 계획 추가</h3>
         <form id="planAddForm" method="post" action="addPlan">
+          <input type="hidden" id="planSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
           <input type="hidden" name="plan_category" value="place"/> <!-- category 전달 임시 값 -->
           <label for="planName">장소</label>
           <input type="text" id="planName" name="plan_name" required/><br/>
@@ -55,7 +56,6 @@
               </option>
             </c:forEach>
           </select>
-          <input type="hidden" id="planSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
           <label for="planStartTime">시작시간</label>
           <select id="planStartTime" name="starttime" required>
             <option value="00" selected>오전 00시</option>
@@ -154,9 +154,10 @@
             <h3>기존 계획 수정</h3>
             <form id="planUpdateForm" method="post" action="updatePlan">
               <input type="hidden" id="planUpdateSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
+              <input type="hidden" id="planUpdateDetailSeq" name="plan_detail_seq"/> <!-- plan_detail 에 해당하는 번호 -->
               <input type="hidden" name="plan_category" value="place"/> <!-- category 전달 임시 값 -->
               <label for="planUpdateName">장소</label>
-              <input type="text" id="planUpdateName" value="" required/><br/>
+              <input type="text" id="planUpdateName" name="plan_name" required/><br/>
               <label for="planUpdateDate">날짜</label>
               <select id="planUpdateDate" name="plan_date" required>
                 <option value=""></option>
@@ -259,7 +260,7 @@
                         <%-- 수정/삭제 버튼 레이어 --%>
                         <div class="planActionButtons">
                           <button class="planUpdateButton" onclick="toggleUpdatePanel('${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}')">수정</button>
-                          <button class="planDeleteButton" onclick="deletePlan('${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}')">삭제</button>
+                          <button class="planDeleteButton" data-plan-detail-seq="${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}">삭제</button>
                         </div>
                       </div>
                       <%-- detailCount과 cellCount 값 업데이트 --%>

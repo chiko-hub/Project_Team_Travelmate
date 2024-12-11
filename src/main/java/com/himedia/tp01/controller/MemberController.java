@@ -111,8 +111,6 @@ public class MemberController {
         return url;
     }
 
-
-
     @GetMapping("/index")
     public String index(Model model) {return "index";}
 
@@ -152,5 +150,9 @@ public class MemberController {
         }
         return url;
     }
+
+    @GetMapping("/customerForm")
+    public String customerForm() {return "member/customerForm";}
+
 
 }

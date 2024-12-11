@@ -29,9 +29,6 @@ public class StartController {
         return "place/placeForm.jsp";
     }
 
-    @GetMapping("/like")
-    public String like() {
-        return "like/likeForm.jsp";
-    }
-
+    @GetMapping("/wishlist")
+    public String wishlist() {return "wishlist/wishlistForm";}
 }

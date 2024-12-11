@@ -4,17 +4,17 @@
 
 <article style="flex-direction: column">
 	<form name="placeWriteFrm" method="post"   action="adminPlaceUpdate">
-			<input type="hidden" name="place_seq" value="${dto.place_seq}">
+			<input type="hidden" name="place_seq" value="${placeVO.place_seq}">
 			<h2> Place Update Form </h2>
 
 			<div class="field" >
-					<label>장소명</label>	<input type="text" name="name"  value="${dto.name}" />
+					<label>장소명</label>	<input type="text" name="name"  value="${placeVO.place_name}" />
 			</div>
 
 			<div class="field"  style="display:block">
 					<label >Best Place</label>&nbsp;&nbsp;&nbsp;&nbsp;
 							<c:choose>
-								<c:when test='${dto.bestyn=="Y"}' >
+								<c:when test='${placeVO.bestyn=="Y"}' >
 									<input type="radio" name="bestyn" value="Y" checked="checked">사용
 							  		<input type="radio" name="bestyn" value="N">미사용
 								</c:when>
@@ -26,7 +26,7 @@
 
 					<label style="margin-left:100px;">Hot Place</label>&nbsp;&nbsp;&nbsp;&nbsp;
 							<c:choose>
-								<c:when test='${dto.hotyn=="Y"}' >
+								<c:when test='${placeVO.hotyn=="Y"}' >
 									<input type="radio" name="useyn" value="Y" checked="checked">사용
 								 	<input type="radio" name="useyn" value="N">미사용
 								</c:when>
@@ -46,7 +46,7 @@
 						<input type="hidden" name="image" id="image" value="${placeVO.place_image}"  >
 						<input type="hidden" name="savefilename" id="savefilename" value="${placeVO.savefilename}" >
 						<div id="filename">
-							${dto.image}
+							${placeVO.place_image}
 							<img src="/place_images/${placeVO.savefilename}" width="150" />
 						</div>
 
