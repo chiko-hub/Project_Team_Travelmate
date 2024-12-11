@@ -1,0 +1,381 @@
+/*body {*/
+/*    display: flex;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    font-family: Arial, sans-serif;*/
+/*}*/
+
+
+/*.wcontainer {*/
+/*    display: flex; !* 좌우 배치를 위한 flexbox *!*/
+/*    gap: 10px; !* 왼쪽과 오른쪽 사이 간격 *!*/
+/*    width: 100%; !* 전체 박스의 너비 *!*/
+/*    padding: 10px; !* 상자 내부 여백 *!*/
+/*    background-color:whitesmoke !* 상자 배경색 *!*/
+
+/*}*/
+
+
+/*.left {*/
+/*    display: flex;*/
+/*    flex: 1; !* 왼쪽 박스는 하나의 칸 *!*/
+
+/*}*/
+
+/*.right {*/
+/*    flex: 2; !* 오른쪽 박스는 두 칸을 차지 *!*/
+/*    display: flex;*/
+/*    flex-direction: column; !* 세로 방향으로 나눔 *!*/
+
+/*}*/
+
+/*.boxleft{*/
+/*    width:95px;*/
+/*    border: 1px solid black;*/
+/*    margin-right: 10px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+
+/*}*/
+
+/*.boxRight{*/
+/*    border: 1px solid black;*/
+/*    width:150px;*/
+/*    width: 200px;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.wishlistItem{*/
+/*    display: flex;*/
+/*    !*border: 1px solid black;*!*/
+/*    width: 300px;*/
+/*    height: 170px;*/
+/*    margin-bottom: 30px;*/
+/*    cursor: pointer;*/
+/*    border-radius: 8px;*/
+/*    transition: background-color 0.3s;*/
+
+/*}*/
+
+/*.wishlistItem:hover {*/
+/*    background-color: #f0f0f0;*/
+/*}*/
+
+/*.subBox1{*/
+/*    border: 1px solid black;*/
+/*    height:60px;*/
+/*    width: 200px;*/
+/*}*/
+/*.subBox2{*/
+/*    border: 1px solid black;*/
+/*    height:104px;*/
+/*    width: 200px;*/
+/*}*/
+
+
+
+/*!* 상세 보기 스타일 *!*/
+/*.detailsContainer {*/
+/*    flex: 1;*/
+/*    padding: 20px;*/
+/*}*/
+
+/*.detailsContainer h2 {*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*.detailsContainer p {*/
+/*    font-size: 14px;*/
+/*    color: #555;*/
+/*}*/
+
+
+
+
+
+
+/*-------------------------*/
+
+/*<2번>*/
+/*    !* 전체 컨테이너 *!*/
+/*.mainContainer {*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    font-family: Arial, sans-serif;*/
+/*}*/
+
+/*!* 찜 목록 스타일 (상세 보기 스타일로 변경) *!*/
+/*.wcontainer {*/
+/*    width: 350px;*/
+/*    padding: 20px;*/
+/*    border-right: 1px solid #ccc;*/
+/*}*/
+
+/*.wcontainer h2 {*/
+/*    margin-bottom: 40px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.wcontainer .wishlist {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*.wcontainer .wishlistItem {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    background-color: #f9f9f9;*/
+/*    transition: background-color 0.3s;*/
+/*    cursor: pointer;*/
+/*    height:40px;*/
+/*    margin-bottom:15px;*/
+/*}*/
+
+
+/*.wcontainer .wishlistItem:last-child {*/
+/*    margin-bottom: 0; !* 마지막 항목은 아래쪽 여백 제거 *!*/
+/*}*/
+
+/*.wcontainer .wishlistItem:hover {*/
+/*    background-color: #eaeaea;*/
+/*}*/
+
+/*!* 상세 보기 스타일 (찜 목록 스타일로 변경) *!*/
+/*.detailsContainer {*/
+/*    flex: 1;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 20px;*/
+/*    padding: 10px;*/
+/*}*/
+
+/*.detailsContainer h2 {*/
+/*    font-size: 18px;*/
+/*    border-bottom: 2px solid #ccc;*/
+/*    padding-bottom: 5px;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*.detailsContentBox {*/
+/*    border: 1px solid #ccc;*/
+/*    padding: 15px;*/
+/*    border-radius: 5px;*/
+/*    background-color: #fff;*/
+/*    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*.detailsContentBox h3 {*/
+/*    margin: 0;*/
+/*    font-size: 16px;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+
+/*.detailsContentBox p {*/
+/*    margin: 0;*/
+/*    font-size: 14px;*/
+/*    color: #555;*/
+/*}*/
+/*-------------------------*/
+
+
+/*<3번쨰>*/
+/*.mainContainer {*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    font-family: Arial, sans-serif;*/
+/*}*/
+
+/*!* 찜 목록 스타일 *!*/
+/*.wcontainer {*/
+/*    width: 350px;*/
+/*    padding: 20px;*/
+/*    border-right: 1px solid #ccc;*/
+/*}*/
+
+/*.wcontainer h2 {*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*.wcontainer .wishlist {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*.wcontainer .wishlistItem {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    background-color: #f9f9f9;*/
+/*    transition: background-color 0.3s;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.wcontainer .wishlistItem:hover {*/
+/*    background-color: #eaeaea;*/
+/*}*/
+
+/*!* 상세 보기 컨테이너 *!*/
+/*.detailsContainer {*/
+/*    flex: 1;*/
+/*    padding: 20px;*/
+/*    display: flex;*/
+/*    border-left: 1px solid #ccc;*/
+/*}*/
+
+/*!* 상세 보기 왼쪽 박스 *!*/
+/*.detailsLeft {*/
+/*    flex: 1;*/
+/*    border-right: 1px solid #ccc;*/
+/*    padding: 10px;*/
+/*    background-color: #f9f9f9;*/
+/*}*/
+
+/*!* 상세 보기 오른쪽 박스 *!*/
+/*.detailsRight {*/
+/*    flex: 2;*/
+/*    padding: 10px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*.detailsRight .detailsContentBox {*/
+/*    flex: 1;*/
+/*    border: 1px solid #ccc;*/
+/*    padding: 15px;*/
+/*    border-radius: 5px;*/
+/*    background-color: #fff;*/
+/*    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*.detailsContentBox h3 {*/
+/*    margin: 0;*/
+/*    font-size: 16px;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+
+/*.detailsContentBox p {*/
+/*    margin: 0;*/
+/*    font-size: 14px;*/
+/*    color: #555;*/
+/*}*/
+
+
+
+.mainContainer {
+    display: flex;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* 찜 목록 스타일 */
+.wcontainer {
+    width: 350px;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
+.wcontainer h2 {
+    margin-bottom: 10px;
+}
+
+.wcontainer .wishlist {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+}
+
+.wcontainer .wishlistItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    height: 40px;
+}
+
+.wcontainer .wishlistItem:first-child {
+margin-top: 30px;
+}
+
+.wcontainer .wishlistItem:hover {
+    background-color: #eaeaea;
+}
+
+/* 상세 보기 스타일 */
+.detailsContainer {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.detailsWrapper {
+    display: flex;
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 500px;
+}
+
+/* 왼쪽 1칸 */
+.detailsLeft {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+/* 오른쪽 2칸 */
+.detailsRight {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.detailsRight .subBox {
+    flex: 1;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.detailsRight .subBox:last-child {
+    border-bottom: none;
+}
+
+/* 텍스트 스타일 */
+.detailsWrapper h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.detailsWrapper p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+
