@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.himedia.tp01.dao.IAdminHotelDao">
+
+    <!-- getAllCount 수정 -->
+    <select id="getAllCount" parameterType="com.himedia.tp01.dto.QueryParameter" resultType="int">
+        select count(*)
+        from ${tableName}
+        where ${columnName} like concat('%', #{key}, '%')
+    </select>
+
+
+    <select id="getHotelList" resultType="com.himedia.tp01.dto.HotelVO">
+        select *
+        from hotel
+        where hotel_name like concat('%', #{param2}, '%')
+        order by hotel_seq desc
+            limit #{param1.displayRow} offset #{param1.startNum}
+    </select>
+
+
+    <insert id="insertHotel" parameterType="com.himedia.tp01.dto.HotelVO">
+        insert into hotel(hotel_name, hotel_location, hotel_description, hotel_image, hotel_savefilename)
+        values(#{hotel_name},#{hotel_location},#{hotel_description},#{hotel_image},#{hotel_savefilename})
+    </insert>
+
+
+
+
+
+</mapper>

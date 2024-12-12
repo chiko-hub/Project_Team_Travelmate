@@ -15,9 +15,7 @@ function go_write_P(){
     location.href="adminPlaceWriteForm";
 }
 
-function go_write_H(){
-    location.href="adminHotelWriteForm";
-}
+
 
 // 이미지 업로드
 function uploadImage() {
