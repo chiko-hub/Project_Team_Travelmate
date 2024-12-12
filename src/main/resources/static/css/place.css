@@ -1,80 +1,181 @@
 .main {
-    min-height: 100vh; /* 화면 높이에 맞춤 */
-    box-sizing: border-box; /* 패딩 포함 계산 */
-    margin: 0 auto; /* 중앙 정렬 */
-    padding-bottom: 20px; /* 추가 여백 설정 */
-    overflow-y: auto; /* 내용이 화면을 넘어갈 경우 세로 스크롤 표시 */
+    flex: 1;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+    background: #ffffff;
+    display: flex;
+}
+
+.searchContainer {
+    flex: 1;
 }
 
 .row {
     margin-bottom: 0; /* 불필요한 여백 제거 */
-    width: 60%; /* 가로 폭을 70%로 제한 */
+    flex: 1;
 }
 
 .selects {
-    margin: 0; /* 위아래 여백을 제거 */
-    padding: 0; /* 패딩 제거 */
-    position: relative; /* 버튼을 올리기 위해 필요 */
-    left: 0; /* 화면 좌측으로 이동 */
-    text-align: left; /* 텍스트 및 버튼 정렬 */
-    width: 60%; /* 가로 폭을 70%로 제한 */
+    display: flex;
+    gap: 5px; /* 버튼 간격 */
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.selects button,
+.selects input[type="button"] {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;
 }
 
 /* 장소들을 감싸는 컨테이너 */
 .place, .hotel {
     display: flex;
     flex-direction: column;
-    width: 60%; /* 가로 폭을 70%로 제한 */
-    padding: 10px;
     box-sizing: border-box; /* 패딩 포함 계산 */
     margin-bottom: 0; /* 불필요한 여백 제거 */
 }
 
-.searchForm {
-    width: 60%; /* 가로 폭을 70%로 제한 */
+
+.searchWrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #2e8b57;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.searchInput {
+    flex-grow: 1;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    outline: none;
+    background-color: transparent;
+}
+
+.searchButton {
+    border: none;
+    background-color: #2e8b57;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    transition: background-color 0.3s ease;
 }
 
 /* 개별 장소 카드 */
 .item {
-    display: flex; /* 이미지와 텍스트를 가로로 정렬 */
-    align-items: center; /* 이미지와 텍스트 세로 가운데 정렬 */
+    display: flex; /* 이미지, 텍스트, 버튼을 가로로 정렬 */
+    justify-content: space-between; /* 각 영역 간 간격 유지 */
+    align-items: center; /* 세로 가운데 정렬 */
     padding: 10px;
     border: 1px solid #2e8b57;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
-    position: relative; /* 버튼 위치를 위한 기준 */
+    background-color: #fff;
 }
 
 /* 장소 카드 안의 이미지 */
-.item img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover; /* 이미지 비율 유지 */
+.placeImage, .hotelImage {
+    width: 80px; /* 이미지 크기 */
+    height: 80px;
+    border: 1px solid #2e8b57; /* 영역 구분 */
     border-radius: 8px; /* 둥근 모서리 */
-    margin-right: 15px; /* 이미지와 텍스트 사이 간격 */
+    overflow: hidden; /* 이미지 넘침 방지 */
+    flex-shrink: 0; /* 크기 고정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeImage img .hotelImage img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지 */
 }
 
 /* 텍스트 영역 */
 .placeText, .hotelText {
-    flex: 1;
-    min-height: 60px; /* 일정한 최소 높이 설정 */
+    flex: 1; /* 텍스트가 남은 공간을 차지 */
+    margin: 0 5px; /* 이미지와 버튼 사이 간격 */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* 텍스트가 세로로 중앙에 정렬되도록 */
+    justify-content: center; /* 세로 중앙 정렬 */
     text-align: left;
+    border: 1px solid #2e8b57; /* 영역 구분 */
+    border-radius: 8px;
+    padding: 8px;
 }
 
 .placeName, .hotelName {
     font-size: 16px;
     font-weight: bold;
     color: #333;
+    margin-bottom: 5px; /* 이름과 설명 간격 */
 }
 
 .placeDescription, .hotelDescription {
     font-size: 14px;
     color: #777;
 }
+
+/* 버튼 영역 */
+.placeButton, .hotelButton {
+    width: 30px; /* 버튼 영역 크기 고정 */
+    height: 30px;
+    border: 1px solid #2e8b57; /* 영역 구분 */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* 크기 고정 */
+    background-color: #fff; /* 버튼 영역 배경 */
+}
+
+/* toggle-button 기본 크기와 위치 */
+.toggle-button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: darkgray;
+    border: none;
+    border-radius: 50%; /* 동그란 모양 */
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+}
+
+/* 버튼 클릭 시 스타일 */
+.toggle-button.checked {
+    background-color: deepskyblue; /* 하늘색 배경 */
+}
+
+/* "+"와 "✔" 아이콘 */
+.icon-plus {
+    display: inline-block;
+}
+
+.icon-check {
+    display: none;
+}
+
 
 /* 모달 배경 */
 .modal {
@@ -128,35 +229,4 @@
     width: 40px;
     height: 40px;
     object-fit: contain; /* 필요에 따라 이미지 비율 유지 */
-}
-
-/* toggle 버튼 스타일 */
-.toggle-button {
-    background-color: darkgray;
-    border: none;
-    border-radius: 50%; /* 동그란 버튼 */
-    width: 30px;
-    height: 30px;
-    color: white;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
-    position: absolute; /* 부모 요소 기준으로 위치 설정 */
-    right: 10px; /* 우측에 버튼 위치 */
-    top: 50%; /* 수직 가운데 정렬 */
-    transform: translateY(-50%);
-}
-
-/* 버튼 클릭 시 스타일 */
-.toggle-button.checked {
-    background-color: deepskyblue; /* 하늘색 배경 */
-}
-
-/* "+"와 "✔" 아이콘 */
-.icon-plus {
-    display: inline-block;
-}
-
-.icon-check {
-    display: none;
 }
