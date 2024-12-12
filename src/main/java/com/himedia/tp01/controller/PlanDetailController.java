@@ -88,7 +88,6 @@ public class PlanDetailController {
     @ResponseBody
     public Map<String, Object> deletePlan(@RequestBody Map<String, Integer> requestBody) {
         int planDetailSeq = requestBody.get("planDetailSeq");
-        System.out.println("전달된 planDetailSeq : " + planDetailSeq);
         Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
 
         // 세부 계획 정보 가져오기

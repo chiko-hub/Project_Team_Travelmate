@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.himedia.tp01.dao.IWishlistDao">
-    <select id="getWishlist" resultType="com.himedia.tp01.dto.WishlistVO">
+    <select id="getWishlistByUserid" resultType="com.himedia.tp01.dto.WishlistVO">
         SELECT * FROM wishlist WHERE userid=#{param1}
     </select>
 
@@ -12,4 +12,12 @@
         INSERT INTO wishlist(wishlist_title, wishlist_category, userid)
         VALUES(#{wishlist_title}, #{wishlist_category}, #{userid})
     </insert>
+
+    <select id="getWishlistByWishlistSeq" resultType="com.himedia.tp01.dto.WishlistVO">
+        SELECT * FROM wishlist WHERE wishlist_seq=#{param1}
+    </select>
+
+    <delete id="deleteWishlist" parameterType="_int">
+        DELETE FROM wishlist WHERE wishlist_seq=#{param1}
+    </delete>
 </mapper>

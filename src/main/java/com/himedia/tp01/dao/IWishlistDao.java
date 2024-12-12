@@ -8,6 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface IWishlistDao {
-    List<WishlistVO> getWishlist(String userid); // wishlist 조회
+    List<WishlistVO> getWishlistByUserid(String userid); // userid 로 wishlist 조회
     void addWishlist(WishlistVO wishlistvo); // wishlist 추가
+    WishlistVO getWishlistByWishlistSeq(int wishlistSeq); // wishlistSeq 로 wishlist 조회
+    void deleteWishlist(int wishlistSeq); // wishlist 삭제
 }

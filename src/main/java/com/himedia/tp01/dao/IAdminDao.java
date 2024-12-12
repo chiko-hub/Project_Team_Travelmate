@@ -16,10 +16,12 @@ public interface IAdminDao {
     List<PlaceVO> getPlaceList(Paging paging, String key);
     void insertPlace(PlaceVO placevo);
     void updatePlace(PlaceVO placevo);
+    void deletePlace(int place_seq);
 
     List<HotelVO> getHotelList(Paging paging, String key);
     void insertHotel(HotelVO hotelvo);
     void updateHotel(HotelVO hotelvo);
 
     List<MemberVO> getMemberList(Paging paging, String key);
+
 }

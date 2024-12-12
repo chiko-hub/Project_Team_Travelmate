@@ -155,7 +155,7 @@ AdminService as;
         if( result.getFieldError("place_name") != null )
             model.addAttribute("message", "장소 이름을 입력하세요");
         else if( result.getFieldError("place_location") != null )
-            model.addAttribute("message", "장소 주소를 입력하세요");
+            model.addAttribute("message", "장소 위치를 입력하세요");
         else if( (result.getFieldError("place_description") != null) )
             model.addAttribute("message", "장소 설명을 입력하세요");
         else if( (result.getFieldError("place_image") != null) || (result.getFieldError("savefilename") != null)  )
@@ -166,6 +166,12 @@ AdminService as;
             url = "redirect:/adminPlaceDetail?place_seq=" + placevo.getPlace_seq();
         }
         return url;
+    }
+
+    @GetMapping("/adminPlaceDelete")
+    public String adminPlaceDelete(@RequestParam("place_seq") int place_seq) {
+        as.deletePlace(place_seq); // 서비스 계층 호출
+        return "redirect:/adminPlaceList"; // 삭제 후 목록으로 리다이렉트
     }
 
     @GetMapping("/adminHotelList")
