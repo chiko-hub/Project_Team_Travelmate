@@ -9,9 +9,8 @@
                 <c:when test="${not empty wishlist}">
                     <c:forEach var="wishlistItem" items="${wishlist}">
                         <div class="wishlistItem">
-                            <input type="hidden" value="${wishlistItem.wishlist_seq}"/>
                             <div class="wishlistName" onclick="">${wishlistItem.wishlist_title}</div>
-                            <button class="removeWishlistButton">×</button>
+                            <button class="removeWishlistButton" data-wishlist-seq="${wishlistItem.wishlist_seq}">×</button>
                         </div>
                     </c:forEach>
                 </c:when>
