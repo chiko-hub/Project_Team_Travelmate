@@ -94,15 +94,13 @@ AdminService as;
     @PostMapping("/adminPlaceWrite")
     public String adminPlaceWrite(@ModelAttribute("dto") @Valid PlaceVO placevo, BindingResult result, Model model, HttpSession session) {
         String url = "admin/place/placeWrite";
-        String categoryList[] = { "Place", "Hotel"};
-        model.addAttribute("categoryList", categoryList);
 
         if( result.getFieldError("place_name") != null )
             model.addAttribute("message", "장소 이름을 입력하세요");
         else if( result.getFieldError("place_location") != null )
-            model.addAttribute("message", "장소 주소를 입력하세요");
+            model.addAttribute("message", "위치를 입력하세요");
         else if( (result.getFieldError("place_description") != null) )
-            model.addAttribute("message", "장소 설명을 입력하세요");
+            model.addAttribute("message", "상세 설명을 입력하세요");
         else if( (result.getFieldError("place_image") != null) || (result.getFieldError("savefilename") != null)  )
             model.addAttribute("message", "파일을 선택하세요");
 

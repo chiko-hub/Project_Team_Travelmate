@@ -21,8 +21,5 @@ public interface IAdminDao {
     void insertHotel(HotelVO hotelvo);
     void updateHotel(HotelVO hotelvo);
 
-
-    int getAllCount(String member, String name, String key);
-
     List<MemberVO> getMemberList(Paging paging, String key);
 }
