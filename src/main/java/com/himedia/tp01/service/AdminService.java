@@ -166,6 +166,9 @@ public class AdminService {
     public void updateHotel(HotelVO hotelvo) {
         adao.updateHotel( hotelvo );
     }
+    public void deleteHotel(int hotel_seq) {
+        adao.deleteHotel( hotel_seq );
+    }
 
     public HashMap<String, Object> adminMemberList(HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
@@ -209,5 +212,7 @@ public class AdminService {
 
         return result;
     }
+
+
 }
 

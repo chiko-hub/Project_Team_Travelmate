@@ -21,6 +21,7 @@ public interface IAdminDao {
     List<HotelVO> getHotelList(Paging paging, String key);
     void insertHotel(HotelVO hotelvo);
     void updateHotel(HotelVO hotelvo);
+    void deleteHotel(int hotel_seq);
 
     List<MemberVO> getMemberList(Paging paging, String key);
 

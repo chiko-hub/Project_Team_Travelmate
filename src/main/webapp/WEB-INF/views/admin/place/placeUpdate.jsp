@@ -7,10 +7,6 @@
 			<input type="hidden" name="place_seq" value="${placeVO.place_seq}">
 			<h2> Place Update Form </h2>
 
-			<div class="field" >
-					<label>장소명</label>	<input type="text" name="place_name"  value="${placeVO.place_name}" />
-			</div>
-
 			<div class="field"  style="display:block">
 					<label >Best Place</label>&nbsp;&nbsp;&nbsp;&nbsp;
 							<c:choose>
@@ -36,6 +32,15 @@
 								</c:otherwise>
 							</c:choose>
 			</div>
+
+			<div class="field" >
+					<label>장소명</label>	<input type="text" name="place_name"  value="${placeVO.place_name}" />
+			</div>
+
+			<div class="field" >
+				<label>위치</label>  <input type="text" name="place_location"  value="${placeVO.place_location}"  />
+			</div>
+
 			<div class="field" >
 					<label>상세설명</label>
 					<textarea name="place_description" rows="8" style="flex:4;">${placeVO.place_description}</textarea>

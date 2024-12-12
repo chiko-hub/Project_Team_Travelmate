@@ -53,6 +53,10 @@
         update hotel set hotel_name=#{hotel_name}, hotel_location=#{hotel_location}, hotel_description=#{hotel_description}, hotel_image=#{hotel_image}, hotel_savefilename=#{hotel_savefilename} where hotel_seq=#{hotel_seq}
     </select>
 
+    <delete id="deleteHotel" parameterType="int">
+        delete from hotel where hotel_seq = #{hotel_seq}
+    </delete>
+
     <select id="getMemberList"  resultType="com.himedia.tp01.dto.MemberVO">
         select * from member where name like concat('%', #{param2}, '%') order by indate desc
             limit #{param1.displayRow} offset #{param1.startNum}

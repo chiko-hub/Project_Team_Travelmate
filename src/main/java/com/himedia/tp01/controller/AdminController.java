@@ -203,6 +203,12 @@ AdminService as;
         return "admin/hotel/hotelWrite";
     }
 
+    @GetMapping("/adminHotelDelete")
+    public String adminHotelDelete(@RequestParam("hotel_seq") int hotel_seq) {
+        as.deleteHotel(hotel_seq); // 서비스 계층 호출
+        return "redirect:/adminHotelList"; // 삭제 후 목록으로 리다이렉트
+    }
+
 
     @GetMapping("/adminMemberList")
     public ModelAndView adminMemberList( HttpServletRequest request ) {
