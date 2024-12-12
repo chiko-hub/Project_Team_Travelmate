@@ -29,5 +29,8 @@ public class MemberService {
     public void updateMemberPlanCode(String userid, String planCode) {
         mdao.updateMemberPlanCode(userid, planCode);
     }
-}
+
+    public void deleteMember(String userid) {mdao.deleteMember(userid);}
+    }
+
 

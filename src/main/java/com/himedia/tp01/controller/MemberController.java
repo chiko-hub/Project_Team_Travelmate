@@ -123,6 +123,16 @@ public class MemberController {
         return "index";
     }
 
+    @GetMapping("/deleteMember")
+    public String deleteMember(HttpServletRequest request, Model model) {
+            HttpSession session = request.getSession();
+            MemberVO mdto = (MemberVO) session.getAttribute("loginUser");
+            ms.deleteMember( mdto.getUserid() );
+            model.addAttribute("message" , "회원탈퇴가 완료되었습니다.");
+            return "member/loginForm";
+        }
+
+
     @GetMapping("/updateMemberForm")
     public ModelAndView updateMemberForm(HttpServletRequest request, Model model) {
         ModelAndView mav = new ModelAndView();

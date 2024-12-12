@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#idcheckButton').click(function(){
+			$('.idcheckButton').click(function(){
 				var formselect = $('#joinFrm')[0];
 				var formdata = new FormData( formselect );
 				$.ajax({
@@ -51,10 +51,10 @@
 						<div id="idmessage"></div>
 						<input type="hidden" name="reid" id="reid" value="${reid}">
 				</div>
-				<div class="field"><label>패스워드</label><br><input type="password" size="44" style="height:40px;
+				<div class="field"><label>비밀번호</label><br><input type="password" size="44" style="height:40px;
 				outline: none;border: 1px solid #cccccc;" name="pwd"></div>
 				<div class="field">
-					<label>패스워드 확인</label><input type="password" name="pwdCheck" size="44" style="height:40px; outline: none;border: 1px solid #cccccc;"></div>
+					<label>비밀번호 확인</label><input type="password" name="pwdCheck" size="44" style="height:40px; outline: none;border: 1px solid #cccccc;"></div>
 				<div class="field"><label>이름<br></label><input type="text" name="name" size="44" style="height:40px;
                   outline: none;border: 1px solid #cccccc;" value="${dto.name}"/></div>
 				<div class="field"><label>전화번호</label><br><input type="text" name="phone" size="44" style="height:40px; outline: none;
