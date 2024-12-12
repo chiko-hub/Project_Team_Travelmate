@@ -37,7 +37,7 @@
                 </form>
                 <form action="joinForm" method="get" name="joinForm">
                     <div class="signup">
-                        아직 회원이 아니세요? <a href="joinForm">회원가입</a>
+                        아직 회원이 아니세요? <a href="joinForm" style="color:#2e8b57">회원가입</a>
                     </div>
                 </form>
             </div>

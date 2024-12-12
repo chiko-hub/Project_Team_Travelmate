@@ -22,5 +22,7 @@
         UPDATE member SET plan_code=#{param2} WHERE userid=#{param1}
     </update>
 
-
+    <delete id="deleteMember" >
+        delete from member where userid=#{userid}
+    </delete>
 </mapper>

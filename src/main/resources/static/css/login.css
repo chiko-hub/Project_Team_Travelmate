@@ -30,7 +30,7 @@ h3 {
 
 .field label{
     font-size: 13px;
-    color:#d1d5db;
+    color:#aaaaaa;
     text-align:left;
 
 }
@@ -62,14 +62,14 @@ h3 {
     display: block;
     text-align: right;
     font-size: 12px;
-    color: #007bff;
+    color:#2e8b57;
     text-decoration: none;
     margin-bottom: 15px;
 }
 
 .btn {
     width: 100%;
-    background-color: #00bcd4;
+    background-color:#2e8b57;
     color: white;
     padding: 10px;
     border: none;
@@ -88,11 +88,11 @@ h3 {
     color:white;
     font-size:17px;
     font-weight: bold;
-    background-color: #007bff;
+    background-color: #2e8b57;
 }
 
 .btn:hover {
-    background-color: #0097a7;
+    background-color: #2E4F33;
 }
 
 .signup {
@@ -102,7 +102,7 @@ h3 {
 }
 
 .signup a {
-    color: #007bff;
+    color: #2e8b57;
     text-decoration: none;
 }
 
