@@ -21,11 +21,16 @@
             limit #{param1.displayRow} offset #{param1.startNum}
     </select>
 
-
     <insert id="insertHotel" parameterType="com.himedia.tp01.dto.HotelVO">
         insert into hotel(hotel_name, hotel_location, hotel_description, hotel_image, hotel_savefilename)
         values(#{hotel_name},#{hotel_location},#{hotel_description},#{hotel_image},#{hotel_savefilename})
     </insert>
+
+    <update id="updateHotel" parameterType="com.himedia.tp01.dto.HotelVO">
+        update hotel set hotel_name=#{hotel_name}, hotel_location=#{hotel_location},
+                         hotel_description=#{hotel_description}, hotel_image=#{hotel_image}, hotel_savefilename=#{hotel_savefilename}
+                     where hotel_seq=#{hotel_seq}
+    </update>
 
 
 

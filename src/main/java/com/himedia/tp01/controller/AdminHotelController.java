@@ -1,7 +1,9 @@
 package com.himedia.tp01.controller;
 
 import com.himedia.tp01.dto.HotelVO;
+import com.himedia.tp01.dto.PlaceVO;
 import com.himedia.tp01.service.AdminHotelService;
+import com.himedia.tp01.service.HotelService;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -87,6 +89,39 @@ public class AdminHotelController {
         }
 
         return result;
+    }
+
+    @Autowired
+    HotelService hs;
+    @GetMapping("/adminHotelUpdateForm")
+    public ModelAndView adminHotelUpdateForm( @RequestParam("hotel_seq") int hotel_seq ) {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("hotelVO", hs.getHotel(hotel_seq));
+        // HotelService 의 getHotel 메서드 사용
+        mav.setViewName("admin/hotel/hotelUpdate");
+        return mav;
+    }
+
+
+
+    @PostMapping("/adminHotelUpdate")
+    public String adminHotelUpdate(@ModelAttribute("dto") @Valid HotelVO hotelvo, BindingResult result, Model model, HttpSession session) {
+        String url = "admin/hotel/hotelUpdate";
+
+        if( result.getFieldError("hotel_name") != null )
+            model.addAttribute("message", "호텔 이름을 입력하세요");
+        else if( result.getFieldError("hotel_location") != null )
+            model.addAttribute("message", "호텔의 주소를 입력하세요");
+        else if( (result.getFieldError("hotel_description") != null) )
+            model.addAttribute("message", "호텔의 설명내용을 작성하세요");
+        else if( (result.getFieldError("hotel_image") != null) || (result.getFieldError("hotel_savefilename") != null)  )
+            model.addAttribute("message", "파일을 선택하세요");
+        else{
+            ahs.updateHotel(hotelvo);
+            url = "redirect:/adminHotelDetail?hotel_seq=" + hotelvo.getHotel_seq();
+        }
+        return url;
     }
 
 

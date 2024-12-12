@@ -87,4 +87,7 @@ public class AdminHotelService {
     public void insertHotel(HotelVO hotelvo) {
         ahdao.insertHotel( hotelvo );
     }
+    public void updateHotel(HotelVO hotelvo) { ahdao.updateHotel(hotelvo); }
+
+
 }
