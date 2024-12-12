@@ -8,7 +8,7 @@
 			<h2> Place Update Form </h2>
 
 			<div class="field" >
-					<label>장소명</label>	<input type="text" name="name"  value="${placeVO.place_name}" />
+					<label>장소명</label>	<input type="text" name="place_name"  value="${placeVO.place_name}" />
 			</div>
 
 			<div class="field"  style="display:block">
@@ -27,23 +27,23 @@
 					<label style="margin-left:100px;">Hot Place</label>&nbsp;&nbsp;&nbsp;&nbsp;
 							<c:choose>
 								<c:when test='${placeVO.hotyn=="Y"}' >
-									<input type="radio" name="useyn" value="Y" checked="checked">사용
-								 	<input type="radio" name="useyn" value="N">미사용
+									<input type="radio" name="hotyn" value="Y" checked="checked">사용
+								 	<input type="radio" name="hotyn" value="N">미사용
 								</c:when>
 								<c:otherwise>
-									<input type="radio" name="useyn" value="Y" >사용
-							  		<input type="radio" name="useyn" value="N" checked="checked">미사용
+									<input type="radio" name="hotyn" value="Y" >사용
+							  		<input type="radio" name="hotyn" value="N" checked="checked">미사용
 								</c:otherwise>
 							</c:choose>
 			</div>
 			<div class="field" >
 					<label>상세설명</label>
-					<textarea name="content" rows="8" style="flex:4;">${placeVO.place_description}</textarea>
+					<textarea name="place_description" rows="8" style="flex:4;">${placeVO.place_description}</textarea>
 			</div>
 			<div class="field" >
 					<label>장소 이미지</label>
 					<div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start">
-						<input type="hidden" name="image" id="image" value="${placeVO.place_image}"  >
+						<input type="hidden" name="place_image" id="image" value="${placeVO.place_image}"  >
 						<input type="hidden" name="savefilename" id="savefilename" value="${placeVO.savefilename}" >
 						<div id="filename">
 							${placeVO.place_image}

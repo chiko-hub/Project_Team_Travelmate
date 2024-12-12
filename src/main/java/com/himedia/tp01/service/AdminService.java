@@ -15,7 +15,7 @@ import java.util.List;
 public class AdminService {
 
     @Autowired
-    private IAdminDao adao;
+    IAdminDao adao;
 
     public AdminVO getAdmin(String adminid) {
         return adao.getAdmin(adminid);
