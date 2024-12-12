@@ -50,7 +50,7 @@ public class PlaceController {
     }
 
     @GetMapping("/selectBest")
-    public ModelAndView selectBest(HttpServletRequest request, Model model) {
+    public ModelAndView selectBest(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         HashMap<String, Object> result = ps.selectBestList(request);
 
@@ -62,7 +62,6 @@ public class PlaceController {
         System.out.println("bestList: " + result.get("bestList"));
         mav.addObject("paging", result.get("paging"));
         mav.addObject("key", result.get("key"));
-        mav.addObject("viewType", "bestList"); // 뷰 타입 추가
         mav.setViewName("place/placeSelectBest");
         return mav;
     }
@@ -83,9 +82,8 @@ public class PlaceController {
         return mav;
     }
 
-
     @GetMapping("/placeSearch")
-    public ModelAndView getPlaceSearch(HttpServletRequest request, Model model) {
+    public ModelAndView getPlaceSearch(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
 
@@ -114,12 +112,11 @@ public class PlaceController {
     }
 
     @GetMapping("/placeDetail")
-    public ModelAndView placeDetail(@RequestParam("place_seq") int place_seq, HttpServletRequest request) {
+    public ModelAndView placeDetail(@RequestParam("place_seq") int place_seq) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("place", ps.getPlace(place_seq));
         mav.setViewName("place/placeDetailModal"); // 팝업에 렌더링할 뷰
         return mav;
     }
-
 
 }

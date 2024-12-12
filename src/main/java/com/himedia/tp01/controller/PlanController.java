@@ -130,7 +130,6 @@ public class PlanController {
 
         // planCode 에 해당하는 plan이 존재하는지 여부
         Boolean isCheckPlanCodeResult = ps.checkPlanCode(planCode);
-        System.out.println("isCheckPlanCodeResult : " + isCheckPlanCodeResult);
 
         if (isCheckPlanCodeResult) { // plan 이 존재한다면
             // planCode를 현재 사용자에게 부여
