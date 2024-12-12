@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="admin/css/admin.css" />
 <script src="admin/script/admin.js"></script>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 		$(function(){
@@ -37,6 +38,34 @@
 				});
 		});
 </script>
+
+	<script type="text/javascript">
+		$(function(){
+			$('#imageHotelAddBtn').click( function(){
+				var formselect = $('#fileupHotelForm')[0];   // 지목된 폼을 변수에 저장
+				var formData = new FormData( formselect );
+				$.ajax(
+						{
+							url:"<%=request.getContextPath()%>/fileupload" ,
+							type:"POST",
+							enctype:"multipart/form-data",
+							data: formData,
+							timeout: 10000,
+							contentType : false,
+							processData : false,
+
+							success: function( data ){
+								$('#filename').html("<div>" + data.image + "</div>" );
+								$("#filename").append("<img src='/hotel_images/" + data.savefilename + "' height='150'/>");
+								$('#image').val( data.image );
+								$('#savefilename').val( data.savefilename );
+							},
+							error:function(){  alert("실패"); },
+						}
+				);
+			});
+		});
+	</script>
 
 </head>
 <body>
