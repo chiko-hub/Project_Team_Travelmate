@@ -48,8 +48,8 @@
 </div>
 <div class="statistics">
     <div class="statItem">
-        <span> AI로 생성된 일정 수&nbsp; </span> 214,975&nbsp;
-        <span>  여행지 수&nbsp; </span> 96
+<%--        <span> AI로 생성된 일정 수&nbsp; </span> 214,975&nbsp;--%>
+<%--        <span>  여행지 수&nbsp; </span> 96--%>
         <br><a href="admin">admin</a>
 
     </div>

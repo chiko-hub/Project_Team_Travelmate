@@ -7,58 +7,58 @@
   <meta charset="UTF-8">
   <title>Update Member</title>
   <link rel="stylesheet" href="/css/login.css">
-</head>
-<body style="margin-top: 90px;">
+  </head>
+<body>
 <div class="container" style="box-sizing: border-box; width:100vw; height:100vh;
              margin-left: 720px;justify-content: center; align-items: center;"  >
- <div class="loginbox" style="box-sizing: border-box; ">
+ <div class="loginbox" style="box-sizing: border-box;">
    <div class="logo">
-     <img  style="margin-left: 27px" src="images/logo2.png"/>
-     <h2 style="margin-left: 20px; margin-top:5px ">여행 스케줄링 플래너</h2>
+     <img style="margin-left: 27px" src="images/logo2.png"/>
+     <h2 style="margin-left: 65px; margin-top:5px">회원정보 수정</h2>
    </div>
      <form action="updateMember" method="post" style="
-          margin-top: 25px; margin-left: 0px; width:400px;">
+          margin-top: 20px; margin-left: 0px; width:400px;">
        <h3 style="margin-right:60px; margin-bottom: 20px">기본 정보</h3>
-       <div class="field" style="margin-bottom:9px; display:flex; margin-right:5px" >
-         <label>아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="text"  name="userid" size="23" value="${dto.userid}" readonly>
+       <div class="field" style="margin-bottom:9px;margin-right:5px" >
+          <label style="margin-left:11px;">아이디</label><br>
+         <input type="text" style="outline:none; margin-left:11px; width:270px; height:22px;" name="userid"value="${dto.userid}" readonly>
        </div>
        <div class="field" style="margin-bottom:9px">
-         <label>비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="password" size="23" name="pwd" ></div>
+         <label style="margin-left:10px;">비밀번호</label><br>
+         <input type="password" style="outline: none;margin-left:11px;width:270px;height:22px;border: 1px solid #cccccc;" name="pwd" ></div>
        <div class="field" style="margin-bottom:9px">
-         <label>비밀번호 확인&nbsp;</label>
-         <input type="password" name="pwdCheck" size="21"></div>
+         <label style="margin-left:10px;">비밀번호 확인<br></label>
+         <input type="password" name="pwdCheck" style="outline: none;margin-left:11px;width:270px;height:22px; border: 1px solid #cccccc;"></div>
        <div class="field" style="margin-bottom:9px">
-         <label>이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="text" size="23" name="name" value="${dto.name}"></div>
+         <label style="margin-left:10px;">이름<br></label>
+         <input type="text" style="outline: none;margin-left:11px;width:270px; height:22px; border:1px solid #cccccc;" name="name" value="${dto.name}"></div>
        <div class="field" style="margin-bottom:9px">
-         <label>전화번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="text" size="23"  name="phone" value="${dto.phone}" /></div>
+         <label style="margin-left:10px;">전화번호<br></label>
+         <input type="text" style="outline: none;margin-left:11px;width:270px;height:22px; border:1px solid #cccccc;" name="phone" value="${dto.phone}" /></div>
        <div class="field">
-         <label>이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="text" size="23" name="email" value="${dto.email}" /></div>
+         <label style="margin-left:10px;">이메일<br></label>
+         <input type="text" style="outline: none;height:22px;margin-left:11px;width:270px; border:1px solid #cccccc;" name="email" value="${dto.email}" /></div>
        <br />
 
-       <h3 style="margin-right: 60px; margin-bottom: 20px">선택 정보</h3>
-       <div class="field" style="margin-bottom:9px; display:flex; margin-right:5px" >
-         <label>우편번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+       <h3 style="margin-right: 60px; margin-bottom: 20px;">선택 정보</h3>
+       <div class="field" style="margin-bottom:9px; margin-right:5px" >
+         <label style="margin-left:10px;">우편번호</label>
          <div>
-           <input type="text"  style="width:90px" id="sample6_postcode" name="zip_num"   value="${dto.zip_num}" readonly>
-           <input type="button" style="width:93px"; value="우편번호 찾기"  onclick="sample6_execDaumPostcode()">
+           <input type="text"  style="margin-left:11px; outline: none;border: 1px solid #cccccc;width:170px;height:22px;"  id="sample6_postcode" name="zip_num"   value="${dto.zip_num}" readonly>
+           <input type="button" style="outline: none;cursor:pointer; border: 1px solid #cccccc;width:93px;height:22px;" value="우편번호 찾기"  onclick="sample6_execDaumPostcode()">
          </div>
        </div>
        <div class="field" style="margin-bottom:9px">
-         <label>기본 주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="text" id="member_address" name="address_main" value="${dto.address_main}" size="23" readonly />
+         <label style="margin-left:10px;">기본 주소<br></label>
+         <input type="text" id="member_address" style="margin-left:11px;width:270px;outline: none;border: 1px solid #cccccc;height:22px;" name="address_main" value="${dto.address_main}" readonly />
        </div>
        <div class="field" style="margin-bottom:9px">
-         <label>상세 주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="text"  size="23"  id="member_detailAddress" name="address_detail" value="${dto.address_detail}"/>
+         <label style="margin-left:10px;">상세 주소<br></label>
+         <input type="text" style="outline: none;margin-left:11px;width:270px;border: 1px solid #cccccc;height:22px;" id="member_detailAddress" name="address_detail" value="${dto.address_detail}"/>
        </div>
        <div class="field" style="margin-bottom:9px">
-         <label>기타 주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-         <input type="text" size="23" id="member_extraAddress" name="address_extra"  value="${dto.address_extra}"/>
+         <label style="margin-left:10px;">기타 주소<br></label>
+         <input type="text" id="member_extraAddress" style="margin-left:11px;width:270px;outline: none;height:22px;border: 1px solid #cccccc;" name="address_extra"  value="${dto.address_extra}"/>
        </div>
 
        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -98,11 +98,11 @@
        <div class="field" style="margin-bottom:5px">${msg}</div>
 
        <div class="btn" style="width:295px; background:white">
-          <input type="submit" style="width:280px; height:38px;cursor: pointer; background-color: #2e8b57;
+          <input type="submit" style="width:280px; height:30px;cursor: pointer; background-color: #2e8b57;
           color: white; border: none;" value="정보수정">
-         <input type="button" style="width:280px;height:38px; background-color:#2e8b57;cursor: pointer;
+         <input type="button" style="width:280px;height:30px; background-color:#2e8b57;cursor: pointer;
                 color: white; border: none; margin-top: 8px" value="메인으로" onClick="location.href='index'">
-         <input type="button" style="width:280px;height:38px;margin-top: 8px; cursor: pointer;
+         <input type="button" style="width:280px;height:30px;margin-top: 8px; cursor: pointer;
           background-color:#2e8b57; color: white; border: none;" value="회원탈퇴" onClick="location.href='deleteMember'">
        </div>
       </form>
