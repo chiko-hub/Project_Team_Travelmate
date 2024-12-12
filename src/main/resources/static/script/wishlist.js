@@ -1,19 +1,23 @@
-function showDetails(title, mainDetail, additionalDetail, otherDetail) {
-    // 왼쪽 영역 업데이트
-    const detailsLeft = document.querySelector(".detailsLeft");
-    detailsLeft.innerHTML = `
-            <h3>${title} 요약</h3>
-            <p>${mainDetail}</p>
-        `;
+/* wishlist 찜 만들기 */
+function addWishlist() {
+    // 폼 요소 가져오기
+    const titleInput = document.getElementById('wishlistTitle');
+    const categorySelect = document.getElementById('wishlistCategory');
+    const form = document.getElementById('wishlistAddForm');
 
-    // 오른쪽 영역 업데이트
-    const subBoxes = document.querySelectorAll(".detailsRight .subBox");
-    subBoxes[0].innerHTML = `
-            <h3>상세 정보</h3>
-            <p>${mainDetail}</p>
-        `;
-    subBoxes[1].innerHTML = `
-            <h3>추가 정보</h3>
-            <p>${additionalDetail}</p>
-        `;
+    // 값 확인
+    if (!titleInput.value.trim()) {
+        alert('이름을 입력해주세요.');
+        titleInput.focus();
+        return;
+    }
+
+    if (!categorySelect.value) {
+        alert('종류를 선택해주세요.');
+        categorySelect.focus();
+        return;
+    }
+
+    // 값이 모두 유효하면 폼 제출
+    form.submit();
 }

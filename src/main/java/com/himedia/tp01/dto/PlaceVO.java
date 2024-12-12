@@ -13,7 +13,9 @@ public class PlaceVO {
     private String place_location;
     @NotNull
     private String place_description;
+    @NotNull
     private String place_image;
+    @NotNull
     private String savefilename;
     @NotNull
     private String category;

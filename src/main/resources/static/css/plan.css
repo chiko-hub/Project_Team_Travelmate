@@ -123,6 +123,12 @@
     border-radius: 4px;
 }
 
+.planButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
 .panel button {
     padding: 8px 16px;
     margin: 5px;
@@ -135,6 +141,7 @@
 .panel button:first-of-type {
     background-color: #2e8b57;
     color: #fff;
+    margin-right: 5px;
 }
 
 .panel button:last-of-type {
