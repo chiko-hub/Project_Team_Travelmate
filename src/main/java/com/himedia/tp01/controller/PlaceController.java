@@ -1,6 +1,9 @@
 package com.himedia.tp01.controller;
 
+import com.himedia.tp01.dto.MemberVO;
+import com.himedia.tp01.dto.WishlistVO;
 import com.himedia.tp01.service.PlaceService;
+import com.himedia.tp01.service.WishlistService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class PlaceController {
 
     @Autowired
     PlaceService ps;
+    @Autowired
+    WishlistService ws;
 
+    /* 로그인한 상태라면 wishlist 정보를 가지고 placeSelect.jsp 로 이동 */
     @GetMapping("/placeSelect")
     public ModelAndView placeSelect(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
@@ -25,6 +32,14 @@ public class PlaceController {
         HttpSession session = request.getSession();
         // 항상 세션의 페이지를 1로 초기화
         session.setAttribute("page", 1);
+
+        MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
+        if(currentMember == null) {
+            // 로그인 후 이용할 수 있는 기능이라는 문구 뜸
+        }else{
+            List<WishlistVO> wishlist = ws.getWishlistByUserid(currentMember.getUserid()); // wishlist 가져오기
+            mav.addObject("wishlist", wishlist);
+        }
 
         mav.addObject("placeList", result.get("placeList"));
         mav.addObject("paging", result.get("paging"));

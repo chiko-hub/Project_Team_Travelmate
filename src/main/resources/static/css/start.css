@@ -42,13 +42,13 @@ body {
 }
 
 /* 중앙 콘텐츠 */
-.main {
+/*.main {
     flex: 1;
     padding: 20px;
     width: 60%;
     text-align: center;
     background: #ffffff;
-}
+}*/
 
 #results {
     margin-top: 20px;
