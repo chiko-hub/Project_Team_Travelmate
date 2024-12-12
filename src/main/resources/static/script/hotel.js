@@ -4,10 +4,6 @@ function go_search( url ){
     document.frm.submit();
 }
 
-function resetSearch() {
-    window.location.href = '/hotelList?first=true'; // 초기화 URL로 이동
-}
-
 // 1. hotel 정보창(ajax)
 $(document).ready(function () {
     // 호텔 아이템 클릭 이벤트

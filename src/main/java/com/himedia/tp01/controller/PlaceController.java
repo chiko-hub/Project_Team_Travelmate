@@ -74,7 +74,7 @@ public class PlaceController {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
 
-        // 검색조건 설정: 요청 값 우선 처리:  key를 요청에서 가져오거나, 세션에서 가져옴
+        // 검색조건 설정: 요청 값 우선 처리: key를 요청에서 가져오거나, 세션에서 가져옴
         String key = request.getParameter("key") != null
                 ? request.getParameter("key")
                 : (String) session.getAttribute("key");
@@ -93,25 +93,16 @@ public class PlaceController {
         HashMap<String, Object> result = ps.getPlaceSearch(request);
         mav.addObject("placeList", result.get("placeList"));
         mav.addObject("paging", result.get("paging"));
-//        mav.addObject("totalPage", result.get("totalPage")); //  totalPage 전달
         mav.addObject("key", result.get("key")); // 검색어
         mav.setViewName("place/placeSelect");
         return mav;
     }
-
-
 
     @GetMapping("/placeDetail")
     public ModelAndView placeDetail(@RequestParam("place_seq") int place_seq, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("place", ps.getPlace(place_seq));
         mav.setViewName("place/placeDetailModal"); // 팝업에 렌더링할 뷰
-
-//        if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-//            mav.setViewName("place/placeDetailModal"); // 팝업에 렌더링할 뷰
-//        } else {
-//            mav.setViewName("place/placeDetail"); // 기본 뷰
-//        }
         return mav;
     }
 

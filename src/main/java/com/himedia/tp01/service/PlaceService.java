@@ -23,6 +23,7 @@ public class PlaceService {
         if( request.getParameter("first")!=null){
             session.removeAttribute("page");
             session.removeAttribute("key"); }
+
         int page = 1;
         try {
             if (request.getParameter("page") != null) {
@@ -32,19 +33,23 @@ public class PlaceService {
             }
         } catch (NumberFormatException | ClassCastException e) { page = 1; } // 유효하지 않은 값이 있으면 기본값으로 설정
         session.setAttribute("page", page); // 세션에 현재 페이지 저장
+
         String key = "";
         if (request.getParameter("key") != null) {
             key = request.getParameter("key"); // 요청에서 key 값 가져오기
         } else if (session.getAttribute("key") != null) {
             key = (String) session.getAttribute("key"); }// 세션에서 key 값 가져오기
         session.setAttribute("key", key); // 세션에 검색 키워드 저장
+
         Paging paging = new Paging();
         paging.setPage(page);
-        paging.setDisplayPage(5);
-        paging.setDisplayRow(5);
+        paging.setDisplayPage(7);
+        paging.setDisplayRow(7);
+
         int count = pdao.getAllCount("place", "place_name", key);
         paging.setTotalCount(count);
         paging.calPaging();
+
         List<PlaceVO> placeList = pdao.getAllPlaceList( paging, key );
         result.put("placeList", placeList);
         result.put("paging", paging);
@@ -58,6 +63,7 @@ public class PlaceService {
         if( request.getParameter("first")!=null){
             session.removeAttribute("page");
             session.removeAttribute("key"); }
+
         int page = 1;
         try {
             if (request.getParameter("page") != null) {
@@ -67,19 +73,23 @@ public class PlaceService {
             }
         } catch (NumberFormatException | ClassCastException e) { page = 1;} // 유효하지 않은 값이 있으면 기본값으로 설정
         session.setAttribute("page", page); // 세션에 현재 페이지 저장
+
         String key = "";
         if (request.getParameter("key") != null) {
             key = request.getParameter("key"); // 요청에서 key 값 가져오기
         } else if (session.getAttribute("key") != null) {
             key = (String) session.getAttribute("key"); } // 세션에서 key 값 가져오기
         session.setAttribute("key", key); // 세션에 검색 키워드 저장
+
         Paging paging = new Paging();
         paging.setPage(page);
-        paging.setDisplayPage(5);
-        paging.setDisplayRow(5);
+        paging.setDisplayPage(7);
+        paging.setDisplayRow(7);
+
         int count = pdao.getBestCount("place", "place_name", key);
         paging.setTotalCount(count);
         paging.calPaging();
+
         List<PlaceVO> bestList = pdao.getBestPlace( paging, key );
         result.put("bestList", bestList);
         result.put("paging", paging);
@@ -93,6 +103,7 @@ public class PlaceService {
         if( request.getParameter("first")!=null){
             session.removeAttribute("page");
             session.removeAttribute("key"); }
+
         int page = 1;
         try {
             if (request.getParameter("page") != null) {
@@ -102,6 +113,7 @@ public class PlaceService {
             }
         } catch (NumberFormatException | ClassCastException e) { page = 1; }// 유효하지 않은 값이 있으면 기본값으로 설정
         session.setAttribute("page", page); // 세션에 현재 페이지 저장
+
         String key = "";
         if (request.getParameter("key") != null) {
             key = request.getParameter("key"); // 요청에서 key 값 가져오기
@@ -109,13 +121,16 @@ public class PlaceService {
             key = (String) session.getAttribute("key"); // 세션에서 key 값 가져오기
         }
         session.setAttribute("key", key); // 세션에 검색 키워드 저장
+
         Paging paging = new Paging();
         paging.setPage(page);
-        paging.setDisplayPage(5);
-        paging.setDisplayRow(5);
+        paging.setDisplayPage(7);
+        paging.setDisplayRow(7);
+
         int count = pdao.getHotCount("place", "place_name", key);
         paging.setTotalCount(count);
         paging.calPaging();
+
         List<PlaceVO> hotList = pdao.getHotPlace( paging, key );
         result.put("hotList", hotList);
         result.put("paging", paging);
@@ -152,8 +167,8 @@ public class PlaceService {
         // 페이징 객체 설정
         Paging paging = new Paging();
         paging.setPage(page);
-        paging.setDisplayPage(5);
-        paging.setDisplayRow(5);
+        paging.setDisplayPage(7);
+        paging.setDisplayRow(7);
 
         // 검색 조건에 따른 데이터 총 개수 조회
         int count = pdao.getSearchCount("place",  key);

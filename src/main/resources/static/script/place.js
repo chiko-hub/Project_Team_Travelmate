@@ -4,10 +4,6 @@ function go_search(url) {
     document.frm.submit();
 }
 
-function resetSearch() {
-    window.location.href = '/placeList?first=true'; // 초기화 URL로 이동
-}
-
 // 1. place 정보창(ajax)
 $(document).ready(function () {
     // 장소 아이템 클릭 이벤트
