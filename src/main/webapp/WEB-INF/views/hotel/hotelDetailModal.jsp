@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>${place.place_name}</title>
-    <link rel="stylesheet" href="/css/start.css">
-    <link rel="stylesheet" href="/css/hotel.css">
+<meta charset="UTF-8">
+<title>${place.place_name}</title>
+<link rel="stylesheet" href="/css/start.css">
+<link rel="stylesheet" href="/css/hotel.css">
     <style>
         /* 이미지 크기를 통일 */
         .place-detail img {
@@ -25,14 +25,11 @@
         <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}" />
         <p>${hotel.hotel_description}</p>
     </div>
-
     <!-- 추가된 버튼들 -->
     <div class="modal-buttons">
         <p>좋아요</p>
-        <img id="likeImageButton" src="/images/heartbefore.png" alt="Heart"  data-hotel-seq="${hotel_seq}"/>
+        <img id="likeImageButton" src="/images/heartbefore.png" alt="Heart" data-hotel-seq="${hotel_seq}"/>
     </div>
-
 </div>
-
 </body>
 </html>
