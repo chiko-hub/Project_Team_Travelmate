@@ -4,7 +4,6 @@ import com.himedia.tp01.dao.IAdminDao;
 import com.himedia.tp01.dto.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -155,6 +154,10 @@ public class AdminService {
     }
     public void updatePlace(PlaceVO placevo) {
         adao.updatePlace( placevo );
+    }
+
+    public void deletePlace(int place_seq) {
+        adao.deletePlace( place_seq );
     }
 
     public void insertHotel(HotelVO hotelvo) {

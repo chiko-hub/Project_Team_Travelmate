@@ -3,7 +3,6 @@ function go_search( url ){
     document.frm.submit();
 }
 
-
 function go_detail_P( place_seq ){
     location.href="adminPlaceDetail?place_seq=" + place_seq;
 }
@@ -105,8 +104,10 @@ function go_update(){
 function deletePlace(place_seq) {
     var ans = confirm("정말로 삭제할까요?");
     if (ans) {
-        location.href = "deletePlace?place_seq=" + place_seq;
+        location.href = "/adminPlaceDelete?place_seq=" + place_seq;
     }
+}
+
 
 function deleteHotel(hotel_seq) {
     var ans = confirm("정말로 삭제할까요?");
@@ -127,7 +128,7 @@ function deleteHotel(hotel_seq) {
             document.frm.submit();
         }
     }
-}
+
 
 
 

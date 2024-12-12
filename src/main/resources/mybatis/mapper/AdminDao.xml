@@ -36,9 +36,14 @@
         insert into place(place_name, place_location, place_description, place_image, savefilename)values(#{place_name},#{place_location},#{place_description},#{place_image},#{savefilename})
     </insert>
 
-    <select id="updatePlace" parameterType="com.himedia.tp01.dto.PlaceVO">
+    <update id="updatePlace" parameterType="com.himedia.tp01.dto.PlaceVO">
         update place set place_name=#{place_name}, place_location=#{place_location}, place_description=#{place_description}, place_image=#{place_image}, savefilename=#{savefilename} where place_seq=#{place_seq}
-    </select>
+    </update>
+
+    <delete id="deletePlace" parameterType="int">
+        delete from place where place_seq = #{place_seq}
+    </delete>
+
 
     <insert id="insertHotel" parameterType="com.himedia.tp01.dto.HotelVO">
         insert into hotel(hotel_name, hotel_location, hotel_description, hotel_image, hotel_savefilename)values(#{hotel_name},#{hotel_location},#{hotel_description},#{hotel_image},#{hotel_savefilename})
