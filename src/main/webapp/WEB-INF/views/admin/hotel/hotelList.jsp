@@ -7,12 +7,25 @@
 	<form method="get" name="frm">
 		<div class="tb">
 		<div class="row">
-			<div class="col" style="display: flex; align-items: center;">
-				숙소명 &nbsp; <input type="text" name="key" value="${key}"/>&nbsp;&nbsp;&nbsp;
-				<input class="btn" type="button" name="btn_search" value="검색"
-					onClick="go_search('adminHotelList')"/>
-				&nbsp;&nbsp;&nbsp;
-				<input type="button"  style="margin-left:auto" value="숙소등록"  onClick="go_write_H();"/>
+
+			<div class="col" style="display: flex; align-items: center; gap: 10px;">
+				<!-- 검색어 입력 영역 -->
+				<label for="search-key" style="font-weight: bold; margin-right: 10px;">숙소명</label>
+				<div class="search-wrapper">
+					<input id="search-key" type="text" name="key" value="${key}" class="search-input" placeholder="Search..." onkeydown="if(event.key === 'Enter') go_search('adminHotelList')">
+					<span class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-svg">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </span>
+				</div>
+
+				<!-- 숙소 등록 버튼 -->
+				<button class="btn btn-register" type="button" onclick="go_write_H()">
+					숙소등록
+				</button>
+
 			</div>
 		</div>
 		<div class="row">
