@@ -1,6 +1,9 @@
 package com.himedia.tp01.controller;
 
+import com.himedia.tp01.dto.MemberVO;
+import com.himedia.tp01.dto.WishlistVO;
 import com.himedia.tp01.service.HotelService;
+import com.himedia.tp01.service.WishlistService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ public class HotelController {
 
     @Autowired
     HotelService hs;
+    @Autowired
+    WishlistService ws;
 
     @GetMapping("/hotelSelect")
     public ModelAndView hotelSelect(HttpServletRequest request) {
@@ -26,6 +31,16 @@ public class HotelController {
         HttpSession session = request.getSession();
         // 항상 세션의 페이지를 1로 초기화
         session.setAttribute("page", 1);
+
+        MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
+        if(currentMember == null) {
+            // 로그인 후 이용할 수 있는 기능이라는 문구 뜸
+        }else{
+            // userid 에 해당하는 place 카테고리의 찜 목록 가져오기
+            List<WishlistVO> wishlist = ws.getWishlistByCategory(currentMember.getUserid(), "hotel"); // wishlist 가져오기
+            mav.addObject("wishlist", wishlist);
+        }
+
         mav.addObject("hotelList", result.get("hotelList"));
         mav.addObject("paging", result.get("paging"));
         mav.addObject("key", result.get("key"));

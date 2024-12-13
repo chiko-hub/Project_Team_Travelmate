@@ -8,6 +8,12 @@
         SELECT * FROM wishlist WHERE userid=#{param1}
     </select>
 
+    <select id="getWishlistByCategory" resultType="com.himedia.tp01.dto.WishlistVO">
+        SELECT *
+        FROM(SELECT * FROM wishlist WHERE userid=#{param1}) AS wishquery
+        WHERE wishlist_category=#{param2}
+    </select>
+
     <insert id="addWishlist" parameterType="com.himedia.tp01.dto.WishlistVO">
         INSERT INTO wishlist(wishlist_title, wishlist_category, userid)
         VALUES(#{wishlist_title}, #{wishlist_category}, #{userid})

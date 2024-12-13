@@ -138,10 +138,6 @@ public class PlaceService {
         return result;
     }
 
-
-
-
-
     public HashMap<String, Object> getPlaceSearch(HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
         HttpSession session = request.getSession();

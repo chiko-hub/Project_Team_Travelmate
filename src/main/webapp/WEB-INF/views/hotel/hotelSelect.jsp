@@ -74,9 +74,18 @@
                     </c:forEach>
                 </c:when>
             </c:choose>
-            <div class="wishAddButton">
-                <button type="button" onclick="togglePanel('wishlistAddPanel')">+</button>
-            </div>
+            <c:choose>
+                <c:when test="${empty loginUser}">
+                    <div class="noWishDetailItem">
+                        <div class="noWishText">로그인 후 이용 가능합니다.</div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="wishAddButton">
+                        <button type="button" onclick="togglePanel('wishlistAddPanel')">+</button>
+                    </div>
+                </c:otherwise>
+            </c:choose>
             <div id="wishlistAddPanel" class="wishlistAddPanel">
                 <h3>새로운 찜 목록 생성</h3>
                 <form id="wishlistAddForm" method="post" action="addWishlist">
@@ -84,8 +93,7 @@
                     <input type="text" id="wishlistTitle" name="wishlist_title" required/><br/>
                     <label for="wishlistCategory">종류</label>
                     <select id="wishlistCategory" name="wishlist_category" required>
-                        <option value="place" selected>장소</option>
-                        <option value="hotel">숙소</option>
+                        <option value="hotel" selected>숙소</option>
                     </select>
                     <div class="wishlistAddButton">
                         <button type="button" onclick="addWishlist()">생성</button>

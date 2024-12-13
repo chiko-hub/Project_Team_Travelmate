@@ -13,9 +13,14 @@ public class WishlistService {
     @Autowired
     IWishlistDao wdao;
 
-    /* userid 로 wishlist 조회 */
+    /* userid 에 해당하는 wishlist 조회 */
     public List<WishlistVO> getWishlistByUserid(String userid) {
         return wdao.getWishlistByUserid(userid);
+    }
+
+    /* userid 로 해당하는 카테고리의 wishlist 조회 */
+    public List<WishlistVO> getWishlistByCategory(String userid, String category) {
+        return wdao.getWishlistByCategory(userid, category);
     }
 
     /* wishlistSeq 로 wishlist 조회 */

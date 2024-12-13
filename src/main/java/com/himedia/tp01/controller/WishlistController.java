@@ -7,10 +7,7 @@ import com.himedia.tp01.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -39,15 +36,26 @@ public class WishlistController {
 
     /* 찜 목록 생성 */
     @PostMapping("/addWishlist")
-    public String addWishlist(HttpSession session, WishlistVO wishlistvo) {
+    @ResponseBody
+    public Map<String, String> addWishlist(
+            HttpSession session,
+            @RequestParam String wishlist_title,
+            @RequestParam String wishlist_category) {
+        Map<String, String> response = new HashMap<>(); // 응답 데이터를 담을 Map
         MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
-        if(currentMember == null) {
-            return "redirect:/loginForm";
-        }else {
-            wishlistvo.setUserid(currentMember.getUserid());
-            ws.addWishlist(wishlistvo); // wishlist 추가
-            return "redirect:/wishlist";
+
+        if (currentMember == null) { // 로그인이 되어 있지 않다면
+            response.put("status", "not_login");
+        } else {
+            // 로그인 되어 있으면 찜 목록 생성
+            WishlistVO newWishlist = new WishlistVO();
+            newWishlist.setWishlist_category(wishlist_category); // 카테고리
+            newWishlist.setWishlist_title(wishlist_title); // 제목
+            newWishlist.setUserid(currentMember.getUserid()); // 로그인된 사용자 id
+            ws.addWishlist(newWishlist); // 찜 목록 추가
+            response.put("status", "success");
         }
+        return response; // 응답 반환
     }
 
     /* 찜 목록 삭제 */
