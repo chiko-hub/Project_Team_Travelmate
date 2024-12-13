@@ -1,8 +1,8 @@
 package com.himedia.tp01.controller;
 
-import com.himedia.tp01.dto.MemberVO;
-import com.himedia.tp01.dto.PlanDetailVO;
-import com.himedia.tp01.dto.WishlistVO;
+import com.himedia.tp01.dto.*;
+import com.himedia.tp01.service.HotelService;
+import com.himedia.tp01.service.PlaceService;
 import com.himedia.tp01.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,10 @@ import java.util.Map;
 public class WishlistController {
     @Autowired
     WishlistService ws;
+    @Autowired
+    PlaceService ps;
+    @Autowired
+    HotelService hs;
 
     /* 현재 로그인한 유저의 wishlist 를 가지고 wishlistForm.jsp 로 이동 */
     @GetMapping("/wishlist")
@@ -75,6 +79,41 @@ public class WishlistController {
         } else { // 세부 계획 정보가 없다면
             response.put("success", false);
             response.put("message", "해당 찜 목록의 정보를 불러오지 못했습니다.");
+        }
+        return response; // JSON 형태로 반환
+    }
+
+    /* 찜 목록에 추가 */
+    @PostMapping("/addWish")
+    @ResponseBody
+    public Map<String, Object> addWish(@RequestBody Map<String, Object> requestBody){
+        System.out.println(requestBody);
+        int wishlistSeq = Integer.parseInt((String)requestBody.get("wishlistSeq"));
+        int wishSeq = Integer.parseInt((String)requestBody.get("wishSeq"));
+        String wishCategory = (String) requestBody.get("wishCategory");
+        System.out.println("wishlistSeq : " + wishlistSeq); // 테스트
+        System.out.println("wishSeq : " + wishSeq); // 테스트
+        System.out.println("wishCategory : " + wishCategory); // 테스트
+        Map<String, Object> response = new HashMap<>();
+
+        // wishlistSeq 로 wishlist 가져오기
+        WishlistVO wishlist = ws.getWishlistByWishlistSeq(wishlistSeq);
+
+        if (wishlist != null) { // wishlistSeq 에 해당하는 wishlist 가 있다면
+            if(wishCategory.equals("place")){ // category 가 place 일 때
+                PlaceVO place = ps.getPlace(wishSeq);
+                System.out.println("place : " + place);
+                ws.addPlaceWish(wishlistSeq, place); // wishlistSeq 에 해당하는 wishlist 에 place 저장
+            }else if(wishCategory.equals("hotel")){ // category 가 hotel 일 때
+                HotelVO hotel = hs.getHotel(wishSeq);
+                System.out.println("hotel : " + hotel);
+                ws.addHotelWish(wishlistSeq, hotel); // wishlistSeq 에 해당하는 wishlist 에 place 저장
+            }
+            response.put("success", true);
+            response.put("message", "해당 찜 목록에 저장했습니다.");
+        } else { // 세부 계획 정보가 없다면
+            response.put("success", false);
+            response.put("message", "해당 찜 목록을 불러오지 못했습니다.");
         }
         return response; // JSON 형태로 반환
     }

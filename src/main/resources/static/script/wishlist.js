@@ -1,4 +1,4 @@
-// 찜 목록 추가 함수
+/* 찜 목록 추가 함수 */
 function addWishlist() {
     // 폼 요소 가져오기
     const titleInput = document.getElementById('wishlistTitle');
@@ -49,7 +49,7 @@ function addWishlist() {
         });
 }
 
-/* wishlist 찜 삭제 */
+/* wishlist 삭제 */
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.removeWishlistButton').forEach(button => {
         button.addEventListener('click', function () {
@@ -85,3 +85,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+/* place_seq를 form 에 전달하는 togglePanel 함수 */
+function toggleWishPanel(panelId, buttonElement) {
+    var panel = document.getElementById(panelId);
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+
+    // 데이터 전달
+    var WishSeq = buttonElement.getAttribute('data-wish-seq');
+    // 폼에 wish_seq 값 저장
+    document.getElementById('wishAddForm').setAttribute('data-wish-seq', WishSeq);
+}
+
+/* wishlist 에 wish 추가하기 */
+function addWish() {
+    var wishlistSeq = document.getElementById('wishlistSeq').value; // 선택된 찜 목록 ID
+    var wishSeq = document.getElementById('wishAddForm').getAttribute('data-wish-seq'); // 선택된 wish 데이터의 seq
+    var wishCategory = document.querySelector('input[name="wish_category"]').value; // hidden 카테고리 값
+
+    if (wishlistSeq && wishSeq) {
+        fetch('/addWish', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                wishlistSeq: wishlistSeq,
+                wishSeq: wishSeq,
+                wishCategory: wishCategory
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('서버와의 연결에 문제가 발생했습니다.');
+            });
+    } else {
+        alert("찜 목록과 장소를 선택해주세요.");
+    }
+}

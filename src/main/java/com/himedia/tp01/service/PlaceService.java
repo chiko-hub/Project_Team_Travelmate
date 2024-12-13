@@ -179,7 +179,7 @@ public class PlaceService {
         return result;
     }
 
-    public Object getPlace(int place_seq) {
+    public PlaceVO getPlace(int place_seq) {
         return pdao.getPlace(place_seq);
     }
 

@@ -29,7 +29,7 @@
                         <div class="hotelDescription">${hotel.hotel_description}</div>
                     </div>
                     <div class="hotelButton" style="border: 1px solid blue;">
-                        <button class="toggle-button" data-place-id="${hotel.hotel_seq}">
+                        <button class="toggle-button" data-wish-seq="${hotel.hotel_seq}" onclick="toggleWishPanel('wishAddPanel', this)">
                             <span class="icon-plus">+</span>
                             <span class="icon-check" style="display: none;">✔</span>
                         </button>
@@ -67,11 +67,28 @@
             <c:choose>
                 <c:when test="${not empty wishlist}">
                     <c:forEach var="wishlistItem" items="${wishlist}">
-                        <div class="wishlistItem">
+                        <div class="wishlistItem" data-wishlist-seq="${wishlistItem.wishlist_seq}">
                             <div class="wishlistName" onclick="">${wishlistItem.wishlist_title}</div>
                             <button class="removeWishlistButton" data-wishlist-seq="${wishlistItem.wishlist_seq}">×</button>
                         </div>
                     </c:forEach>
+                    <div id="wishAddPanel" class="wishlistAddPanel" style="transform: translate(-120%, -10%);">
+                        <h3>추가할 찜 목록 선택</h3>
+                        <form id="wishAddForm" method="post">
+                            <input type="hidden" value="hotel" name="wish_category"/> <%-- wish 의 category 전달 --%>
+                            <label for="wishlistSeq">찜 목록</label>
+                            <select id="wishlistSeq" name="wishlist_seq" required>
+                                <option value=""></option>
+                                <c:forEach var="wishlistNum" begin="0" end="${fn:length(wishlist)-1}" varStatus="status">
+                                    <option value="${wishlist[wishlistNum].wishlist_seq}"> ${wishlist[wishlistNum].wishlist_title}</option>
+                                </c:forEach>
+                            </select>
+                            <div class="wishlistAddButton">
+                                <button type="button" onclick="addWish()">추가</button>
+                                <button type="button" onclick="togglePanel('wishAddPanel')">취소</button>
+                            </div>
+                        </form>
+                    </div>
                 </c:when>
             </c:choose>
             <c:choose>

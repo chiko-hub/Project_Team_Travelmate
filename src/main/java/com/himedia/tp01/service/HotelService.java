@@ -180,7 +180,7 @@ public class HotelService {
         return result;
     }
 
-    public Object getHotel(int hotel_seq) {
+    public HotelVO getHotel(int hotel_seq) {
         return hdao.getHotel(hotel_seq);
     }
 

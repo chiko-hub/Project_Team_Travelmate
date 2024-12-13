@@ -1,6 +1,8 @@
 package com.himedia.tp01.service;
 
 import com.himedia.tp01.dao.IWishlistDao;
+import com.himedia.tp01.dto.HotelVO;
+import com.himedia.tp01.dto.PlaceVO;
 import com.himedia.tp01.dto.WishlistVO;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,15 @@ public class WishlistService {
     /* wishlist 삭제 */
     public void deleteWishlist(int wishlistSeq) {
         wdao.deleteWishlist(wishlistSeq);
+    }
+
+    /* wishlist 에 place 데이터 추가 */
+    public void addPlaceWish(int wishlistSeq, PlaceVO place) {
+        wdao.addPlaceWish(wishlistSeq, place);
+    }
+
+    /* wishlist 에 hotel 데이터 추가 */
+    public void addHotelWish(int wishlistSeq, HotelVO hotel) {
+        wdao.addHotelWish(wishlistSeq, hotel);
     }
 }
