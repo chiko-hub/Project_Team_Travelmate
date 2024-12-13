@@ -38,6 +38,14 @@ public class WishlistController {
         return mav;
     }
 
+    /* wishlistDetail 정보 가져오기 */
+    @GetMapping("/getWishDetail")
+    @ResponseBody
+    public List<WishlistDetailVO> getWishDetail(@RequestParam("wishlist_seq") int wishlistSeq) {
+        // wishlist_seq에 해당하는 상세 정보 반환
+        return ws.getWishlistDetailByWishlistSeq(wishlistSeq);
+    }
+
     /* 찜 목록 생성 */
     @PostMapping("/addWishlist")
     @ResponseBody
@@ -118,4 +126,24 @@ public class WishlistController {
         return response; // JSON 형태로 반환
     }
 
+    /* 찜 목록에서 wishlistDetail 삭제 */
+    @PostMapping("/deleteWishDetail")
+    @ResponseBody
+    public Map<String, Object> wishlistDetailSeq(@RequestBody Map<String, Integer> requestBody) {
+        int wishlistDetailSeq = requestBody.get("wishlistDetailSeq");
+        Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
+
+        // wishlistSeq 로 wishlist 가져오기
+        WishlistDetailVO wishlistDetail = ws.getWishlistDetail(wishlistDetailSeq);
+
+        if (wishlistDetail != null) { // wishlistDetailSeq 에 해당하는 wishlistDetail 이 있다면
+            ws.deleteWishDetail(wishlistDetailSeq); // wishlistDetail 삭제
+            response.put("success", true);
+            response.put("message", "해당 목록을 찜에서 성공적으로 삭제했습니다.");
+        } else { // 세부 계획 정보가 없다면
+            response.put("success", false);
+            response.put("message", "해당 목록의 정보를 불러오지 못했습니다.");
+        }
+        return response; // JSON 형태로 반환
+    }
 }

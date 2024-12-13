@@ -95,7 +95,6 @@
 .placeImage, .hotelImage {
     width: 80px; /* 이미지 크기 */
     height: 80px;
-    border: 1px solid #2e8b57; /* 영역 구분 */
     border-radius: 8px; /* 둥근 모서리 */
     overflow: hidden; /* 이미지 넘침 방지 */
     flex-shrink: 0; /* 크기 고정 */
@@ -118,7 +117,6 @@
     flex-direction: column;
     justify-content: center; /* 세로 중앙 정렬 */
     text-align: left;
-    border: 1px solid #2e8b57; /* 영역 구분 */
     border-radius: 8px;
     padding: 8px;
 }
@@ -139,7 +137,6 @@
 .placeButton, .hotelButton {
     width: 30px; /* 버튼 영역 크기 고정 */
     height: 30px;
-    border: 1px solid #2e8b57; /* 영역 구분 */
     border-radius: 8px;
     display: flex;
     align-items: center;

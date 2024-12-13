@@ -132,3 +132,86 @@ function addWish() {
         alert("찜 목록과 장소를 선택해주세요.");
     }
 }
+
+/* wishlistItem 클릭 시 해당 상세 정보를 불러오는 함수 */
+function loadWishDetail(wishlistSeq) {
+    // AJAX 요청 보내기
+    $.ajax({
+        url: '/getWishDetail', // 서버에서 상세 정보를 가져오는 URL
+        method: 'GET',
+        data: { wishlist_seq: wishlistSeq }, // wishlist_seq 값 전송
+        success: function(response) {
+            // 서버에서 받은 상세 정보로 wishDetailItem을 업데이트
+            const wishDetailList = document.querySelector('.wishDetailList');
+            wishDetailList.innerHTML = '';  // 기존 상세 내용 비우기
+
+            // 받은 상세 정보(response)로 wishDetailItem을 동적으로 생성
+            response.forEach(item => {
+                const wishDetailItem = document.createElement('div');
+                wishDetailItem.classList.add('wishDetailItem');
+
+                const wishImage = document.createElement('div');
+                wishImage.classList.add('wishImage');
+                const img = document.createElement('img');
+                img.src = item.wish_image;  // 서버에서 받은 이미지 URL
+                wishImage.appendChild(img);
+
+                const wishText = document.createElement('div');
+                wishText.classList.add('wishText');
+                const title = document.createElement('div');
+                title.classList.add('wishTitle');
+                title.textContent = item.wish_name;  // 서버에서 받은 제목
+                const location = document.createElement('div');
+                location.classList.add('wishLocation');
+                location.textContent = item.wish_description;  // 서버에서 받은 설명
+
+                wishText.appendChild(title);
+                wishText.appendChild(location);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('deleteBtn');
+                deleteBtn.textContent = '×';
+                deleteBtn.onclick = function() {
+                    deleteWishDetail(item.wishlist_detail_seq);  // 상세 아이템을 삭제하는 함수
+                };
+
+                wishDetailItem.appendChild(wishImage);
+                wishDetailItem.appendChild(wishText);
+                wishDetailItem.appendChild(deleteBtn);
+
+                wishDetailList.appendChild(wishDetailItem);
+            });
+        },
+        error: function() {
+            alert('세부 정보를 가져오는 데 실패했습니다.');
+        }
+    });
+}
+
+/* 찜 목록에 담아둔 wishlistDetail 삭제 */
+function deleteWishDetail(wishlistDetailSeq){
+    // 사용자에게 확인 메시지 표시
+    const userResponse = window.confirm("찜 목록에 담긴 해당 정보가 삭제됩니다. 계속하시겠습니까?");
+    if (userResponse) { // '확인'을 클릭할 경우
+        fetch('/deleteWishDetail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({wishlistDetailSeq: wishlistDetailSeq}),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('서버와의 연결에 문제가 발생했습니다.');
+            });
+    }
+}
