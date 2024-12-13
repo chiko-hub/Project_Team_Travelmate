@@ -20,7 +20,7 @@
             </div>
             <div id="wishlistAddPanel" class="wishlistAddPanel">
                 <h3>새로운 찜 목록 생성</h3>
-                <form id="wishlistAddForm" method="post" action="addWishlist">
+                <form id="wishlistAddForm">
                     <label for="wishlistTitle">이름</label>
                     <input type="text" id="wishlistTitle" name="wishlist_title" required/><br/>
                     <label for="wishlistCategory">종류</label>

@@ -71,25 +71,3 @@ $(document).ready(function () {
         });
     });
 });
-
-// 3. placeList 우측 버튼(+) 클릭 시 이미지 전환 및 AJAX 요청 통합
-document.addEventListener("DOMContentLoaded", () => {
-    const toggleButtons = document.querySelectorAll(".toggle-button");
-
-    toggleButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            button.classList.toggle("checked");
-
-            const iconPlus = button.querySelector(".icon-plus");
-            const iconCheck = button.querySelector(".icon-check");
-
-            if (button.classList.contains("checked")) {
-                iconPlus.style.display = "none";
-                iconCheck.style.display = "inline-block";
-            } else {
-                iconPlus.style.display = "inline-block";
-                iconCheck.style.display = "none";
-            }
-        });
-    });
-});

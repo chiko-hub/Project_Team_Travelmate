@@ -138,10 +138,6 @@ public class PlaceService {
         return result;
     }
 
-
-
-
-
     public HashMap<String, Object> getPlaceSearch(HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
         HttpSession session = request.getSession();
@@ -183,7 +179,7 @@ public class PlaceService {
         return result;
     }
 
-    public Object getPlace(int place_seq) {
+    public PlaceVO getPlace(int place_seq) {
         return pdao.getPlace(place_seq);
     }
 

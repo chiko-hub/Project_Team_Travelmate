@@ -8,6 +8,12 @@
         SELECT * FROM wishlist WHERE userid=#{param1}
     </select>
 
+    <select id="getWishlistByCategory" resultType="com.himedia.tp01.dto.WishlistVO">
+        SELECT *
+        FROM(SELECT * FROM wishlist WHERE userid=#{param1}) AS wishquery
+        WHERE wishlist_category=#{param2}
+    </select>
+
     <insert id="addWishlist" parameterType="com.himedia.tp01.dto.WishlistVO">
         INSERT INTO wishlist(wishlist_title, wishlist_category, userid)
         VALUES(#{wishlist_title}, #{wishlist_category}, #{userid})
@@ -20,4 +26,14 @@
     <delete id="deleteWishlist" parameterType="_int">
         DELETE FROM wishlist WHERE wishlist_seq=#{param1}
     </delete>
+
+    <insert id="addPlaceWish" parameterType="map">
+        INSERT INTO wishlist_detail (wishlist_seq, wish_name, wish_location, wish_description, wish_image)
+        VALUES (#{wishlistSeq}, #{place.place_name}, #{place.place_location}, #{place.place_description}, #{place.place_image})
+    </insert>
+
+    <insert id="addHotelWish" parameterType="com.himedia.tp01.dto.HotelVO">
+        INSERT INTO wishlist_detail(wishlist_seq, wish_name, wish_location, wish_description, wish_image)
+        VALUES(#{wishlistSeq}, #{hotel.hotel_name}, #{hotel.hotel_location}, #{hotel.hotel_description}, #{hotel.hotel_image})
+    </insert>
 </mapper>

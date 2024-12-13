@@ -37,14 +37,14 @@ public class PlaceController {
         if(currentMember == null) {
             // 로그인 후 이용할 수 있는 기능이라는 문구 뜸
         }else{
-            List<WishlistVO> wishlist = ws.getWishlistByUserid(currentMember.getUserid()); // wishlist 가져오기
+            // userid 에 해당하는 place 카테고리의 찜 목록 가져오기
+            List<WishlistVO> wishlist = ws.getWishlistByCategory(currentMember.getUserid(), "place"); // wishlist 가져오기
             mav.addObject("wishlist", wishlist);
         }
 
         mav.addObject("placeList", result.get("placeList"));
         mav.addObject("paging", result.get("paging"));
         mav.addObject("key", result.get("key"));
-        mav.addObject("viewType", "placeList"); // 뷰 타입 추가
         mav.setViewName("place/placeSelect");
         return mav;
     }

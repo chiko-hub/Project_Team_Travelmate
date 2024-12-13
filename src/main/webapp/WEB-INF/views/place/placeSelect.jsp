@@ -29,7 +29,7 @@
                         <div class="placeDescription">${place.place_description}</div>
                     </div>
                     <div class="placeButton" style="border: 1px solid blue;">
-                        <button class="toggle-button" data-place-id="${place.place_seq}">
+                        <button class="toggle-button" data-wish-seq="${place.place_seq}" onclick="toggleWishPanel('wishAddPanel', this)">
                             <span class="icon-plus">+</span>
                             <span class="icon-check" style="display: none;">✔</span>
                         </button>
@@ -61,31 +61,56 @@
         </div> <!-- 페이지의 끝 -->
     </div>
     <!-- 찜 목록 -->
-    <div class="wishDetailContainer">
+    <div class="wishDetailContainer" style="border: solid 1px red">
         <h2>찜 목록</h2>
         <div class="wishDetailList">
             <c:choose>
                 <c:when test="${not empty wishlist}">
                     <c:forEach var="wishlistItem" items="${wishlist}">
-                        <div class="wishlistItem">
+                        <div class="wishlistItem" data-wishlist-seq="${wishlistItem.wishlist_seq}">
                             <div class="wishlistName" onclick="">${wishlistItem.wishlist_title}</div>
                             <button class="removeWishlistButton" data-wishlist-seq="${wishlistItem.wishlist_seq}">×</button>
                         </div>
                     </c:forEach>
+                    <div id="wishAddPanel" class="wishlistAddPanel" style="transform: translate(-120%, -10%);">
+                        <h3>추가할 찜 목록 선택</h3>
+                        <form id="wishAddForm" method="post">
+                            <input type="hidden" value="place" name="wish_category"/> <%-- wish 의 category 전달 --%>
+                            <label for="wishlistSeq">찜 목록</label>
+                            <select id="wishlistSeq" name="wishlist_seq" required>
+                                <option value=""></option>
+                                <c:forEach var="wishlistNum" begin="0" end="${fn:length(wishlist)-1}" varStatus="status">
+                                    <option value="${wishlist[wishlistNum].wishlist_seq}"> ${wishlist[wishlistNum].wishlist_title}</option>
+                                </c:forEach>
+                            </select>
+                            <div class="wishlistAddButton">
+                                <button type="button" onclick="addWish()">추가</button>
+                                <button type="button" onclick="togglePanel('wishAddPanel')">취소</button>
+                            </div>
+                        </form>
+                    </div>
                 </c:when>
             </c:choose>
-            <div class="wishAddButton">
-                <button type="button" onclick="togglePanel('wishlistAddPanel')">+</button>
-            </div>
+            <c:choose>
+                <c:when test="${empty loginUser}">
+                    <div class="noWishDetailItem">
+                        <div class="noWishText">로그인 후 이용 가능합니다.</div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="wishAddButton">
+                        <button type="button" onclick="togglePanel('wishlistAddPanel')">+</button>
+                    </div>
+                </c:otherwise>
+            </c:choose>
             <div id="wishlistAddPanel" class="wishlistAddPanel">
                 <h3>새로운 찜 목록 생성</h3>
-                <form id="wishlistAddForm" method="post" action="addWishlist">
+                <form id="wishlistAddForm">
                     <label for="wishlistTitle">이름</label>
                     <input type="text" id="wishlistTitle" name="wishlist_title" required/><br/>
                     <label for="wishlistCategory">종류</label>
                     <select id="wishlistCategory" name="wishlist_category" required>
                         <option value="place" selected>장소</option>
-                        <option value="hotel">숙소</option>
                     </select>
                     <div class="wishlistAddButton">
                         <button type="button" onclick="addWishlist()">생성</button>

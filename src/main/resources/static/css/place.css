@@ -1,13 +1,13 @@
 .main {
     /*flex: 1;*/
-    padding: 20px;
     width: 50%;
     display: flex;
     box-sizing: border-box;
 }
 
 .searchContainer {
-    flex: 1;
+    flex: 3;
+    padding: 20px;
     box-sizing: border-box;
     overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
     border-right: 1px solid #ddd;
@@ -165,7 +165,7 @@
 
 /* 버튼 클릭 시 스타일 */
 .toggle-button.checked {
-    background-color: deepskyblue; /* 하늘색 배경 */
+    background-color: #2e8b57;
 }
 
 /* "+"와 "✔" 아이콘 */
@@ -176,7 +176,6 @@
 .icon-check {
     display: none;
 }
-
 
 /* 모달 배경 */
 .modal {
