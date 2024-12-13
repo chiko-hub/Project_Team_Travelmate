@@ -6,16 +6,16 @@
   <form>
     <h2> Hotel Detail </h2>
     <div class="field" style="border-top:1px dotted darkseagreen;">
-      <label>숙소명</label><div>${hotelVO.hotel_name}</div>
+      <label>Hotel name</label><div>${hotelVO.hotel_name}</div>
     </div>
     <div class="field" style="border-top:1px dotted darkseagreen;">
-      <label>위치</label><div>${hotelVO.hotel_location}</div>
+      <label>Location</label><div>${hotelVO.hotel_location}</div>
     </div>
     <div class="field" style="border-top:1px dotted darkseagreen;">
-      <label>상세설명</label><div><pre>${hotelVO.hotel_description}</pre></div>
+      <label>Info.</label><div><pre>${hotelVO.hotel_description}</pre></div>
     </div>
     <div class="field" style="border-top:1px dotted darkseagreen; border-bottom:2px solid darkseagreen;">
-      <label>숙소 이미지</label>
+      <label>Image</label>
       <div><img src="hotel_images/${hotelVO.hotel_savefilename}" width="300"></div>
     </div>
     <div class="btn">
