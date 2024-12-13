@@ -38,6 +38,14 @@ public class WishlistController {
         return mav;
     }
 
+    /* wishlistDetail 정보 가져오기 */
+    @GetMapping("/getWishDetail")
+    @ResponseBody
+    public List<WishlistDetailVO> getWishDetail(@RequestParam("wishlist_seq") int wishlistSeq) {
+        // wishlist_seq에 해당하는 상세 정보 반환
+        return ws.getWishlistDetailByWishlistSeq(wishlistSeq);
+    }
+
     /* 찜 목록 생성 */
     @PostMapping("/addWishlist")
     @ResponseBody

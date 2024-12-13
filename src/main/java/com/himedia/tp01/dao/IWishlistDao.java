@@ -2,6 +2,7 @@ package com.himedia.tp01.dao;
 
 import com.himedia.tp01.dto.HotelVO;
 import com.himedia.tp01.dto.PlaceVO;
+import com.himedia.tp01.dto.WishlistDetailVO;
 import com.himedia.tp01.dto.WishlistVO;
 import jakarta.validation.constraints.NotEmpty;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,4 +19,6 @@ public interface IWishlistDao {
 
     void addPlaceWish(int wishlistSeq, PlaceVO place); // wishlistSeq 에 place데이터 추가
     void addHotelWish(int wishlistSeq, HotelVO hotel); // wishlistSeq 에 place데이터 추가
+
+    List<WishlistDetailVO> getWishlistDetailByWishlistSeq(int wishlistSeq); // wishlistSeq 로 wishlistDetail 조회
 }

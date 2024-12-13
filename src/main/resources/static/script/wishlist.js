@@ -132,3 +132,58 @@ function addWish() {
         alert("찜 목록과 장소를 선택해주세요.");
     }
 }
+
+/* wishlistItem 클릭 시 해당 상세 정보를 불러오는 함수 */
+function loadWishDetail(wishlistSeq) {
+    // AJAX 요청 보내기
+    $.ajax({
+        url: '/getWishDetail', // 서버에서 상세 정보를 가져오는 URL
+        method: 'GET',
+        data: { wishlist_seq: wishlistSeq }, // wishlist_seq 값 전송
+        success: function(response) {
+            // 서버에서 받은 상세 정보로 wishDetailItem을 업데이트
+            const wishDetailList = document.querySelector('.wishDetailList');
+            wishDetailList.innerHTML = '';  // 기존 상세 내용 비우기
+
+            // 받은 상세 정보(response)로 wishDetailItem을 동적으로 생성
+            response.forEach(item => {
+                const wishDetailItem = document.createElement('div');
+                wishDetailItem.classList.add('wishDetailItem');
+
+                const wishImage = document.createElement('div');
+                wishImage.classList.add('wishImage');
+                const img = document.createElement('img');
+                img.src = item.wish_image;  // 서버에서 받은 이미지 URL
+                wishImage.appendChild(img);
+
+                const wishText = document.createElement('div');
+                wishText.classList.add('wishText');
+                const title = document.createElement('div');
+                title.classList.add('wishTitle');
+                title.textContent = item.wish_name;  // 서버에서 받은 제목
+                const location = document.createElement('div');
+                location.classList.add('wishLocation');
+                location.textContent = item.wish_description;  // 서버에서 받은 설명
+
+                wishText.appendChild(title);
+                wishText.appendChild(location);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('deleteBtn');
+                deleteBtn.textContent = '×';
+                deleteBtn.onclick = function() {
+                    deleteLocation(item.wishlist_detail_seq);  // 상세 아이템을 삭제하는 함수
+                };
+
+                wishDetailItem.appendChild(wishImage);
+                wishDetailItem.appendChild(wishText);
+                wishDetailItem.appendChild(deleteBtn);
+
+                wishDetailList.appendChild(wishDetailItem);
+            });
+        },
+        error: function() {
+            alert('세부 정보를 가져오는 데 실패했습니다.');
+        }
+    });
+}
