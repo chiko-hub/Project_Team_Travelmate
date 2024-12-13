@@ -21,7 +21,7 @@
        <h3 style="margin-right:60px; margin-bottom: 20px">기본 정보</h3>
        <div class="field" style="margin-bottom:9px;margin-right:5px" >
           <label style="margin-left:11px;">아이디</label><br>
-         <input type="text" style="outline:none; margin-left:11px; width:270px; height:22px;" name="userid"value="${dto.userid}" readonly>
+         <input type="text" style="border: 1px solid #cccccc; outline:none; margin-left:11px; width:270px; height:22px;" name="userid"value="${dto.userid}" readonly>
        </div>
        <div class="field" style="margin-bottom:9px">
          <label style="margin-left:10px;">비밀번호</label><br>
@@ -45,7 +45,7 @@
          <label style="margin-left:10px;">우편번호</label>
          <div>
            <input type="text"  style="margin-left:11px; outline: none;border: 1px solid #cccccc;width:170px;height:22px;"  id="sample6_postcode" name="zip_num"   value="${dto.zip_num}" readonly>
-           <input type="button" style="outline: none;cursor:pointer; border: 1px solid #cccccc;width:93px;height:22px;" value="우편번호 찾기"  onclick="sample6_execDaumPostcode()">
+           <input type="button" style="outline: none;cursor:pointer; border: 1px solid #cccccc;width:95px;height:25px;background-color:#2e8b57;color:white" value="우편번호 찾기"  onclick="sample6_execDaumPostcode()">
          </div>
        </div>
        <div class="field" style="margin-bottom:9px">
