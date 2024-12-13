@@ -172,7 +172,7 @@ function loadWishDetail(wishlistSeq) {
                 deleteBtn.classList.add('deleteBtn');
                 deleteBtn.textContent = '×';
                 deleteBtn.onclick = function() {
-                    deleteLocation(item.wishlist_detail_seq);  // 상세 아이템을 삭제하는 함수
+                    deleteWishDetail(item.wishlist_detail_seq);  // 상세 아이템을 삭제하는 함수
                 };
 
                 wishDetailItem.appendChild(wishImage);
@@ -186,4 +186,32 @@ function loadWishDetail(wishlistSeq) {
             alert('세부 정보를 가져오는 데 실패했습니다.');
         }
     });
+}
+
+/* 찜 목록에 담아둔 wishlistDetail 삭제 */
+function deleteWishDetail(wishlistDetailSeq){
+    // 사용자에게 확인 메시지 표시
+    const userResponse = window.confirm("찜 목록에 담긴 해당 정보가 삭제됩니다. 계속하시겠습니까?");
+    if (userResponse) { // '확인'을 클릭할 경우
+        fetch('/deleteWishDetail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({wishlistDetailSeq: wishlistDetailSeq}),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('서버와의 연결에 문제가 발생했습니다.');
+            });
+    }
 }

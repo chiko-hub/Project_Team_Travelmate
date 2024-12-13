@@ -55,4 +55,14 @@ public class WishlistService {
     public List<WishlistDetailVO> getWishlistDetailByWishlistSeq(int wishlistSeq) {
         return wdao.getWishlistDetailByWishlistSeq(wishlistSeq);
     }
+
+    /* wishlist_detail_seq 로 wishlistDetail 가져오기 */
+    public WishlistDetailVO getWishlistDetail(int wishlistDetailSeq) {
+        return wdao.getWishlistDetail(wishlistDetailSeq);
+    }
+
+    /* wishlistDetail 삭제 */
+    public void deleteWishDetail(int wishlistDetailSeq) {
+        wdao.deleteWishlistDetail(wishlistDetailSeq);
+    }
 }

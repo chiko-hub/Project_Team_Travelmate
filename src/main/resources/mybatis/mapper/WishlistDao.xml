@@ -40,4 +40,12 @@
     <select id="getWishlistDetailByWishlistSeq" resultType="com.himedia.tp01.dto.WishlistDetailVO">
         SELECT * FROM wishlist_detail WHERE wishlist_seq=#{param1}
     </select>
+
+    <select id="getWishlistDetail" resultType="com.himedia.tp01.dto.WishlistDetailVO">
+        SELECT * FROM wishlist_detail WHERE wishlist_detail_seq=#{param1}
+    </select>
+
+    <delete id="deleteWishlistDetail" parameterType="_int">
+        DELETE FROM wishlist_detail WHERE wishlist_detail_seq=#{param1}
+    </delete>
 </mapper>

@@ -20,15 +20,15 @@
         <!-- placeList 출력 -->
         <div class="place">
             <c:forEach var="place" items="${placeList}">
-                <div class="item" style="border : 1px solid green">
-                    <div class="placeImage" style="border : 1px solid red">
+                <div class="item">
+                    <div class="placeImage">
                         <img src="/place_images/${place.savefilename}" alt="${place.place_name}" data-place-seq="${place.place_seq}"/>
                     </div>
-                    <div class="placeText" style="border: 1px solid black">
+                    <div class="placeText">
                         <div class="placeName">${place.place_name}</div>
                         <div class="placeDescription">${place.place_description}</div>
                     </div>
-                    <div class="placeButton" style="border: 1px solid blue;">
+                    <div class="placeButton">
                         <button class="toggle-button" data-wish-seq="${place.place_seq}" onclick="toggleWishPanel('wishAddPanel', this)">
                             <span class="icon-plus">+</span>
                             <span class="icon-check" style="display: none;">✔</span>
@@ -61,7 +61,7 @@
         </div> <!-- 페이지의 끝 -->
     </div>
     <!-- 찜 목록 -->
-    <div class="wishDetailContainer" style="border: solid 1px red">
+    <div class="wishDetailContainer">
         <h2>찜 목록</h2>
         <div class="wishDetailList">
             <c:choose>
@@ -72,7 +72,7 @@
                             <button class="removeWishlistButton" data-wishlist-seq="${wishlistItem.wishlist_seq}">×</button>
                         </div>
                     </c:forEach>
-                    <div id="wishAddPanel" class="wishlistAddPanel" style="transform: translate(-120%, -10%);">
+                    <div id="wishAddPanel" class="wishlistAddPanel">
                         <h3>추가할 찜 목록 선택</h3>
                         <form id="wishAddForm" method="post">
                             <input type="hidden" value="place" name="wish_category"/> <%-- wish 의 category 전달 --%>

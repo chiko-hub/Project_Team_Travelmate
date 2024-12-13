@@ -21,14 +21,14 @@
         <div class="hotel">
             <c:forEach var="hotel" items="${hotelList}">
                 <div class="item">
-                    <div class="hotelImage" style="border : 1px solid red">
+                    <div class="hotelImage">
                         <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}" data-hotel-seq="${hotel.hotel_seq}"/>
                     </div>
                     <div class="hotelText">
                         <div class="hotelName">${hotel.hotel_name}</div>
                         <div class="hotelDescription">${hotel.hotel_description}</div>
                     </div>
-                    <div class="hotelButton" style="border: 1px solid blue;">
+                    <div class="hotelButton">
                         <button class="toggle-button" data-wish-seq="${hotel.hotel_seq}" onclick="toggleWishPanel('wishAddPanel', this)">
                             <span class="icon-plus">+</span>
                             <span class="icon-check" style="display: none;">✔</span>
@@ -72,7 +72,7 @@
                             <button class="removeWishlistButton" data-wishlist-seq="${wishlistItem.wishlist_seq}">×</button>
                         </div>
                     </c:forEach>
-                    <div id="wishAddPanel" class="wishlistAddPanel" style="transform: translate(-120%, -10%);">
+                    <div id="wishAddPanel" class="wishlistAddPanel" <%--style="transform: translate(-120%, -10%);"--%>>
                         <h3>추가할 찜 목록 선택</h3>
                         <form id="wishAddForm" method="post">
                             <input type="hidden" value="hotel" name="wish_category"/> <%-- wish 의 category 전달 --%>

@@ -4,7 +4,7 @@
     <!-- 찜 목록 -->
     <div class="wishContainer">
         <h2>찜 목록</h2>
-        <div class="wishlistList" style="border: 1px solid blue">
+        <div class="wishlistList">
             <c:choose>
                 <c:when test="${not empty wishlist}">
                     <c:forEach var="wishlistItem" items="${wishlist}">
@@ -37,33 +37,12 @@
         </div>
     </div>
     <!-- 상세 보기 -->
-    <div class="wishDetailContainer" style="border: 1px solid red">
-        <div class="wishDetailList" style="border: 1px solid blue">
+    <div class="wishDetailContainer">
+        <div class="wishDetailList">
             <div class="noWishDetailItem">
                 <div class="noWishText">찜 목록을 선택해주세요.</div>
             </div>
-            <!-- 장소 아이템 1 -->
-            <div class="wishDetailItem">
-                <div class="wishImage" style="border: 1px solid yellow">
-                    <img src="" alt="다빈장 이미지" />
-                </div>
-                <div class="wishText">
-                    <div class="wishTitle">이벤트 다빈장</div>
-                    <div class="wishLocation">제주 애월 늦게까지 하는 현지인 맛집 다빈장제주 애월 늦게까지 하는 현지인 맛집 다빈장</div>
-                </div>
-                <button class="deleteBtn" onclick="deleteLocation()">×</button>
-            </div>
-            <!-- 장소 아이템 2 -->
-            <div class="wishDetailItem">
-                <div class="wishImage" style="border: 1px solid yellow">
-                    <img src="" alt="손흥해장국 이미지" />
-                </div>
-                <div class="wishText">
-                    <div class="wishTitle">이벤트 손흥해장국</div>
-                    <div class="wishLocation">13년 전통, 함덕해변 근처 해장국 맛집</div>
-                </div>
-                <button class="deleteBtn" onclick="deleteLocation()">×</button>
-            </div>
+            <%-- wishlistDetail 표시 --%>
         </div>
     </div>
 </div>

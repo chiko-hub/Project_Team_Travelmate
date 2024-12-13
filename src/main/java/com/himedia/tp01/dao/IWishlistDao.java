@@ -14,11 +14,13 @@ public interface IWishlistDao {
     List<WishlistVO> getWishlistByUserid(String userid); // userid 에 해당하는 wishlist 조회
     List<WishlistVO> getWishlistByCategory(String userid, String category); // category 에 해당하는 wishlist 조회
     void addWishlist(WishlistVO wishlistvo); // wishlist 추가
-    WishlistVO getWishlistByWishlistSeq(int wishlistSeq); // wishlistSeq 로 wishlist 조회
+    WishlistVO getWishlistByWishlistSeq(int wishlistSeq); // wishlist_seq 로 wishlist 조회
     void deleteWishlist(int wishlistSeq); // wishlist 삭제
 
-    void addPlaceWish(int wishlistSeq, PlaceVO place); // wishlistSeq 에 place데이터 추가
-    void addHotelWish(int wishlistSeq, HotelVO hotel); // wishlistSeq 에 place데이터 추가
+    void addPlaceWish(int wishlistSeq, PlaceVO place); // wishlist_seq 에 place데이터 추가
+    void addHotelWish(int wishlistSeq, HotelVO hotel); // wishlist_seq 에 place데이터 추가
 
-    List<WishlistDetailVO> getWishlistDetailByWishlistSeq(int wishlistSeq); // wishlistSeq 로 wishlistDetail 조회
+    List<WishlistDetailVO> getWishlistDetailByWishlistSeq(int wishlistSeq); // wishlist_seq 로 wishlistDetail 조회
+    WishlistDetailVO getWishlistDetail(int wishlistDetailSeq); // wishlist_detail_seq 로 wishlistDetail 조회
+    void deleteWishlistDetail(int wishlistDetailSeq); // wishlistDetail 삭제
 }
