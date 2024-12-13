@@ -14,30 +14,6 @@ public class StartController {
 
     @GetMapping("/travel-start")
     public String travelstart(Model model) {
-        //List<HotelVO> hotelList = hs.getHotel(); // 호텔 데이터 가져오기
-        //model.addAttribute("hotelList", hotelList);
         return "start/travel-start";
     }
-
-    @GetMapping("/place")
-    public String place() {
-        return "place/placeForm.jsp";
-    }
-
-    @GetMapping("/hotel")
-    public String hotel() {
-        return "place/placeForm.jsp";
-    }
-
-    @GetMapping("/like")
-    public String like() {
-        return "like/likeForm.jsp";
-    }
-
-    @GetMapping("/plan")
-    public String plan() {
-        return "plan/planForm.jsp";
-    }
-
-
 }

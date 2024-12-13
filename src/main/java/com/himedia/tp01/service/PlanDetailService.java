@@ -3,6 +3,7 @@ package com.himedia.tp01.service;
 import com.himedia.tp01.dao.IPlanDetailDao;
 import com.himedia.tp01.dto.PlanDetailVO;
 import com.himedia.tp01.dto.PlanVO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PlanDetailService {
@@ -18,32 +21,71 @@ public class PlanDetailService {
     @Autowired
     IPlanDetailDao pddao;
 
-    /* code 에 해당하는 plan_detail 불러오기 */
-    public List<PlanDetailVO> getPlanDetail(String code) {
-        List<PlanDetailVO> planDetailList = pddao.getPlanDetail(code);
-        return planDetailList;
+    /* planCode 로 planDetail 가져오기 */
+    public HashMap<Integer, List<PlanDetailVO>> getPlanDetail(int[] planSeqArray) {
+        HashMap<Integer, List<PlanDetailVO>> planDetailHashMap = new HashMap<>();
+        List<PlanDetailVO> planDetailList = new ArrayList<>();
+        // plan_seq 를 기준으로 planDetail 받아오기
+        for(int i = 0; i < planSeqArray.length; i++) {
+            planDetailList = pddao.getPlanDetail(planSeqArray[i]); // starttime 기준 오름차순
+            planDetailHashMap.put(planSeqArray[i], planDetailList);
+        }
+        return planDetailHashMap;
     }
 
-    /* plan의 여행 날짜 전부 구하기 */
-    public void getDaysBetweenDates(String code, Date startDate, Date endDate) {
-        // LocalDate 형식으로 Date 날짜 형변환
-        LocalDate localStartDate = startDate.toLocalDate();
-        LocalDate localEndDate = endDate.toLocalDate();
+    /* 겹치는 planDetail 이 있는지 확인하기 */
+    public Boolean checkTime(@Valid PlanDetailVO plandetailvo) {
+        int newStarttime = plandetailvo.getStarttime(); // 새로운 계획의 시작 시간
+        int newEndtime = plandetailvo.getEndtime(); // 새로운 계획의 끝 시간
+        Set<Integer> newTimeSet = new TreeSet<>(); // 새로운 계획이 차지하는 모든 시간을 담는 set
 
-        // 두 날짜 사이의 간격 구하기
-        Period period = Period.between(localStartDate, localEndDate);
-        System.out.println("betweenDays : " + period.getDays());
-
-        PlanDetailVO pdvo = new PlanDetailVO();
-
-        // 반복문을 통해 여행 날짜를 전부 가져와 plan_detail 에 code와 함께 저장하기
-        for(int i = 0; i <= period.getDays(); i++) {
-            // MM/dd 형식으로 변환해 String 으로 저장
-            String date = localStartDate.plusDays(i).format(DateTimeFormatter.ofPattern("MM/dd"));
-            System.out.println("date : " + date);
-            // code와 함께 날짜 저장
-            pddao.setPlanDetailDate(code, date);
+        // 새로운 planDetail 이 차지하는 모든 시간 담기
+        for(int newTime = newStarttime; newTime < newEndtime; newTime++){
+            newTimeSet.add(newTime);
         }
 
+        // plan_seq를 기준으로 기존에 저장되어 있던 planDetail 가져오기
+        List<PlanDetailVO> planDetailList = pddao.getPlanDetail(plandetailvo.getPlan_seq());
+
+        // 비교 대상의 planDetail을 제외한 가져온 planDetail 전부 조사
+        for(PlanDetailVO planDetail : planDetailList) {
+            if(planDetail.getPlan_detail_seq() != plandetailvo.getPlan_detail_seq()) {
+                int existingStarttime = planDetail.getStarttime(); // 기존 계획의 시작 시간
+                int existingEndtime = planDetail.getEndtime(); // 기존 계획의 끝 시간
+                Set<Integer> existingTimeSet = new TreeSet<>(); // 기존의 계획이 차지하는 모든 시간을 담는 set
+
+                // 기존 planDetail 이 차지하는 모든 시간 담기
+                for (int existingTime = existingStarttime; existingTime < existingEndtime; existingTime++) {
+                    existingTimeSet.add(existingTime);
+                }
+
+                // 겹치는 시간을 비교할 새로운 Set으로 합집합 생성
+                Set<Integer> resultSet = Stream.concat(newTimeSet.stream(), existingTimeSet.stream())
+                        .collect(Collectors.toSet());
+
+                // 겹치는 시간이 있어 size가 맞지 않으면
+                if (resultSet.size() != (newTimeSet.size() + existingTimeSet.size())) return false;
+            }
+        }
+        return true;
+    }
+
+    /* plan 에 새로운 planDetail 추가하기 */
+    public void insertPlanDetail(PlanDetailVO plandetail) {
+        pddao.insertPlanDetail(plandetail);
+    }
+
+    /* planDetailSeq 로 planDetail 정보 가져오기 */
+    public PlanDetailVO getPlanDetailByPlanDetailSeq(int planDetailSeq) {
+        return pddao.getPlanDetailByPlanDetailSeq(planDetailSeq);
+    }
+    /* planDetail 수정하기 */
+    public void updatePlanDetail(@Valid PlanDetailVO plandetail) {
+        pddao.updatePlanDetail(plandetail);
+    }
+
+    /* planDetail 삭제하기 */
+    public void deletePlanDetail(int planDetailSeq) {
+        pddao.deletePlanDetail(planDetailSeq);
     }
 }

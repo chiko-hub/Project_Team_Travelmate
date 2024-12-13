@@ -4,11 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.himedia.tp01.dao.IPlanDetailDao">
-    <insert id="setPlanDetailDate">
-        INSERT INTO plan_detail(plan_code, plan_date) VALUES(#{param1}, #{param2})
+    <select id="getPlanDetail" resultType="com.himedia.tp01.dto.PlanDetailVO">
+        SELECT * FROM plan_detail WHERE plan_seq=#{param1} ORDER BY CAST(starttime AS UNSIGNED);
+    </select>
+
+    <insert id="insertPlanDetail" parameterType="com.himedia.tp01.dto.PlanDetailVO">
+        INSERT INTO plan_detail(plan_seq, plan_name, plan_date, plan_category, starttime, endtime)
+        VALUES(#{plan_seq}, #{plan_name}, #{plan_date}, #{plan_category}, #{starttime}, #{endtime})
     </insert>
 
-    <select id="getPlanDetail" resultType="com.himedia.tp01.dto.PlanDetailVO">
-        SELECT * FROM plan_detail WHERE plan_code=#{param1}
+    <select id="getPlanDetailByPlanDetailSeq" resultType="com.himedia.tp01.dto.PlanDetailVO">
+        SELECT * FROM plan_detail WHERE plan_detail_seq=#{param1}
     </select>
+
+    <update id="updatePlanDetail" parameterType="com.himedia.tp01.dto.PlanDetailVO">
+        UPDATE plan_detail SET plan_seq=#{plan_seq}, plan_name=#{plan_name}, plan_date=#{plan_date}, plan_category=#{plan_category}, starttime=#{starttime}, endtime=#{endtime}
+        WHERE plan_detail_seq=#{plan_detail_seq}
+    </update>
+
+    <delete id="deletePlanDetail" parameterType="_int">
+        DELETE FROM plan_detail WHERE plan_detail_seq=#{param1}
+    </delete>
 </mapper>

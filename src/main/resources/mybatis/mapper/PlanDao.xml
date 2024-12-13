@@ -5,10 +5,16 @@
 
 <mapper namespace="com.himedia.tp01.dao.IPlanDao">
     <insert id="setPlan">
-        INSERT INTO plan(code, plan_startdate, plan_enddate) VALUSE(#{param1}, #{param2}, #{param3})
+        INSERT INTO plan(plan_code, travel_date) VALUES(#{param1}, #{param2})
     </insert>
 
     <select id="getPlan" resultType="com.himedia.tp01.dto.PlanVO">
-        SELECT * FROM plan WHERE code=#{param1}
+        SELECT * FROM plan WHERE plan_code=#{param1}
+    </select>
+
+    <select id="checkPlanCode" resultType="boolean" parameterType="string">
+        SELECT EXISTS (
+            SELECT 1 FROM plan WHERE plan_code = #{param1}
+        )
     </select>
 </mapper>

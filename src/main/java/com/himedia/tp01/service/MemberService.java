@@ -20,4 +20,17 @@ public class MemberService {
     public void insertMember(MemberVO mvo) {
         mdao.insertMember(mvo);
     }
-}
+
+    public void updateMember(MemberVO mvo) {
+        mdao.updateMember(mvo);
+    }
+
+    /* 현재 로그인한 유저에게 planCode 부여 */
+    public void updateMemberPlanCode(String userid, String planCode) {
+        mdao.updateMemberPlanCode(userid, planCode);
+    }
+
+    public void deleteMember(String userid) {mdao.deleteMember(userid);}
+    }
+
+

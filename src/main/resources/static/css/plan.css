@@ -1,54 +1,219 @@
+/* plan을 나타내는 컨테이너 */
+.plan_container {
+    position: relative; /* 내부 요소의 position: absolute 기준 설정 */
+    height: 100%; /* 전체 높이 고정 */
+    overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
+    width: 50%; /* 부모 컨테이너 기준으로 50% */
+    display: flex; /* 플렉스 박스를 사용하여 정렬 */
+    flex-direction: column; /* 세로 방향으로 배치 */
+    justify-content: flex-start; /* 세로 방향 상단 정렬 유지 */
+    align-items: center; /* 가로 가운데 정렬 */
+    box-sizing: border-box;
+}
+
+/* plan_container 내 요소들이 동일한 가로 크기 가져야 함 */
+.buttonList, .planTable {
+    width: 100%; /* 부모 컨테이너 기준으로 90% */
+    display: block; /* 블록 요소로 세로 배치 */
+    box-sizing: border-box; /* padding과 border가 width에 포함되도록 */
+    margin: 0 auto; /* 가로로 가운데 정렬 */
+    padding: 20px;
+}
+
+.buttonList{
+    display: flex; /* 플렉스 박스를 사용 */
+    justify-content: space-between; /* 양쪽 끝으로 버튼 정렬 */
+    box-sizing: border-box; /* 패딩 포함 너비 계산 */
+    padding-bottom: 10px;
+}
+
+/* 추가 스타일: 버튼 모양 */
+.buttonList input, .planCreateButton button {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #2e8b57;
+    background: #fff;
+    border: 1px solid #2e8b57;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* planTable */
 .planTable {
     display: flex; /* 플렉스 박스 사용 */
     flex-direction: row; /* 가로 정렬 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: flex-start; /* 기본 높이로 유지 */
+    padding-top: 0;
+}
+
+/* timeList와 planList는 같은 크기로 늘어나고 줄어듦 */
+.timeList, .planList {
+    display: grid;
+    grid-template-rows: repeat(25, 1fr);
+    width: 80%;
+    height: 100%; /* 부모 컨테이너 높이에 맞춤 */
+    border: 1px solid #ddd; /* 개별 테두리 */
+    background-color: #f9f9f9; /* 배경색 */
+}
+
+/* time 스타일 */
+.time, .cell {
+    display: grid;
+    /*display: flex;*/
     justify-content: center; /* 가로 가운데 정렬 */
     align-items: center; /* 세로 가운데 정렬 */
-    border: 1px solid #ddd; /* 전체 테두리 */
-    padding: 10px; /* 내부 여백 */
-    background-color: #fff; /* 배경색 */
-}
-
-.timeList {
-    display: flex;
-    flex-direction: column; /* 각 time 요소를 세로로 정렬 */
-    border: 1px solid #ddd; /* timeList마다 테두리 */
-    background-color: #f9f9f9; /* timeList의 배경색 */
-}
-
-.planList{
-    display: flex;
-    flex-direction: column; /* 각 time 요소를 세로로 정렬 */
-    border: 1px solid #ddd; /* timeList마다 테두리 */
-    background-color: #f9f9f9; /* timeList의 배경색 */
-}
-
-.time{
-    display: flex;
-    justify-content: center; /* 가로 가운데 정렬 */
-    align-items: center; /* 세로 가운데 정렬 */
-    width: 80px;
-    height: 60px; /* 각 시간 박스의 높이 */
+    width: 100%; /* 부모 컨테이너에 맞게 자동 조정 */
     border-bottom: 1px solid #ddd; /* 아래쪽 구분선 */
     text-align: center;
     font-size: 14px; /* 텍스트 크기 */
     color: #333; /* 텍스트 색상 */
+    min-height: 40px; /* 최소 높이 유지 */
+    height: auto; /* 자동으로 높이 조정 */
+    max-height: none; /* 최대 높이 제한 제거 */
 }
 
-.cell{
-    display: flex;
+.planName{
+    width: 100%;
+    height: 100%;
+    display: grid;
     justify-content: center; /* 가로 가운데 정렬 */
     align-items: center; /* 세로 가운데 정렬 */
-    width: 100px;
-    height: 60px; /* 각 시간 박스의 높이 */
-    border-bottom: 1px solid #ddd; /* 아래쪽 구분선 */
-    text-align: center;
-    font-size: 14px; /* 텍스트 크기 */
-    color: #333; /* 텍스트 색상 */
 }
 
-.time:first-child{ height: 50px; }
-.cell:first-child{ height: 50px; }
+.time:first-child, .cell:first-child {
+    height: 30px; /* 첫 항목의 높이 */
 
-.time:last-child { border-bottom: none; /* 마지막 항목 구분선 제거 */ }
-.cell:last-child { border-bottom: none; /* 마지막 항목 구분선 제거 */ }
+}
 
+.time:last-child, .cell:last-child {
+    border-bottom: none; /* 마지막 항목 구분선 제거 */
+}
+
+/* 입력 패널 */
+.panel {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute; /* 부모 기준 위치 */
+    top: 20%; /* 화면 중간 정도 */
+    left: 50%; /* 화면 가운데 정렬 */
+    transform: translate(-50%, -20%); /* 중앙 정렬 보정 */
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* 패널 내부 스타일 */
+.panel h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+.panel input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.planButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.panel button {
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.panel button:first-of-type {
+    background-color: #2e8b57;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.panel button:last-of-type {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* label과 input/select 사이 간격 조정 */
+.panel label {
+    display: block; /* 블록 요소로 전환 */
+    margin-bottom: 5px; /* 아래쪽 여백 추가 */
+    font-weight: bold; /* (선택 사항) label 강조 */
+    font-size: 14px; /* (선택 사항) 글자 크기 */
+}
+
+/* 입력 필드와 드롭다운 스타일 통일 */
+.panel input,
+.panel select {
+    width: 100%; /* 동일한 너비 */
+    padding: 8px; /* 동일한 패딩 */
+    margin-bottom: 10px; /* 동일한 간격 */
+    border: 1px solid #ccc; /* 동일한 테두리 */
+    border-radius: 4px; /* 동일한 모서리 둥글기 */
+    font-size: 14px; /* 텍스트 크기 */
+    box-sizing: border-box; /* 박스 크기 계산 */
+}
+
+/* 추가로 드롭다운 스타일을 조금 더 조정하고 싶다면 */
+.panel select {
+    appearance: none; /* 기본 드롭다운 화살표 제거 (브라우저 스타일 통일) */
+    background-color: #fff; /* 드롭다운 배경 */
+    cursor: pointer; /* 포인터 모양 */
+}
+
+.cell {
+    position: relative; /* 버튼이 cell 안에 위치하도록 설정 */
+    overflow: hidden;   /* 내부 내용이 영역 밖으로 벗어나지 않도록 */
+}
+
+.planActionButtons {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute; /* 부모 요소 기준으로 배치 */
+    top: 0; /* 셀의 위쪽 모서리 */
+    right: 0; /* 셀의 오른쪽 모서리 */
+    width: 100%; /* 버튼들의 크기를 cell 크기와 동일하게 맞춤 */
+    height: 100%; /* 버튼들의 크기를 cell 크기와 동일하게 맞춤 */
+    background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    z-index: 10; /* 다른 요소보다 위에 표시 */
+    /*display: flex;*/
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: flex-start; /* 버튼들을 위쪽에 정렬 */
+    padding: 10px; /* 버튼 간격 */
+}
+
+.cell:hover .planActionButtons {
+    display: flex; /* 마우스 올리면 표시 */
+}
+
+.planUpdateButton, .planDeleteButton {
+    background-color: #007BFF; /* 버튼 배경 */
+    color: white; /* 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+    padding: 5px 10px; /* 여백 */
+    cursor: pointer;
+    border-radius: 4px; /* 둥근 모서리 */
+    font-size: 12px; /* 텍스트 크기 */
+    margin-left: 5px; /* 버튼 간 간격 */
+}
+
+.planDeleteButton {
+    background-color: #DC3545; /* 삭제 버튼은 빨간색 */
+}
+
+.planUpdateButton:hover, .planDeleteButton:hover {
+    opacity: 0.8; /* 마우스 올리면 버튼 투명도 */
+}

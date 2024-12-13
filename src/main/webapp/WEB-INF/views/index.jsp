@@ -13,20 +13,19 @@
     <div class="logo">MYRO</div>
     <nav>
         <a href="#">여행지</a>
-        <a href="#">고객지원</a>
+        <a href="customerForm">고객지원</a>
         <a href="#">이용방법</a>
         <c:choose>
             <c:when test="${empty loginUser}">
                 <a href="loginForm">로그인</a>
             </c:when>
             <c:otherwise>
-                <a href="#">${loginUser.name}(${loginUser.userid})</a>
+                <a href="updateMemberForm">${loginUser.name}(${loginUser.userid})</a>
                 <a href="logout">로그아웃</a>
             </c:otherwise>
         </c:choose>
         <a href="#"></a>
         <a href="#"></a>
-
     </nav>
 </div>
 
@@ -49,8 +48,10 @@
 </div>
 <div class="statistics">
     <div class="statItem">
-        <span> AI로 생성된 일정 수&nbsp; </span> 214,975&nbsp;
-        <span>  여행지 수&nbsp; </span> 96
+<%--        <span> AI로 생성된 일정 수&nbsp; </span> 214,975&nbsp;--%>
+<%--        <span>  여행지 수&nbsp; </span> 96--%>
+        <br><a href="admin">admin</a>
+
     </div>
 </div>
 </body>

@@ -1,0 +1,275 @@
+/* 메인 컨테이너 스타일 */
+.mainContainer {
+    display: flex;
+    width: 50%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+/* 찜 목록 스타일 */
+.wishContainer {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
+}
+
+.wishContainer h2 {
+    margin-bottom: 10px;
+}
+
+.wishlistList, .wishDetailList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative; /* 기준 컨테이너 설정 */
+}
+
+.wishlistItem {
+    position: relative; /* 버튼을 오른쪽 상단에 배치할 수 있도록 relative로 설정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    /*margin: 10px 0;*/
+    cursor: pointer;
+    background-color: #fafafa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s;
+}
+
+.wishlistItem:hover {
+    transform: translateY(-3px); /* 마우스 오버 시 살짝 위로 올라감 */
+    background-color: #f5f5f5;
+}
+
+.wishlistName {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    box-sizing: border-box;
+    width: 80%;
+    min-height: 60px; /* 일정한 최소 높이 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 텍스트가 세로로 중앙에 정렬되도록 */
+    align-items: center;
+}
+
+.removeWishlistButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    padding: 0;
+}
+
+.removeWishlistButton:hover {
+    color: red; /* 버튼에 마우스를 올렸을 때 색상 변경 */
+}
+
+/* 찜 목록 추가 버튼 */
+.wishAddButton button {
+    display: flex;
+    justify-content: center; /* 버튼 내부 중앙 정렬 */
+    align-items: center; /* 버튼 내부 중앙 정렬 */
+    width: 100%; /* 버튼 너비 */
+    height: calc(90px / 3); /* wishlistItem의 높이를 기준으로 1/3 설정 */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 18px; /* + 기호 크기 키움 */
+    font-weight: bold;
+    line-height: 1; /* 텍스트 줄 높이를 고정 */
+    color: #777; /* 색상 설정 */
+    transition: background-color 0.3s; /* 부드러운 전환 */
+    padding: 0; /* 패딩 제거 */
+}
+
+.wishAddButton button:hover {
+    transform: scale(1.02); /* 마우스 오버 시 약간 확대 */
+    background-color: #f9f9f9;
+}
+
+.wishlistAddPanel {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute; /* 부모 기준 위치 */
+    top: 20%; /* 화면 중간 정도 */
+    left: 50%; /* 화면 가운데 정렬 */
+    transform: translate(-50%, -20%); /* 중앙 정렬 보정 */
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* 패널 내부 스타일 */
+.wishlistAddPanel h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+.wishlistAddButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.wishlistAddPanel button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.wishlistAddPanel button:first-of-type {
+    background-color: #2e8b57;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.wishlistAddPanel button:last-of-type {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* label과 input/select 사이 간격 조정 */
+.wishlistAddPanel label {
+    display: block; /* 블록 요소로 전환 */
+    margin-bottom: 5px; /* 아래쪽 여백 추가 */
+    font-weight: bold; /* (선택 사항) label 강조 */
+    font-size: 14px; /* (선택 사항) 글자 크기 */
+}
+
+/* 입력 필드와 드롭다운 스타일 통일 */
+.wishlistAddPanel input,
+.wishlistAddPanel select {
+    width: 100%; /* 동일한 너비 */
+    padding: 8px; /* 동일한 패딩 */
+    margin-bottom: 10px; /* 동일한 간격 */
+    border: 1px solid #ccc; /* 동일한 테두리 */
+    border-radius: 4px; /* 동일한 모서리 둥글기 */
+    font-size: 14px; /* 텍스트 크기 */
+    box-sizing: border-box; /* 박스 크기 계산 */
+}
+
+/* 추가로 드롭다운 스타일을 조금 더 조정하고 싶다면 */
+.wishlistAddPanel select {
+    appearance: none; /* 기본 드롭다운 화살표 제거 (브라우저 스타일 통일) */
+    background-color: #fff; /* 드롭다운 배경 */
+    cursor: pointer; /* 포인터 모양 */
+}
+
+/* 상세 보기 스타일 */
+.wishDetailContainer {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
+}
+
+.noWishDetailItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    position: relative;
+}
+
+.wishDetailItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    position: relative;
+}
+
+.wishImage {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+
+.wishImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.wishText {
+    flex: 1;
+    min-height: 60px; /* 일정한 최소 높이 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 텍스트가 세로로 중앙에 정렬되도록 */
+}
+
+.noWishText {
+    flex: 1;
+    min-height: 60px; /* 일정한 최소 높이 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 텍스트가 세로로 중앙에 정렬되도록 */
+    align-items: center;
+    font-size: 14px;
+    color: #777;
+}
+
+.wishTitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.wishLocation {
+    font-size: 14px;
+    color: #777;
+}
+
+.deleteBtn {
+    font-size: 24px;
+    color: #888;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    color: #ff0000;
+}
+
+/* 마우스 오버 시 아이템 배경색 변경 */
+.wishDetailItem:hover {
+    background-color: #f1f1f1;
+}

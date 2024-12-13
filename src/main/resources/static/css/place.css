@@ -1,0 +1,229 @@
+.main {
+    /*flex: 1;*/
+    width: 50%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.searchContainer {
+    flex: 3;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
+    border-right: 1px solid #ddd;
+}
+
+.row {
+    margin-bottom: 0; /* 불필요한 여백 제거 */
+    flex: 1;
+}
+
+.selects {
+    display: flex;
+    gap: 5px; /* 버튼 간격 */
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.selects button,
+.selects input[type="button"] {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+/* 장소들을 감싸는 컨테이너 */
+.place, .hotel {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* 패딩 포함 계산 */
+    margin-bottom: 0; /* 불필요한 여백 제거 */
+}
+
+.searchWrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #2e8b57;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.searchInput {
+    flex-grow: 1;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    outline: none;
+    background-color: transparent;
+}
+
+.searchButton {
+    border: none;
+    background-color: #2e8b57;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+/* 개별 장소 카드 */
+.item {
+    display: flex; /* 이미지, 텍스트, 버튼을 가로로 정렬 */
+    justify-content: space-between; /* 각 영역 간 간격 유지 */
+    align-items: center; /* 세로 가운데 정렬 */
+    padding: 10px;
+    border: 1px solid #2e8b57;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+/* 장소 카드 안의 이미지 */
+.placeImage, .hotelImage {
+    width: 80px; /* 이미지 크기 */
+    height: 80px;
+    border-radius: 8px; /* 둥근 모서리 */
+    overflow: hidden; /* 이미지 넘침 방지 */
+    flex-shrink: 0; /* 크기 고정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeImage img .hotelImage img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지 */
+}
+
+/* 텍스트 영역 */
+.placeText, .hotelText {
+    flex: 1; /* 텍스트가 남은 공간을 차지 */
+    margin: 0 5px; /* 이미지와 버튼 사이 간격 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 세로 중앙 정렬 */
+    text-align: left;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.placeName, .hotelName {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px; /* 이름과 설명 간격 */
+}
+
+.placeDescription, .hotelDescription {
+    font-size: 14px;
+    color: #777;
+}
+
+/* 버튼 영역 */
+.placeButton, .hotelButton {
+    width: 30px; /* 버튼 영역 크기 고정 */
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* 크기 고정 */
+    background-color: #fff; /* 버튼 영역 배경 */
+}
+
+/* toggle-button 기본 크기와 위치 */
+.toggle-button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: darkgray;
+    border: none;
+    border-radius: 50%; /* 동그란 모양 */
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+}
+
+/* 버튼 클릭 시 스타일 */
+.toggle-button.checked {
+    background-color: #2e8b57;
+}
+
+/* "+"와 "✔" 아이콘 */
+.icon-plus {
+    display: inline-block;
+}
+
+.icon-check {
+    display: none;
+}
+
+/* 모달 배경 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 모달 콘텐츠의 이미지 크기 */
+.modal-content img {
+    width: 400px; /* 가로 크기 */
+    height: 400px; /* 세로 크기 */
+    object-fit: cover; /* 이미지 비율을 유지하면서 잘라냄 */
+    border-radius: 8px; /* 이미지 모서리 둥글게 (선택사항) */
+}
+
+/* 모달 콘텐츠 */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 500px;
+}
+
+/* 닫기 버튼 */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* 좋아요 하트 버튼 */
+#likeImageButton {
+    width: 40px;
+    height: 40px;
+    object-fit: contain; /* 필요에 따라 이미지 비율 유지 */
+}
