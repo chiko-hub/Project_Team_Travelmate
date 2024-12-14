@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>header</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <link rel="stylesheet" href="/css/index.css" />
-
 </head>
 <body>
 <div class="header">
@@ -42,17 +44,16 @@
             </div>
         </div>
     </div>
-    <div id="map">
-        <img src="" alt="지도 이미지"/>
-    </div>
+    <div id="image-container"></div>
+    <script src="/script/index.js"></script>
 </div>
 <div class="statistics">
     <div class="statItem">
 <%--        <span> AI로 생성된 일정 수&nbsp; </span> 214,975&nbsp;--%>
 <%--        <span>  여행지 수&nbsp; </span> 96--%>
-        <br><a href="admin">admin</a>
-
+        <br><a  style="text-decoration: none;" href="admin">admin</a>
     </div>
 </div>
 </body>
 </html>
+
