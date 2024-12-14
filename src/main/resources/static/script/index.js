@@ -18,11 +18,13 @@ const ground = Bodies.rectangle(350, 380, 700, 20, { isStatic: true, render: { f
 Composite.add(engine.world, ground);
 
 // 움직이는 박스 생성
-const boxA = Bodies.rectangle(300, 100, 80, 80, { render: { fillStyle: '#3498db' } });
-const boxB = Bodies.rectangle(400, 50, 80, 80, { render: { fillStyle: '#e74c3c' } });
+const boxA = Bodies.rectangle(150, 100, 80, 80, { render: { fillStyle: '#3498db' } });
+const boxB = Bodies.rectangle(300, 100, 80, 80, { render: { fillStyle: '#3498db' } });
+const boxC = Bodies.rectangle(400, 50, 80, 80, { render: { fillStyle: '#e74c3c' } });
+const boxD = Bodies.rectangle(600, 50, 80, 80, { render: { fillStyle: '#3498db' } });
 
 // 월드에 박스 추가
-Composite.add(engine.world, [boxA, boxB]);
+Composite.add(engine.world, [boxA, boxB, boxC, boxD]);
 
 // 엔진 및 렌더링 시작
 Engine.run(engine);
