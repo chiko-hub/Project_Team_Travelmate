@@ -99,9 +99,6 @@ public class WishlistController {
         int wishlistSeq = Integer.parseInt((String)requestBody.get("wishlistSeq"));
         int wishSeq = Integer.parseInt((String)requestBody.get("wishSeq"));
         String wishCategory = (String) requestBody.get("wishCategory");
-        System.out.println("wishlistSeq : " + wishlistSeq); // 테스트
-        System.out.println("wishSeq : " + wishSeq); // 테스트
-        System.out.println("wishCategory : " + wishCategory); // 테스트
         Map<String, Object> response = new HashMap<>();
 
         // wishlistSeq 로 wishlist 가져오기
@@ -110,11 +107,9 @@ public class WishlistController {
         if (wishlist != null) { // wishlistSeq 에 해당하는 wishlist 가 있다면
             if(wishCategory.equals("place")){ // category 가 place 일 때
                 PlaceVO place = ps.getPlace(wishSeq);
-                System.out.println("place : " + place);
                 ws.addPlaceWish(wishlistSeq, place); // wishlistSeq 에 해당하는 wishlist 에 place 저장
             }else if(wishCategory.equals("hotel")){ // category 가 hotel 일 때
                 HotelVO hotel = hs.getHotel(wishSeq);
-                System.out.println("hotel : " + hotel);
                 ws.addHotelWish(wishlistSeq, hotel); // wishlistSeq 에 해당하는 wishlist 에 place 저장
             }
             response.put("success", true);

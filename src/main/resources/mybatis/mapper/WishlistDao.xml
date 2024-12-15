@@ -28,13 +28,13 @@
     </delete>
 
     <insert id="addPlaceWish" parameterType="map">
-        INSERT INTO wishlist_detail (wishlist_seq, wish_name, wish_location, wish_description, wish_image)
-        VALUES (#{wishlistSeq}, #{place.place_name}, #{place.place_location}, #{place.place_description}, #{place.place_image})
+        INSERT INTO wishlist_detail (wishlist_seq, wish_name, wish_location, wish_description, wish_image, wish_category)
+        VALUES (#{wishlistSeq}, #{place.place_name}, #{place.place_location}, #{place.place_description}, #{place.place_image}, #{place.category})
     </insert>
 
     <insert id="addHotelWish" parameterType="com.himedia.tp01.dto.HotelVO">
-        INSERT INTO wishlist_detail(wishlist_seq, wish_name, wish_location, wish_description, wish_image)
-        VALUES(#{wishlistSeq}, #{hotel.hotel_name}, #{hotel.hotel_location}, #{hotel.hotel_description}, #{hotel.hotel_image})
+        INSERT INTO wishlist_detail(wishlist_seq, wish_name, wish_location, wish_description, wish_image, wish_category)
+        VALUES(#{wishlistSeq}, #{hotel.hotel_name}, #{hotel.hotel_location}, #{hotel.hotel_description}, #{hotel.hotel_image}, #{hotel.category})
     </insert>
 
     <select id="getWishlistDetailByWishlistSeq" resultType="com.himedia.tp01.dto.WishlistDetailVO">

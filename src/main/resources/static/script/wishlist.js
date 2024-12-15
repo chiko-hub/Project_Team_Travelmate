@@ -152,8 +152,12 @@ function loadWishDetail(wishlistSeq) {
 
                 const wishImage = document.createElement('div');
                 wishImage.classList.add('wishImage');
-                const img = document.createElement('img');
-                img.src = item.wish_image;  // 서버에서 받은 이미지 URL
+                const img = document.createElement('img')
+                if(item.wish_category === 'place'){ // category 가 place 라면
+                    img.src = /place_images/ + item.wish_image;
+                }else if(item.wish_category === 'hotel'){ // category 가 hotel 라면
+                    img.src = /hotel_images/ + item.wish_image;
+                }
                 wishImage.appendChild(img);
 
                 const wishText = document.createElement('div');
