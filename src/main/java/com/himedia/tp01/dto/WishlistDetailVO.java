@@ -10,4 +10,5 @@ public class WishlistDetailVO {
     private String wish_location;
     private String wish_description;
     private String wish_image;
+    private String wish_category;
 }

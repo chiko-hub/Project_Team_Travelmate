@@ -1,14 +1,69 @@
-/* 패널 열고 닫기 */
-function go_search( url ){
-    document.frm.action = url;
-    document.frm.submit();
+/* 선택된 category에 따라 데이터 가져오기 */
+document.addEventListener("DOMContentLoaded", function () {
+    const hotelCategoryButtons = document.querySelectorAll(".hotelCategoryButton");
+
+    // 페이지 처음 로드 시 기본 선택된 버튼 확인
+    const selectedButton = document.querySelector(".hotelCategoryButton.selected") || hotelCategoryButtons[0];
+    if (selectedButton) {
+        const initialCategory = selectedButton.value;
+        fetchHotelList(initialCategory);
+    }
+
+    hotelCategoryButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // 모든 버튼에서 'selected' 클래스 제거
+            hotelCategoryButtons.forEach(btn => btn.classList.remove("selected"));
+
+            // 클릭된 버튼에 'selected' 클래스 추가
+            this.classList.add("selected");
+
+            // 선택된 카테고리 값 가져오기
+            const selectedCategory = this.value;
+
+            // 카테고리 클릭 시 검색어 초기화
+            document.querySelector("input[name='key']").value = "";
+
+            // 카테고리 클릭 시 'first' 파라미터를 true로 설정하여 AJAX 요청
+            fetchHotelList(selectedCategory, 1, true);
+        });
+    });
+
+    // 검색 버튼 클릭 시
+    const searchButton = document.querySelector(".searchButton");
+    searchButton.addEventListener("click", function() {
+        const selectedCategory = document.querySelector(".hotelCategoryButton.selected") ? document.querySelector(".hotelCategoryButton.selected").value : 'all'; // 현재 선택된 카테고리 값
+        fetchHotelList(selectedCategory, 1, true); // 검색어와 함께 페이지 1로 요청
+    });
+});
+
+/* 카테고리와 검색어를 포함한 페이지 이동 및 페이징 처리 */
+function fetchHotelList(hotelCategory, page = 1, isFirstRequest = false) {
+    const key = document.querySelector("input[name='key']").value; // 현재 검색어 값
+
+    // 카테고리 값과 검색어, 페이지를 URL에 포함하여 요청
+    fetch(`/hotelSelect?hotelCategory=${hotelCategory}&page=${page}&key=${key}&first=${isFirstRequest}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => {
+            if (!response.ok) throw new Error("Failed to fetch data");
+            return response.text(); // 서버에서 JSP fragment를 반환하는 경우
+        })
+        .then(html => {
+            const hotelContainer = document.querySelector(".hotel");
+            hotelContainer.innerHTML = html; // 서버에서 받은 HTML로 갱신
+            attachEventListeners(); // 동적으로 추가된 콘텐츠에 이벤트 핸들러 등록
+        })
+        .catch(error => console.error("Error fetching hotel list:", error));
 }
 
-// 1. hotel 정보창(ajax)
+/* hotel 의 상세 정보를 나타내는 함수 */
 $(document).ready(function () {
-    // 호텔 아이템 클릭 이벤트
-    $('.hotel img').on('click', function () {
-        const hotelSeq = $(this).data('hotel-seq'); // 클릭한 항목의 place_seq 가져오기
+    // hotelImage hotelText 클릭 이벤트
+    $('.hotel').on('click', '.hotelImage, .hotelText', function () {
+        const hotelSeq = $(this).data('hotel-seq'); // 클릭한 항목의 hotel_seq 가져오기
 
         // AJAX 요청
         $.ajax({
@@ -67,27 +122,5 @@ $(document).on('click', '#likeImageButton', function () {
         error: function () {
             console.error('오류 발생');
         }
-    });
-});
-
-// 3. hotelList 우측 버튼(+) 클릭 시 이미지 전환 및 AJAX 요청 통합
-document.addEventListener("DOMContentLoaded", () => {
-    const toggleButtons = document.querySelectorAll(".toggle-button");
-
-    toggleButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            button.classList.toggle("checked");
-
-            const iconPlus = button.querySelector(".icon-plus");
-            const iconCheck = button.querySelector(".icon-check");
-
-            if (button.classList.contains("checked")) {
-                iconPlus.style.display = "none";
-                iconCheck.style.display = "inline-block";
-            } else {
-                iconPlus.style.display = "inline-block";
-                iconCheck.style.display = "none";
-            }
-        });
     });
 });

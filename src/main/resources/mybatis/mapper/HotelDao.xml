@@ -8,7 +8,7 @@
         select count(*) from ${param1} where ${param2} like concat('%', #{param3}, '%');
     </select>
 
-    <select id="getAllHotel" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
+    <select id="getAllHotelList" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
         select * from hotel where hotel_name like concat('%', #{param2}, '%') order by hotel_seq asc
             limit #{param1.displayRow} offset #{param1.startNum}
     </select>
@@ -33,21 +33,6 @@
         select * from hotel
         where hotel_hotyn = 'Y'
           and hotel_name like concat('%', #{key}, '%')
-        order by hotel_seq asc
-            limit #{paging.displayRow} offset #{paging.startNum};
-    </select>
-
-    <!-- 검색 데이터 총 개수 조회 -->
-    <select id="getSearchCount" resultType="int">
-        select count(*)
-        from hotel
-        where hotel_name like concat('%', #{key}, '%');
-    </select>
-
-    <!-- 검색 데이터 조회 -->
-    <select id="getSearchHotel" resultType="com.himedia.tp01.dto.HotelVO" parameterType="map">
-        select * from hotel
-        where hotel_name like concat('%', #{key}, '%')
         order by hotel_seq asc
             limit #{paging.displayRow} offset #{paging.startNum};
     </select>

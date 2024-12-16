@@ -24,93 +24,48 @@ public class HotelController {
     @Autowired
     WishlistService ws;
 
-    @GetMapping("/hotelSelect")
-    public ModelAndView hotelSelect(HttpServletRequest request) {
+    /* 로그인한 상태라면 wishlist 정보를 가지고 hotelSelect.jsp 로 이동 */
+    @GetMapping("/hotel")
+    public ModelAndView hotel(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-        HashMap<String, Object> result = hs.selectAllList( request );
         HttpSession session = request.getSession();
-        // 항상 세션의 페이지를 1로 초기화
-        session.setAttribute("page", 1);
+
+        // session 에 남은 page, key 값 삭제
+        session.removeAttribute("page");
+        session.removeAttribute("key");
 
         MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
         if(currentMember == null) {
             // 로그인 후 이용할 수 있는 기능이라는 문구 뜸
         }else{
-            // userid 에 해당하는 place 카테고리의 찜 목록 가져오기
-            List<WishlistVO> wishlist = ws.getWishlistByCategory(currentMember.getUserid(), "hotel"); // wishlist 가져오기
+            // userid 에 해당하는 hotel 카테고리의 찜 목록 가져오기
+            List<WishlistVO> wishlist = ws.getWishlistByCategory(currentMember.getUserid(), "hotel");
+            // wishlist 전달
             mav.addObject("wishlist", wishlist);
         }
-
-        mav.addObject("hotelList", result.get("hotelList"));
-        mav.addObject("paging", result.get("paging"));
-        mav.addObject("key", result.get("key"));
         mav.setViewName("hotel/hotelSelect");
         return mav;
     }
 
-    @GetMapping("/selectBestHotel")
-    public ModelAndView selectBest(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        HashMap<String, Object> result = hs.selectBestList(request);
-        HttpSession session = request.getSession();
-        // 항상 세션의 페이지를 1로 초기화
-        session.setAttribute("page", 1);
-        mav.addObject("bestList", result.get("bestList"));
-        System.out.println("bestList: " + result.get("bestList"));
-        mav.addObject("paging", result.get("paging"));
-        mav.addObject("key", result.get("key"));
-        mav.setViewName("hotel/hotelSelectBest");
-        return mav;
-    }
+    /* 선택된 Category, page, key, first 값에 따라 불러올 장소 데이터 추출 */
+    @GetMapping("/hotelSelect")
+    public String getHotelListByCategory(HttpServletRequest request, Model model) {
 
-    @GetMapping("/selectHotHotel")
-    public ModelAndView selectHot(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        HashMap<String, Object> result = hs.selectHotList(request);
-        HttpSession session = request.getSession();
-        // 항상 세션의 페이지를 1로 초기화
-        session.setAttribute("page", 1);
-        mav.addObject("hotList", result.get("hotList"));
-        System.out.println("hotList: " + result.get("hotList"));
-        mav.addObject("paging", result.get("paging"));
-        mav.addObject("key", result.get("key"));
-        mav.setViewName("hotel/hotelSelectHot");
-        return mav;
-    }
+        HashMap<String, Object> result = hs.selectHotelList(request);
 
-    @GetMapping("/hotelSearch")
-    public ModelAndView getPlaceSearch(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        HttpSession session = request.getSession();
+        model.addAttribute("hotelList", result.get("hotelList"));
+        model.addAttribute("paging", result.get("paging"));
+        model.addAttribute("key", result.get("key"));
+        model.addAttribute("hotelCategory", result.get("hotelCategory")); // 현재 카테고리 추가
 
-        // 검색조건 설정: 요청 값 우선 처리:  key를 요청에서 가져오거나, 세션에서 가져옴
-        String key = request.getParameter("key") != null
-                ? request.getParameter("key")
-                : (String) session.getAttribute("key");
-
-        // "first" 파라미터가 있으면 검색 조건 및 페이지 초기화
-        if ("true".equals(request.getParameter("first"))) {
-            key = ""; // 검색 키워드 초기화
-            session.removeAttribute("page"); // 페이지 초기화
-            session.removeAttribute("key");
-        }
-
-        // 세션에 검색 조건 저장 (다음 요청에서도 유지되도록)
-        session.setAttribute("key", key);
-
-        // 서비스 호출: 검색 조건과 페이징 처리
-        HashMap<String, Object> result = hs.getHotelSearch(request);
-        mav.addObject("hotelList", result.get("hotelList"));
-        mav.addObject("paging", result.get("paging"));
-        mav.addObject("key", result.get("key")); // 검색어
-        mav.setViewName("hotel/hotelSelect");
-        return mav;
+        // JSP의 특정 HTML 조각만 반환
+        return "hotel/hotelListFragment"; // JSP 파일 이름
     }
 
     @GetMapping("/hotelDetail")
     public ModelAndView hotelDetail(@RequestParam("hotel_seq") int hotel_seq) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("hotel", hs.getHotel(hotel_seq) );
+        mav.addObject("hotel", hs.getHotel(hotel_seq));
         mav.setViewName("hotel/hotelDetailModal"); // 팝업에 렌더링할 뷰
         return mav;
     }

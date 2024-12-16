@@ -71,11 +71,15 @@ document.addEventListener('DOMContentLoaded', () => {
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
-                        alert(data.message);
+                    if (data.status === "success") {
+                        // 찜 목록 삭제 성공 시 페이지 새로고침
                         location.reload();
+                    } else if (data.status === "not_login") {
+                        // 로그인되지 않은 경우 로그인 페이지로 이동
+                        alert("로그인이 필요합니다.");
+                        window.location.href = "/loginForm";
                     } else {
-                        alert(data.message);
+                        alert("찜 목록 삭제 중 오류가 발생했습니다.");
                     }
                 })
                 .catch(error => {
@@ -86,9 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/* place_seq를 form 에 전달하는 togglePanel 함수 */
+/* place_seq / hotel_seq 를 form 에 전달하는 togglePanel 함수 */
 function toggleWishPanel(panelId, buttonElement) {
     var panel = document.getElementById(panelId);
+
+    // panel이 없으면 함수 종료
+    if (!panel) {
+        alert("로그인 후 이용 가능합니다.");
+        return;
+    }
+    
     panel.style.display = panel.style.display === "block" ? "none" : "block";
 
     // 데이터 전달
@@ -152,8 +163,12 @@ function loadWishDetail(wishlistSeq) {
 
                 const wishImage = document.createElement('div');
                 wishImage.classList.add('wishImage');
-                const img = document.createElement('img');
-                img.src = item.wish_image;  // 서버에서 받은 이미지 URL
+                const img = document.createElement('img')
+                if(item.wish_category === 'place'){ // category 가 place 라면
+                    img.src = /place_images/ + item.wish_image;
+                }else if(item.wish_category === 'hotel'){ // category 가 hotel 라면
+                    img.src = /hotel_images/ + item.wish_image;
+                }
                 wishImage.appendChild(img);
 
                 const wishText = document.createElement('div');

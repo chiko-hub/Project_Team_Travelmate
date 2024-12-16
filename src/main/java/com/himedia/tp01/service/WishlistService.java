@@ -32,7 +32,12 @@ public class WishlistService {
     }
 
     /* wishlist 추가 */
-    public void addWishlist(WishlistVO wishlistvo) {
+    public void addWishlist(String wishlist_category, String wishlist_title, String userid) {
+        WishlistVO wishlistvo = new WishlistVO();
+        wishlistvo.setWishlist_category(wishlist_category); // 카테고리
+        wishlistvo.setWishlist_title(wishlist_title); // 제목
+        wishlistvo.setUserid(userid); // 로그인된 사용자 id
+
         wdao.addWishlist(wishlistvo);
     }
 

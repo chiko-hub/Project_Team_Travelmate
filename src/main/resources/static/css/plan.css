@@ -94,9 +94,9 @@
 .panel {
     display: none; /* 기본적으로 숨김 */
     position: absolute; /* 부모 기준 위치 */
-    top: 20%; /* 화면 중간 정도 */
+    top: 30%; /* 화면 중간 정도 */
     left: 50%; /* 화면 가운데 정렬 */
-    transform: translate(-50%, -20%); /* 중앙 정렬 보정 */
+    transform: translate(-50%, -30%); /* 중앙 정렬 보정 */
     width: 300px;
     background-color: #fff;
     border: 1px solid #ccc;

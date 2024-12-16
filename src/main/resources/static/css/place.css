@@ -2,6 +2,8 @@
     /*flex: 1;*/
     width: 50%;
     display: flex;
+    flex-direction: row;
+    position: relative;
     box-sizing: border-box;
 }
 
@@ -16,6 +18,8 @@
 .row {
     margin-bottom: 0; /* 불필요한 여백 제거 */
     flex: 1;
+    font-size: 120%;
+    font-weight:bold;
 }
 
 .selects {
@@ -26,16 +30,25 @@
     margin-bottom: 10px;
 }
 
-.selects button,
-.selects input[type="button"] {
+.placeCategoryButton, .hotelCategoryButton  {
     padding: 8px 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #2e8b57;
     border-radius: 8px;
     background-color: white;
     font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #333;
+    color: #2e8b57;
+}
+
+.placeCategoryButton:hover, .hotelCategoryButton:hover {
+    background: #2e8b57;
+    color: #fff;
+}
+
+.placeCategoryButton.selected, .hotelCategoryButton.selected{
+    background: #2e8b57;
+    color: #fff;
 }
 
 /* 장소들을 감싸는 컨테이너 */
@@ -152,7 +165,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: darkgray;
+    background-color: #2e8b57;
     border: none;
     border-radius: 50%; /* 동그란 모양 */
     font-size: 18px;
@@ -160,18 +173,21 @@
     cursor: pointer;
 }
 
-/* 버튼 클릭 시 스타일 */
-.toggle-button.checked {
-    background-color: #2e8b57;
+.toggle-button:hover {
+    transform: scale(1.05); /* 선택된 상태에서 약간 확대 */
 }
 
-/* "+"와 "✔" 아이콘 */
-.icon-plus {
-    display: inline-block;
+.pageContainer {
+    text-align: center;
+    margin: 20px 0; /* 상하 여백 추가 */
 }
 
-.icon-check {
-    display: none;
+/* 페이지 링크 스타일 */
+.row a {
+    color: #2e8b57; /* 초록색 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
 }
 
 /* 모달 배경 */
