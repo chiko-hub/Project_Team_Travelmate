@@ -212,15 +212,15 @@
 }
 
 /* 모달 콘텐츠 */
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 500px;
-}
+/*.modal-content {*/
+/*    background-color: #fff;*/
+/*    margin: 10% auto;*/
+/*    padding: 20px;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*    width: 80%;*/
+/*    max-width: 500px;*/
+/*}*/
 
 /* 닫기 버튼 */
 .close {
@@ -242,4 +242,54 @@
     width: 40px;
     height: 40px;
     object-fit: contain; /* 필요에 따라 이미지 비율 유지 */
+}
+
+
+/* 모달이 열렸을 때 배경 스크롤 막기 */
+body.modal-open {
+    overflow: hidden; /* 배경 스크롤 차단 */
+}
+
+/* 모달 컨테이너 스타일 */
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%; /* 모달의 최대 너비 */
+    max-height: 100%; /* 모달의 최대 높이 */
+    overflow-y: auto; /* 모달 내부 스크롤 활성화 */
+    background: white; /* 배경색 */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* 그림자 효과 */
+    z-index: 1050; /* 모달이 다른 요소들 위에 표시되도록 설정 */
+}
+
+.modal-header h2{
+    text-align:center;
+}
+
+/* 모달 이미지와 내용 */
+.modal-content img {
+    max-width: 90%; /* 이미지가 모달 너비를 넘지 않도록 설정 */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* 이미지 중앙 정렬 */
+}
+
+.modal-content p {
+    margin: 16px;
+    line-height: 1.5;
+    font-size: 1rem; /* 글씨 크기 */
+}
+
+/* 닫기 버튼 */
+#closeModal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

@@ -23,12 +23,8 @@
     </div>
     <div class="modal-content">
         <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}" />
-        <p>${hotel.hotel_description}</p>
-    </div>
-    <!-- 추가된 버튼들 -->
-    <div class="modal-buttons">
-        <p>좋아요</p>
-        <img id="likeImageButton" src="/images/heartbefore.png" alt="Heart" data-hotel-seq="${hotel_seq}"/>
+        <p>설명 : ${hotel.hotel_description}</p>
+        <p>주소 : ${hotel.hotel_location}</p>
     </div>
 </div>
 </body>
