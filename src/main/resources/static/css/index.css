@@ -41,7 +41,7 @@ body {
     display: flex;
     justify-content: space-between;
 //flex-direction: row;
-    height: 700px;
+    height: 600px;
 
 }
 
@@ -51,7 +51,7 @@ body {
     position: relative;
     justify-content: center;
     margin-left: 200px;
-    margin-top: 60px;
+    margin-top: 0px;
 }
 .containe1{
     position: absolute;
@@ -62,18 +62,8 @@ body {
     border:1px solid black;
 }
 
-#image-container {
-    flex-direction: row;
-    margin-top: 78px;
-    margin-right: 250px;
-    border: 1px solid black;
-    width: 700px;
-    height: 390px;
-}
-
-
 .main h1 {
-    font-size: 55px;
+    font-size: 60px;
     line-height: 1.5;
 
 }
@@ -104,11 +94,29 @@ body {
     color: #000;
     bottom: 0;
     height: 100px;
-
-
 }
 
 .statItem{
-    margin-right:70px;
-
+    margin-right:80px;
 }
+
+
+.capsule-text {
+    position: absolute;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+   }
+
+#image-container {
+    flex-direction: row;
+    margin-top: 10px;
+    margin-right: 240px;
+    border: 1px solid black;
+    width: 700px;
+    height: 430px;
+    position: relative;
+}
+
+

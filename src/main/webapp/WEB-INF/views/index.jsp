@@ -6,11 +6,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title>
+    <title>TRAVEL Planner Main</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <link rel="stylesheet" href="/css/index.css" />
+    <script defer src="/script/index.js" ></script>
 </head>
-<body>
+<body style="width: 1920px; height:1080px">
+<style>
+    .header{flex:1}
+    .main{flex:3}
+    .statistics{flex:1}
+</style>
 <div class="header">
     <div class="logo">MYRO</div>
     <nav>
@@ -26,6 +32,7 @@
                 <a href="logout">로그아웃</a>
             </c:otherwise>
         </c:choose>
+        <a href="#"></a>
         <a href="#"></a>
         <a href="#"></a>
     </nav>
@@ -45,12 +52,9 @@
         </div>
     </div>
     <div id="image-container"></div>
-    <script src="/script/index.js"></script>
 </div>
 <div class="statistics">
     <div class="statItem">
-<%--        <span> AI로 생성된 일정 수&nbsp; </span> 214,975&nbsp;--%>
-<%--        <span>  여행지 수&nbsp; </span> 96--%>
         <br><a  style="text-decoration: none;" href="admin">admin</a>
     </div>
 </div>
