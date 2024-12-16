@@ -100,6 +100,7 @@ article form .btn {
 }
 
 article form .btn input {
+    font-family: "SEBANG Gothic";
     padding: 10px 20px;
     background-color: #2E4F33;
     border: none;
@@ -565,6 +566,86 @@ header {
     }
 }
 
+/* 컨테이너 스타일 */
+.file-upload-container {
+    position: relative;
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-family: 'SEBANG Gothic';
+}
+
+/* 파일 선택 버튼 */
+.file-input-container {
+    margin-bottom: 20px;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    background-color: #FAFAFA;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-label:hover {
+    background-color: #F0F0F0;
+    color: #000000;
+    border-color: #CCCCCC;
+}
+
+.file-input {
+    display: none;
+}
+
+/* 미리보기 컨테이너 */
+.preview-container {
+    margin-top: 10px;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    display: none; /* 기본 상태: 숨김 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 업로드 버튼 */
+.btn-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "SEBANG Gothic";
+}
+
+.btn-upload:hover {
+    background-color: #45A049;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-upload:active {
+    background-color: #3E8C43;
+    transform: scale(0.98);
+}
 
 
 

@@ -4,21 +4,21 @@
 
 <article style="flex-direction: column">
 	<form name="placeWriteFrm" method="post"  action="adminPlaceWrite">
-			<h2> Place Write Form </h2>
-
+			<h2> Add Place </h2>
+			&nbsp;
 			<div class="field" >
-					<label>장소명</label>	<input type="text" name="place_name"  value="${placeVO.place_name}"  />
+					<label>Name</label>	<input type="text" name="place_name"  value="${placeVO.place_name}"  />
 			</div>
 
 			<div class="field" >
-				<label>위치</label>  <input type="text" name="place_location"  value="${placeVO.place_location}"  />
+				<label>Location</label>  <input type="text" name="place_location"  value="${placeVO.place_location}"  />
 			</div>
 
 			<div class="field" >
-					<label>상세설명</label><textarea name="place_description" rows="8" style="flex:4;">${placeVO.place_description}</textarea>
+					<label>Info.</label><textarea name="place_description" rows="8" style="flex:4;">${placeVO.place_description}</textarea>
 			</div>
 			<div class="field" >
-					<label>장소 이미지</label>
+					<label>Image</label>
 					<c:choose>
 						<c:when test="${ empty placeVO.place_image }">
 							<div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start">
@@ -39,8 +39,8 @@
 					</c:choose>
 			</div>
 			<div class="btn" >
-					<input type="submit" value="장소등록" >
-					<input type="button" value="목록으로"	onClick="location.href='adminPlaceList'">
+					<input type="submit" value="Add" >
+					<input type="button" value="Back"	onClick="location.href='adminPlaceList'">
 			</div>
 
 			<div class="field" >
@@ -48,10 +48,20 @@
 			</div>
 	</form>
 
-	<div  style="position:relative;  border:1px solid black; width:500px; margin:0 auto; ">
+	<div class="file-upload-container">
 		<form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
-			<input type="file" name="fileimage">
-			<input type="button" id="imageAddBtn" value="추가">
+			<div class="file-input-container">
+				<label for="fileimage" class="file-label">
+					<span>Select Image</span>
+					<input type="file" name="fileimage" id="fileimage" class="file-input" accept="image/*" onchange="previewImage(event)">
+				</label>
+			</div>
+
+			<div class="preview-container">
+				<img id="image-preview" src="#" alt="미리보기 이미지 없음" class="image-preview">
+			</div>
+
+			<button type="button" id="imageAddBtn" class="btn-upload">Add Image</button>
 		</form>
 	</div>
 </article>

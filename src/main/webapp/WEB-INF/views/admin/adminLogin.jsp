@@ -23,7 +23,7 @@
             <input type="password" id="password" name="pwd" placeholder="비밀번호를 입력하세요" required>
         </div>
         <div class="btn-group">
-            <input type="submit" value="로그인" class="btn-submit">
+            <input type="submit" value="LOGIN" class="btn-submit">
         </div>
     </form>
 </section>
