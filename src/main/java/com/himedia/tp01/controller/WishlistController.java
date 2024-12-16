@@ -1,8 +1,6 @@
 package com.himedia.tp01.controller;
 
 import com.himedia.tp01.dto.*;
-import com.himedia.tp01.service.HotelService;
-import com.himedia.tp01.service.PlaceService;
 import com.himedia.tp01.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +16,6 @@ import java.util.Map;
 public class WishlistController {
     @Autowired
     WishlistService ws;
-    @Autowired
-    PlaceService ps;
-    @Autowired
-    HotelService hs;
 
     /* 현재 로그인한 유저의 wishlist 를 가지고 wishlistForm.jsp 로 이동 */
     @GetMapping("/wishlist")
@@ -109,17 +103,18 @@ public class WishlistController {
         // wishlistSeq 로 wishlist 가져오기
         WishlistVO wishlist = ws.getWishlistByWishlistSeq(wishlistSeq);
 
-        if (wishlist != null) { // wishlistSeq 에 해당하는 wishlist 가 있다면
-            if(wishCategory.equals("place")){ // category 가 place 일 때
-                PlaceVO place = ps.getPlace(wishSeq);
-                ws.addPlaceWish(wishlistSeq, place); // wishlistSeq 에 해당하는 wishlist 에 place 저장
-            }else if(wishCategory.equals("hotel")){ // category 가 hotel 일 때
-                HotelVO hotel = hs.getHotel(wishSeq);
-                ws.addHotelWish(wishlistSeq, hotel); // wishlistSeq 에 해당하는 wishlist 에 place 저장
+        Boolean isCheckInsertWish;
+        if (wishlist != null) { // wishlist 가 존재한다면
+            isCheckInsertWish = ws.addWish(wishlistSeq, wishCategory, wishSeq); // wishlistSeq 에 해당하는 wishlist 에 place 저장
+            if(isCheckInsertWish) {
+                response.put("success", true);
+                response.put("message", "해당 찜 목록에 저장했습니다.");
+            }else {
+                response.put("success", false);
+                response.put("message", "해당 찜 목록에 추가하려는 데이터가 이미 존재합니다.");
             }
-            response.put("success", true);
-            response.put("message", "해당 찜 목록에 저장했습니다.");
-        } else { // 세부 계획 정보가 없다면
+        }else {
+            // 세부 계획 정보가 없다면
             response.put("success", false);
             response.put("message", "해당 찜 목록을 불러오지 못했습니다.");
         }

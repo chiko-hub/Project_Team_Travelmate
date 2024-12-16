@@ -15,6 +15,10 @@ import java.util.List;
 public class WishlistService {
     @Autowired
     IWishlistDao wdao;
+    @Autowired
+    PlaceService ps;
+    @Autowired
+    HotelService hs;
 
     /* userid 에 해당하는 wishlist 조회 */
     public List<WishlistVO> getWishlistByUserid(String userid) {
@@ -46,14 +50,34 @@ public class WishlistService {
         wdao.deleteWishlist(wishlistSeq);
     }
 
-    /* wishlist 에 place 데이터 추가 */
-    public void addPlaceWish(int wishlistSeq, PlaceVO place) {
-        wdao.addPlaceWish(wishlistSeq, place);
+    /* wishlist_seq 에 wishlist_detail_seq 저장하기 */
+    public Boolean addWish(int wishlistSeq, String wishCategory, int wishSeq) {
+        boolean result;
+        if(wishCategory.equals("place")){
+            PlaceVO place = ps.getPlace(wishSeq);
+            if(!getCheckInsertWish(wishlistSeq, place.getPlace_name())){
+                System.out.println("place: " + getCheckInsertWish(wishlistSeq, place.getPlace_name()));
+                wdao.addPlaceWish(wishlistSeq, place);
+                result = true;
+            }else{
+                result = false;
+            }
+        }else{ // wishCategory.equals('hotel')
+            HotelVO hotel = hs.getHotel(wishSeq);
+            if(!getCheckInsertWish(wishlistSeq, hotel.getHotel_name())){
+                System.out.println("hotel: " + getCheckInsertWish(wishlistSeq, hotel.getHotel_name()));
+                wdao.addHotelWish(wishlistSeq, hotel);
+                result = true;
+            }else{
+                result = false;
+            }
+        }
+        return result;
     }
 
-    /* wishlist 에 hotel 데이터 추가 */
-    public void addHotelWish(int wishlistSeq, HotelVO hotel) {
-        wdao.addHotelWish(wishlistSeq, hotel);
+    /* wishlist_seq 에 wishlist_detail_seq 가 있는지 검사하기 */
+    public Boolean getCheckInsertWish(int wishlistSeq, String wishName) {
+        return wdao.getCheckInsertWish(wishlistSeq, wishName);
     }
 
     /* wishlist_seq 로 wishlistDetail 가져오기 */
