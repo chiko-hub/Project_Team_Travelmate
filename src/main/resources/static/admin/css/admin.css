@@ -259,6 +259,13 @@ header {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강조 */
 }
 
+#sub_menu div a.selected {
+    background: linear-gradient(135deg, #66CDAA, #2E8B57); /* 선택된 메뉴 민트에서 짙은 초록색으로 그라디언트 변경 */
+    color: white;
+    transform: scale(1.3); /* 약간 확대 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
 
 /* 콘텐츠 정렬 */
 .tb {
