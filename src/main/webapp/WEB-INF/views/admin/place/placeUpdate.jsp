@@ -6,29 +6,29 @@
 	<form name="placeWriteFrm" method="post"   action="adminPlaceUpdate">
 			<input type="hidden" name="place_seq" value="${placeVO.place_seq}">
 			<h2> Place Edit </h2>
-
+			&nbsp;
 			<div class="field"  style="display:block">
-					<label >Best Place</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<label style="margin-left: 100px">Best Place</label>
 							<c:choose>
 								<c:when test='${placeVO.bestyn=="Y"}' >
-									<input type="radio" name="bestyn" value="Y" checked="checked">사용
-							  		<input type="radio" name="bestyn" value="N">미사용
+									<input type="radio" name="bestyn" value="Y" checked="checked">YES
+							  		<input type="radio" name="bestyn" value="N">NO
 								</c:when>
 								<c:otherwise>
-									<input type="radio" name="bestyn" value="Y" >사용
-							  		<input type="radio" name="bestyn" value="N" checked="checked">미사용
+									<input type="radio" name="bestyn" value="Y" >YES
+							  		<input type="radio" name="bestyn" value="N" checked="checked">NO
 								</c:otherwise>
 							</c:choose>
 
-					<label style="margin-left:100px;">Hot Place</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<label style="margin-left:100px">Hot Place</label>
 							<c:choose>
 								<c:when test='${placeVO.hotyn=="Y"}' >
-									<input type="radio" name="hotyn" value="Y" checked="checked">사용
-								 	<input type="radio" name="hotyn" value="N">미사용
+									<input type="radio" name="hotyn" value="Y" checked="checked">YES
+								 	<input type="radio" name="hotyn" value="N">NO
 								</c:when>
 								<c:otherwise>
-									<input type="radio" name="hotyn" value="Y" >사용
-							  		<input type="radio" name="hotyn" value="N" checked="checked">미사용
+									<input type="radio" name="hotyn" value="Y" >YES
+							  		<input type="radio" name="hotyn" value="N" checked="checked">NO
 								</c:otherwise>
 							</c:choose>
 			</div>
@@ -64,12 +64,23 @@
 	</form>
 
 
-	<div  style="position:relative;  border:1px solid black; width:500px; margin:0 auto; ">
+	<div class="file-upload-container">
 		<form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
-			<input type="file" name="fileimage">
-			<input type="button" id="imageAddBtn" value="추가">
+			<div class="file-input-container">
+				<label for="fileimage" class="file-label">
+					<span>Select Image</span>
+					<input type="file" name="fileimage" id="fileimage" class="file-input" accept="image/*" onchange="previewImage(event)">
+				</label>
+			</div>
+
+			<div class="preview-container">
+				<img id="image-preview" src="#" alt="미리보기 이미지 없음" class="image-preview">
+			</div>
+
+			<button type="button" id="imageAddBtn" class="btn-upload">Add Image</button>
 		</form>
 	</div>
 
-</article>
 
+
+</article>

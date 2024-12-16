@@ -36,3 +36,20 @@ function deleteHotel(hotel_seq) {
         location.href = "/adminHotelDelete?hotel_seq=" + hotel_seq;
     }
 }
+function previewImage(event) {
+    const fileInput = event.target;
+    const preview = document.getElementById('image-preview');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block'; // 미리보기 이미지 표시
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '#';
+        preview.style.display = 'none'; // 파일이 없을 경우 숨김
+    }
+}
