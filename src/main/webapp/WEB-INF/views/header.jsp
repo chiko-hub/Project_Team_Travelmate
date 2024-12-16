@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Steps</title>
   <link rel="stylesheet" href="/css/start.css">
+  <link rel="stylesheet" href="/css/sider.css">
   <link rel="stylesheet" href="/css/place.css">
   <link rel="stylesheet" href="/css/plan.css">
   <link rel="stylesheet" href="/css/wishlist.css">
@@ -28,8 +29,8 @@
 <div class="container">
     <!-- 좌측 STEP 메뉴 -->
     <div class="sidebar">
-      <button class="step-button" onclick="location.href='place'">STEP 1<br>장소 선택</button>
-      <button class="step-button" onclick="location.href='hotel'">STEP 2<br>숙소 선택</button>
-      <button class="step-button" onclick="location.href='wishlist'">STEP 3<br>찜꽁</button>
-      <button class="step-button" onclick="location.href='planForm'">STEP 4<br>일정</button>
+      <button id="placeButton" class="step-button" onclick="selectStep(this, 'place')">STEP 1<br>장소 선택</button>
+      <button id="hotelButton" class="step-button" onclick="selectStep(this, 'hotel')">STEP 2<br>숙소 선택</button>
+      <button id="wishlistButton" class="step-button" onclick="selectStep(this, 'wishlist')">STEP 3<br>찜꽁</button>
+      <button id="planFormButton" class="step-button" onclick="selectStep(this, 'planForm')">STEP 4<br>일정</button>
     </div>
