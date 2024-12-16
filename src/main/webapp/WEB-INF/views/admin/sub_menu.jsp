@@ -3,7 +3,9 @@
 <meta charset="UTF-8">
 
 <nav id="sub_menu">
-	<div><a href="adminPlaceList?first=y">Place List</a></div>
-	<div><a href="adminHotelListNew?first=y">Hotel List</a></div>
-	<div><a href="adminMemberList?first=y">Member List</a></div>
+	<div><a href="/adminPlaceList?first=y" class="menu-link">Place List</a></div>
+	<div><a href="/adminHotelList?first=y" class="menu-link">Hotel List</a></div>
+	<div><a href="/adminMemberList?first=y" class="menu-link">Member List</a></div>
 </nav>
+
+
