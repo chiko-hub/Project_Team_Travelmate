@@ -5,7 +5,7 @@
 <article style="flex-direction: column">
 	<form name="placeWriteFrm" method="post"   action="adminPlaceUpdate">
 			<input type="hidden" name="place_seq" value="${placeVO.place_seq}">
-			<h2> Place Update Form </h2>
+			<h2> Place Edit </h2>
 
 			<div class="field"  style="display:block">
 					<label >Best Place</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -34,19 +34,19 @@
 			</div>
 
 			<div class="field" >
-					<label>장소명</label>	<input type="text" name="place_name"  value="${placeVO.place_name}" />
+					<label>Name</label>	<input type="text" name="place_name"  value="${placeVO.place_name}" />
 			</div>
 
 			<div class="field" >
-				<label>위치</label>  <input type="text" name="place_location"  value="${placeVO.place_location}"  />
+				<label>Location</label>  <input type="text" name="place_location"  value="${placeVO.place_location}"  />
 			</div>
 
 			<div class="field" >
-					<label>상세설명</label>
+					<label>Info.</label>
 					<textarea name="place_description" rows="8" style="flex:4;">${placeVO.place_description}</textarea>
 			</div>
 			<div class="field" >
-					<label>장소 이미지</label>
+					<label>Image</label>
 					<div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start">
 						<input type="hidden" name="place_image" id="image" value="${placeVO.place_image}"  >
 						<input type="hidden" name="savefilename" id="savefilename" value="${placeVO.savefilename}" >
@@ -58,8 +58,8 @@
 					</div>
 			</div>
 			<div class="btn" >
-					<input type="submit" value="수정" >
-					<input type="button" value="목록으로" onClick="location.href='adminPlaceList'">
+					<input type="submit" value="Edit" >
+					<input type="button" value="Back" onClick="location.href='adminPlaceList'">
 			</div>
 	</form>
 

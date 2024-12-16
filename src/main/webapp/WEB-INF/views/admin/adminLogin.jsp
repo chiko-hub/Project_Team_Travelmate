@@ -11,22 +11,23 @@
 </head>
 <body>
 
-<article style="width:400px;margin:200px auto;">
-    <form	method="post" action="adminLogin" name="loginForm">
-
-        <h2>Admin LogIn</h2>
+<section id="login-container">
+    <h2>Admin Login</h2>
+    <form method="post" action="/adminLogin">
         <div class="field">
-            <label>Admin ID</label><input name="adminid" type="text" value="${dto.adminid}" />
+            <label for="username">Admin ID</label>
+            <input type="text" id="username" name="adminid" placeholder="아이디를 입력하세요" required >
         </div>
         <div class="field">
-            <label>Password</label><input name="pwd" type="password" >
+            <label for="password">Password</label>
+            <input type="password" id="password" name="pwd" placeholder="비밀번호를 입력하세요" required>
         </div>
-        <div class="btn">
-            <input type="submit" value="LOGIN" >
+        <div class="btn-group">
+            <input type="submit" value="로그인" class="btn-submit">
         </div>
-        <div style="font-size:80%; font-weight:bold">${message} </div>
     </form>
-</article>
+</section>
+
 
 </body>
 </html>
