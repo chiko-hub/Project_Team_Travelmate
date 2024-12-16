@@ -41,6 +41,15 @@
         SELECT * FROM wishlist_detail WHERE wishlist_seq=#{param1}
     </select>
 
+    <select id="getCheckInsertWish" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1
+            FROM wishlist_detail
+            WHERE wishlist_seq = #{param1}
+              AND wish_name = #{param2}
+        )
+    </select>
+
     <select id="getWishlistDetail" resultType="com.himedia.tp01.dto.WishlistDetailVO">
         SELECT * FROM wishlist_detail WHERE wishlist_detail_seq=#{param1}
     </select>
