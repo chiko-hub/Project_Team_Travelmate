@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <div class="mainContainer">
-    <div id="wishlistAddPanel" class="wishlistAddPanel">
+    <div id="wishlistAddPanel" class="wishlistAddPanel" data-panel-group="wishPanel">
         <h3>새로운 찜 목록 생성</h3>
         <form id="wishlistAddForm">
             <label for="wishlistTitle">이름</label>
