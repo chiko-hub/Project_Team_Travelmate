@@ -20,9 +20,8 @@
 <div class="header">
     <div class="logo">MYRO</div>
     <nav>
-        <a href="#">여행지</a>
         <a href="customerForm">고객지원</a>
-        <a href="#">이용방법</a>
+        <a href="joinForm">회원가입</a>
         <c:choose>
             <c:when test="${empty loginUser}">
                 <a href="loginForm">로그인</a>
@@ -32,6 +31,7 @@
                 <a href="logout">로그아웃</a>
             </c:otherwise>
         </c:choose>
+        <a href="#"></a>
         <a href="#"></a>
         <a href="#"></a>
         <a href="#"></a>
