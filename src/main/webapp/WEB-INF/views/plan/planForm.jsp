@@ -7,11 +7,12 @@
       <div id="planCreatePanel" class="panel" data-panel-group="planPanel">
         <h3>새 일정 생성</h3>
         <label>현재 일정 코드</label>
-        <input type="text" value="${loginUser.plan_code}" readonly/><br>
+        <input style="margin-bottom: 3px;" type="text" value="${loginUser.plan_code}" readonly/><br/>
+        <div class="warningMessage">일정 코드를 통해 언제든 일정을 불러올 수 있습니다.</div>
         <form id="planCreateForm" method="post" action="createPlan">
           <label>날짜</label>
-          <input type="text" name="datefilter" value=""/><br/>
-          <div class="warningMessage" style="font-size: 12px; color: red;">일정 생성 시 기존 일정에 덮어집니다.</div>
+          <input style="margin-bottom: 3px;" type="text" name="datefilter" value=""/><br/>
+          <div class="warningMessage" style="color: red;">현재 일정을 다시 불러오려면 코드를 기억해주세요.</div>
           <div class="planButton">
             <button type="button" onclick="roadNewPlan(this.form, event)">생성</button>
             <button type="button" onclick="togglePanel('planCreatePanel')">취소</button>
@@ -23,10 +24,11 @@
         <h3>일정 불러오기</h3>
         <form id="planLoadForm" method="post">
           <label>현재 일정 코드</label>
-          <input type="text" value="${loginUser.plan_code}" readonly/><br>
+          <input style="margin-bottom: 3px;" type="text" value="${loginUser.plan_code}" readonly/><br>
+          <div class="warningMessage">일정 코드를 통해 언제든 일정을 불러올 수 있습니다.</div>
           <label>불러올 코드 입력</label>
-          <input type="text" name="loadPlanCode" required/><br>
-          <div class="warningMessage" style="font-size: 12px; color: red;">일정을 불러올 시 기존 일정에 덮어집니다.</div>
+          <input style="margin-bottom: 3px;" type="text" name="loadPlanCode" required/><br>
+          <div class="warningMessage" style="color: red;">현재 일정을 다시 불러오려면 코드를 기억해주세요.</div>
           <!-- 날짜 입력과 날짜에 맞는 plan_seq 전달 -->
           <div class="planButton">
             <button type="button" onclick="loadPlanByCode(this.form)">불러오기</button>

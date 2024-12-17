@@ -92,7 +92,7 @@ function fetchWishlistDetails() {
         })
         .then((data) => {
             // 추가 일정 select 요소 업데이트
-            planWishDetail.innerHTML = ''; // planWishDetail 초기화
+            planWishDetail.innerHTML = '<option value="" selected></option>'; // planWishDetail 초기화
 
             data.forEach((detail) => {
                 const option = document.createElement('option');
