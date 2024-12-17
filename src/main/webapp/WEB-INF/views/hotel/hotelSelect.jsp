@@ -3,7 +3,7 @@
 <div class="main">
     <c:choose>
         <c:when test="${not empty loginUser}">
-            <div id="wishlistAddPanel" class="wishlistAddPanel">
+            <div id="wishlistAddPanel" class="wishlistAddPanel" data-panel-group="hotelPanel">
                 <h3>새로운 찜 목록 생성</h3>
                 <form id="wishlistAddForm">
                     <label for="wishlistTitle">이름</label>
@@ -18,7 +18,7 @@
                     </div>
                 </form>
             </div>
-            <div id="wishAddPanel" class="wishlistAddPanel">
+            <div id="wishAddPanel" class="wishlistAddPanel" data-panel-group="hotelPanel">
                 <h3>추가할 찜 목록 선택</h3>
                 <form id="wishAddForm" method="post">
                     <input type="hidden" value="hotel" name="wish_category"/> <%-- wish 의 category 전달 --%>

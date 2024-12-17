@@ -32,6 +32,18 @@ public class WishlistController {
         return mav;
     }
 
+    /* wishlist 정보 가져오기 */
+    @GetMapping("/getWishlist")
+    @ResponseBody
+    public List<WishlistVO> getWishlist(HttpSession session) {
+        List<WishlistVO> wishlist = null;
+        MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
+        if(currentMember != null) {
+            wishlist = ws.getWishlistByUserid(currentMember.getUserid()); // wishlist 가져오기
+        }
+        return wishlist;
+    }
+
     /* wishlistDetail 정보 가져오기 */
     @GetMapping("/getWishDetail")
     @ResponseBody
