@@ -22,7 +22,11 @@
         UPDATE member SET plan_code=#{param2} WHERE userid=#{param1}
     </update>
 
-    <delete id="deleteMember" >
+    <delete id="deleteMember">
         delete from member where userid=#{userid}
     </delete>
+
+    <select id="findIdByNameAndEmail" parameterType="com.himedia.tp01.dto.MemberVO" resultType="String">
+        select userid from member where name=#{name} and email=#{email}
+    </select>
 </mapper>

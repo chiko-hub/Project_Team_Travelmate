@@ -117,6 +117,18 @@ body {
     width: 700px;
     height: 430px;
     position: relative;
+    padding: 0;
+
+
 }
 
 
+canvas {
+    position: absolute; /* 부모 컨테이너에 맞게 고정 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 부모 요소의 가로에 맞춤 */
+    height: 100%; /* 부모 요소의 높이에 맞춤 */
+    margin: 0;
+    padding: 0;
+}

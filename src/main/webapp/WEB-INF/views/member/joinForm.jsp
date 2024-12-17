@@ -3,7 +3,6 @@
 <head>
 	<title>Travel Planner Join</title>
 	<link rel="stylesheet" href="/css/login.css">
-<%--	<script src="/script/join.js"></script>--%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(function () {
@@ -13,7 +12,7 @@
 
 				// 아이디 유효성 검사 (4글자 이상)
 				if (userid.length < 4) {
-					$("#idmessage").html("<span style='color:red'>아이디는 4글자 이상이어야 합니다</span>");
+					$("#idmessage").html("<span style='color:red; font-size:13px'>아이디는 4글자 이상이어야 합니다</span>");
 					$("#reid").val("");
 					return; // 조건을 만족하지 않으면 AJAX 요청 중단
 				}
@@ -30,10 +29,10 @@
 					processData: false,
 					success: function (data) {
 						if (data.idmessage == '1') {
-							$('#idmessage').html("<span style='color:blue'>사용 가능합니다</span>");
+							$('#idmessage').html("<span style='color:blue; font-size:13px'>사용 가능합니다</span>");
 							$('#reid').val(data.userid);
 						} else {
-							$('#idmessage').html("<span style='color:red'>사용중인 아이디입니다</span>");
+							$('#idmessage').html("<span style='color:red; font-size:13px'>사용중인 아이디입니다</span>");
 							$('#reid').val("");
 						}
 					},
@@ -47,7 +46,7 @@
 			$("input[name='userid']").on("input", function () {
 				var userid = $(this).val();
 				if (userid.length < 4) {
-					$("#idmessage").html("<span style='color:red'>아이디는 4글자 이상이어야 합니다</span>");
+					$("#idmessage").html("<span style='color:red; font-size:13px'>아이디는 4글자 이상이어야 합니다</span>");
 					$("#reid").val("");
 				} else {
 					$("#idmessage").html(""); // 조건 만족 시 메시지 삭제
@@ -60,17 +59,16 @@
 				var pwdPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+]).{8,16}$/;
 
 				if (!pwdPattern.test(pwd)) {
-					$("#pwdmessage").html("<span style='color:red'>비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.</span>");
+					$("#pwdmessage").html("<span style='color:red; font-size:13px'>비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.</span>");
 				} else {
-					$("#pwdmessage").html("<span style='color:blue'>사용 가능한 비밀번호입니다.</span>");
+					$("#pwdmessage").html("<span style='color:blue; font-size:13px'>사용 가능한 비밀번호입니다.</span>");
 				}
 			});
 
-			// 이메일 유효성 검사
 			$("input[name='email']").on("input", function () {
 				var email = $(this).val();
 				if (email.indexOf("@") === -1) {
-					$("#emailMessage").html("<span style='color:red'>이메일 주소가 정확한지 확인해 주세요.</span>");
+					$("#emailMessage").html("<span style='color:red; font-size:13px'>이메일 주소가 정확한지 확인해 주세요.</span>");
 				} else {
 					$("#emailMessage").html(""); // 조건 만족 시 메시지 삭제
 				}
