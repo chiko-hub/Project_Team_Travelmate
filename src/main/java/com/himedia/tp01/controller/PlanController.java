@@ -64,8 +64,6 @@ public class PlanController {
         }else{
             // 코드 생성
             String planCode = ps.getRandomString();
-            // 테스트코드
-            System.out.println(planCode);
 
             // 날짜 변환 - datefilter를 '~' 기준으로 나누기
             String[] dates = datefilter.split("~");
@@ -73,15 +71,12 @@ public class PlanController {
             // 문자열을 LocalDate로 변환
             LocalDate startDate = LocalDate.parse(dates[0].trim());
             LocalDate endDate = LocalDate.parse(dates[1].trim());
-            // 테스트코드
-            System.out.println("startDate : " + startDate);
-            System.out.println("endDate : " + endDate);
 
             // code와 입력한 날짜에 따른 paln 생성
-            ps.setPlan(planCode, startDate, endDate);
+            MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
+            ps.setPlan(planCode, startDate, endDate, currentMember.getUserid());
 
             // planCode를 현재 사용자에게 부여
-            MemberVO currentMember = (MemberVO) session.getAttribute("loginUser");
             ms.updateMemberPlanCode(currentMember.getUserid(), planCode);
             currentMember = ms.getMember(currentMember.getUserid());
 

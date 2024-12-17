@@ -4,25 +4,29 @@
 </script>
     <div class="plan_container">
       <!-- 새 일정 생성 패널 -->
-      <div id="planCreatePanel" class="panel">
+      <div id="planCreatePanel" class="panel" data-panel-group="planPanel">
         <h3>새 일정 생성</h3>
-        <form id="planCreateForm" method="post">
+        <label>현재 일정 코드</label>
+        <input type="text" value="${loginUser.plan_code}" readonly/><br>
+        <form id="planCreateForm" method="post" action="createPlan">
           <label>날짜</label>
           <input type="text" name="datefilter" value=""/><br/>
+          <div class="warningMessage" style="font-size: 12px; color: red;">일정 생성 시 기존 일정에 덮어집니다.</div>
           <div class="planButton">
-            <button type="button" onclick="">미완성</button>
+            <button type="button" onclick="roadNewPlan(this.form, event)">생성</button>
             <button type="button" onclick="togglePanel('planCreatePanel')">취소</button>
           </div>
         </form>
       </div>
       <!-- 일정 불러오기 패널 -->
-      <div id="planLoadPanel" class="panel">
+      <div id="planLoadPanel" class="panel" data-panel-group="planPanel">
         <h3>일정 불러오기</h3>
         <form id="planLoadForm" method="post">
           <label>현재 일정 코드</label>
           <input type="text" value="${loginUser.plan_code}" readonly/><br>
           <label>불러올 코드 입력</label>
           <input type="text" name="loadPlanCode" required/><br>
+          <div class="warningMessage" style="font-size: 12px; color: red;">일정을 불러올 시 기존 일정에 덮어집니다.</div>
           <!-- 날짜 입력과 날짜에 맞는 plan_seq 전달 -->
           <div class="planButton">
             <button type="button" onclick="loadPlanByCode(this.form)">불러오기</button>
@@ -31,7 +35,7 @@
         </form>
       </div>
       <!-- 직접 추가 패널 -->
-      <div id="planAddPanel" class="panel">
+      <div id="planAddPanel" class="panel" data-panel-group="planPanel">
         <h3>새 계획 추가</h3>
         <form id="planAddForm" method="post" action="addPlan">
           <input type="hidden" id="planSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->

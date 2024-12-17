@@ -1,8 +1,23 @@
 /* 패널 열고 닫기 */
 function togglePanel(panelId) {
-    const panel = document.getElementById(panelId);
-    const wishlistSection = document.getElementById('wishlistSection');
+    const panel = document.getElementById(panelId); // 현재 패널
+    const panelGroup = panel.getAttribute('data-panel-group'); // data-panel-group 값을 가져옴
+
+    // 패널 그룹에 속한 다른 패널들을 모두 찾기
+    const allPanelsInGroup = document.querySelectorAll(`.panel[data-panel-group="${panelGroup}"]`);
+
+    // 모든 패널을 닫기
+    allPanelsInGroup.forEach(p => {
+        if (p !== panel) {
+            p.style.display = 'none'; // 다른 패널 닫기
+        }
+    });
+
+    // 현재 패널 열기
     panel.style.display = panel.style.display === "block" ? "none" : "block";
+
+    // wishlistSection 이 있고, 열린 상태라면 닫기
+    const wishlistSection = document.getElementById('wishlistSection');
     if(wishlistSection.style.display === "block"){
         wishlistSection.style.display = "none";
     }

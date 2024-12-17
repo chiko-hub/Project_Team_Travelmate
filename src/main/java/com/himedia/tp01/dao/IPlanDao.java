@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface IPlanDao {
 
-    void setPlan(String planCode, Date date); // plan 생성
+    void setPlan(String planCode, Date date, String userid); // plan 생성
     List<PlanVO> getPlan(String planCode); // planCode 에 해당하는 plan 불러오기
     Boolean checkPlanCode(String planCode); // planCode 에 해당하는 plan 이 존재하는지 여부
 }
