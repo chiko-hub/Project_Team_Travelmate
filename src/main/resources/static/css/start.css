@@ -10,6 +10,14 @@ body {
     font-family: Arial, sans-serif;
 }
 
+#logo-img img{
+    width:80px;
+    height: 50px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+
 #results {
     margin-top: 20px;
     padding: 15px;
