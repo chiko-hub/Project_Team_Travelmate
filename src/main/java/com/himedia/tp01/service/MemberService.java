@@ -30,7 +30,13 @@ public class MemberService {
         mdao.updateMemberPlanCode(userid, planCode);
     }
 
-    public void deleteMember(String userid) {mdao.deleteMember(userid);}
+    public void deleteMember(String userid) {
+        mdao.deleteMember(userid);
     }
 
+    public String findIdByNameAndEmail(String name, String email) {
+        return mdao.findIdByNameAndEmail(name, email);
+    }
+
+}
 

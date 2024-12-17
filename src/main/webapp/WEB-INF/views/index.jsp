@@ -9,7 +9,7 @@
     <title>TRAVEL Planner Main</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <link rel="stylesheet" href="/css/index.css" />
-    <script defer src="/script/index.js" ></script>
+    <script defer src="/script/index2.js" ></script>
 </head>
 <body style="width: 1920px; height:1080px">
 <style>
@@ -51,11 +51,24 @@
             </div>
         </div>
     </div>
-    <div id="image-container"></div>
+   <div id="image-container" style="position: relative;">
+        <canvas></canvas>
+        <a id="admin-link" href="admin"
+           style="
+           position: absolute;
+           display: none;
+           text-decoration: none;
+           color: white;
+           font-size: 16px;
+           z-index: 1000;">
+            admin
+        </a>
+    </div>
+
 </div>
 <div class="statistics">
     <div class="statItem">
-        <br><a  style="text-decoration: none;" href="admin">admin</a>
+        <br><a  style="text-decoration: none;" href="admin"></a>
     </div>
 </div>
 </body>
