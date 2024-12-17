@@ -12,36 +12,45 @@
             level: 3 // 지도의 확대 레벨
           };
 
-  // 지도를 생성합니다
-  var map = new kakao.maps.Map(mapContainer, mapOption);
+  var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성
+  var geocoder = new kakao.maps.services.Geocoder(); // 주소 검색 객체 생성
+  var marker = new kakao.maps.Marker({ map: map }); // 마커 초기화
 
-  // 주소-좌표 변환 객체를 생성합니다
-  var geocoder = new kakao.maps.services.Geocoder();
+  // 메시지 이벤트 리스너
+  window.addEventListener("message", function (event) {
+    if (event.data.type === "updateMap") {
+      const address = event.data.address;
+      console.log("받은 주소:", address); // 주소 출력
 
-  // 주소로 좌표를 검색합니다
-  geocoder.addressSearch('${placeVO.place_location}', function(result, status) {
+      if (address) {
+        geocoder.addressSearch(address, function (result, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-    // 정상적으로 검색이 완료됐으면
-    if (status === kakao.maps.services.Status.OK) {
+            // 마커 위치 업데이트
+            marker.setPosition(coords);
 
-      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            // Infowindow에 표시할 내용 설정
+            const infowindow = new kakao.maps.InfoWindow({
+              content: '<div style="padding:5px; font-size:12px;">여기야 바로 여기!</div>' // 문구 수정 가능
+            });
 
-      // 결과값으로 받은 위치를 마커로 표시합니다
-      var marker = new kakao.maps.Marker({
-        map: map,
-        position: coords
-      });
+            // Infowindow를 지도에 표시
+            infowindow.open(map, marker);
 
-      // 인포윈도우로 장소에 대한 설명을 표시합니다
-      var infowindow = new kakao.maps.InfoWindow({
-        content: '<div style="width:150px;text-align:center;padding:6px 0;">GO!</div>'
-      });
-      infowindow.open(map, marker);
-
-      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-      map.setCenter(coords);
+            // 지도 중심 이동
+            map.setCenter(coords);
+          } else {
+            console.error("주소 검색 실패:", address);
+            alert("해당 주소를 찾을 수 없습니다.");
+          }
+        });
+      } else {
+        alert("전달된 주소가 비어 있습니다.");
+      }
     }
   });
+
 </script>
 </body>
 </html>
