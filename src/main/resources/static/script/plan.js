@@ -2,6 +2,8 @@
 function togglePanel(panelId) {
     const panel = document.getElementById(panelId); // 현재 패널
     const panelGroup = panel.getAttribute('data-panel-group'); // data-panel-group 값을 가져옴
+    const planName = document.getElementById('planName'); // planName 항목
+    const planWishDetail = document.getElementById('planWishDetail'); // planWishDetail 항목
 
     // 패널 그룹에 속한 다른 패널들을 모두 찾기
     const allPanelsInGroup = document.querySelectorAll(`.panel[data-panel-group="${panelGroup}"]`);
@@ -10,11 +12,15 @@ function togglePanel(panelId) {
     allPanelsInGroup.forEach(p => {
         if (p !== panel) {
             p.style.display = 'none'; // 다른 패널 닫기
+            planName.value = ''; // planName 값 초기화
+            planWishDetail.innerHTML = ''; // planWishDetail 초기화
         }
     });
 
     // 현재 패널 열기
     panel.style.display = panel.style.display === "block" ? "none" : "block";
+    planName.value = ''; // planName 값 초기화
+    planWishDetail.innerHTML = ''; // planWishDetail 초기화
 
     // wishlistSection 이 있고, 열린 상태라면 닫기
     const wishlistSection = document.getElementById('wishlistSection');
@@ -43,7 +49,7 @@ function toggleWishlist(panelId) {
             .then((data) => {
                 // 찜 목록 select 요소 업데이트
                 const planWishlist = document.getElementById('planWishlist');
-                planWishlist.innerHTML = '<option value=""></option>'; // 초기화
+                planWishlist.innerHTML = '<option value="" selected></option>'; // 초기화
 
                 data.forEach((wishlist) => {
                     const option = document.createElement('option');
@@ -66,11 +72,13 @@ function toggleWishlist(panelId) {
 function fetchWishlistDetails() {
     const planWishlist = document.getElementById('planWishlist');
     const planWishDetail = document.getElementById('planWishDetail');
+    const planName = document.getElementById('planName');
     const selectedWishlistSeq = planWishlist.value;
 
     // 선택된 값이 없으면 초기화 후 종료
     if (!selectedWishlistSeq) {
-        planWishDetail.innerHTML = '<option value=""></option>';
+        planWishDetail.innerHTML = ''; // planWishDetail 초기화
+        planName.value = ''; // planName 값 초기화
         return;
     }
 
@@ -84,7 +92,7 @@ function fetchWishlistDetails() {
         })
         .then((data) => {
             // 추가 일정 select 요소 업데이트
-            planWishDetail.innerHTML = '<option value=""></option>'; // 초기화
+            planWishDetail.innerHTML = '<option value="" selected></option>'; // planWishDetail 초기화
 
             data.forEach((detail) => {
                 const option = document.createElement('option');
@@ -247,11 +255,13 @@ function updatePlanEndTime(){
 function addPlan() {
     const planAddForm = document.getElementById('planAddForm'); // 폼 아이디
     const formData = new FormData(planAddForm); // 폼 데이터 수집
+    const planName = document.getElementById('planName'); // planName 항목
+    const planWishDetail = document.getElementById('planWishDetail'); // planWishDetail 항목
 
     // 유효성 검사 - 비어 있는 필드 확인
     for (const [key, value] of formData.entries()) {
         if (!value.trim()) { // 값이 비어 있으면
-            alert(`모든 항목에 일정 데이터를 입력해주세요.`); // 사용자에게 알림
+            alert(`${key} 모든 항목에 일정 데이터를 입력해주세요.`); // 사용자에게 알림
             const field = planAddForm.elements[key]; // 폼 필드 가져오기
             if (field) field.focus(); // 해당 필드로 포커스 이동
             return; // 추가 요청 중단
@@ -268,6 +278,8 @@ function addPlan() {
             if (data.success) {
                 // 성공 메시지 표시
                 alert(data.message);
+                planName.value = ''; // planName 값 초기화
+                planWishDetail.innerHTML = ''; // planWishDetail 초기화
                 location.reload(); // 페이지 새로고침
             } else {
                 // 실패 메시지 표시

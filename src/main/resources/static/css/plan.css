@@ -187,7 +187,6 @@
     height: 100%; /* 버튼들의 크기를 cell 크기와 동일하게 맞춤 */
     background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
     z-index: 10; /* 다른 요소보다 위에 표시 */
-    /*display: flex;*/
     justify-content: flex-end; /* 오른쪽 정렬 */
     align-items: flex-start; /* 버튼들을 위쪽에 정렬 */
     padding: 10px; /* 버튼 간격 */
@@ -214,4 +213,10 @@
 
 .planUpdateButton:hover, .planDeleteButton:hover {
     opacity: 0.8; /* 마우스 올리면 버튼 투명도 */
+}
+
+.warningMessage {
+    font-size: 12px;
+    color: #2e8b57;
+    margin-bottom: 10px;
 }
