@@ -28,6 +28,9 @@
 <div class="container">
     <!-- 좌측 STEP 메뉴 -->
     <div class="sidebar">
+      <a href='index' id="logo-img"  style="text-decoration: none;">
+        <img src="/images/GetSetGonotext.png"/>
+      </a>
       <button class="step-button" onclick="location.href='place'">STEP 1<br>장소 선택</button>
       <button class="step-button" onclick="location.href='hotel'">STEP 2<br>숙소 선택</button>
       <button class="step-button" onclick="location.href='wishlist'">STEP 3<br>찜꽁</button>
