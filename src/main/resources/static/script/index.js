@@ -81,7 +81,7 @@
  // 8. 텍스트 렌더링
  Events.on(render, 'afterRender', function() {
      const context = render.context;
-     context.font = "bold 28px Arial"; // 글자 크게
+     context.font = "bold 31px Arial"; // 글자 크게
      context.fillStyle = "#ffffff";
      context.textAlign = "center";
 
