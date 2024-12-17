@@ -59,14 +59,14 @@
         </div>
     </div>
     <!-- 찜 목록 -->
-    <div class="wishDetailContainer">
+    <div class="wishContainer">
         <h2>찜 목록</h2>
-        <div class="wishDetailList">
+        <div class="wishlistList">
             <c:choose>
                 <c:when test="${not empty wishlist}">
                     <c:forEach var="wishlistItem" items="${wishlist}">
-                        <div class="wishlistItem" data-wishlist-seq="${wishlistItem.wishlist_seq}">
-                            <div class="wishlistName" onclick="">${wishlistItem.wishlist_title}</div>
+                        <div class="wishlistItem" onclick="showWishDetail('placeWishDetailContainer', '${wishlistItem.wishlist_seq}')">
+                            <div class="wishlistName">${wishlistItem.wishlist_title}</div>
                             <button class="removeWishlistButton" data-wishlist-seq="${wishlistItem.wishlist_seq}">×</button>
                         </div>
                     </c:forEach>
@@ -85,6 +85,12 @@
                 </c:otherwise>
             </c:choose>
         </div>
+    </div>
+</div>
+<%-- 찜 내역 상세 보기 --%>
+<div class="wishDetailContainer" id="placeWishDetailContainer" data-wishlist-seq="" style="display: none;">
+    <div class="wishDetailList">
+        <%-- wishlistDetail 표시 --%>
     </div>
 </div>
 <!-- 모달 구조 -->
