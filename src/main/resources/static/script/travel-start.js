@@ -42,19 +42,17 @@ async function getWeather() {
 
         // HTML에 날씨 데이터 표시
         document.getElementById('weather-container').innerHTML = `
-            <div style="display: flex; gap: 10px;">
-                <div class="weather-card">
-                    <h3>오늘의 날씨 [${data.city.name}]</h3>
-                    <img src="${todayIcon}" alt="Today's Weather Icon" class="weather-icon">
-                    <p>기온: ${todayWeather.main.temp} °C</p>
-                    <p>날씨: ${todayWeather.weather[0].description}</p>
-                </div>
-                <div class="weather-card">
-                    <h3>내일의 날씨 [${data.city.name}]</h3>
-                    <img src="${tomorrowIcon}" alt="Tomorrow's Weather Icon" class="weather-icon">
-                    <p>기온: ${tomorrowWeather.main.temp} °C</p>
-                    <p>날씨: ${tomorrowWeather.weather[0].description}</p>
-                </div>
+            <div class="weather-card">
+                <h3>오늘의 날씨 [${data.city.name}]</h3>
+                <img src="${todayIcon}" alt="Today's Weather Icon" class="weather-icon">
+                <p>기온: ${todayWeather.main.temp} °C</p>
+                <p>날씨: ${todayWeather.weather[0].description}</p>
+            </div>
+            <div class="weather-card">
+                <h3>내일의 날씨 [${data.city.name}]</h3>
+                <img src="${tomorrowIcon}" alt="Tomorrow's Weather Icon" class="weather-icon">
+                <p>기온: ${tomorrowWeather.main.temp} °C</p>
+                <p>날씨: ${tomorrowWeather.weather[0].description}</p>
             </div>
         `;
 

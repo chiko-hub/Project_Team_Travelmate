@@ -1,7 +1,7 @@
 /* 메인 컨테이너 스타일 */
 .mainContainer {
     display: flex;
-    width: 50%;
+    flex: 5;
     box-sizing: border-box;
     position: relative;
 }
