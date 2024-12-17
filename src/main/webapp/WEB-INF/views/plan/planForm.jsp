@@ -44,12 +44,10 @@
           <div id="wishlistSection" style="display: none;">
             <label for="planWishlist">찜 목록</label>
             <select id="planWishlist" name="wishlist_seq" required onchange="fetchWishlistDetails()">
-              <option value=""></option>
               <!-- 동적으로 옵션이 추가될 예정 -->
             </select>
             <label for="planWishDetail">추가할 일정</label>
             <select id="planWishDetail" name="wishlist_detail_seq" required onchange="updatePlanName()">
-              <option value=""></option>
               <!-- 동적으로 옵션이 추가될 예정 -->
             </select>
           </div>
@@ -168,7 +166,7 @@
         <c:forEach var="plan" items="${planList}">
           <div class="planList" id="${plan.plan_seq}">
           <!-- 일정 수정 패널 -->
-          <div id="planUpdatePanel" class="panel">
+          <div id="planUpdatePanel" class="panel" data-panel-group="planPanel">
             <h3>기존 계획 수정</h3>
             <form id="planUpdateForm" method="post" action="updatePlan">
               <input type="hidden" id="planUpdateSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
