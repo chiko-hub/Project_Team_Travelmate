@@ -3,15 +3,6 @@
 <%@ include file="../header.jsp" %>
 </script>
     <div class="plan_container">
-      <div class="buttonList">
-        <div class="planLoadButton">
-          <input type="button" value="새 일정 생성" onclick="togglePanel('planCreatePanel')"/>
-          <input type="button" value="일정 불러오기" onclick="togglePanel('planLoadPanel')"/>
-        </div>
-        <div class="planAddButton">
-          <input type="button" value="직접 추가" onclick="togglePanel('planAddPanel')"/>
-        </div>
-      </div>
       <!-- 새 일정 생성 패널 -->
       <div id="planCreatePanel" class="panel">
         <h3>새 일정 생성</h3>
@@ -45,6 +36,19 @@
         <form id="planAddForm" method="post" action="addPlan">
           <input type="hidden" id="planSeq" name="plan_seq"/> <!-- plan 에 해당하는 번호 -->
           <input type="hidden" name="plan_category" value="place"/> <!-- category 전달 임시 값 -->
+          <!-- 찜 목록 추가 (숨겨진 상태) -->
+          <div id="wishlistSection" style="display: none;">
+            <label for="planWishlist">찜 목록</label>
+            <select id="planWishlist" name="wishlist_seq" required onchange="fetchWishlistDetails()">
+              <option value=""></option>
+              <!-- 동적으로 옵션이 추가될 예정 -->
+            </select>
+            <label for="planWishDetail">추가할 일정</label>
+            <select id="planWishDetail" name="wishlist_detail_seq" required onchange="updatePlanName()">
+              <option value=""></option>
+              <!-- 동적으로 옵션이 추가될 예정 -->
+            </select>
+          </div>
           <label for="planName">장소</label>
           <input type="text" id="planName" name="plan_name" required/><br/>
           <label for="planDate">날짜</label>
@@ -115,6 +119,16 @@
             <button type="button" onclick="togglePanel('planAddPanel')">취소</button>
           </div>
         </form>
+      </div>
+      <div class="buttonList">
+        <div class="planLoadButton">
+          <input type="button" value="새 일정 생성" onclick="togglePanel('planCreatePanel')"/>
+          <input type="button" value="일정 불러오기" onclick="togglePanel('planLoadPanel')"/>
+        </div>
+        <div class="planAddButton">
+          <input type="button" value="찜에서 추가" onclick="toggleWishlist('planAddPanel')"/>
+          <input type="button" value="직접 추가" onclick="togglePanel('planAddPanel')"/>
+        </div>
       </div>
       <!-- 계획 테이블 -->
       <div class="planTable">
