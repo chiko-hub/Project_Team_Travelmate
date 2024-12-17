@@ -25,7 +25,7 @@
                 <c:when test="${not empty wishlist}">
                     <c:forEach var="wishlistItem" items="${wishlist}">
                         <div class="wishlistItem" onclick="loadWishDetail('${wishlistItem.wishlist_seq}')">
-                            <div class="wishlistName" onclick="">${wishlistItem.wishlist_title}</div>
+                            <div class="wishlistName">${wishlistItem.wishlist_title}</div>
                             <button class="removeWishlistButton" data-wishlist-seq="${wishlistItem.wishlist_seq}">×</button>
                         </div>
                     </c:forEach>
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <!-- 상세 보기 -->
+    <!-- 찜 내역 상세 보기 -->
     <div class="wishDetailContainer">
         <div class="wishDetailList">
             <div class="noWishDetailItem">
