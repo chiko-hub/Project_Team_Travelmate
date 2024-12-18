@@ -11,7 +11,7 @@
             <img src="images/GetSetGOnotext.png">
         </div>
         <h2 style="font-weight: bold; text-align: center">귀하의 비밀번호는</h2>
-        <input type="text" value="${findId}" size="44" style="height: 40px;
+        <input type="text" value="${findPassword}" size="44" style="height: 40px;
                         outline: none;border: 1px solid #cccccc; margin-bottom: 5px;" name="name" readonly/><br><br>
         <a href="loginForm" class="btn" style="display: flex;  width: 320px;
          justify-content: center;  align-items: center;text-decoration: none;" size=40>로그인하러 가기</a>

@@ -2,8 +2,6 @@ package com.himedia.tp01.service;
 
 import com.himedia.tp01.dao.IMemberDao;
 import com.himedia.tp01.dto.MemberVO;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +36,7 @@ public class MemberService {
         return mdao.findIdByNameAndEmail(name, email);
     }
 
+    public String findPasswordByIdAndEmail(String userid, String email) {return mdao.findPasswordByIdAndEmail(userid, email);
+    }
 }
 

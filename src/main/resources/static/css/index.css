@@ -100,7 +100,6 @@ body {
     margin-right:80px;
 }
 
-
 .capsule-text {
     position: absolute;
     color: #000000;
@@ -118,10 +117,7 @@ body {
     height: 430px;
     position: relative;
     padding: 0;
-
-
 }
-
 
 canvas {
     position: absolute; /* 부모 컨테이너에 맞게 고정 */
@@ -131,4 +127,14 @@ canvas {
     height: 100%; /* 부모 요소의 높이에 맞춤 */
     margin: 0;
     padding: 0;
+}
+
+a {
+    line-height: 2;
+}
+
+
+.logo img {
+    width: 180px;
+    height: auto;
 }

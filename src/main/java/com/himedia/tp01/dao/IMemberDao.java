@@ -2,7 +2,6 @@ package com.himedia.tp01.dao;
 
 import com.himedia.tp01.dto.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper
 public interface IMemberDao {
@@ -12,4 +11,6 @@ public interface IMemberDao {
     void updateMemberPlanCode(String userid, String planCode); // planCode 부여
     void deleteMember(String userid);
     String findIdByNameAndEmail(String name, String email);
+    String findPasswordByIdAndEmail(String userid, String email);
+
 }
