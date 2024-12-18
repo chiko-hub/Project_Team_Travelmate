@@ -147,13 +147,20 @@ function addWish() {
 /* place / hotel 탭에서 wishDetailContainer 를 누를 시 상세 보기 창이 뜨면서 정보를 불러오는 함수 */
 function showWishDetail(containerId, wishlistSeq){
     const container = document.getElementById(containerId);
+    const mapElement = document.querySelector('.map'); // .map 클래스가 지정된 div를 선택
 
     if(container.dataset.wishlistSeq === wishlistSeq){ // 찜 목록 상세보기가 현재 wishlist 의 데이터라면
         container.style.display = container.style.display === 'block' ? 'none' : 'block'; // 열고 닫기
     }else{ // 찜 목록 상세보기가 현재 wishlist 의 데이터와 다르다면
         container.style.display = 'block'; // 항상 활성화
+
         container.dataset.wishlistSeq = wishlistSeq; // 새로운 wishlistSeq 값 적용
         loadWishDetail(wishlistSeq); // 새로운 데이터 가져오기
+    }
+
+    // .map 클래스의 flex 조정
+    if (mapElement) {
+        mapElement.style.setProperty('flex', container.style.display === 'block' ? '2' : '4', 'important');
     }
 }
 
