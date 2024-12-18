@@ -25,9 +25,13 @@
                     <label for="wishlistSeq">찜 목록</label>
                     <select id="wishlistSeq" name="wishlist_seq" required>
                         <option value=""></option>
-                        <c:forEach var="wishlistNum" begin="0" end="${fn:length(wishlist)-1}" varStatus="status">
-                            <option value="${wishlist[wishlistNum].wishlist_seq}"> ${wishlist[wishlistNum].wishlist_title}</option>
-                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${not empty wishlist}">
+                                <c:forEach var="wishlistNum" begin="0" end="${fn:length(wishlist)-1}" varStatus="status">
+                                    <option value="${wishlist[wishlistNum].wishlist_seq}">${wishlist[wishlistNum].wishlist_title}</option>
+                                </c:forEach>
+                            </c:when>
+                        </c:choose>
                     </select>
                     <div class="wishlistAddButton">
                         <button type="button" onclick="addWish()">추가</button>
