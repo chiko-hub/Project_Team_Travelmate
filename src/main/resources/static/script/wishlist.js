@@ -99,8 +99,34 @@ function toggleWishPanel(panelId, buttonElement) {
         alert("로그인 후 이용 가능합니다.");
         return;
     }
-    
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
+
+    const panelGroup = panel.getAttribute('data-panel-group'); // data-panel-group 값을 가져옴
+    const main = document.querySelector('.main'); // main 선택
+
+    // 패널 그룹에 속한 다른 패널들을 모두 찾기
+    const allPanelsInGroup = document.querySelectorAll(`.panel[data-panel-group="${panelGroup}"]`);
+
+    // 모든 패널을 닫기
+    allPanelsInGroup.forEach(p => {
+        if (p !== panel) {
+            p.style.display = 'none'; // 다른 패널 닫기
+        }
+    });
+
+    // 현재 패널 열기
+    const isPanelOpening = panel.style.display !== "block";
+    panel.style.display = isPanelOpening ? "block" : "none";
+
+    // blur 효과 처리
+    if (isPanelOpening) {
+        if(main){
+            main.classList.add('blur');
+        }
+    } else {
+        if(main){
+            main.classList.remove('blur');
+        }
+    }
 
     // 데이터 전달
     var WishSeq = buttonElement.getAttribute('data-wish-seq');

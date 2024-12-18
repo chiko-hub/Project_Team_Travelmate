@@ -5,6 +5,8 @@ function togglePanel(panelId) {
     const planName = document.getElementById('planName'); // planName 항목
     const planWishDetail = document.getElementById('planWishDetail'); // planWishDetail 항목
     const planWishlist = document.getElementById('planWishlist'); // planWishDetail 항목
+    const planContainer = document.querySelector('.planContainer'); // planContainer 선택
+    const mainContainer = document.querySelector('.mainContainer'); // mainContainer 선택
 
     // 패널 그룹에 속한 다른 패널들을 모두 찾기
     const allPanelsInGroup = document.querySelectorAll(`.panel[data-panel-group="${panelGroup}"]`);
@@ -20,14 +22,39 @@ function togglePanel(panelId) {
     });
 
     // 현재 패널 열기
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
-    planName.value = ''; // planName 값 초기화
-    planWishlist.innerHTML = ''; // planWishlist 초기화
-    planWishDetail.innerHTML = ''; // planWishDetail 초기화
+    const isPanelOpening = panel.style.display !== "block";
+    panel.style.display = isPanelOpening ? "block" : "none";
+
+    if(planName){
+        planName.value = ''; // planName 값 초기화
+    }
+
+    if(planWishlist){
+        planWishlist.innerHTML = ''; // planWishlist 초기화
+    }
+
+    if(planWishDetail){
+        planWishDetail.innerHTML = ''; // planWishDetail 초기화
+    }
+
+    // blur 효과 처리
+    if (isPanelOpening) {
+        if(planContainer){
+            planContainer.classList.add('blur');
+        }else if(mainContainer){
+            mainContainer.classList.add('blur');
+        }
+    } else {
+        if(planContainer){
+            planContainer.classList.remove('blur');
+        }else if(mainContainer){
+            mainContainer.classList.remove('blur');
+        }
+    }
 
     // wishlistSection 이 있고, 열린 상태라면 닫기
     const wishlistSection = document.getElementById('wishlistSection');
-    if(wishlistSection.style.display === "block"){
+    if(wishlistSection && wishlistSection.style.display === "block"){
         wishlistSection.style.display = "none";
     }
 }
