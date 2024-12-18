@@ -30,13 +30,16 @@ h3 {
 
 .field label{
     font-size: 13px;
-    color:#aaaaaa;
+    color: #333333;
     text-align:left;
+}
 
+input::placeholder {
+    color: #aaaaaa;
 }
 
 .field {
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 
 }
 

@@ -18,7 +18,9 @@
     .statistics{flex:1}
 </style>
 <div class="header">
-    <div class="logo">MYRO</div>
+    <div class="logo" >
+        <img src="images/GetSetGOnotext.png">
+    </div>
     <nav>
         <a href="customerForm">고객지원</a>
         <a href="joinForm">회원가입</a>
@@ -31,10 +33,10 @@
                 <a href="logout">로그아웃</a>
             </c:otherwise>
         </c:choose>
+        <a style="text-decoration: none;" href="admin">▒</a>
         <a href="#"></a>
         <a href="#"></a>
-        <a href="#"></a>
-        <a href="#"></a>
+
     </nav>
 </div>
 

@@ -310,13 +310,21 @@ public class MemberController {
         mav.setViewName("member/findIdResult");
         return mav;
     }
+
+
+    @PostMapping("/findPasswordProcess")
+    public ModelAndView findPasswordProcess
+            (@RequestParam("userid") String userid,
+             @RequestParam("email") String email,
+             HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        String findPassword = ms.findPasswordByIdAndEmail(userid, email);
+        mav.addObject("findPassword", findPassword);
+        mav.setViewName("member/findPasswordResult");
+        return mav;
+    }
+
 }
-
-
-
-
-
-
 
 
 

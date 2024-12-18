@@ -29,4 +29,8 @@
     <select id="findIdByNameAndEmail" parameterType="com.himedia.tp01.dto.MemberVO" resultType="String">
         select userid from member where name=#{name} and email=#{email}
     </select>
+
+    <select id="findPasswordByIdAndEmail" parameterType="com.himedia.tp01.dto.MemberVO" resultType="String">
+        select pwd from member where userid=#{userid} and email=#{email}
+    </select>
 </mapper>
