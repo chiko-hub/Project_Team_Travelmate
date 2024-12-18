@@ -21,12 +21,13 @@
 
   // JSP 변수를 JavaScript 변수로 전달
   const jspPlaceName = '<c:out value="${place.place_name}" />'; // JSP에서 전달된 place_name
+  const jspHotelName = '<c:out value="${hotel.hotel_name}" />'; // JSP에서 전달된 place_name
 
   // 메시지 이벤트 리스너
   window.addEventListener("message", function (event) {
     if (event.data.type === "updateMap") {
       const address = event.data.address;
-      const placeName = event.data.placeName || jspPlaceName; // 전달된 Place 명 또는 JSP 기본 값 사용
+      const placeName = event.data.placeName || jspPlaceName || jspHotelName; // 전달된 Place 명 또는 JSP 기본 값 사용
       console.log("받은 주소:", address); // 주소 출력
       console.log("받은 Place 데이터:", { address, placeName }); // 데이터 확인용 로그
 
