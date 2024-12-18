@@ -59,7 +59,7 @@
 				var pwdPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+]).{8,16}$/;
 
 				if (!pwdPattern.test(pwd)) {
-					$("#pwdmessage").html("<span style='color:red; font-size:13px'>비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.</span>");
+					$("#pwdmessage").html("<span style='color:red;  margin: 0; padding: 0; line-height: 1; font-size:13px'>비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.</span>");
 				} else {
 					$("#pwdmessage").html("<span style='color:blue; font-size:13px'>사용 가능한 비밀번호입니다.</span>");
 				}
