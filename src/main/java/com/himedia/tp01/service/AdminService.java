@@ -71,7 +71,6 @@ public class AdminService {
 
         // getAllCount 호출
         int count = adao.getAllCount(parameter);
-        System.out.println(count);
         paging.setTotalCount(count);
         paging.calPaging();
 
@@ -201,7 +200,6 @@ public class AdminService {
 
         // getAllCount 호출
         int count = adao.getAllCount(parameter);
-        System.out.println(count);
         paging.setTotalCount(count);
         paging.calPaging();
 

@@ -9,11 +9,13 @@
 }
 
 .searchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex: 3;
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
-    scrollbar-gutter: stable both-edges; /* 스크롤바 공간을 요소 크기에 포함 */
     border-right: 1px solid #ddd;
 }
 
@@ -26,10 +28,12 @@
 
 .selects {
     display: flex;
+    width: 480px;
     gap: 5px; /* 버튼 간격 */
-    align-items: center;
+    align-items: flex-end;
     margin-top: 10px;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 .placeCategoryButton, .hotelCategoryButton  {

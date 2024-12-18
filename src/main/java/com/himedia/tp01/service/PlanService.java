@@ -71,7 +71,6 @@ public class PlanService {
 
     /* planCode 에 맞는 plan 이 생성되어 있는지 확인 */
     public Boolean checkPlanCode(String planCode) {
-        System.out.println("checkPlanCode : " + planCode);
         return pdao.checkPlanCode(planCode);
     }
 }
