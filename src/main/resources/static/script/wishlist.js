@@ -250,3 +250,81 @@ function deleteWishDetail(wishlistDetailSeq){
             });
     }
 }
+
+/* wishlistSection 활성화 시 데이터 로드 */
+function toggleWishlist(panelId) {
+    togglePanel(panelId); // 패널 활성화
+    const wishlistSection = document.getElementById('wishlistSection');
+
+    if (wishlistSection.style.display === 'none') {
+        // 섹션 활성화
+        wishlistSection.style.display = 'block';
+
+        // 찜 목록 데이터 가져오기
+        fetch('/getWishlist') // 서버의 API 엔드포인트
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // JSON 데이터 파싱
+            })
+            .then((data) => {
+                // 찜 목록 select 요소 업데이트
+                const planWishlist = document.getElementById('planWishlist');
+                planWishlist.innerHTML = '<option value="" selected></option>'; // 초기화
+
+                data.forEach((wishlist) => {
+                    const option = document.createElement('option');
+                    option.value = wishlist.wishlist_seq; // 서버에서 제공한 ID
+                    option.textContent = wishlist.wishlist_title; // 사용자에게 보여질 이름
+                    planWishlist.appendChild(option);
+                });
+            })
+            .catch((error) => {
+                console.error('Error fetching wishlist:', error);
+                alert('찜 목록 데이터를 불러오는 데 실패했습니다.');
+            });
+    } else {
+        // 섹션 비활성화
+        wishlistSection.style.display = 'none';
+    }
+}
+
+/* planWishlist 선택 시 세부 정보 데이터 로드 */
+function fetchWishlistDetails() {
+    const planWishlist = document.getElementById('planWishlist');
+    const planWishDetail = document.getElementById('planWishDetail');
+    const planName = document.getElementById('planName');
+    const selectedWishlistSeq = planWishlist.value;
+
+    // 선택된 값이 없으면 초기화 후 종료
+    if (!selectedWishlistSeq) {
+        planWishDetail.innerHTML = ''; // planWishDetail 초기화
+        planName.value = ''; // planName 값 초기화
+        return;
+    }
+
+    // AJAX 요청
+    fetch(`/getWishDetail?wishlist_seq=${selectedWishlistSeq}`)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // JSON 데이터 파싱
+        })
+        .then((data) => {
+            // 추가 일정 select 요소 업데이트
+            planWishDetail.innerHTML = '<option value="" selected></option>'; // planWishDetail 초기화
+
+            data.forEach((detail) => {
+                const option = document.createElement('option');
+                option.value = detail.wishlist_detail_seq; // 서버에서 제공한 ID
+                option.textContent = detail.wish_name; // 사용자에게 보여질 이름
+                planWishDetail.appendChild(option);
+            });
+        })
+        .catch((error) => {
+            console.error('Error fetching wishlist details:', error);
+            alert('찜 목록 세부 정보를 불러오는 데 실패했습니다.');
+        });
+}

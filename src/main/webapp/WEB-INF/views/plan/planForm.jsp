@@ -118,6 +118,14 @@
             <option value="23">오후 11시</option>
             <option value="24">오전 00시</option>
           </select>
+          <label for="planColor">색상</label>
+          <div class="planColor" id="planColor">
+            <input type="radio" id="planColor1" name="plan_color" value="#E76F51" style="background-color: #E76F51" checked>
+            <input type="radio" id="planColor2" name="plan_color" value="#F4A261" style="background-color: #F4A261">
+            <input type="radio" id="planColor3" name="plan_color" value="#E9C46A" style="background-color: #E9C46A">
+            <input type="radio" id="planColor4" name="plan_color" value="#2A9D8F" style="background-color: #2A9D8F">
+            <input type="radio" id="planColor5" name="plan_color" value="#264653" style="background-color: #264653">
+          </div>
           <div class="planButton">
             <button type="button" onclick="addPlan()">추가</button>
             <button type="button" onclick="togglePanel('planAddPanel')">취소</button>
@@ -239,6 +247,14 @@
                 <option value="23">오후 11시</option>
                 <option value="24">오전 00시</option>
               </select>
+              <label for="planColor">색상</label>
+              <div class="planColor" id="planUpdateColor">
+                <input type="radio" id="planUpdateColor1" name="plan_color" value="#E76F51" style="background-color: #E76F51" checked>
+                <input type="radio" id="planUpdateColor2" name="plan_color" value="#F4A261" style="background-color: #F4A261">
+                <input type="radio" id="planUpdateColor3" name="plan_color" value="#E9C46A" style="background-color: #E9C46A">
+                <input type="radio" id="planUpdateColor4" name="plan_color" value="#2A9D8F" style="background-color: #2A9D8F">
+                <input type="radio" id="planUpdateColor5" name="plan_color" value="#264653" style="background-color: #264653">
+              </div>
               <div class="planButton">
                 <button type="button" onclick="updatePlan()">수정</button>
                 <button type="button" onclick="togglePanel('planUpdatePanel')">취소</button>
@@ -271,7 +287,7 @@
                       <c:set var="endcellCount" value="${planDetailList[plan.plan_seq][detailCount].endtime}"/>
                       <c:set var="timeGap" value="${endcellCount - startCellCount}"/>
                       <%-- 일정 칸 생성 --%>
-                      <div class="cell" id="inPlanDetail" style="grid-row: span ${timeGap}; background: #2e8b57; color: white; position: relative;">
+                      <div class="cell" id="inPlanDetail" style="grid-row: span ${timeGap}; background: ${planDetailList[plan.plan_seq][detailCount].plan_color}; color: white; position: relative;">
                         <label class="planName">${planDetailList[plan.plan_seq][detailCount].plan_name}</label>
                         <input type="hidden" name="plan_seq" value="${plan.plan_seq}"/>
                         <input type="hidden" name="plan_detail_seq" value="${planDetailList[plan.plan_seq][detailCount].plan_detail_seq}"/>

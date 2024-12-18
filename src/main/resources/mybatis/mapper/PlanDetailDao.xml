@@ -9,8 +9,8 @@
     </select>
 
     <insert id="insertPlanDetail" parameterType="com.himedia.tp01.dto.PlanDetailVO">
-        INSERT INTO plan_detail(plan_seq, plan_name, plan_date, plan_category, starttime, endtime)
-        VALUES(#{plan_seq}, #{plan_name}, #{plan_date}, #{plan_category}, #{starttime}, #{endtime})
+        INSERT INTO plan_detail(plan_seq, plan_name, plan_date, plan_category, plan_color, starttime, endtime)
+        VALUES(#{plan_seq}, #{plan_name}, #{plan_date}, #{plan_category}, #{plan_color}, #{starttime}, #{endtime})
     </insert>
 
     <select id="getPlanDetailByPlanDetailSeq" resultType="com.himedia.tp01.dto.PlanDetailVO">
@@ -18,7 +18,7 @@
     </select>
 
     <update id="updatePlanDetail" parameterType="com.himedia.tp01.dto.PlanDetailVO">
-        UPDATE plan_detail SET plan_seq=#{plan_seq}, plan_name=#{plan_name}, plan_date=#{plan_date}, plan_category=#{plan_category}, starttime=#{starttime}, endtime=#{endtime}
+        UPDATE plan_detail SET plan_seq=#{plan_seq}, plan_name=#{plan_name}, plan_date=#{plan_date}, plan_category=#{plan_category}, plan_color=#{plan_color}, starttime=#{starttime}, endtime=#{endtime}
         WHERE plan_detail_seq=#{plan_detail_seq}
     </update>
 
