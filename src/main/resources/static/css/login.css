@@ -6,6 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
 
 
@@ -34,15 +35,13 @@ h3 {
     text-align:left;
 }
 
+.field {
+    margin-top: 10px;
+}
+
 input::placeholder {
     color: #aaaaaa;
 }
-
-.field {
-    margin-bottom: 10px;
-
-}
-
 .input-group input {
     width: 100%;
     padding: 10px;

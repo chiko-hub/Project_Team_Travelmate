@@ -9,7 +9,7 @@
     <title>TRAVEL Planner Main</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <link rel="stylesheet" href="/css/index.css" />
-    <script defer src="/script/index2.js" ></script>
+    <script defer src="/script/index.js" ></script>
 </head>
 <body style="width: 1920px; height:1080px">
 <style>
@@ -19,7 +19,7 @@
 </style>
 <div class="header">
     <div class="logo" >
-        <img src="images/GetSetGOnotext.png">
+        <img src="/images/GetSetGonotext.png"/>
     </div>
     <nav>
         <a href="customerForm">고객지원</a>
@@ -43,12 +43,12 @@
 <div class="main">
     <div id="text">
         <div class="container1">
-            <h1> 기존에 경험하지 못한<br>새로운 여행 플래너</h1>
-            <p>고민만 하던 여행 계획을 <b>마이로</b>를 통해 몇 분 만에 스케줄링 해보세요.</p>
+            <h1> 여행 계획을 한눈에! <br>함께 만드는 실시간 여행 플랫폼</h1>
+            <p>고민만 하던 여행 계획을 <b>겟셋고</b>를 통해 몇 분 만에 스케줄링 해보세요.</p>
             <br>
             <div class="container2">
                 <div class="startButton">
-                    <input type="button" id="button" value="마이로 시작하기" onclick="location.href='travel-start'"/>
+                    <input type="button" id="button" value="겟셋고 시작하기" onclick="location.href='travel-start'"/>
                 </div>
             </div>
         </div>

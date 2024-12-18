@@ -8,7 +8,7 @@
     <div class="container">
         <div class="loginbox">
             <div class="logo" style="text-align: center; margin-bottom: 17px;">
-                <img src="images/GetSetGOnotext.png">
+                <img src="/images/GetSetGonotext.png"/>
             </div>
                 <form method="post" action="login" name="loginForm" >
                     <div class="field">

@@ -50,7 +50,7 @@ body {
     height: 350px;
     position: relative;
     justify-content: center;
-    margin-left: 200px;
+    margin-left: 190px;
     margin-top: 0px;
 }
 .containe1{
@@ -63,8 +63,8 @@ body {
 }
 
 .main h1 {
-    font-size: 60px;
-    line-height: 1.5;
+    font-size: 50px;
+    line-height: 2;
 
 }
 
@@ -111,7 +111,7 @@ body {
 #image-container {
     flex-direction: row;
     margin-top: 10px;
-    margin-right: 240px;
+    margin-right: 185px;
     border: 1px solid black;
     width: 700px;
     height: 430px;
@@ -130,11 +130,14 @@ canvas {
 }
 
 a {
-    line-height: 2;
+    line-height: 3;
 }
 
 
 .logo img {
-    width: 180px;
+    width: 92px;
     height: auto;
+}
+.startButton{
+    margin-top: 28px;
 }
