@@ -77,10 +77,12 @@ $(document).ready(function () {
 
                 // 주소 가져와서 지도 업데이트
                 const placeLocation = $('#modalPlaceLocation').text().trim(); // 모달에 있는 주소 가져오기
-                if (placeLocation) {
-                    window.parent.postMessage({type: 'updateMap', address: placeLocation}, '*');
+                const placeName = $('#modalPlaceName').text().trim(); // 모달에 있는 호텔 명 가져오기
+                if (placeLocation && placeName) {
+                    window.parent.postMessage({type: 'updateMap', address: placeLocation,  placeName: placeName}, '*');
                 } else {
                     console.error("주소 값이 비어 있습니다.");
+                    alert("Hotel의 주소나 이름이 비어 있습니다. 다시 시도해주세요.");
                 }
             },
             error: function () {

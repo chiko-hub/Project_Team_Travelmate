@@ -19,7 +19,7 @@
 <body>
 <div class="modal-container">
     <div class="modal-header">
-        <h2>${hotel.hotel_name}</h2>
+        <h2  id="modalPlaceName">${hotel.hotel_name}</h2>
     </div>
     <div class="modal-content">
         <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}" />
