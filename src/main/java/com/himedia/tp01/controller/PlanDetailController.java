@@ -18,12 +18,13 @@ public class PlanDetailController {
     /* plan 에 세부 계획 추가하기 - AJAX */
     @PostMapping("/addPlan")
     @ResponseBody // JSON 응답을 반환하도록 설정
-    public Map<String, Object> addPlan(@ModelAttribute("plandetail") @Valid PlanDetailVO plandetailvo) {
+    public Map<String, Object> addPlan(@ModelAttribute PlanDetailVO plandetailvo) {
         Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
 
         // 겹치는 일정 시간 확인
         Boolean isCheckTimeResult = pds.checkTime(plandetailvo);
 
+        System.out.println("전달된 색상 : " + plandetailvo.getPlan_color());
         if (isCheckTimeResult) { // 겹치는 일정이 없다면
             pds.insertPlanDetail(plandetailvo); // 계획 추가
             response.put("success", true);

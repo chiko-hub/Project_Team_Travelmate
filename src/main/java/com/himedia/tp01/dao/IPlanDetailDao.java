@@ -10,8 +10,8 @@ import java.util.List;
 public interface IPlanDetailDao {
 
     List<PlanDetailVO> getPlanDetail(int planSeq); // planSeq 로 planDetail 가져오기
-    void insertPlanDetail(PlanDetailVO plandetail); // 새로운 planDetail 추가하기
+    void insertPlanDetail(PlanDetailVO planDetail); // 새로운 planDetail 추가하기
     PlanDetailVO getPlanDetailByPlanDetailSeq(int planDetailSeq); // planDetailSeq 로 planDetail 가져오기
-    void updatePlanDetail(@Valid PlanDetailVO plandetail); // planDetail 수정하기
+    void updatePlanDetail(@Valid PlanDetailVO planDetail); // planDetail 수정하기
     void deletePlanDetail(int planDetailSeq); // planDetail 삭제하기
 }
