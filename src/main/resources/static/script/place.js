@@ -30,6 +30,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 검색 버튼 클릭 시
     const searchButton = document.querySelector(".searchButton");
+    const searchInput = document.querySelector("input[name='key']"); // 검색어 입력 필드
+
+    if (searchInput) {
+        searchInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                searchButton.click(); // 검색 버튼 클릭 이벤트 실행
+                event.preventDefault(); // 기본 폼 제출 방지
+            }
+        });
+    }
+
     searchButton.addEventListener("click", function() {
         const selectedCategory = document.querySelector(".placeCategoryButton.selected") ? document.querySelector(".placeCategoryButton.selected").value : 'all'; // 현재 선택된 카테고리 값
         fetchPlaceList(selectedCategory, 1, true); // 검색어와 함께 페이지 1로 요청
