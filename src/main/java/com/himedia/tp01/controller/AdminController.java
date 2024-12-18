@@ -29,7 +29,11 @@ public class AdminController {
 AdminService as;
 
 @GetMapping("/admin")
-    public String admin(Model model) { return "admin/adminLogin"; }
+    public String admin(HttpSession session) {
+    session.removeAttribute("page");
+    session.removeAttribute("key");
+    return "admin/adminLogin";
+}
 
 @PostMapping("/adminLogin")
     public String adminLogin(
