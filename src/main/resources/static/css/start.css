@@ -33,6 +33,17 @@ body {
     scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
 }
 
+/* Blur 효과 클래스 */
+.blur {
+    filter: blur(10px); /* 블러 강도: 10px */
+    transition: filter 0.3s ease; /* 블러 효과의 전환 부드럽게 */
+}
+
+/* 마우스를 올렸을 때 블러 해제 */
+.blur:hover {
+    filter: blur(0);
+}
+
 /* 전체 레이아웃 */
 .container {
     display: flex;
