@@ -1,46 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
+<c:choose>
+    <c:when test="${not empty loginUser}">
+        <div id="wishlistAddPanel" class="wishlistAddPanel" data-panel-group="panel">
+            <h3>새로운 찜 목록 생성</h3>
+            <form id="wishlistAddForm">
+                <label for="wishlistTitle">이름</label>
+                <input type="text" id="wishlistTitle" name="wishlist_title" required/><br/>
+                <label for="wishlistCategory">종류</label>
+                <select id="wishlistCategory" name="wishlist_category" required>
+                    <option value="place" selected>장소</option>
+                </select>
+                <div class="wishlistAddButton">
+                    <button type="button" onclick="addWishlist()">생성</button>
+                    <button type="button" onclick="togglePanel('wishlistAddPanel')">취소</button>
+                </div>
+            </form>
+        </div>
+        <div id="wishAddPanel" class="wishlistAddPanel" data-panel-group="panel">
+            <h3>추가할 찜 목록 선택</h3>
+            <form id="wishAddForm" method="post">
+                <input type="hidden" value="place" name="wish_category"/> <%-- wish 의 category 전달 --%>
+                <label for="wishlistSeq">찜 목록</label>
+                <select id="wishlistSeq" name="wishlist_seq" required>
+                    <option value=""></option>
+                    <c:choose>
+                        <c:when test="${not empty wishlist}">
+                            <c:forEach var="wishlistNum" begin="0" end="${fn:length(wishlist)-1}" varStatus="status">
+                                <option value="${wishlist[wishlistNum].wishlist_seq}">${wishlist[wishlistNum].wishlist_title}</option>
+                            </c:forEach>
+                        </c:when>
+                    </c:choose>
+                </select>
+                <div class="wishlistAddButton">
+                    <button type="button" onclick="addWish()">추가</button>
+                    <button type="button" onclick="togglePanel('wishAddPanel')">취소</button>
+                </div>
+            </form>
+        </div>
+    </c:when>
+</c:choose>
 <div class="main">
-    <c:choose>
-        <c:when test="${not empty loginUser}">
-            <div id="wishlistAddPanel" class="wishlistAddPanel" data-panel-group="placePanel">
-                <h3>새로운 찜 목록 생성</h3>
-                <form id="wishlistAddForm">
-                    <label for="wishlistTitle">이름</label>
-                    <input type="text" id="wishlistTitle" name="wishlist_title" required/><br/>
-                    <label for="wishlistCategory">종류</label>
-                    <select id="wishlistCategory" name="wishlist_category" required>
-                        <option value="place" selected>장소</option>
-                    </select>
-                    <div class="wishlistAddButton">
-                        <button type="button" onclick="addWishlist()">생성</button>
-                        <button type="button" onclick="togglePanel('wishlistAddPanel')">취소</button>
-                    </div>
-                </form>
-            </div>
-            <div id="wishAddPanel" class="wishlistAddPanel" data-panel-group="placePanel">
-                <h3>추가할 찜 목록 선택</h3>
-                <form id="wishAddForm" method="post">
-                    <input type="hidden" value="place" name="wish_category"/> <%-- wish 의 category 전달 --%>
-                    <label for="wishlistSeq">찜 목록</label>
-                    <select id="wishlistSeq" name="wishlist_seq" required>
-                        <option value=""></option>
-                        <c:choose>
-                            <c:when test="${not empty wishlist}">
-                                <c:forEach var="wishlistNum" begin="0" end="${fn:length(wishlist)-1}" varStatus="status">
-                                    <option value="${wishlist[wishlistNum].wishlist_seq}">${wishlist[wishlistNum].wishlist_title}</option>
-                                </c:forEach>
-                            </c:when>
-                        </c:choose>
-                    </select>
-                    <div class="wishlistAddButton">
-                        <button type="button" onclick="addWish()">추가</button>
-                        <button type="button" onclick="togglePanel('wishAddPanel')">취소</button>
-                    </div>
-                </form>
-            </div>
-        </c:when>
-    </c:choose>
     <div class="searchContainer">
         <!-- 검색 폼 -->
         <div class="searchForm">

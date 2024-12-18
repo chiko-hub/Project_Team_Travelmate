@@ -124,7 +124,7 @@
 
 /* 패널 내부 스타일 */
 .wishlistAddPanel h3 {
-    margin-top: 0;
+    margin-bottom: 20px;
     text-align: center;
     font-size: 18px;
     color: #333;
@@ -133,7 +133,7 @@
 .wishlistAddButton {
     display: flex;
     justify-content: flex-end;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .wishlistAddPanel button {

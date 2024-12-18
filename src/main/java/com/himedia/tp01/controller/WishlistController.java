@@ -106,7 +106,6 @@ public class WishlistController {
     @PostMapping("/addWish")
     @ResponseBody
     public Map<String, Object> addWish(@RequestBody Map<String, Object> requestBody){
-        System.out.println(requestBody);
         int wishlistSeq = Integer.parseInt((String)requestBody.get("wishlistSeq"));
         int wishSeq = Integer.parseInt((String)requestBody.get("wishSeq"));
         String wishCategory = (String) requestBody.get("wishCategory");

@@ -100,7 +100,6 @@ public class PlanController {
 
             // 현재 사용자 정보로부터 plan_code 불러오기
             String planCode = currentMember.getPlan_code();
-            System.out.println("planCode : " + planCode);
 
             // code 에 해당하는 plan 정보 불러오기
             HashMap<String, Object> planHashMap = ps.getPlan(planCode);

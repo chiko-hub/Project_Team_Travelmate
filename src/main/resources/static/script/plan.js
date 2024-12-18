@@ -5,19 +5,20 @@ function togglePanel(panelId) {
     const planName = document.getElementById('planName'); // planName 항목
     const planWishDetail = document.getElementById('planWishDetail'); // planWishDetail 항목
     const planWishlist = document.getElementById('planWishlist'); // planWishDetail 항목
+    const planDate = document.getElementById('planDate'); // planDate select 항목
     const planContainer = document.querySelector('.planContainer'); // planContainer 선택
     const mainContainer = document.querySelector('.mainContainer'); // mainContainer 선택
+    const main = document.querySelector('.main'); // main 선택
 
-    // 패널 그룹에 속한 다른 패널들을 모두 찾기
-    const allPanelsInGroup = document.querySelectorAll(`.panel[data-panel-group="${panelGroup}"]`);
+    // 두 클래스(.panel 또는 .wishlistAddPanel)를 모두 고려하여, 동일한 panelGroup을 가진 다른 패널들을 찾기
+    const allPanelsInGroup = document.querySelectorAll(
+        `.panel[data-panel-group="${panelGroup}"]:not(#${panelId}), .wishlistAddPanel[data-panel-group="${panelGroup}"]:not(#${panelId})`
+    );
 
     // 모든 패널을 닫기
     allPanelsInGroup.forEach(p => {
         if (p !== panel) {
             p.style.display = 'none'; // 다른 패널 닫기
-            planName.value = ''; // planName 값 초기화
-            planWishlist.innerHTML = ''; // planWishlist 초기화
-            planWishDetail.innerHTML = ''; // planWishDetail 초기화
         }
     });
 
@@ -28,13 +29,16 @@ function togglePanel(panelId) {
     if(planName){
         planName.value = ''; // planName 값 초기화
     }
-
     if(planWishlist){
         planWishlist.innerHTML = ''; // planWishlist 초기화
     }
-
     if(planWishDetail){
         planWishDetail.innerHTML = ''; // planWishDetail 초기화
+    }
+
+    // 날짜 선택 초기화 (첫 번째 option을 selected 상태로 설정)
+    if (planDate) {
+        planDate.selectedIndex = 0; // 첫 번째 option 선택
     }
 
     // blur 효과 처리
@@ -43,12 +47,16 @@ function togglePanel(panelId) {
             planContainer.classList.add('blur');
         }else if(mainContainer){
             mainContainer.classList.add('blur');
+        }else if(main){
+            main.classList.add('blur');
         }
     } else {
         if(planContainer){
             planContainer.classList.remove('blur');
         }else if(mainContainer){
             mainContainer.classList.remove('blur');
+        }else if(main){
+            main.classList.remove('blur');
         }
     }
 
