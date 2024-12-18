@@ -41,8 +41,8 @@ public class HotelService {
         // 페이징 처리
         Paging paging = new Paging();
         paging.setPage(page);
-        paging.setDisplayPage(7);
-        paging.setDisplayRow(7);
+        paging.setDisplayPage(6);
+        paging.setDisplayRow(6);
 
         // 검색 키워드 처리
         String key = request.getParameter("key");
