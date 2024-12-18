@@ -264,31 +264,56 @@ body.modal-open {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 100%; /* 모달의 최대 너비 */
+    /*width:40%;*/
+    /*height:40%;*/
+    max-width: 720px; /* 모달의 최대 너비 */
     max-height: 100%; /* 모달의 최대 높이 */
     overflow-y: auto; /* 모달 내부 스크롤 활성화 */
     background: white; /* 배경색 */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* 그림자 효과 */
     z-index: 1050; /* 모달이 다른 요소들 위에 표시되도록 설정 */
+    border:1px solid #2e8b57;
 }
 
 .modal-header h2{
     text-align:center;
+    margin-top:10px;
+    padding-top:20px;
 }
 
 /* 모달 이미지와 내용 */
 .modal-content img {
-    max-width: 90%; /* 이미지가 모달 너비를 넘지 않도록 설정 */
-    height: auto;
-    display: block;
-    margin: 0 auto; /* 이미지 중앙 정렬 */
+    /*max-width: 90%; !* 이미지가 모달 너비를 넘지 않도록 설정 *!*/
+    /*height: auto;*/
+    /*display: block;*/
+    /*margin: 0 auto; !* 이미지 중앙 정렬 *!*/
+
+    width: 100%; /* 모달 너비에 맞게 조정 */
+    height: 300px; /* 고정 높이 */
+    object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+    border-radius: 8px;
+    margin-bottom: 12px;
+
 }
 
-.modal-content p {
+.modal-content {
     margin: 16px;
     line-height: 1.5;
+    color: #333;
     font-size: 1rem; /* 글씨 크기 */
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.modal-content #modal-description::before {
+    content: "🗺️";
+    margin-right: 0px;
+}
+
+.modal-content #modal-location::before {
+    content: "🧭";
+    margin-right: 0px;
 }
 
 /* 닫기 버튼 */

@@ -23,8 +23,8 @@
     </div>
     <div class="modal-content">
         <img src="/place_images/${place.savefilename}" alt="${place.place_name}" />
-        <div>설명 : ${place.place_description}</div>
-        <div>주소 : <span id="modalPlaceLocation">${place.place_location}</span></div>
+        <div id="modal-description">설명 : ${place.place_description}</div>
+        <div id="modal-location">주소 : <span id="modalPlaceLocation">${place.place_location}</span></div>
     </div>
 </div>
 
