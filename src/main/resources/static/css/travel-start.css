@@ -121,7 +121,7 @@ h1, h2, h3, p {
     text-align: center; /* 중앙 정렬 */
     padding: 10px; /* 텍스트 주위 여백 추가 */
     white-space: pre-line; /* 줄바꿈과 연속 공백을 유지 */
-    font-family: Arial, sans-serif;
+    font-family: 'NanumHuman';
     box-sizing: border-box;
 }
 

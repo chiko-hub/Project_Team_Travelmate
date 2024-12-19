@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: "SEBANG Gothic";
+    font-family: 'NanumHuman';
     background-color: #f4f6f9; /* 밝은 회색 배경 */
     color: #333;
     margin: 0;
@@ -100,7 +100,7 @@ article form .btn {
 }
 
 article form .btn input {
-    font-family: "SEBANG Gothic";
+    font-family: 'NanumHuman';
     padding: 10px 20px;
     background-color: #2E4F33;
     border: none;
@@ -429,7 +429,7 @@ header {
 
 /* 장소 등록 버튼 스타일 */
 .btn-register {
-    font-family: "SEBANG Gothic";
+    font-family: 'NanumHuman';
     background: linear-gradient(135deg, #66CDAA, #20B2AA); /* 기본 민트색에서 짙은 초록색 그라디언트 */
     color: white;
     padding: 15px 30px; /* 버튼 크기를 확대 */
@@ -585,7 +585,7 @@ header {
     background-color: #FFFFFF;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     text-align: center;
-    font-family: 'SEBANG Gothic';
+    font-family: 'NanumHuman';
 }
 
 /* 파일 선택 버튼 */
@@ -642,7 +642,7 @@ header {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: "SEBANG Gothic";
+    font-family: 'NanumHuman';
 }
 
 .btn-upload:hover {
