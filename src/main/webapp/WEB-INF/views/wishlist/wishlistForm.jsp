@@ -24,7 +24,7 @@
             <c:choose>
                 <c:when test="${not empty wishlist}">
                     <c:forEach var="wishlistItem" items="${wishlist}">
-                        <div class="wishlistItem" onclick="loadWishDetail('${wishlistItem.wishlist_seq}')">
+                        <div class="wishlistItem" id="${wishlistItem.wishlist_category}Wishlist" onclick="loadWishDetail('${wishlistItem.wishlist_seq}')">
                             <div class="wishlistName">${wishlistItem.wishlist_title}</div>
                             <button class="removeWishlistButton" data-wishlist-seq="${wishlistItem.wishlist_seq}">×</button>
                         </div>

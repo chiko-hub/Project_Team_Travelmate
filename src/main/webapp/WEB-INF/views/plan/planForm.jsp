@@ -216,7 +216,7 @@
     </div>
   </form>
 </div>
-<div class="planContainer">
+<div class="plan_container">
   <div class="buttonList">
     <div class="planLoadButton">
       <input type="button" value="새 일정 생성" onclick="togglePanel('planCreatePanel')"/>

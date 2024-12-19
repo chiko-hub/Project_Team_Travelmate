@@ -29,7 +29,7 @@
 }
 
 /* 추가 스타일: 버튼 모양 */
-.buttonList input, .planCreateButton button {
+.buttonList input {
     padding: 6px 12px;
     font-size: 14px;
     color: #2e8b57;
@@ -125,7 +125,7 @@
 .planButton {
     display: flex;
     justify-content: flex-end;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .panel button {

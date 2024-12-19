@@ -33,10 +33,10 @@ public class PlaceService {
 
         // 페이지 번호 처리
         int page = Integer.parseInt(request.getParameter("page"));
-        if (page == 1 && session.getAttribute("page") != null) {
+        /*if((session.getAttribute("page") != null) && page != 1){
             page = (Integer)session.getAttribute("page"); // 세션에서 page 값 가져오기
         }
-        session.setAttribute("page", page);
+        session.setAttribute("page", page);*/
 
         // 페이징 처리
         Paging paging = new Paging();

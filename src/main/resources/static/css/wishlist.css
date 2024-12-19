@@ -41,7 +41,6 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    /*margin: 10px 0;*/
     cursor: pointer;
     background-color: #fafafa;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -51,6 +50,26 @@
 .wishlistItem:hover {
     transform: translateY(-3px); /* 마우스 오버 시 살짝 위로 올라감 */
     background-color: #f5f5f5;
+}
+
+/* place 찜 목록 녹색 계열 */
+#placeWishlist {
+    background-color: #e5f1e4;
+    border: 1px solid #cce3c9;
+}
+
+#placeWishlist:hover {
+    background-color: #deebda;
+}
+
+/* hotel 찜 목록 하늘색 계열*/
+#hotelWishlist {
+    background-color: #dcefeb;
+    border: 1px solid #c4e3db;
+}
+
+#hotelWishlist:hover {
+    background-color: #d2ebe5;
 }
 
 .wishlistName {
