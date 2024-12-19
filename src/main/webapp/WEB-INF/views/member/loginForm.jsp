@@ -22,18 +22,18 @@
                     </div>
                     <div style="display: flex; justify-content: space-around;">
                         <div class="message" style="flex: 2;">${message}</div>
-                        <a href="findid" id="forgot-id" style="flex: 1";>아이디 찾기</a>
-                        <a href="findpassword" id="forgot-password" style="flex: 1;">비밀번호 찾기</a>
+                        <a href="findId" id="forgot-id" style="flex: 1";>아이디 찾기</a>
+                        <a href="findPassword" id="forgot-password" style="flex: 1;">비밀번호 찾기</a>
                     </div>
                     <button type="submit" class="btn">로그인</button>
-
+                    <a href="/" class="btn" style="display: flex;  width: 335px;
+                      justify-content: center;  align-items: center;text-decoration: none;" size=40>이전으로</a>
                     <div class="sns-login">
                         <input type="button" class="btn facebook" value="Facebook" />
                         <input type="button" class="btn twitter" value="Twitter" />
                         <input type="button" class="btn google" value="Google" />
                         <input type="button" class="btn kakao" value="Kakao" onclick="location.href='kakaostart'"/>
                     </div>
-
                 </form>
                 <form action="joinForm" method="get" name="joinForm">
                     <div class="signup">

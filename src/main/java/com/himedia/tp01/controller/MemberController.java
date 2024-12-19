@@ -40,13 +40,13 @@ public class MemberController {
         if (result.getFieldError("userid") != null)
             model.addAttribute("message", "아이디를 입력하세요");
         else if (result.getFieldError("pwd") != null)
-            model.addAttribute("message", "패스워드를 입력하세요");
+            model.addAttribute("message", "비밀번호를 입력하세요");
         else {
             MemberVO mvo = ms.getMember(membervo.getUserid());
             if (mvo == null)
-                model.addAttribute("message", "아이디/비번을 확인하세요");
+                model.addAttribute("message", "아이디/비밀번호를 확인하세요");
             else if (!mvo.getPwd().equals(membervo.getPwd()))
-                model.addAttribute("message", "아이디/비번을 확인하세요");
+                model.addAttribute("message", "아이디/비밀번호를 확인하세요");
             else if (mvo.getPwd().equals(membervo.getPwd())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("loginUser", mvo);
@@ -289,14 +289,9 @@ public class MemberController {
         return "redirect:/index";
     }
 
-    @GetMapping("/findid")
+    @GetMapping("/findId")
     public String findid(Model model) {
-        return "member/findid";
-    }
-
-    @GetMapping("/findpassword")
-    public String findpassword(Model model) {
-        return "member/findpassword";
+        return "member/findId";
     }
 
     @PostMapping("/findIdProcess")
@@ -311,6 +306,12 @@ public class MemberController {
         return mav;
     }
 
+    @GetMapping("/findPassword")
+    public String findpassword(Model model) {
+        return "member/findPassword";
+    }
+
+
 
     @PostMapping("/findPasswordProcess")
     public ModelAndView findPasswordProcess
@@ -320,11 +321,38 @@ public class MemberController {
         ModelAndView mav = new ModelAndView();
         String findPassword = ms.findPasswordByIdAndEmail(userid, email);
         mav.addObject("findPassword", findPassword);
+        mav.addObject("userid", userid);
         mav.setViewName("member/findPasswordResult");
         return mav;
     }
 
+
+
+
+    @PostMapping("/uploadInfo")
+    public String updatePassword(@RequestParam("userid") String userid,
+                                 @RequestParam String newPassword,
+                                 @RequestParam String confirmPassword,
+                                 HttpSession session,
+                                 Model model) {
+//        String userid = (String) session.getAttribute("userid");
+
+        if (!newPassword.equals(confirmPassword)) {
+            model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
+            return "member/findPasswordResult";}
+        System.out.println("userid : " + userid);
+        System.out.println("newPassword : " + newPassword);
+
+       ms.updatePassword(userid, newPassword);
+
+        model.addAttribute("message", "비밀번호가 성공적으로 변경되었습니다.");
+        return "member/loginForm";
+    }
 }
+
+
+
+
 
 
 

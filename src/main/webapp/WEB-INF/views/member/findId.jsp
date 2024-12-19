@@ -16,12 +16,12 @@
             <label>이름</label><br>
             <input type="text" size="44" style="height: 40px;
                         outline: none;border: 1px solid #cccccc;margin-bottom: 5px; " name="name" required><br><br>
-
             <label>이메일</label><br>
             <input type="text" size="44" style="height: 40px;
                         outline: none;border: 1px solid #cccccc; margin-bottom: 5px;" name="email" required><br><br>
-
-            <button class=btn type="submit" >아이디 찾기</button>
+            <button class="btn" type="submit" >아이디 찾기</button>
+            <a href="loginForm" class="btn" style="display: flex;  width: 337px;
+         justify-content: center;  align-items: center;text-decoration: none;" size=40>이전으로</a>
         </form>
     </div>
 </div>

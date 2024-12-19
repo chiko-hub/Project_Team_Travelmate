@@ -13,4 +13,5 @@ public interface IMemberDao {
     String findIdByNameAndEmail(String name, String email);
     String findPasswordByIdAndEmail(String userid, String email);
 
+    void updatePassword(String userid, String newPassword);
 }
