@@ -16,12 +16,12 @@
             <label>아이디</label><br>
             <input type="text" size="44" style="height: 40px;
                         outline: none;border: 1px solid #cccccc;margin-bottom: 5px; " name="userid" required><br><br>
-
             <label>이메일</label><br>
             <input type="text" size="44" style="height: 40px;
-                        outline: none;border: 1px solid #cccccc; margin-bottom: 5px;" name="email" required><br><br>
-
+            outline: none;border: 1px solid #cccccc; margin-bottom: 5px;" name="email" required><br><br>
             <button class=btn type="submit" >비밀번호 찾기</button>
+            <a href="loginForm" class="btn" style="display: flex;  width: 335px;
+         justify-content: center;  align-items: center;text-decoration: none;" size=40>이전으로</a>
         </form>
     </div>
 </div>
@@ -30,8 +30,3 @@
 
 </body>
 </html>
-                                        재
-
-
-
-설정하기

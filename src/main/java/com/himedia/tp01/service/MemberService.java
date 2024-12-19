@@ -38,5 +38,8 @@ public class MemberService {
 
     public String findPasswordByIdAndEmail(String userid, String email) {return mdao.findPasswordByIdAndEmail(userid, email);
     }
+
+    public void updatePassword(String userid, String newPassword) {mdao.updatePassword(userid,newPassword);
+    }
 }
 

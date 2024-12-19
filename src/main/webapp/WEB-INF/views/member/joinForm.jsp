@@ -125,7 +125,7 @@
 				 style="height:40px; outline: none;border: 1px solid #cccccc;" value="${dto.address_detail}" placeholder="상세 주소 입력"></div>
 				<div class="field">
 					<label>기타 주소<br></label><input type="text" id="sample6_extraAddress" name="address_extra" size="44"
-			     style="height:40px;margin-bottom:10px;outline: none;border: 1px solid #cccccc;" value="${dto.address_extra}" placeholder="기타 주소 입력"></div>
+			     style="height:40px;outline: none;border: 1px solid #cccccc;" value="${dto.address_extra}" placeholder="기타 주소 입력"></div>
 				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 				<script>
 					function sample6_execDaumPostcode() {

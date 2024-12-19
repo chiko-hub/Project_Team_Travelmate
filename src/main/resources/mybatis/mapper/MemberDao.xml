@@ -33,4 +33,8 @@
     <select id="findPasswordByIdAndEmail" parameterType="com.himedia.tp01.dto.MemberVO" resultType="String">
         select pwd from member where userid=#{userid} and email=#{email}
     </select>
+
+    <update id="updatePassword">
+        UPDATE member SET pwd=#{newPassword} WHERE userid=#{userid}
+    </update>
 </mapper>
