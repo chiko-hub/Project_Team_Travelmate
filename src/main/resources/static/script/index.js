@@ -3,7 +3,7 @@
         const engine = Engine.create();
         const world = engine.world;
 
-        engine.world.gravity.y = 1;
+        engine.world.gravity.y = 3;
         engine.world.gravity.x = 0;
 
         const render = Render.create({
@@ -17,9 +17,10 @@
             }
         });
         const colors = [
-            '#A8E6CF', '#DCEDC1', '#AED581', '#81C784',
-            '#4CAF50', '#388E3C', '#2E7D32', '#1B5E20'
+            '#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9',
+            '#92A8D1', '#034F84', '#F5D76E', '#D65076'
         ];
+
         function createCapsule(x, y, text, color, isAdmin = false) {
             if (isAdmin) {
                 const emojiTexture = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'%3E😀%3C/text%3E%3C/svg%3E";
@@ -40,8 +41,8 @@
                 adminCapsule.label = "";
                 return adminCapsule;
             } else {
-                const capsuleWidth = 150;
-                const capsuleHeight = 70;
+                const capsuleWidth = 120;
+                const capsuleHeight = 60;
                 const leftCircle = Bodies.circle(x - capsuleWidth / 2, y, capsuleHeight / 2, { render: { fillStyle: color } });
                 const rightCircle = Bodies.circle(x + capsuleWidth / 2, y, capsuleHeight / 2, { render: { fillStyle: color } });
                 const rectangle = Bodies.rectangle(x, y, capsuleWidth, capsuleHeight, { render: { fillStyle: color } });
@@ -72,8 +73,8 @@
             { x: 375, y: 0, text: 'admin', color: '#A8E6CF', isAdmin: true }, // admin 캡슐
             { x: 150, y: 0, text: '#  서  울', color: colors[0] },
             { x: 275, y: 0, text: '#  부  산', color: colors[1] },
-            { x: 325, y: 0, text: '#  경 기 도', color: colors[2] },
-            { x: 425, y: 0, text: '#  강 원 도', color: colors[3] },
+            { x: 325, y: 0, text: '#  경  기', color: colors[2] },
+            { x: 425, y: 0, text: '#  강  원', color: colors[3] },
             { x: 525, y: 0, text: '#  대  구', color: colors[4] },
             { x: 175, y: 0, text: '#  제  주', color: colors[5] },
             { x: 275, y: 0, text: '#  대  전', color: colors[6] },
@@ -88,10 +89,10 @@
         document.body.appendChild(adminLink);
         const maxCapsules = capsuleData.length;
         const intervalId = setInterval(() => {
-            if (capsules.length >= maxCapsules) {
+          /*  if (capsules.length >= maxCapsules) {
                 clearInterval(intervalId);
                 console.log("캡슐 생성 중지: 최대 개수 도달");
-                return;}
+                return;}*/
             const data = capsuleData[currentIndex];
             const capsule = createCapsule(data.x, data.y, data.text, data.color, data.isAdmin);
             Composite.add(world, capsule);
@@ -118,7 +119,7 @@
         });
         Events.on(render, 'afterRender', function () {
             const context = render.context;
-            context.font = "bold 25px Arial";
+            context.font = "bold 25px NanumHuman";
             context.fillStyle = "#ffffff";
             context.textAlign = "center";
 
