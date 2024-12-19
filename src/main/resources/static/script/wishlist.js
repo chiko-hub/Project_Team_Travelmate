@@ -113,6 +113,7 @@ function addWish() {
     var wishlistSeq = document.getElementById('wishlistSeq').value; // 선택된 찜 목록 ID
     var wishSeq = document.getElementById('wishAddForm').getAttribute('data-wish-seq'); // 선택된 wish 데이터의 seq
     var wishCategory = document.querySelector('input[name="wish_category"]').value; // hidden 카테고리 값
+    const panel = document.getElementById('wishAddPanel'); // wishAddPanel 정보
 
     if (wishlistSeq && wishSeq) {
         fetch('/addWish', {
@@ -130,7 +131,7 @@ function addWish() {
             .then(data => {
                 if (data.success) {
                     alert(data.message);
-                    location.reload();
+                    togglePanel('wishAddPanel');
                 } else {
                     alert(data.message);
                 }
