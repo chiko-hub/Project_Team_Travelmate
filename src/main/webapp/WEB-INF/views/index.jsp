@@ -10,6 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <link rel="stylesheet" href="/css/index.css"/>
     <script defer src="/script/index.js" ></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 <body>
 <div class="header">
@@ -17,28 +19,27 @@
         <img src="/images/GetSetGonotext.png" alt="GetSetGo logo"/>
     </div>
     <nav>
-        <a href="customerForm">고객지원</a>
-        <a href="joinForm">회원가입</a>
+        <a href="customerForm"><i class="fi fi-rr-interrogation"></i></a>
         <c:choose>
             <c:when test="${empty loginUser}">
-                <a href="loginForm">로그인</a>
+                <a href="loginForm"><i class="fi fi-rs-user-add"></i></a>
             </c:when>
             <c:otherwise>
-                <a href="updateMemberForm">${loginUser.name}(${loginUser.userid})</a>
-                <a href="logout">로그아웃</a>
+                <a href="updateMemberForm"><i class="fi fi-rs-following"></i></a>
+                <a href="logout"><i class="fi fi-rr-exit"></i></a>
             </c:otherwise>
         </c:choose>
-        <a style="text-decoration: none;" href="admin">▒</a>
+        <a style="text-decoration: none;" href="admin"><i class="fi fi-rs-key"></i></a>
     </nav>
 </div>
 <div class="indexMain">
     <div class="container1">
         <div class="indexTitle">
             <h1>함께 만들어 공유하는</h1>
-            <h1>여행 계획 플랫폼</h1>
+            <h1>여행 계획 플래너</h1>
         </div>
         <div class="indexSub">
-            <p>계획을 <b>GetSetGo</b>를 통해 빠르게 만들고 공유해보세요.</p>
+            <p>고민만 하던 계획을 <b>GetSetGo</b>를 통해 빠르게 만들고 공유해보세요.</p>
         </div>
         <div class="container2">
             <div class="startButton">
