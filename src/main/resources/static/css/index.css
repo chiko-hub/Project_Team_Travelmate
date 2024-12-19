@@ -47,15 +47,40 @@ body {
 }
 
 .header nav a {
-    padding: 0 20px;
+    position: relative;
+    padding: 10px 15px; /* 패딩을 늘려 아이콘 사이 간격 조정 */
     text-decoration: none;
     color: #333;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px; /* 추가적인 마진으로 간격 확보 */
 }
 
 .header nav a i{
     font-size: 28px; /* 아이콘 크기 (아이콘 폰트일 경우) */
-    margin-right: 8px; /* 텍스트와 아이콘 간격 */
+    margin: 0; /* 마진 제거로 균형 유지 */
     vertical-align: middle; /* 텍스트와 정렬 */
+}
+
+/* Hover 효과 추가 */
+.header nav a:hover {
+    color: #555;
+}
+
+.header nav a:hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #DCEDC1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: -1;
+    transition: all 0.3s ease;
 }
 
 .indexMain {
@@ -121,7 +146,6 @@ body {
     background-color: #98FF98;
     outline-color: transparent; /* outline 색상 변경 */
 }
-
 
 .capsule-text {
     position: absolute;
