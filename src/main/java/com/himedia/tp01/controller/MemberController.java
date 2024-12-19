@@ -56,20 +56,14 @@ public class MemberController {
         return url;
     }
 
-
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginUser");
         return "redirect:/";
     }
 
-    @GetMapping("/contract")
-    public String contract(Model model) {
-        return "member/contract";
-    }
-
     @GetMapping("/joinForm")
-    public String joinForm(Model model) {
+    public String joinForm() {
         return "member/joinForm";
     }
 
@@ -87,7 +81,6 @@ public class MemberController {
         }
         return result;
     }
-
 
     @PostMapping("/join")
     public String join(@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result, Model model,
@@ -131,7 +124,6 @@ public class MemberController {
         model.addAttribute("message", "회원탈퇴가 완료되었습니다.");
         return "member/loginForm";
     }
-
 
     @GetMapping("/updateMemberForm")
     public ModelAndView updateMemberForm(HttpServletRequest request, Model model) {
@@ -263,11 +255,9 @@ public class MemberController {
         System.out.println("id : " + kakaoProfile.getId());
 
         KakaoProfile.KakaoAccount ac = kakaoProfile.getAccount();
-        //System.out.println( "email : " + ac.getEmail() );
 
         KakaoProfile.KakaoAccount.Profile pf = ac.getProfile();
         System.out.println("nickname : " + pf.getNickname());
-
 
         // 회원 가입 여부 조회
         MemberVO mdto = ms.getMember(kakaoProfile.getId());
@@ -290,15 +280,14 @@ public class MemberController {
     }
 
     @GetMapping("/findId")
-    public String findid(Model model) {
+    public String findId() {
         return "member/findId";
     }
 
     @PostMapping("/findIdProcess")
-    public ModelAndView findIdProcess
-            (@RequestParam("name") String name,
-             @RequestParam("email") String email,
-             HttpSession session) {
+    public ModelAndView findIdProcess(
+            @RequestParam("name") String name,
+            @RequestParam("email") String email) {
         ModelAndView mav = new ModelAndView();
         String findId = ms.findIdByNameAndEmail(name, email);
         mav.addObject("findId", findId);
@@ -307,17 +296,15 @@ public class MemberController {
     }
 
     @GetMapping("/findPassword")
-    public String findpassword(Model model) {
+    public String findPassword() {
         return "member/findPassword";
     }
 
 
-
     @PostMapping("/findPasswordProcess")
-    public ModelAndView findPasswordProcess
-            (@RequestParam("userid") String userid,
-             @RequestParam("email") String email,
-             HttpSession session) {
+    public ModelAndView findPasswordProcess(
+            @RequestParam("userid") String userid,
+            @RequestParam("email") String email) {
         ModelAndView mav = new ModelAndView();
         String findPassword = ms.findPasswordByIdAndEmail(userid, email);
         mav.addObject("findPassword", findPassword);
@@ -326,22 +313,15 @@ public class MemberController {
         return mav;
     }
 
-
-
-
     @PostMapping("/uploadInfo")
-    public String updatePassword(@RequestParam("userid") String userid,
-                                 @RequestParam String newPassword,
-                                 @RequestParam String confirmPassword,
-                                 HttpSession session,
-                                 Model model) {
-//        String userid = (String) session.getAttribute("userid");
-
+    public String updatePassword(
+            @RequestParam("userid") String userid,
+            @RequestParam String newPassword,
+            @RequestParam String confirmPassword,
+            Model model) {
         if (!newPassword.equals(confirmPassword)) {
             model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
             return "member/findPasswordResult";}
-        System.out.println("userid : " + userid);
-        System.out.println("newPassword : " + newPassword);
 
        ms.updatePassword(userid, newPassword);
 
@@ -349,13 +329,3 @@ public class MemberController {
         return "member/loginForm";
     }
 }
-
-
-
-
-
-
-
-
-
-
