@@ -19,16 +19,12 @@
 <body>
 <div class="modal-container">
     <div class="modal-header">
-        <h2>${hotel.hotel_name}</h2>
+        <h2  id="modalPlaceName">${hotel.hotel_name}</h2>
     </div>
     <div class="modal-content">
         <img src="/hotel_images/${hotel.hotel_savefilename}" alt="${hotel.hotel_name}" />
-        <p>${hotel.hotel_description}</p>
-    </div>
-    <!-- 추가된 버튼들 -->
-    <div class="modal-buttons">
-        <p>좋아요</p>
-        <img id="likeImageButton" src="/images/heartbefore.png" alt="Heart" data-hotel-seq="${hotel_seq}"/>
+        <div id="modal-description">설명 : ${hotel.hotel_description}</div>
+        <div id="modal-location">주소 : <span id="modalPlaceLocation">${hotel.hotel_location}</span></div>
     </div>
 </div>
 </body>

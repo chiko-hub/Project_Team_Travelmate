@@ -1,67 +1,30 @@
-function showContent(step) {
-    const results = document.getElementById("results");
-    let content = "";
-
-    switch (step) {
-        //   case "step1":
-        //       content = `
-        //   <h2>STEP 1: 날짜 확인</h2>
-        //   <label for="start-date">출발 날짜:</label>
-        //   <input type="date" id="start-date" name="startDate">
-        //   <label for="end-date">도착 날짜:</label>
-        //   <input type="date" id="end-date" name="endDate">
-        //   <button>날짜 설정</button>
-        // `;
-        //       break;
-        case "step1":
-            content = `
-        <h2>STEP 1: 장소 선택</h2>
-        <input type="text" placeholder="장소를 검색하세요">
-        <button>장소 선택</button>
-      `;
-            break;
-        case "step2":
-            content = `
-        <h2>STEP 2: 숙소 선택</h2>
-        <input type="text" placeholder="숙소를 검색하세요">
-        <button>숙소 선택</button>
-      `;
-            break;
-        case "step3":
-            content = `
-        <h2>STEP 3: 찜꽁</h2>
-        <input type="text" placeholder="찜꽁 목록을 확인하세요">
-        <button>찜꽁 확인</button>
-      `;
-            break;
-        case "step4":
-            content = `
-        <h2>STEP 4: 일정</h2>
-        <input type="text" placeholder="일정을 확인하세요">
-        <button>일정 확인</button>
-      `;
-            break;
-        default:
-            content = "<p>올바른 STEP을 선택하세요.</p>";
+$(document).ready(function() {
+    if (location.pathname === "/travel-start") { // travel-start 화면으로 갈 경우
+        localStorage.removeItem('selectedStep');
+    } else if($('.sidebar').length === 0){ // 페이지에 header가 포함되어 있는지 확인
+        // sidebar가 없는 경우 localStorage 초기화
+        localStorage.removeItem('selectedStep');
+    }else {
+        // sidebar가 있는 경우 localStorage에서 'selected' 버튼 상태 확인
+        const selectedStep = localStorage.getItem('selectedStep');
+        if (selectedStep && document.getElementById(selectedStep)) {
+            document.getElementById(selectedStep).classList.add('selected');
+        }
     }
+});
 
-    results.innerHTML = content;
+// selectStep 함수 정의
+function selectStep(buttonElement, page) {
+    // 모든 버튼에서 'selected' 클래스를 제거
+    const buttons = document.querySelectorAll('.step-button');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+
+    // 클릭된 버튼에 'selected' 클래스를 추가
+    buttonElement.classList.add('selected');
+
+    // 로컬스토리지에 상태 저장 (클릭된 버튼의 ID를 저장)
+    localStorage.setItem('selectedStep', buttonElement.id);
+
+    // 페이지 이동
+    location.href = page;
 }
-
-
-//
-// <script>
-//     function showContent(stepId) {
-//     // 모든 콘텐츠를 숨기기
-//     const allContents = document.querySelectorAll('.content');
-//     allContents.forEach(content => {
-//     content.style.display = 'none';
-// });
-//
-//     // 클릭한 버튼에 해당하는 콘텐츠를 표시
-//     const activeContent = document.getElementById(stepId);
-//     if (activeContent) {
-//     activeContent.style.display = 'block';
-// }
-// }
-// </script>

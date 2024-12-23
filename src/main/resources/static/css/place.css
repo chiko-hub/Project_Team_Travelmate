@@ -1,11 +1,17 @@
 .main {
     /*flex: 1;*/
-    width: 50%;
+    /*width: 50%;*/
     display: flex;
+    flex: 5;
+    flex-direction: row;
+    position: relative;
     box-sizing: border-box;
 }
 
 .searchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex: 3;
     padding: 20px;
     box-sizing: border-box;
@@ -16,26 +22,39 @@
 .row {
     margin-bottom: 0; /* 불필요한 여백 제거 */
     flex: 1;
+    font-size: 120%;
+    font-weight:bold;
 }
 
 .selects {
     display: flex;
+    width: 480px;
     gap: 5px; /* 버튼 간격 */
-    align-items: center;
+    align-items: flex-end;
     margin-top: 10px;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
-.selects button,
-.selects input[type="button"] {
+.placeCategoryButton, .hotelCategoryButton  {
     padding: 8px 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #2e8b57;
     border-radius: 8px;
     background-color: white;
     font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #333;
+    color: #2e8b57;
+}
+
+.placeCategoryButton:hover, .hotelCategoryButton:hover {
+    background: #2e8b57;
+    color: #fff;
+}
+
+.placeCategoryButton.selected, .hotelCategoryButton.selected{
+    background: #2e8b57;
+    color: #fff;
 }
 
 /* 장소들을 감싸는 컨테이너 */
@@ -48,12 +67,15 @@
 
 .searchWrapper {
     display: flex;
+    width: 480px;
+    justify-content: center;
     align-items: center;
     border: 1px solid #2e8b57;
     border-radius: 8px;
     padding: 5px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 .searchInput {
@@ -80,6 +102,8 @@
 
 /* 개별 장소 카드 */
 .item {
+    width: 480px;
+    height: 100px;
     display: flex; /* 이미지, 텍스트, 버튼을 가로로 정렬 */
     justify-content: space-between; /* 각 영역 간 간격 유지 */
     align-items: center; /* 세로 가운데 정렬 */
@@ -89,6 +113,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
     background-color: #fff;
+    box-sizing: border-box;
 }
 
 /* 장소 카드 안의 이미지 */
@@ -152,7 +177,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: darkgray;
+    background-color: #2e8b57;
     border: none;
     border-radius: 50%; /* 동그란 모양 */
     font-size: 18px;
@@ -160,18 +185,21 @@
     cursor: pointer;
 }
 
-/* 버튼 클릭 시 스타일 */
-.toggle-button.checked {
-    background-color: #2e8b57;
+.toggle-button:hover {
+    transform: scale(1.05); /* 선택된 상태에서 약간 확대 */
 }
 
-/* "+"와 "✔" 아이콘 */
-.icon-plus {
-    display: inline-block;
+.pageContainer {
+    text-align: center;
+    margin: 20px 0; /* 상하 여백 추가 */
 }
 
-.icon-check {
-    display: none;
+/* 페이지 링크 스타일 */
+.row a {
+    color: #2e8b57; /* 초록색 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
 }
 
 /* 모달 배경 */
@@ -196,15 +224,15 @@
 }
 
 /* 모달 콘텐츠 */
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 500px;
-}
+/*.modal-content {*/
+/*    background-color: #fff;*/
+/*    margin: 10% auto;*/
+/*    padding: 20px;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*    width: 80%;*/
+/*    max-width: 500px;*/
+/*}*/
 
 /* 닫기 버튼 */
 .close {
@@ -226,4 +254,79 @@
     width: 40px;
     height: 40px;
     object-fit: contain; /* 필요에 따라 이미지 비율 유지 */
+}
+
+
+/* 모달이 열렸을 때 배경 스크롤 막기 */
+body.modal-open {
+    overflow: hidden; /* 배경 스크롤 차단 */
+}
+
+/* 모달 컨테이너 스타일 */
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*width:40%;*/
+    /*height:40%;*/
+    max-width: 720px; /* 모달의 최대 너비 */
+    max-height: 100%; /* 모달의 최대 높이 */
+    overflow-y: auto; /* 모달 내부 스크롤 활성화 */
+    background: white; /* 배경색 */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* 그림자 효과 */
+    z-index: 1050; /* 모달이 다른 요소들 위에 표시되도록 설정 */
+    border:1px solid #2e8b57;
+}
+
+.modal-header h2{
+    text-align:center;
+    margin-top:10px;
+    padding-top:20px;
+}
+
+/* 모달 이미지와 내용 */
+.modal-content img {
+    /*max-width: 90%; !* 이미지가 모달 너비를 넘지 않도록 설정 *!*/
+    /*height: auto;*/
+    /*display: block;*/
+    /*margin: 0 auto; !* 이미지 중앙 정렬 *!*/
+
+    width: 100%; /* 모달 너비에 맞게 조정 */
+    height: 300px; /* 고정 높이 */
+    object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+    border-radius: 8px;
+    margin-bottom: 12px;
+
+}
+
+.modal-content {
+    margin: 16px;
+    line-height: 1.5;
+    color: #333;
+    font-size: 1rem; /* 글씨 크기 */
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.modal-content #modal-description::before {
+    content: "🗺️";
+    margin-right: 0px;
+}
+
+.modal-content #modal-location::before {
+    content: "🧭";
+    margin-right: 0px;
+}
+
+/* 닫기 버튼 */
+#closeModal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

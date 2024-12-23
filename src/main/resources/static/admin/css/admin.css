@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: "SEBANG Gothic";
+    font-family: 'NanumHuman';
     background-color: #f4f6f9; /* 밝은 회색 배경 */
     color: #333;
     margin: 0;
@@ -95,10 +95,12 @@ article form .field input:focus {
 article form .btn {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
+    margin-top: 5px;
 }
 
 article form .btn input {
+    font-family: 'NanumHuman';
     padding: 10px 20px;
     background-color: #2E4F33;
     border: none;
@@ -232,7 +234,7 @@ header {
     cursor: pointer; /* 클릭 가능하도록 포인터 변경 */
     position: relative; /* 내부 링크 확장을 위한 설정 */
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 기본 그림자 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 1); /* 기본 그림자 */
 }
 
 #sub_menu div a {
@@ -255,6 +257,13 @@ header {
     color: white; /* 텍스트 흰색 */
     transform: scale(1.1); /* 약간 확대 */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강조 */
+}
+
+#sub_menu div a.selected {
+    background: linear-gradient(135deg, #66CDAA, #2E8B57); /* 선택된 메뉴 민트에서 짙은 초록색으로 그라디언트 변경 */
+    color: white;
+    transform: scale(1.3); /* 약간 확대 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -420,7 +429,7 @@ header {
 
 /* 장소 등록 버튼 스타일 */
 .btn-register {
-    font-family: "SEBANG Gothic";
+    font-family: 'NanumHuman';
     background: linear-gradient(135deg, #66CDAA, #20B2AA); /* 기본 민트색에서 짙은 초록색 그라디언트 */
     color: white;
     padding: 15px 30px; /* 버튼 크기를 확대 */
@@ -444,6 +453,206 @@ header {
     background: #2E4F33; /* 클릭 시 단색 */
     transform: scale(0.95); /* 클릭 시 살짝 축소 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 클릭 시 그림자 축소 */
+}
+
+/* 로그인 컨테이너 스타일 */
+#login-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 30px 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #ffffff, #E8F5E9);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+/* 헤더 스타일 */
+#login-container h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #2E4F33;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 입력 필드 스타일 */
+#login-container .field {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative;
+}
+
+#login-container .field label {
+    display: block;
+    font-size: 14px;
+    color: #444;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#login-container .field input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #A2C3A4;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff, #F0F7F3);
+}
+
+#login-container .field input:focus {
+    border-color: #2E8B57;
+    box-shadow: 0 6px 12px rgba(46, 79, 51, 0.4);
+    outline: none;
+}
+
+/* 로그인 버튼 스타일 */
+.btn-group .btn-submit {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #66CDAA, #2E8B57);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn-group .btn-submit:hover {
+    background: linear-gradient(135deg, #2E8B57, #20B2AA);
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn-group .btn-submit:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 장식 요소 */
+#login-container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #66CDAA, #2E8B57);
+    border-radius: 20%;
+    opacity: 0.2;
+    z-index: -1;
+    animation: floating 2.5s infinite ease-in-out;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(65px);
+    }
+
+}
+
+/* 컨테이너 스타일 */
+.file-upload-container {
+    position: relative;
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-family: 'NanumHuman';
+}
+
+/* 파일 선택 버튼 */
+.file-input-container {
+    margin-bottom: 20px;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    background-color: #FAFAFA;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-label:hover {
+    background-color: #F0F0F0;
+    color: #000000;
+    border-color: #CCCCCC;
+}
+
+.file-input {
+    display: none;
+}
+
+/* 미리보기 컨테이너 */
+.preview-container {
+    margin-top: 10px;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    display: none; /* 기본 상태: 숨김 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 업로드 버튼 */
+.btn-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'NanumHuman';
+}
+
+.btn-upload:hover {
+    background-color: #45A049;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-upload:active {
+    background-color: #3E8C43;
+    transform: scale(0.98);
 }
 
 

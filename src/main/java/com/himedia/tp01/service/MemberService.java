@@ -2,8 +2,6 @@ package com.himedia.tp01.service;
 
 import com.himedia.tp01.dao.IMemberDao;
 import com.himedia.tp01.dto.MemberVO;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +28,18 @@ public class MemberService {
         mdao.updateMemberPlanCode(userid, planCode);
     }
 
-    public void deleteMember(String userid) {mdao.deleteMember(userid);}
+    public void deleteMember(String userid) {
+        mdao.deleteMember(userid);
     }
 
+    public String findIdByNameAndEmail(String name, String email) {
+        return mdao.findIdByNameAndEmail(name, email);
+    }
+
+    public String findPasswordByIdAndEmail(String userid, String email) {return mdao.findPasswordByIdAndEmail(userid, email);
+    }
+
+    public void updatePassword(String userid, String newPassword) {mdao.updatePassword(userid,newPassword);
+    }
+}
 

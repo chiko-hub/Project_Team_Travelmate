@@ -19,19 +19,13 @@
 <body>
 <div class="modal-container">
     <div class="modal-header">
-        <h2>${place.place_name}</h2>
+        <h2 id="modalPlaceName">${place.place_name}</h2>
     </div>
     <div class="modal-content">
         <img src="/place_images/${place.savefilename}" alt="${place.place_name}" />
-        <p>${place.place_description}</p>
+        <div id="modal-description">설명 : ${place.place_description}</div>
+        <div id="modal-location">주소 : <span id="modalPlaceLocation">${place.place_location}</span></div>
     </div>
-
-    <!-- 추가된 버튼들 -->
-    <div class="modal-buttons">
-        <p>좋아요</p>
-        <img id="likeImageButton" src="/images/heartbefore.png" alt="Heart"  data-place-seq="${place_seq}"/>
-    </div>
-
 </div>
 
 </body>

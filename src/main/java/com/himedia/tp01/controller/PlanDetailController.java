@@ -18,7 +18,7 @@ public class PlanDetailController {
     /* plan 에 세부 계획 추가하기 - AJAX */
     @PostMapping("/addPlan")
     @ResponseBody // JSON 응답을 반환하도록 설정
-    public Map<String, Object> addPlan(@ModelAttribute("plandetail") @Valid PlanDetailVO plandetailvo) {
+    public Map<String, Object> addPlan(@ModelAttribute PlanDetailVO plandetailvo) {
         Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
 
         // 겹치는 일정 시간 확인
@@ -60,7 +60,6 @@ public class PlanDetailController {
     @ResponseBody
     public Map<String, Object> updatePlan(@ModelAttribute("plandetail") @Valid PlanDetailVO plandetailvo) {
         Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
-        System.out.println("기존 세부 일정 : " + plandetailvo);
 
         // 겹치는 일정 시간 확인
         Boolean isCheckTimeResult = pds.checkTime(plandetailvo);
@@ -81,7 +80,6 @@ public class PlanDetailController {
     @ResponseBody
     public Map<String, Object> deletePlan(@RequestBody Map<String, Integer> requestBody) {
         int planDetailSeq = requestBody.get("planDetailSeq");
-        System.out.println("전달된 planDetailSeq : " + planDetailSeq);
         Map<String, Object> response = new HashMap<>(); // 응답 데이터를 담을 Map
 
         // 세부 계획 정보 가져오기

@@ -2,120 +2,190 @@
 
 body {
     padding: 0;
-    width: 100vw;
+    margin: 0;
+    width: 100%;
     height: 100vh;
-    font-family: Verdana;
-    display:flex;
+    font-family: 'NanumHuman';
+    display: flex;
     flex-direction: column;
     justify-content:space-between;
-    margin: 0;
-    overflow: hidden;
-    /*align-items: center;*/
+    box-sizing: border-box;
 }
 
 .header {
     display: flex;
-    padding:50px;
-    height:100px;
+    height: 10%; /* 화면 높이의 10% */
+    flex-shrink: 0; /* 비율을 유지하도록 고정 */
     justify-content: space-between;
     padding: 20px;
+    margin: 0 200px;
+    z-index: 10;
     background: #fff;
+    box-sizing: border-box;
+    padding-left: 70px;
 }
 
 .header .logo {
-    font-size: 24px;
-    font-weight: bold;
-    margin-left:180px;
-    margin-top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 92px;
+    height: 52px;
+    box-sizing: border-box;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .header nav a {
-    margin-right:50px;
+    position: relative;
+    padding: 10px 15px; /* 패딩을 늘려 아이콘 사이 간격 조정 */
     text-decoration: none;
     color: #333;
-}
-
-.main {
-    text-align: left;
-    padding: 50px 20px;
+    transition: all 0.3s ease;
     display: flex;
-    justify-content: space-between;
-//flex-direction: row;
-    height: 700px;
-
-}
-
-#text{
-    flex-direction: row;
-    height: 350px;
-    position: relative;
     justify-content: center;
-    margin-left: 200px;
-    margin-top: 60px;
+    align-items: center;
+    margin: 0 5px; /* 추가적인 마진으로 간격 확보 */
 }
-.containe1{
+
+.header nav a i{
+    font-size: 28px; /* 아이콘 크기 (아이콘 폰트일 경우) */
+    margin: 0; /* 마진 제거로 균형 유지 */
+    vertical-align: middle; /* 텍스트와 정렬 */
+}
+
+/* Hover 효과 추가 */
+.header nav a:hover {
+    color: #555;
+}
+
+.header nav a:hover::before {
+    content: '';
     position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #DCEDC1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: -1;
+    transition: all 0.3s ease;
 }
 
-.containe2{
+.indexMain {
+    flex-grow: 1; /* 나머지 공간을 채움 */
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 150px;
+    margin-top: -150px;
+    box-sizing: border-box;
+}
+
+.container1 {
+    width: 700px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.container2 {
     flex-direction: row;
-    border:1px solid black;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
-#imageContainer{
-    flex-direction: row;
-    margin-top: 78px;
-    margin-right: 250px;
-    border:1px solid black;
-    width:700px;
-    height:390px;
-
+.indexTitle {
+    padding-top: 20px;
 }
 
-.image-container img {
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
+.indexTitle h1 {
+    margin: 0;
+    font-size: 65px;
 }
 
-
-.main h1 {
-    font-size: 55px;
-    line-height: 1.5;
-
+.indexSub p {
+    padding: 40px 0;
 }
 
-.main p {
+.indexSub p {
+    margin: 0;
     font-size: 18px;
     color: #666;
 }
 
 #button {
     cursor: pointer;
-    background-color:black;
-    padding: 20px 40px;
-    font-size: 20px;
-    cursor: pointer;
+    background-color: black;
+    padding: 15px 40px;
+    font-size: 30px;
     text-align: center;
-    color:white;
+    color: white;
+    border: none;
+    outline: 2px solid black; /* 보더 대신 outline 사용 */
+    transition: background-color 0.3s ease, outline-color 0.3s ease;
 }
 
-.statistics {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px;
-    font-family: Verdana;
-    background-color: white;
-    font-size: 24px;
+#button:hover {
+    background-color: #98FF98;
+    outline-color: transparent; /* outline 색상 변경 */
+}
+
+.capsule-text {
+    position: absolute;
+    color: #000000;
+    font-size: 16px;
     font-weight: bold;
-    color: #000;
-    bottom: 0;
-    height: 100px;
-
-
+    text-align: center;
 }
 
-.statItem{
-    margin-right:70px;
+#image-container {
+    flex-direction: row;
+    width: 700px;
+    height: 420px;
+    position: relative;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.8); /* 약간의 그림자 */
+}
 
+canvas {
+    position: absolute; /* 부모 컨테이너에 맞게 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+}
+
+#admin-link {
+    position: absolute;
+    display: none;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    z-index: 1000;
+}
+
+.startButton{
+    align-items: flex-end;
 }

@@ -3,8 +3,9 @@
     position: relative; /* 내부 요소의 position: absolute 기준 설정 */
     height: 100%; /* 전체 높이 고정 */
     overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
-    width: 50%; /* 부모 컨테이너 기준으로 50% */
+    scrollbar-gutter: stable both-edges; /* 스크롤바 공간을 요소 크기에 포함 */
     display: flex; /* 플렉스 박스를 사용하여 정렬 */
+    flex: 5;
     flex-direction: column; /* 세로 방향으로 배치 */
     justify-content: flex-start; /* 세로 방향 상단 정렬 유지 */
     align-items: center; /* 가로 가운데 정렬 */
@@ -28,14 +29,20 @@
 }
 
 /* 추가 스타일: 버튼 모양 */
-.buttonList input, .planCreateButton button {
-    padding: 8px 16px;
+.buttonList input {
+    padding: 6px 12px;
     font-size: 14px;
     color: #2e8b57;
     background: #fff;
     border: 1px solid #2e8b57;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.buttonList input:hover {
+    transition: all 0.3s ease-in-out;
+    background: #2e8b57;
+    color: #fff;
 }
 
 /* planTable */
@@ -94,38 +101,31 @@
 .panel {
     display: none; /* 기본적으로 숨김 */
     position: absolute; /* 부모 기준 위치 */
-    top: 20%; /* 화면 중간 정도 */
-    left: 50%; /* 화면 가운데 정렬 */
-    transform: translate(-50%, -20%); /* 중앙 정렬 보정 */
+    top: 30%; /* 화면 중간 정도 */
+    left: 40%; /* 화면 가운데 정렬 */
+    transform: translate(-80%, -30%); /* 중앙 정렬 보정 */
     width: 300px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     padding: 20px;
     z-index: 1000;
 }
 
 /* 패널 내부 스타일 */
 .panel h3 {
-    margin-top: 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
     text-align: center;
     font-size: 18px;
     color: #333;
 }
 
-.panel input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
 .planButton {
     display: flex;
     justify-content: flex-end;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .panel button {
@@ -175,6 +175,32 @@
     cursor: pointer; /* 포인터 모양 */
 }
 
+/* .planColor 안의 radio 버튼들을 가로로 배치 */
+.planColor {
+    display: flex;
+    gap: 10px; /* 버튼 사이 간격 */
+    justify-content: space-between;
+    align-items: center; /* 수직 가운데 정렬 */
+    padding: 0 20px;
+}
+
+/* 기본 radio 버튼 숨기기 */
+.planColor input[type="radio"] {
+    appearance: none; /* 기본 radio 버튼 숨기기 */
+    width: 30px; /* 버튼 크기 */
+    height: 30px; /* 버튼 크기 */
+    border-radius: 50%; /* 둥근 모양 */
+    background-color: transparent; /* 색상은 유지 */
+    border: none; /* 기본 border 없애기 */
+    cursor: pointer;
+    position: relative;
+}
+
+/* 선택된 radio 버튼의 테두리 생성 */
+.planColor input[type="radio"]:checked {
+    border: 2px solid #333333; /* 기본 테두리 색상 */
+}
+
 .cell {
     position: relative; /* 버튼이 cell 안에 위치하도록 설정 */
     overflow: hidden;   /* 내부 내용이 영역 밖으로 벗어나지 않도록 */
@@ -189,7 +215,6 @@
     height: 100%; /* 버튼들의 크기를 cell 크기와 동일하게 맞춤 */
     background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
     z-index: 10; /* 다른 요소보다 위에 표시 */
-    /*display: flex;*/
     justify-content: flex-end; /* 오른쪽 정렬 */
     align-items: flex-start; /* 버튼들을 위쪽에 정렬 */
     padding: 10px; /* 버튼 간격 */
@@ -216,4 +241,10 @@
 
 .planUpdateButton:hover, .planDeleteButton:hover {
     opacity: 0.8; /* 마우스 올리면 버튼 투명도 */
+}
+
+.warningMessage {
+    font-size: 12px;
+    color: #2e8b57;
+    margin-bottom: 10px;
 }

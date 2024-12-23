@@ -16,8 +16,6 @@ public interface IPlaceDao {
     List<PlaceVO> getBestPlace(Paging paging, String key);
     int getHotCount(String place, String placeName, String key);
     List<PlaceVO> getHotPlace(Paging paging, String key);
-    int getSearchCount(String place, String key);
-    List<PlaceVO> getSearchPlaceList(Paging paging, String key);
 
     PlaceVO getPlace(int place_seq);
 }

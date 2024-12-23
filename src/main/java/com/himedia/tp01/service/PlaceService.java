@@ -17,168 +17,71 @@ public class PlaceService {
     @Autowired
     IPlaceDao pdao;
 
-    public HashMap<String, Object> selectAllList(HttpServletRequest request) {
-        HashMap<String, Object> result = new HashMap<>();
+    /* request 에 맞는 placeList 정보 가져오기 */
+    public HashMap<String, Object> selectPlaceList(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if( request.getParameter("first")!=null){
-            session.removeAttribute("page");
-            session.removeAttribute("key"); }
-
-        int page = 1;
-        try {
-            if (request.getParameter("page") != null) {
-                page = Integer.parseInt(request.getParameter("page")); // 요청에서 page 값 가져오기
-            } else if (session.getAttribute("page") != null) {
-                page = (Integer) session.getAttribute("page"); // 세션에서 page 값 가져오기
-            }
-        } catch (NumberFormatException | ClassCastException e) { page = 1; } // 유효하지 않은 값이 있으면 기본값으로 설정
-        session.setAttribute("page", page); // 세션에 현재 페이지 저장
-
-        String key = "";
-        if (request.getParameter("key") != null) {
-            key = request.getParameter("key"); // 요청에서 key 값 가져오기
-        } else if (session.getAttribute("key") != null) {
-            key = (String) session.getAttribute("key"); }// 세션에서 key 값 가져오기
-        session.setAttribute("key", key); // 세션에 검색 키워드 저장
-
-        Paging paging = new Paging();
-        paging.setPage(page);
-        paging.setDisplayPage(7);
-        paging.setDisplayRow(7);
-
-        int count = pdao.getAllCount("place", "place_name", key);
-        paging.setTotalCount(count);
-        paging.calPaging();
-
-        List<PlaceVO> placeList = pdao.getAllPlaceList( paging, key );
-        result.put("placeList", placeList);
-        result.put("paging", paging);
-        result.put("key", key);
-        return result;
-    }
-
-    public HashMap<String, Object> selectBestList(HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
-        HttpSession session = request.getSession();
-        if( request.getParameter("first")!=null){
+        int count = 0; // 총 페이지 수 담을 count
+        List<PlaceVO> placeList = null; // 장소 목록 담을 list
+
+        // 'first' 파라미터가 ture 일 경우 page, key 세션 초기화 및 placeCategory 세션 저장
+        if (Boolean.parseBoolean(request.getParameter("first"))) {
             session.removeAttribute("page");
-            session.removeAttribute("key"); }
-
-        int page = 1;
-        try {
-            if (request.getParameter("page") != null) {
-                page = Integer.parseInt(request.getParameter("page")); // 요청에서 page 값 가져오기
-            } else if (session.getAttribute("page") != null) {
-                page = (Integer) session.getAttribute("page"); // 세션에서 page 값 가져오기
-            }
-        } catch (NumberFormatException | ClassCastException e) { page = 1;} // 유효하지 않은 값이 있으면 기본값으로 설정
-        session.setAttribute("page", page); // 세션에 현재 페이지 저장
-
-        String key = "";
-        if (request.getParameter("key") != null) {
-            key = request.getParameter("key"); // 요청에서 key 값 가져오기
-        } else if (session.getAttribute("key") != null) {
-            key = (String) session.getAttribute("key"); } // 세션에서 key 값 가져오기
-        session.setAttribute("key", key); // 세션에 검색 키워드 저장
-
-        Paging paging = new Paging();
-        paging.setPage(page);
-        paging.setDisplayPage(7);
-        paging.setDisplayRow(7);
-
-        int count = pdao.getBestCount("place", "place_name", key);
-        paging.setTotalCount(count);
-        paging.calPaging();
-
-        List<PlaceVO> bestList = pdao.getBestPlace( paging, key );
-        result.put("bestList", bestList);
-        result.put("paging", paging);
-        result.put("key", key);
-        return result;
-    }
-
-    public HashMap<String, Object> selectHotList(HttpServletRequest request) {
-        HashMap<String, Object> result = new HashMap<>();
-        HttpSession session = request.getSession();
-        if( request.getParameter("first")!=null){
-            session.removeAttribute("page");
-            session.removeAttribute("key"); }
-
-        int page = 1;
-        try {
-            if (request.getParameter("page") != null) {
-                page = Integer.parseInt(request.getParameter("page")); // 요청에서 page 값 가져오기
-            } else if (session.getAttribute("page") != null) {
-                page = (Integer) session.getAttribute("page"); // 세션에서 page 값 가져오기
-            }
-        } catch (NumberFormatException | ClassCastException e) { page = 1; }// 유효하지 않은 값이 있으면 기본값으로 설정
-        session.setAttribute("page", page); // 세션에 현재 페이지 저장
-
-        String key = "";
-        if (request.getParameter("key") != null) {
-            key = request.getParameter("key"); // 요청에서 key 값 가져오기
-        } else if (session.getAttribute("key") != null) {
-            key = (String) session.getAttribute("key"); // 세션에서 key 값 가져오기
+            session.removeAttribute("key");
+            session.setAttribute("placeCategory", request.getParameter("placeCategory"));
         }
-        session.setAttribute("key", key); // 세션에 검색 키워드 저장
 
+        // 페이지 번호 처리
+        int page = Integer.parseInt(request.getParameter("page"));
+        /*if((session.getAttribute("page") != null) && page != 1){
+            page = (Integer)session.getAttribute("page"); // 세션에서 page 값 가져오기
+        }
+        session.setAttribute("page", page);*/
+
+        // 페이징 처리
         Paging paging = new Paging();
         paging.setPage(page);
-        paging.setDisplayPage(7);
-        paging.setDisplayRow(7);
+        paging.setDisplayPage(6);
+        paging.setDisplayRow(6);
 
-        int count = pdao.getHotCount("place", "place_name", key);
-        paging.setTotalCount(count);
-        paging.calPaging();
-
-        List<PlaceVO> hotList = pdao.getHotPlace( paging, key );
-        result.put("hotList", hotList);
-        result.put("paging", paging);
-        result.put("key", key);
-        return result;
-    }
-
-    public HashMap<String, Object> getPlaceSearch(HttpServletRequest request) {
-        HashMap<String, Object> result = new HashMap<>();
-        HttpSession session = request.getSession();
-
-        // 검색 조건 처리
-        String key = request.getParameter("key") != null
-                ? request.getParameter("key")
-                : (String) session.getAttribute("key");
+        // 검색 키워드 처리
+        String key = request.getParameter("key");
+        if ("".equals(key) && session.getAttribute("key") != null) {
+            key = (String)session.getAttribute("key"); // 세션에서 key 값 가져오기
+        }
         session.setAttribute("key", key);
 
-        // 페이지 처리
-        int page = 1;
-        try {
-            if (request.getParameter("page") != null) {
-                page = Integer.parseInt(request.getParameter("page"));
-            } else if (session.getAttribute("page") != null) {
-                page = (Integer) session.getAttribute("page");
-            }
-        } catch (NumberFormatException | ClassCastException e) {
-            page = 1;
+        // 카테고리 처리
+        String placeCategory = request.getParameter("placeCategory");
+        if (session.getAttribute("placeCategory") != null) {
+            placeCategory = (String)session.getAttribute("placeCategory"); // 세션에서 placeCategory 값 가져오기
         }
-        session.setAttribute("page", page);
-        // 페이징 객체 설정
-        Paging paging = new Paging();
-        paging.setPage(page);
-        paging.setDisplayPage(7);
-        paging.setDisplayRow(7);
 
-        // 검색 조건에 따른 데이터 총 개수 조회
-        int count = pdao.getSearchCount("place",  key);
-        System.out.println("Total Count: " + count); // 디버깅: 총 데이터 개수 확인
-        paging.setTotalCount(count);
-        paging.calPaging();
-        // 검색 결과 조회
-        List<PlaceVO> placeList = pdao.getSearchPlaceList(paging, key);
+        // 카테고리에 따른 데이터 처리
+        if ("best".equals(placeCategory)) { // placeCategory 가 best 이라면
+            count = pdao.getBestCount("place", "place_name", key);
+            paging.setTotalCount(count);
+            paging.calPaging();
+            placeList = pdao.getBestPlace(paging, key); // BEST 장소 목록 가져오기
+        } else if ("hot".equals(placeCategory)) { // placeCategory 가 hot 이라면
+            count = pdao.getHotCount("place", "place_name", key);
+            paging.setTotalCount(count);
+            paging.calPaging();
+            placeList = pdao.getHotPlace(paging, key); // HOT 장소 목록 가져오기
+        } else { // placeCategory.equals("all") placeCategory 가 all 이라면
+            count = pdao.getAllCount("place", "place_name", key);
+            paging.setTotalCount(count);
+            paging.calPaging();
+            placeList = pdao.getAllPlaceList(paging, key); // 모든 장소 목록 가져오기
+        }
         result.put("placeList", placeList);
         result.put("paging", paging);
         result.put("key", key);
+        result.put("placeCategory", placeCategory);
         return result;
     }
 
+    /* place_seq 에 해당하는 place 상세 정보 가져오기 */
     public PlaceVO getPlace(int place_seq) {
         return pdao.getPlace(place_seq);
     }

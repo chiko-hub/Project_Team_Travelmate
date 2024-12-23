@@ -1,7 +1,84 @@
 /* 패널 열고 닫기 */
 function togglePanel(panelId) {
-    const panel = document.getElementById(panelId);
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
+    const panel = document.getElementById(panelId); // 현재 패널
+    const panelGroup = panel.getAttribute('data-panel-group'); // data-panel-group 값을 가져옴
+    const planName = document.getElementById('planName'); // planName 항목
+    const planWishDetail = document.getElementById('planWishDetail'); // planWishDetail 항목
+    const planWishlist = document.getElementById('planWishlist'); // planWishDetail 항목
+    const planDate = document.getElementById('planDate'); // planDate select 항목
+    const planContainer = document.querySelector('.planContainer'); // planContainer 선택
+    const mainContainer = document.querySelector('.mainContainer'); // mainContainer 선택
+    const main = document.querySelector('.main'); // main 선택
+
+    // 두 클래스(.panel 또는 .wishlistAddPanel)를 모두 고려하여, 동일한 panelGroup을 가진 다른 패널들을 찾기
+    const allPanelsInGroup = document.querySelectorAll(
+        `.panel[data-panel-group="${panelGroup}"]:not(#${panelId}), .wishlistAddPanel[data-panel-group="${panelGroup}"]:not(#${panelId})`
+    );
+
+    // 모든 패널을 닫기
+    allPanelsInGroup.forEach(p => {
+        if (p !== panel) {
+            p.style.display = 'none'; // 다른 패널 닫기
+        }
+    });
+
+    // 현재 패널 열기
+    const isPanelOpening = panel.style.display !== "block";
+    panel.style.display = isPanelOpening ? "block" : "none";
+
+    if(planName){
+        planName.value = ''; // planName 값 초기화
+    }
+    if(planWishlist){
+        planWishlist.innerHTML = ''; // planWishlist 초기화
+    }
+    if(planWishDetail){
+        planWishDetail.innerHTML = ''; // planWishDetail 초기화
+    }
+
+    // 날짜 선택 초기화 (첫 번째 option을 selected 상태로 설정)
+    if (planDate) {
+        planDate.selectedIndex = 0; // 첫 번째 option 선택
+    }
+
+    // blur 효과 처리
+    if (isPanelOpening) {
+        if(planContainer){
+            planContainer.classList.add('blur');
+        }else if(mainContainer){
+            mainContainer.classList.add('blur');
+        }else if(main){
+            main.classList.add('blur');
+        }
+    } else {
+        if(planContainer){
+            planContainer.classList.remove('blur');
+        }else if(mainContainer){
+            mainContainer.classList.remove('blur');
+        }else if(main){
+            main.classList.remove('blur');
+        }
+    }
+
+    // wishlistSection 이 있고, 열린 상태라면 닫기
+    const wishlistSection = document.getElementById('wishlistSection');
+    if(wishlistSection && wishlistSection.style.display === "block"){
+        wishlistSection.style.display = "none";
+    }
+}
+
+/* planWishDetail 선택 시 해당 wish_name 값을 planName에 입력 */
+function updatePlanName() {
+    const planWishDetail = document.getElementById('planWishDetail');
+    const planName = document.getElementById('planName');
+
+    const selectedOption = planWishDetail.options[planWishDetail.selectedIndex];
+
+    if (selectedOption && selectedOption.textContent) {
+        planName.value = selectedOption.textContent; // planName input에 wish_name 값 입력
+    } else {
+        planName.value = ''; // 선택이 없을 경우 빈 문자열로 초기화
+    }
 }
 
 /* 세부 일정의 정보를 가져와 수정을 패널 열고 닫기 */
@@ -47,6 +124,15 @@ function toggleUpdatePanel(planDetailSeq){
                     });
                     Array.from(document.getElementById("planUpdateEndTime").options).forEach(option => {
                         option.selected = option.value === formattedEndTime;
+                    });
+
+                    // 색상 선택 처리 (plan_color 값에 맞는 라디오 버튼을 선택)
+                    const colorValue = data.planDetail.plan_color; // 서버에서 받은 색상 값
+                    const colorRadios = document.getElementsByName("plan_color");
+                    colorRadios.forEach(radio => {
+                        if (radio.value === colorValue) {
+                            radio.checked = true; // 서버에서 받은 색상 값에 맞는 라디오 버튼을 선택
+                        }
                     });
 
                     // planUpdatePanel 열기
@@ -142,7 +228,7 @@ function addPlan() {
     // 유효성 검사 - 비어 있는 필드 확인
     for (const [key, value] of formData.entries()) {
         if (!value.trim()) { // 값이 비어 있으면
-            alert(`모든 항목에 일정 데이터를 입력해주세요.`); // 사용자에게 알림
+            alert(`${key} 모든 항목에 일정 데이터를 입력해주세요.`); // 사용자에게 알림
             const field = planAddForm.elements[key]; // 폼 필드 가져오기
             if (field) field.focus(); // 해당 필드로 포커스 이동
             return; // 추가 요청 중단

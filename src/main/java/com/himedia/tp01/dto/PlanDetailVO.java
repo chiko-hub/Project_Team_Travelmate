@@ -12,6 +12,7 @@ public class PlanDetailVO {
     private String plan_name;
     private Date plan_date;
     private String plan_category;
+    private String plan_color;
     private int starttime;
     private int endtime;
 }

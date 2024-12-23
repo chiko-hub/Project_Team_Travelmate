@@ -7,5 +7,6 @@ public class WishlistVO {
     private int wishlist_seq;
     private String wishlist_title;
     private String wishlist_category;
+    private String wishlist_color;
     private String userid;
 }

@@ -22,7 +22,7 @@ public class PlanService {
     IPlanDao pdao;
 
     /* code, startdate, enddate 를 입력하여 여행 날짜 전부 구해 plan 생성 */
-    public void setPlan(String planCode, LocalDate startDate, LocalDate endDate) {
+    public void setPlan(String planCode, LocalDate startDate, LocalDate endDate, String userid) {
         // 두 날짜 사이의 간격 구하기
         Period period = Period.between(startDate, endDate);
 
@@ -31,7 +31,7 @@ public class PlanService {
             // 날짜를 하루씩 구해 Date 로 저장
             Date date = Date.valueOf(startDate.plusDays(i));
             // code와 함께 날짜 저장
-            pdao.setPlan(planCode, date);
+            pdao.setPlan(planCode, date, userid);
         }
     }
 
@@ -71,7 +71,6 @@ public class PlanService {
 
     /* planCode 에 맞는 plan 이 생성되어 있는지 확인 */
     public Boolean checkPlanCode(String planCode) {
-        System.out.println("checkPlanCode : " + planCode);
         return pdao.checkPlanCode(planCode);
     }
 }

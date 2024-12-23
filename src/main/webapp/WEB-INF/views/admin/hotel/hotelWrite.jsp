@@ -4,21 +4,21 @@
 
 <article style="flex-direction: column">
     <form name="hotelWriteFrm" method="post"  action="adminHotelWrite">
-          <h2> Hotel Write Form </h2>
-
+          <h2> Add Hotel </h2>
+          &nbsp;
           <div class="field" >
-                <label>숙소명</label> <input type="text" name="hotel_name"  value="${hotelVO.hotel_name}"  />
+                <label>Name</label> <input type="text" name="hotel_name"  value="${hotelVO.hotel_name}"  />
           </div>
 
           <div class="field" >
-             <label>위치</label>  <input type="text" name="hotel_location"  value="${hotelVO.hotel_location}"  />
+             <label>Location</label>  <input type="text" name="hotel_location"  value="${hotelVO.hotel_location}"  />
           </div>
 
           <div class="field" >
-                <label>상세설명</label><textarea name="hotel_description" rows="8" style="flex:4;">${hotelVO.hotel_description}</textarea>
+                <label>Info.</label><textarea name="hotel_description" rows="8" style="flex:4;">${hotelVO.hotel_description}</textarea>
           </div>
           <div class="field" >
-                <label>숙소 이미지</label>
+                <label>Image</label>
                 <c:choose>
                    <c:when test="${ empty hotelVO.hotel_image }">
                       <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start">
@@ -39,8 +39,8 @@
                 </c:choose>
           </div>
           <div class="btn" >
-                <input type="submit" value="숙소등록" >
-                <input type="button" value="목록으로"  onClick="location.href='adminHotelList'">
+                <input type="submit" value="Add" >
+                <input type="button" value="Back"  onClick="location.href='adminHotelList'">
           </div>
 
           <div class="field" >
@@ -48,10 +48,20 @@
           </div>
     </form>
 
-    <div  style="position:relative;  border:1px solid black; width:500px; margin:0 auto; ">
-       <form name="fromm" id="fileupHotelForm" method="post" enctype="multipart/form-data">
-          <input type="file" name="fileimage">
-          <input type="button" id="imageHotelAddBtn" value="추가">
-       </form>
+    <div class="file-upload-container">
+        <form name="fromm" id="fileupHotelForm" method="post" enctype="multipart/form-data">
+            <div class="file-input-container">
+                <label for="fileimage" class="file-label">
+                    <span>Select Image</span>
+                    <input type="file" name="fileimage" id="fileimage" class="file-input" accept="image/*" onchange="previewImage(event)">
+                </label>
+            </div>
+
+            <div class="preview-container">
+                <img id="image-preview" src="#" alt="미리보기 이미지 없음" class="image-preview">
+            </div>
+
+            <button type="button" id="imageHotelAddBtn" class="btn-upload">Add Image</button>
+        </form>
     </div>
 </article>

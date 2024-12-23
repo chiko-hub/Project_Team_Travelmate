@@ -1,9 +1,9 @@
 /* 메인 컨테이너 스타일 */
 .mainContainer {
     display: flex;
-    width: 50%;
-    padding-left: 20px;
+    flex: 5;
     box-sizing: border-box;
+    position: relative;
 }
 
 /* 찜 목록 스타일 */
@@ -13,19 +13,20 @@
     flex-direction: column;
     gap: 20px;
     border-right: 1px solid #ddd;
-    padding-right: 20px;
+    padding: 20px;
     box-sizing: border-box;
     overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
+    scrollbar-gutter: stable both-edges; /* 스크롤바 공간을 요소 크기에 포함 */
 }
 
 .wishContainer h2 {
-    margin-bottom: 10px;
+    margin: 20px 0;
 }
 
 .wishlistList, .wishDetailList {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -40,7 +41,6 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    /*margin: 10px 0;*/
     cursor: pointer;
     background-color: #fafafa;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -50,6 +50,26 @@
 .wishlistItem:hover {
     transform: translateY(-3px); /* 마우스 오버 시 살짝 위로 올라감 */
     background-color: #f5f5f5;
+}
+
+/* place 찜 목록 녹색 계열 */
+#placeWishlist {
+    background-color: #e5f1e4;
+    border: 1px solid #cce3c9;
+}
+
+#placeWishlist:hover {
+    background-color: #deebda;
+}
+
+/* hotel 찜 목록 하늘색 계열*/
+#hotelWishlist {
+    background-color: #dcefeb;
+    border: 1px solid #c4e3db;
+}
+
+#hotelWishlist:hover {
+    background-color: #d2ebe5;
 }
 
 .wishlistName {
@@ -109,9 +129,9 @@
 .wishlistAddPanel {
     display: none; /* 기본적으로 숨김 */
     position: absolute; /* 부모 기준 위치 */
-    top: 20%; /* 화면 중간 정도 */
-    left: 50%; /* 화면 가운데 정렬 */
-    transform: translate(-50%, -20%); /* 중앙 정렬 보정 */
+    top: 30%; /* 화면 중간 정도 */
+    left: 40%; /* 화면 가운데 정렬 */
+    transform: translate(-80%, -30%); /* 중앙 정렬 보정 */
     width: 300px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -123,7 +143,7 @@
 
 /* 패널 내부 스타일 */
 .wishlistAddPanel h3 {
-    margin-top: 0;
+    margin-bottom: 20px;
     text-align: center;
     font-size: 18px;
     color: #333;
@@ -132,7 +152,7 @@
 .wishlistAddButton {
     display: flex;
     justify-content: flex-end;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .wishlistAddPanel button {
@@ -186,10 +206,10 @@
     display: flex;
     flex: 2;
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    padding: 10px 0;
     box-sizing: border-box;
     overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 생성 */
+    scrollbar-gutter: stable both-edges; /* 스크롤바 공간을 요소 크기에 포함 */
 }
 
 .noWishDetailItem {
@@ -208,6 +228,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    margin: 0 10px 0 0;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fafafa;
