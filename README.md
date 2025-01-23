@@ -70,8 +70,7 @@ team-travelmate/
 │   │       ├── static/           # 정적 리소스 (CSS, JS 등)
 │   │       ├── templates/        # JSP 파일 경로 (뷰)
 │   │       └── application.yml/properties # Spring Boot 설정 파일
-└── test/
-    └── java/com/himedia/tp01/    # 테스트 코드 경로
+└────────────────────────────────────────────────────────────────
 ```
 
 ---
